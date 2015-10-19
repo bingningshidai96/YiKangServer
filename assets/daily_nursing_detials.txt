@@ -1,0 +1,2979 @@
+[
+    {
+        "questionCrosswiseId": 1,
+        "questions": [
+            {
+                "questionPortraitName": "老人情况",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 1,
+                        "answerVal": 1,
+                        "answerText": "正常"
+                    },
+                    {
+                        "answerId": 2,
+                        "answerVal": 1,
+                        "answerText": "比正常说话大声"
+                    },
+                    {
+                        "answerId": 3,
+                        "answerVal": 1,
+                        "answerText": "需大声说话"
+                    },
+                    {
+                        "answerId": 4,
+                        "answerVal": 1,
+                        "answerText": "完全性耳聋"
+                    }
+                ],
+                "questionPortraitId": 1
+            },
+            {
+                "questionPortraitName": "初步结论",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 5,
+                        "answerVal": 1,
+                        "answerText": "听力正常"
+                    },
+                    {
+                        "answerId": 6,
+                        "answerVal": 1,
+                        "answerText": "听力障碍"
+                    },
+                    {
+                        "answerId": 7,
+                        "answerVal": 1,
+                        "answerText": "不宜自行外出"
+                    },
+                    {
+                        "answerId": 8,
+                        "answerVal": 1,
+                        "answerText": "不宜独居"
+                    }
+                ],
+                "questionPortraitId": 2
+            },
+            {
+                "questionPortraitName": "可能出现的情况",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 9,
+                        "answerVal": 1,
+                        "answerText": "听力障碍进行性加重"
+                    },
+                    {
+                        "answerId": 10,
+                        "answerVal": 1,
+                        "answerText": "外出时因听不见车鸣声等导致车祸或意外事故"
+                    },
+                    {
+                        "answerId": 11,
+                        "answerVal": 1,
+                        "answerText": "独居时有意外响声听不见导致事故发生"
+                    }
+                ],
+                "questionPortraitId": 3
+            }
+        ]
+    },
+    {
+        "questionCrosswiseId": 2,
+        "questions": [
+            {
+                "questionPortraitName": "老人情况",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 12,
+                        "answerVal": 1,
+                        "answerText": "视力正常"
+                    },
+                    {
+                        "answerId": 13,
+                        "answerVal": 1,
+                        "answerText": "单目失明"
+                    },
+                    {
+                        "answerId": 14,
+                        "answerVal": 1,
+                        "answerText": "老花眼"
+                    },
+                    {
+                        "answerId": 15,
+                        "answerVal": 1,
+                        "answerText": "白内障"
+                    },
+                    {
+                        "answerId": 16,
+                        "answerVal": 1,
+                        "answerText": "高度近视"
+                    },
+                    {
+                        "answerId": 17,
+                        "answerVal": 1,
+                        "answerText": "青光眼 "
+                    },
+                    {
+                        "answerId": 18,
+                        "answerVal": 1,
+                        "answerText": "双目失明"
+                    }
+                ],
+                "questionPortraitId": 4
+            },
+            {
+                "questionPortraitName": "初步结论",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 19,
+                        "answerVal": 1,
+                        "answerText": "视力正常 "
+                    },
+                    {
+                        "answerId": 20,
+                        "answerVal": 1,
+                        "answerText": "视力下降 "
+                    },
+                    {
+                        "answerId": 21,
+                        "answerVal": 1,
+                        "answerText": "不宜自行上下楼 "
+                    },
+                    {
+                        "answerId": 587,
+                        "answerVal": 1,
+                        "answerText": "不宜自行外出"
+                    },
+                    {
+                        "answerId": 22,
+                        "answerVal": 1,
+                        "answerText": "生活能力下降 "
+                    }
+                ],
+                "questionPortraitId": 5
+            },
+            {
+                "questionPortraitName": "可能出现的情况",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 23,
+                        "answerVal": 1,
+                        "answerText": "有误食、摔跤"
+                    },
+                    {
+                        "answerId": 24,
+                        "answerVal": 1,
+                        "answerText": "碰伤、车祸"
+                    }
+                ],
+                "questionPortraitId": 6
+            }
+        ]
+    },
+    {
+        "questionCrosswiseId": 3,
+        "questions": [
+            {
+                "questionPortraitName": "老人情况",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 25,
+                        "answerVal": 1,
+                        "answerText": "能自行翻身"
+                    },
+                    {
+                        "answerId": 26,
+                        "answerVal": 1,
+                        "answerText": "不能自行翻身 "
+                    },
+                    {
+                        "answerId": 27,
+                        "answerVal": 1,
+                        "answerText": "能坐轮椅或凳子 "
+                    },
+                    {
+                        "answerId": 28,
+                        "answerVal": 1,
+                        "answerText": "卧床、不能坐起 "
+                    }
+                ],
+                "questionPortraitId": 7
+            },
+            {
+                "questionPortraitName": "初步结论",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 29,
+                        "answerVal": 1,
+                        "answerText": "床上正常翻身"
+                    },
+                    {
+                        "answerId": 30,
+                        "answerVal": 1,
+                        "answerText": "被动体位 "
+                    },
+                    {
+                        "answerId": 31,
+                        "answerVal": 1,
+                        "answerText": "床上挪动障碍 "
+                    },
+                    {
+                        "answerId": 32,
+                        "answerVal": 1,
+                        "answerText": "需要用约束带 "
+                    },
+                    {
+                        "answerId": 33,
+                        "answerVal": 1,
+                        "answerText": "需每天扶坐轮椅 "
+                    }
+                ],
+                "questionPortraitId": 8
+            },
+            {
+                "questionPortraitName": "可能出现的情况",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 34,
+                        "answerVal": 1,
+                        "answerText": "压疮"
+                    },
+                    {
+                        "answerId": 35,
+                        "answerVal": 1,
+                        "answerText": "肺部感染 "
+                    },
+                    {
+                        "answerId": 36,
+                        "answerVal": 1,
+                        "answerText": "坐起时解约束带 "
+                    },
+                    {
+                        "answerId": 37,
+                        "answerVal": 1,
+                        "answerText": "摔跤"
+                    },
+                    {
+                        "answerId": 38,
+                        "answerVal": 1,
+                        "answerText": "碰伤 "
+                    }
+                ],
+                "questionPortraitId": 9
+            }
+        ]
+    },
+    {
+        "questionCrosswiseId": 4,
+        "questions": [
+            {
+                "questionPortraitName": "老人情况",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 39,
+                        "answerVal": 1,
+                        "answerText": "正常"
+                    },
+                    {
+                        "answerId": 40,
+                        "answerVal": 1,
+                        "answerText": "容易忘记事情"
+                    },
+                    {
+                        "answerId": 41,
+                        "answerVal": 1,
+                        "answerText": "不记得去打饭"
+                    },
+                    {
+                        "answerId": 42,
+                        "answerVal": 1,
+                        "answerText": "不记得洗澡时间"
+                    },
+                    {
+                        "answerId": 43,
+                        "answerVal": 1,
+                        "answerText": "不记得上厕所"
+                    },
+                    {
+                        "answerId": 44,
+                        "answerVal": 1,
+                        "answerText": "出门不认路回家"
+                    }
+                ],
+                "questionPortraitId": 10
+            },
+            {
+                "questionPortraitName": "初步结论",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 45,
+                        "answerVal": 1,
+                        "answerText": "记忆正常"
+                    },
+                    {
+                        "answerId": 46,
+                        "answerVal": 1,
+                        "answerText": "记忆减退"
+                    },
+                    {
+                        "answerId": 47,
+                        "answerVal": 1,
+                        "answerText": "不宜独立生活"
+                    },
+                    {
+                        "answerId": 48,
+                        "answerVal": 1,
+                        "answerText": "生活能力下降"
+                    },
+                    {
+                        "answerId": 49,
+                        "answerVal": 1,
+                        "answerText": "不宜自行出门"
+                    }
+                ],
+                "questionPortraitId": 11
+            },
+            {
+                "questionPortraitName": "可能出现的情况",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 50,
+                        "answerVal": 1,
+                        "answerText": "饮食不规律"
+                    },
+                    {
+                        "answerId": 51,
+                        "answerVal": 1,
+                        "answerText": "皮肤疾病"
+                    },
+                    {
+                        "answerId": 52,
+                        "answerVal": 1,
+                        "answerText": "随地大小便"
+                    },
+                    {
+                        "answerId": 53,
+                        "answerVal": 1,
+                        "answerText": "走失"
+                    }
+                ],
+                "questionPortraitId": 12
+            }
+        ]
+    },
+    {
+        "questionCrosswiseId": 5,
+        "questions": [
+            {
+                "questionPortraitName": "老人情况",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 54,
+                        "answerVal": 1,
+                        "answerText": "正常"
+                    },
+                    {
+                        "answerId": 55,
+                        "answerVal": 1,
+                        "answerText": "爱收拾东西"
+                    },
+                    {
+                        "answerId": 56,
+                        "answerVal": 1,
+                        "answerText": "爱检垃圾"
+                    },
+                    {
+                        "answerId": 57,
+                        "answerVal": 1,
+                        "answerText": "喜欢扯烂或剪烂东西"
+                    },
+                    {
+                        "answerId": 58,
+                        "answerVal": 1,
+                        "answerText": "喜欢东摸西摸"
+                    },
+                    {
+                        "answerId": 59,
+                        "answerVal": 1,
+                        "answerText": "爬床栏、拔床栏 "
+                    },
+                    {
+                        "answerId": 60,
+                        "answerVal": 1,
+                        "answerText": "抓大便 "
+                    },
+                    {
+                        "answerId": 61,
+                        "answerVal": 1,
+                        "answerText": "扯尿袋 "
+                    }
+                ],
+                "questionPortraitId": 13
+            },
+            {
+                "questionPortraitName": "初步结论",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 62,
+                        "answerVal": 1,
+                        "answerText": "行为正常"
+                    },
+                    {
+                        "answerId": 63,
+                        "answerVal": 1,
+                        "answerText": "行为异常"
+                    },
+                    {
+                        "answerId": 64,
+                        "answerVal": 1,
+                        "answerText": "不宜独立生活 "
+                    },
+                    {
+                        "answerId": 65,
+                        "answerVal": 1,
+                        "answerText": "不宜独处"
+                    },
+                    {
+                        "answerId": 66,
+                        "answerVal": 1,
+                        "answerText": "需适当约束"
+                    }
+                ],
+                "questionPortraitId": 14
+            },
+            {
+                "questionPortraitName": "可能出现的情况",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 67,
+                        "answerVal": 1,
+                        "answerText": "房间到处藏有垃圾"
+                    },
+                    {
+                        "answerId": 68,
+                        "answerVal": 1,
+                        "answerText": "把东西收拾好后可能又找不到"
+                    },
+                    {
+                        "answerId": 69,
+                        "answerVal": 1,
+                        "answerText": "弄烂物品或自伤 "
+                    },
+                    {
+                        "answerId": 70,
+                        "answerVal": 1,
+                        "answerText": "坠床或受伤"
+                    },
+                    {
+                        "answerId": 71,
+                        "answerVal": 1,
+                        "answerText": "误食"
+                    },
+                    {
+                        "answerId": 72,
+                        "answerVal": 1,
+                        "answerText": "常有尿湿床用品 "
+                    }
+                ],
+                "questionPortraitId": 15
+            }
+        ]
+    },
+    {
+        "questionCrosswiseId": 6,
+        "questions": [
+            {
+                "questionPortraitName": "老人情况",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 73,
+                        "answerVal": 1,
+                        "answerText": "语言交流"
+                    },
+                    {
+                        "answerId": 74,
+                        "answerVal": 1,
+                        "answerText": "方言交流"
+                    },
+                    {
+                        "answerId": 75,
+                        "answerVal": 1,
+                        "answerText": "手语"
+                    },
+                    {
+                        "answerId": 76,
+                        "answerVal": 1,
+                        "answerText": "写字交流"
+                    }
+                ],
+                "questionPortraitId": 16
+            },
+            {
+                "questionPortraitName": "初步结论",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 77,
+                        "answerVal": 1,
+                        "answerText": "正常沟通"
+                    },
+                    {
+                        "answerId": 78,
+                        "answerVal": 1,
+                        "answerText": "沟通障碍"
+                    },
+                    {
+                        "answerId": 79,
+                        "answerVal": 1,
+                        "answerText": "语言交流障碍 "
+                    }
+                ],
+                "questionPortraitId": 17
+            },
+            {
+                "questionPortraitName": "可能出现的情况",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 80,
+                        "answerVal": 1,
+                        "answerText": "护理人员听不懂方言"
+                    },
+                    {
+                        "answerId": 81,
+                        "answerVal": 1,
+                        "answerText": "护理人员对手语不熟"
+                    },
+                    {
+                        "answerId": 82,
+                        "answerVal": 1,
+                        "answerText": "不能很好的满足老人的需要 "
+                    }
+                ],
+                "questionPortraitId": 18
+            }
+        ]
+    },
+    {
+        "questionCrosswiseId": 7,
+        "questions": [
+        	 {
+                "questionPortraitName": "老人情况",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 83,
+                        "answerVal": 1,
+                        "answerText": "主动和别人交朋友"
+                    },
+                    {
+                        "answerId": 84,
+                        "answerVal": 1,
+                        "answerText": "喜欢参加集体活动"
+                    },
+                    {
+                        "answerId": 85,
+                        "answerVal": 1,
+                        "answerText": "以自己为中心"
+                    },
+                    {
+                        "answerId": 86,
+                        "answerVal": 1,
+                        "answerText": "不和别人交往"
+                    },
+                    {
+                        "answerId": 87,
+                        "answerVal": 1,
+                        "answerText": "不喜欢参加活动"
+                    }
+                ],
+                "questionPortraitId": 19
+            },
+        
+            {
+                "questionPortraitName": "初步结论",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 88,
+                        "answerVal": 1,
+                        "answerText": "关系融洽"
+                    },
+                    {
+                        "answerId": 89,
+                        "answerVal": 1,
+                        "answerText": "比较宽容"
+                    },
+                    {
+                        "answerId": 90,
+                        "answerVal": 1,
+                        "answerText": "相对计较"
+                    },
+                    {
+                        "answerId": 91,
+                        "answerVal": 1,
+                        "answerText": "可能计较"
+                    }
+                ],
+                "questionPortraitId": 20
+            },
+            {
+                "questionPortraitName": "可能出现的情况",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 92,
+                        "answerVal": 1,
+                        "answerText": "和其他老人吵架"
+                    },
+                    {
+                        "answerId": 93,
+                        "answerVal": 1,
+                        "answerText": "爱管闲事"
+                    },
+                    {
+                        "answerId": 94,
+                        "answerVal": 1,
+                        "answerText": "独来独往"
+                    },
+                    {
+                        "answerId": 95,
+                        "answerVal": 1,
+                        "answerText": "斤斤计较"
+                    }
+                ],
+                "questionPortraitId": 21
+            }
+        ]
+    },
+    {
+        "questionCrosswiseId": 8,
+        "questions": [
+            {
+                "questionPortraitName": "老人情况",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 96,
+                        "answerVal": 1,
+                        "answerText": "能自行按时服药"
+                    },
+                    {
+                        "answerId": 97,
+                        "answerVal": 1,
+                        "answerText": "忘记吃药"
+                    },
+                    {
+                        "answerId": 98,
+                        "answerVal": 1,
+                        "answerText": "不了解药量"
+                    },
+                    {
+                        "answerId": 99,
+                        "answerVal": 1,
+                        "answerText": "需配好药发到床前"
+                    }
+                ],
+                "questionPortraitId": 22
+            },
+            {
+                "questionPortraitName": "初步结论",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 100,
+                        "answerVal": 1,
+                        "answerText": "可自行服药"
+                    },
+                    {
+                        "answerId": 101,
+                        "answerVal": 1,
+                        "answerText": "不宜自行带药自服"
+                    }
+                ],
+                "questionPortraitId": 23
+            },
+            {
+                "questionPortraitName": "可能出现的情况",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 102,
+                        "answerVal": 1,
+                        "answerText": "病情控制不住"
+                    },
+                    {
+                        "answerId": 103,
+                        "answerVal": 1,
+                        "answerText": "误服药"
+                    },
+                    {
+                        "answerId": 104,
+                        "answerVal": 1,
+                        "answerText": "漏服药"
+                    }
+                ],
+                "questionPortraitId": 24
+            }
+        ]
+    },
+    {
+        "questionCrosswiseId": 9,
+        "questions": [
+            {
+                "questionPortraitName": "老人情况",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 105,
+                        "answerVal": 1,
+                        "answerText": "吞烟困难"
+                    },
+                    {
+                        "answerId": 106,
+                        "answerVal": 1,
+                        "answerText": "易呛咳"
+                    },
+                    {
+                        "answerId": 107,
+                        "answerVal": 1,
+                        "answerText": "缓慢进食"
+                    },
+                    {
+                        "answerId": 108,
+                        "answerVal": 1,
+                        "answerText": "需喂食"
+                    },
+                    {
+                        "answerId": 109,
+                        "answerVal": 1,
+                        "answerText": "能自行到饭堂打饭"
+                    },
+                    {
+                        "answerId": 110,
+                        "answerVal": 1,
+                        "answerText": "能根据自身情况合理点菜"
+                    },
+                    {
+                        "answerId": 111,
+                        "answerVal": 1,
+                        "answerText": "偏食"
+                    },
+                    {
+                        "answerId": 112,
+                        "answerVal": 1,
+                        "answerText": "挑食"
+                    },
+                    {
+                        "answerId": 113,
+                        "answerVal": 1,
+                        "answerText": "进食量少"
+                    },
+                    {
+                        "answerId": 114,
+                        "answerVal": 1,
+                        "answerText": "暴饮暴食"
+                    },
+                    {
+                        "answerId": 115,
+                        "answerVal": 1,
+                        "answerText": "需专人喂食"
+                    },
+                    {
+                        "answerId": 116,
+                        "answerVal": 1,
+                        "answerText": "不懂合理点菜"
+                    },
+                    {
+                        "answerId": 117,
+                        "answerVal": 1,
+                        "answerText": "由他人帮点菜并送到床边"
+                    },
+                    {
+                        "answerId": 118,
+                        "answerVal": 1,
+                        "answerText": "饮食正常"
+                    }
+                ],
+                "questionPortraitId": 25
+            },
+            {
+                "questionPortraitName": "初步结论",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 119,
+                        "answerVal": 1,
+                        "answerText": "吞烟功能障碍"
+                    },
+                    {
+                        "answerId": 120,
+                        "answerVal": 1,
+                        "answerText": "不宜喂粘性食品"
+                    },
+                    {
+                        "answerId": 121,
+                        "answerVal": 1,
+                        "answerText": "不宜自行吃水果及零食"
+                    },
+                    {
+                        "answerId": 122,
+                        "answerVal": 1,
+                        "answerText": "食欲减退"
+                    },
+                    {
+                        "answerId": 123,
+                        "answerVal": 1,
+                        "answerText": "进食与情绪有关"
+                    },
+                    {
+                        "answerId": 124,
+                        "answerVal": 1,
+                        "answerText": "缺乏合理饮食"
+                    },
+                    {
+                        "answerId": 125,
+                        "answerVal": 1,
+                        "answerText": "生活自理能力下降"
+                    }
+                ],
+                "questionPortraitId": 26
+            },
+            {
+                "questionPortraitName": "可能出现的情况",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 126,
+                        "answerVal": 1,
+                        "answerText": "呛咳、噎食"
+                    },
+                    {
+                        "answerId": 127,
+                        "answerVal": 1,
+                        "answerText": "窒息"
+                    },
+                    {
+                        "answerId": 128,
+                        "answerVal": 1,
+                        "answerText": "饭菜凉"
+                    },
+                    {
+                        "answerId": 129,
+                        "answerVal": 1,
+                        "answerText": "消瘦"
+                    },
+                    {
+                        "answerId": 130,
+                        "answerVal": 1,
+                        "answerText": "营养不良"
+                    },
+                    {
+                        "answerId": 131,
+                        "answerVal": 1,
+                        "answerText": "吸入性肺炎"
+                    }
+                ],
+                "questionPortraitId": 27
+            }
+        ]
+    },
+    {
+        "questionCrosswiseId": 10,
+        "questions": [
+            {
+                "questionPortraitName": "老人情况",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 132,
+                        "answerVal": 1,
+                        "answerText": "能根据季节合理穿戴"
+                    },
+                    {
+                        "answerId": 133,
+                        "answerVal": 1,
+                        "answerText": "不按季节和气温合理穿戴"
+                    },
+                    {
+                        "answerId": 134,
+                        "answerVal": 1,
+                        "answerText": "穿戴整齐"
+                    },
+                    {
+                        "answerId": 135,
+                        "answerVal": 1,
+                        "answerText": "衣冠不整"
+                    },
+                    {
+                        "answerId": 136,
+                        "answerVal": 1,
+                        "answerText": "能自行穿脱衣服"
+                    },
+                    {
+                        "answerId": 137,
+                        "answerVal": 1,
+                        "answerText": "偏瘫穿戴困难"
+                    },
+                    {
+                        "answerId": 138,
+                        "answerVal": 1,
+                        "answerText": "需帮助穿戴"
+                    }
+                ],
+                "questionPortraitId": 28
+            },
+            {
+                "questionPortraitName": "初步结论",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 139,
+                        "answerVal": 1,
+                        "answerText": "能自行穿戴"
+                    },
+                    {
+                        "answerId": 140,
+                        "answerVal": 1,
+                        "answerText": "穿戴不能自理"
+                    },
+                    {
+                        "answerId": 141,
+                        "answerVal": 1,
+                        "answerText": "生活自理能力下降"
+                    }
+                ],
+                "questionPortraitId": 29
+            },
+            {
+                "questionPortraitName": "可能出现的情况",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 142,
+                        "answerVal": 1,
+                        "answerText": "感冒及其他病情变化"
+                    },
+                    {
+                        "answerId": 143,
+                        "answerVal": 1,
+                        "answerText": "老年痴呆"
+                    },
+                    {
+                        "answerId": 144,
+                        "answerVal": 1,
+                        "answerText": "生活不能自理"
+                    }
+                ],
+                "questionPortraitId": 30
+            }
+        ]
+    },
+    {
+        "questionCrosswiseId": 11,
+        "questions": [
+            {
+                "questionPortraitName": "老人情况",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 145,
+                        "answerVal": 1,
+                        "answerText": "大小便正常"
+                    },
+                    {
+                        "answerId": 146,
+                        "answerVal": 1,
+                        "answerText": "大小便失禁"
+                    },
+                    {
+                        "answerId": 147,
+                        "answerVal": 1,
+                        "answerText": "小便用尿袋"
+                    },
+                    {
+                        "answerId": 148,
+                        "answerVal": 1,
+                        "answerText": "自行用尿壶、便盆"
+                    },
+                    {
+                        "answerId": 149,
+                        "answerVal": 1,
+                        "answerText": "需扶到卫生间"
+                    },
+                    {
+                        "answerId": 150,
+                        "answerVal": 1,
+                        "answerText": "偏用开塞露或其他药物帮助排便"
+                    },
+                    {
+                        "answerId": 151,
+                        "answerVal": 1,
+                        "answerText": "用尿管引尿"
+                    }
+                ],
+                "questionPortraitId": 31
+            },
+            {
+                "questionPortraitName": "初步结论",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 152,
+                        "answerVal": 1,
+                        "answerText": "大小便自理"
+                    },
+                    {
+                        "answerId": 153,
+                        "answerVal": 1,
+                        "answerText": "用纸尿片护理大小便"
+                    },
+                    {
+                        "answerId": 154,
+                        "answerVal": 1,
+                        "answerText": "行走障碍"
+                    },
+                    {
+                        "answerId": 155,
+                        "answerVal": 1,
+                        "answerText": "生活自理能力下降"
+                    },
+                    {
+                        "answerId": 156,
+                        "answerVal": 1,
+                        "answerText": "排便障碍"
+                    }
+                ],
+                "questionPortraitId": 32
+            },
+            {
+                "questionPortraitName": "可能出现的情况",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 157,
+                        "answerVal": 1,
+                        "answerText": "褥疮"
+                    },
+                    {
+                        "answerId": 158,
+                        "answerVal": 1,
+                        "answerText": "男性老人龟头水肿"
+                    },
+                    {
+                        "answerId": 159,
+                        "answerVal": 1,
+                        "answerText": "摔跤"
+                    },
+                    {
+                        "answerId": 160,
+                        "answerVal": 1,
+                        "answerText": "习惯性便秘"
+                    },
+                    {
+                        "answerId": 161,
+                        "answerVal": 1,
+                        "answerText": "尿路感染"
+                    }
+                ],
+                "questionPortraitId": 33
+            }
+        ]
+    },
+    {
+        "questionCrosswiseId": 12,
+        "questions": [
+            {
+                "questionPortraitName": "老人情况",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 162,
+                        "answerVal": 1,
+                        "answerText": "行动自如"
+                    },
+                    {
+                        "answerId": 163,
+                        "answerVal": 1,
+                        "answerText": "偏瘫行动困难"
+                    },
+                    {
+                        "answerId": 164,
+                        "answerVal": 1,
+                        "answerText": "平地上扶扶手能行走"
+                    },
+                    {
+                        "answerId": 165,
+                        "answerVal": 1,
+                        "answerText": "上下楼梯困难"
+                    },
+                    {
+                        "answerId": 166,
+                        "answerVal": 1,
+                        "answerText": "行走时震颤抖动"
+                    },
+                    {
+                        "answerId": 167,
+                        "answerVal": 1,
+                        "answerText": "动作迟缓"
+                    },
+                    {
+                        "answerId": 168,
+                        "answerVal": 1,
+                        "answerText": "步态不平衡"
+                    }
+                ],
+                "questionPortraitId": 34
+            },
+            {
+                "questionPortraitName": "初步结论",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 169,
+                        "answerVal": 1,
+                        "answerText": "行动方便"
+                    },
+                    {
+                        "answerId": 170,
+                        "answerVal": 1,
+                        "answerText": "行动不便"
+                    },
+                    {
+                        "answerId": 171,
+                        "answerVal": 1,
+                        "answerText": "不宜自行行走"
+                    },
+                    {
+                        "answerId": 172,
+                        "answerVal": 1,
+                        "answerText": "宜自行上下楼梯"
+                    },
+                    {
+                        "answerId": 173,
+                        "answerVal": 1,
+                        "answerText": "不宜自行外出"
+                    },
+                    {
+                        "answerId": 174,
+                        "answerVal": 1,
+                        "answerText": "生活自理能力下降"
+                    }
+                ],
+                "questionPortraitId": 35
+            },
+            {
+                "questionPortraitName": "可能出现的情况",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 175,
+                        "answerVal": 1,
+                        "answerText": "摔跤"
+                    },
+                    {
+                        "answerId": 176,
+                        "answerVal": 1,
+                        "answerText": "骨折或其他病情变化"
+                    }
+                ],
+                "questionPortraitId": 36
+            }
+        ]
+    },
+    {
+        "questionCrosswiseId": 13,
+        "questions": [
+            {
+                "questionPortraitName": "老人情况",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 177,
+                        "answerVal": 1,
+                        "answerText": "意识正常"
+                    },
+                    {
+                        "answerId": 178,
+                        "answerVal": 1,
+                        "answerText": "对答不切题"
+                    },
+                    {
+                        "answerId": 179,
+                        "answerVal": 1,
+                        "answerText": "偶有健忘"
+                    },
+                    {
+                        "answerId": 180,
+                        "answerVal": 1,
+                        "answerText": "神志不清"
+                    },
+                    {
+                        "answerId": 181,
+                        "answerVal": 1,
+                        "answerText": "妄想"
+                    },
+                    {
+                        "answerId": 182,
+                        "answerVal": 1,
+                        "answerText": "幻觉"
+                    },
+                    {
+                        "answerId": 183,
+                        "answerVal": 1,
+                        "answerText": "嗜睡"
+                    },
+                    {
+                        "answerId": 184,
+                        "answerVal": 1,
+                        "answerText": "昏迷"
+                    }
+                ],
+                "questionPortraitId": 37
+            },
+            {
+                "questionPortraitName": "初步结论",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 185,
+                        "answerVal": 1,
+                        "answerText": "正常"
+                    },
+                    {
+                        "answerId": 186,
+                        "answerVal": 1,
+                        "answerText": "意识障碍"
+                    },
+                    {
+                        "answerId": 187,
+                        "answerVal": 1,
+                        "answerText": "不宜独立生活"
+                    },
+                    {
+                        "answerId": 188,
+                        "answerVal": 1,
+                        "answerText": "不宜住高层房间"
+                    },
+                    {
+                        "answerId": 189,
+                        "answerVal": 1,
+                        "answerText": "不宜自行上下楼或外出"
+                    },
+                    {
+                        "answerId": 190,
+                        "answerVal": 1,
+                        "answerText": "生活自理能力下降"
+                    },
+                    {
+                        "answerId": 191,
+                        "answerVal": 1,
+                        "answerText": "生活不能自理"
+                    },
+                    {
+                        "answerId": 192,
+                        "answerVal": 1,
+                        "answerText": "卧床"
+                    }
+                ],
+                "questionPortraitId": 38
+            },
+            {
+                "questionPortraitName": "可能出现的情况",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 193,
+                        "answerVal": 1,
+                        "answerText": "跳楼"
+                    },
+                    {
+                        "answerId": 194,
+                        "answerVal": 1,
+                        "answerText": "自杀"
+                    },
+                    {
+                        "answerId": 195,
+                        "answerVal": 1,
+                        "answerText": "褥疮"
+                    },
+                    {
+                        "answerId": 196,
+                        "answerVal": 1,
+                        "answerText": "走失"
+                    },
+                    {
+                        "answerId": 197,
+                        "answerVal": 1,
+                        "answerText": "摔跤"
+                    },
+                    {
+                        "answerId": 198,
+                        "answerVal": 1,
+                        "answerText": "肺部感染"
+                    }
+                ],
+                "questionPortraitId": 39
+            }
+        ]
+    },
+    {
+        "questionCrosswiseId": 14,
+        "questions": [
+            {
+                "questionPortraitName": "老人情况",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 199,
+                        "answerVal": 1,
+                        "answerText": "心理正常"
+                    },
+                    {
+                        "answerId": 200,
+                        "answerVal": 1,
+                        "answerText": "容易发脾气"
+                    },
+                    {
+                        "answerId": 201,
+                        "answerVal": 1,
+                        "answerText": "小气孤僻"
+                    },
+                    {
+                        "answerId": 202,
+                        "answerVal": 1,
+                        "answerText": "老人不愿住老年公寓家属送进来"
+                    },
+                    {
+                        "answerId": 203,
+                        "answerVal": 1,
+                        "answerText": "久病老人有无用感"
+                    },
+                    {
+                        "answerId": 204,
+                        "answerVal": 1,
+                        "answerText": "疾病带来的身体不适老人心情忧郁"
+                    },
+                    {
+                        "answerId": 205,
+                        "answerVal": 1,
+                        "answerText": "老伴突然离去老人感到孤独无助"
+                    },
+                    {
+                        "answerId": 206,
+                        "answerVal": 1,
+                        "answerText": "外地老人子女不能常来看望"
+                    }
+                ],
+                "questionPortraitId": 40
+            },
+            {
+                "questionPortraitName": "初步结论",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 207,
+                        "answerVal": 1,
+                        "answerText": "正常"
+                    },
+                    {
+                        "answerId": 208,
+                        "answerVal": 1,
+                        "answerText": "需要心理开导"
+                    },
+                    {
+                        "answerId": 209,
+                        "answerVal": 1,
+                        "answerText": "需医护人员多查房"
+                    },
+                    {
+                        "answerId": 210,
+                        "answerVal": 1,
+                        "answerText": "不宜自拿安定等药品"
+                    },
+                    {
+                        "answerId": 211,
+                        "answerVal": 1,
+                        "answerText": "不宜住高层房间"
+                    },
+                    {
+                        "answerId": 212,
+                        "answerVal": 1,
+                        "answerText": "不宜带有刀类物品"
+                    },
+                    {
+                        "answerId": 213,
+                        "answerVal": 1,
+                        "answerText": "需要子女定时看望"
+                    }
+                ],
+                "questionPortraitId": 41
+            },
+            {
+                "questionPortraitName": "可能出现的情况",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 214,
+                        "answerVal": 1,
+                        "answerText": "高血压或其他病情变化"
+                    },
+                    {
+                        "answerId": 215,
+                        "answerVal": 1,
+                        "answerText": "忧郁、孤独"
+                    },
+                    {
+                        "answerId": 216,
+                        "answerVal": 1,
+                        "answerText": "跳楼"
+                    },
+                    {
+                        "answerId": 217,
+                        "answerVal": 1,
+                        "answerText": "自杀"
+                    }
+                ],
+                "questionPortraitId": 42
+            }
+        ]
+    },
+    {
+        "questionCrosswiseId": 15,
+        "questions": [
+            {
+                "questionPortraitName": "老人情况",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 218,
+                        "answerVal": 1,
+                        "answerText": "老人与亲属关系融洽"
+                    },
+                    {
+                        "answerId": 219,
+                        "answerVal": 1,
+                        "answerText": "老人与亲属关系不好"
+                    },
+                    {
+                        "answerId": 220,
+                        "answerVal": 1,
+                        "answerText": "与同房老人关系不融洽"
+                    }
+                ],
+                "questionPortraitId": 43
+            },
+            {
+                "questionPortraitName": "初步结论",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 221,
+                        "answerVal": 1,
+                        "answerText": "社会关系好"
+                    },
+                    {
+                        "answerId": 222,
+                        "answerVal": 1,
+                        "answerText": "社会关系一般"
+                    },
+                    {
+                        "answerId": 223,
+                        "answerVal": 1,
+                        "answerText": "社会关系差"
+                    }
+                ],
+                "questionPortraitId": 44
+            },
+            {
+                "questionPortraitName": "可能出现的情况",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 224,
+                        "answerVal": 1,
+                        "answerText": "心情不好、脾气暴躁"
+                    },
+                    {
+                        "answerId": 225,
+                        "answerVal": 1,
+                        "answerText": "忧郁、孤独"
+                    },
+                    {
+                        "answerId": 226,
+                        "answerVal": 1,
+                        "answerText": "有自杀倾向"
+                    }
+                ],
+                "questionPortraitId": 45
+            }
+        ]
+    },
+    {
+        "questionCrosswiseId": 16,
+        "questions": [
+            {
+                "questionPortraitName": "老人情况",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 227,
+                        "answerVal": 1,
+                        "answerText": "正常处理个人事物"
+                    },
+                    {
+                        "answerId": 228,
+                        "answerVal": 1,
+                        "answerText": "老人不会用电话"
+                    },
+                    {
+                        "answerId": 229,
+                        "answerVal": 1,
+                        "answerText": "老人不能自行收寄信件或其他物品。"
+                    },
+                    {
+                        "answerId": 230,
+                        "answerVal": 1,
+                        "answerText": "会存取款或缴纳其他费用"
+                    }
+                ],
+                "questionPortraitId": 46
+            },
+            {
+                "questionPortraitName": "初步结论",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 231,
+                        "answerVal": 1,
+                        "answerText": "正常"
+                    },
+                    {
+                        "answerId": 232,
+                        "answerVal": 1,
+                        "answerText": "处理个人事务能力下降"
+                    },
+                    {
+                        "answerId": 233,
+                        "answerVal": 1,
+                        "answerText": "不会处理个人事务"
+                    }
+                ],
+                "questionPortraitId": 47
+            },
+            {
+                "questionPortraitName": "可能出现的情况",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 234,
+                        "answerVal": 1,
+                        "answerText": "被骗"
+                    },
+                    {
+                        "answerId": 235,
+                        "answerVal": 1,
+                        "answerText": "钱物丢失"
+                    },
+                    {
+                        "answerId": 236,
+                        "answerVal": 1,
+                        "answerText": "不能及时接收或传送各种信息"
+                    }
+                ],
+                "questionPortraitId": 48
+            }
+        ]
+    },
+    {
+        "questionCrosswiseId": 25,
+        "questions": [
+            {
+                "questionPortraitName": "老人的病症及存在的问题",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 597,
+                        "answerVal": 1,
+                        "answerText": "慢性支气管"
+                    },
+                    {
+                        "answerId": 598,
+                        "answerVal": 1,
+                        "answerText": "阻塞性肺气肿"
+                    },
+                    {
+                        "answerId": 599,
+                        "answerVal": 1,
+                        "answerText": "哮喘"
+                    },
+                    {
+                        "answerId": 600,
+                        "answerVal": 1,
+                        "answerText": "支气管扩张"
+                    },
+                    {
+                        "answerId": 601,
+                        "answerVal": 1,
+                        "answerText": "肺癌"
+                    },
+                    {
+                        "answerId": 602,
+                        "answerVal": 1,
+                        "answerText": "慢性呼吸衰竭"
+                    },
+                    {
+                        "answerId": 603,
+                        "answerVal": 1,
+                        "answerText": "肺结核"
+                    },
+                    {
+                        "answerId": 604,
+                        "answerVal": 1,
+                        "answerText": "慢性咳嗽"
+                    },
+                    {
+                        "answerId": 605,
+                        "answerVal": 1,
+                        "answerText": "时有咳嗽"
+                    },
+                    {
+                        "answerId": 606,
+                        "answerVal": 1,
+                        "answerText": "痰多"
+                    },
+                    {
+                        "answerId": 607,
+                        "answerVal": 1,
+                        "answerText": "气喘"
+                    },
+                    {
+                        "answerId": 608,
+                        "answerVal": 1,
+                        "answerText": "呼吸困难"
+                    },
+                    {
+                        "answerId": 609,
+                        "answerVal": 1,
+                        "answerText": "咯血"
+                    },
+                    {
+                        "answerId": 610,
+                        "answerVal": 1,
+                        "answerText": "胸痛"
+                    },
+                    {
+                        "answerId": 611,
+                        "answerVal": 1,
+                        "answerText": "缺氧"
+                    },
+                    {
+                        "answerId": 612,
+                        "answerVal": 1,
+                        "answerText": "胸闷"
+                    },
+                    {
+                        "answerId": 613,
+                        "answerVal": 1,
+                        "answerText": "咳痰"
+                    },
+                    {
+                        "answerId": 614,
+                        "answerVal": 1,
+                        "answerText": "痰中带血"
+                    },
+                    {
+                        "answerId": 615,
+                        "answerVal": 1,
+                        "answerText": "发热"
+                    },
+                    {
+                        "answerId": 616,
+                        "answerVal": 1,
+                        "answerText": "上呼吸道感染"
+                    },
+                    {
+                        "answerId": 617,
+                        "answerVal": 1,
+                        "answerText": "肺部感染"
+                    }
+                ],
+                "questionPortraitId": 84
+            },
+            {
+                "questionPortraitName": "初步结论",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 618,
+                        "answerVal": 1,
+                        "answerText": "呼吸系统功能减退"
+                    },
+                    {
+                        "answerId": 619,
+                        "answerVal": 1,
+                        "answerText": "呼吸系统器官衰竭"
+                    },
+                    {
+                        "answerId": 620,
+                        "answerVal": 1,
+                        "answerText": "呼吸系统功能受损"
+                    }
+                ],
+                "questionPortraitId": 85
+            },
+            {
+                "questionPortraitName": "可能出现的问题",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 621,
+                        "answerVal": 1,
+                        "answerText": "呼吸衰竭"
+                    },
+                    {
+                        "answerId": 622,
+                        "answerVal": 1,
+                        "answerText": "大量咯血"
+                    },
+                    {
+                        "answerId": 623,
+                        "answerVal": 1,
+                        "answerText": "窒息"
+                    },
+                    {
+                        "answerId": 624,
+                        "answerVal": 1,
+                        "answerText": "肺炎性心脏病"
+                    }
+                ],
+                "questionPortraitId": 86
+            }
+        ]
+    },
+    {
+        "questionCrosswiseId": 26,
+        "questions": [
+            {
+                "questionPortraitName": "老人的病症及存在的问题",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 625,
+                        "answerVal": 1,
+                        "answerText": "冠心病"
+                    },
+                    {
+                        "answerId": 626,
+                        "answerVal": 1,
+                        "answerText": "心律失常"
+                    },
+                    {
+                        "answerId": 627,
+                        "answerVal": 1,
+                        "answerText": "高血压"
+                    },
+                    {
+                        "answerId": 628,
+                        "answerVal": 1,
+                        "answerText": "心前区疼痛"
+                    },
+                    {
+                        "answerId": 629,
+                        "answerVal": 1,
+                        "answerText": "活动后心悸"
+                    },
+                    {
+                        "answerId": 630,
+                        "answerVal": 1,
+                        "answerText": "气急"
+                    },
+                    {
+                        "answerId": 631,
+                        "answerVal": 1,
+                        "answerText": "乏力心悸"
+                    },
+                    {
+                        "answerId": 632,
+                        "answerVal": 1,
+                        "answerText": "气急"
+                    },
+                    {
+                        "answerId": 633,
+                        "answerVal": 1,
+                        "answerText": "活动受限"
+                    },
+                    {
+                        "answerId": 634,
+                        "answerVal": 1,
+                        "answerText": "卧床心悸、气急"
+                    },
+                    {
+                        "answerId": 635,
+                        "answerVal": 1,
+                        "answerText": "呼吸困难"
+                    },
+                    {
+                        "answerId": 636,
+                        "answerVal": 1,
+                        "answerText": "头痛"
+                    },
+                    {
+                        "answerId": 637,
+                        "answerVal": 1,
+                        "answerText": "头晕"
+                    },
+                    {
+                        "answerId": 638,
+                        "answerVal": 1,
+                        "answerText": "头痛"
+                    },
+                    {
+                        "answerId": 639,
+                        "answerVal": 1,
+                        "answerText": "下肢水肿"
+                    }
+                ],
+                "questionPortraitId": 87
+            },
+            {
+                "questionPortraitName": "初步结论",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 640,
+                        "answerVal": 1,
+                        "answerText": "循环系统功能减退"
+                    },
+                    {
+                        "answerId": 641,
+                        "answerVal": 1,
+                        "answerText": "轻度心力衰竭"
+                    },
+                    {
+                        "answerId": 642,
+                        "answerVal": 1,
+                        "answerText": "中度心力衰竭"
+                    },
+                    {
+                        "answerId": 643,
+                        "answerVal": 1,
+                        "answerText": "重度心力衰竭"
+                    },
+                    {
+                        "answerId": 644,
+                        "answerVal": 1,
+                        "answerText": "循环障碍"
+                    }
+                ],
+                "questionPortraitId": 88
+            },
+            {
+                "questionPortraitName": "可能出现的问题",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 645,
+                        "answerVal": 1,
+                        "answerText": "急性心肌梗塞"
+                    },
+                    {
+                        "answerId": 646,
+                        "answerVal": 1,
+                        "answerText": "脑血管意外"
+                    },
+                    {
+                        "answerId": 647,
+                        "answerVal": 1,
+                        "answerText": "急性心绞痛"
+                    },
+                    {
+                        "answerId": 648,
+                        "answerVal": 1,
+                        "answerText": "急性心力衰竭"
+                    },
+                    {
+                        "answerId": 649,
+                        "answerVal": 1,
+                        "answerText": "卧床"
+                    },
+                    {
+                        "answerId": 650,
+                        "answerVal": 1,
+                        "answerText": "褥疮"
+                    }
+                ],
+                "questionPortraitId": 89
+            }
+        ]
+    },
+    {
+        "questionCrosswiseId": 27,
+        "questions": [
+            {
+                "questionPortraitName": "老人的病症及存在的问题",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 651,
+                        "answerVal": 1,
+                        "answerText": "慢性胃炎"
+                    },
+                    {
+                        "answerId": 652,
+                        "answerVal": 1,
+                        "answerText": "胃溃疡"
+                    },
+                    {
+                        "answerId": 653,
+                        "answerVal": 1,
+                        "answerText": "十二指肠溃疡"
+                    },
+                    {
+                        "answerId": 654,
+                        "answerVal": 1,
+                        "answerText": "肝硬化"
+                    },
+                    {
+                        "answerId": 655,
+                        "answerVal": 1,
+                        "answerText": "肝癌"
+                    },
+                    {
+                        "answerId": 656,
+                        "answerVal": 1,
+                        "answerText": "恶心"
+                    },
+                    {
+                        "answerId": 657,
+                        "answerVal": 1,
+                        "answerText": "呕吐"
+                    },
+                    {
+                        "answerId": 658,
+                        "answerVal": 1,
+                        "answerText": "腹痛"
+                    },
+                    {
+                        "answerId": 659,
+                        "answerVal": 1,
+                        "answerText": "腹胀"
+                    },
+                    {
+                        "answerId": 660,
+                        "answerVal": 1,
+                        "answerText": "腹水"
+                    },
+                    {
+                        "answerId": 661,
+                        "answerVal": 1,
+                        "answerText": "反酸"
+                    },
+                    {
+                        "answerId": 662,
+                        "answerVal": 1,
+                        "answerText": "暖气"
+                    },
+                    {
+                        "answerId": 663,
+                        "answerVal": 1,
+                        "answerText": "食欲减退"
+                    },
+                    {
+                        "answerId": 664,
+                        "answerVal": 1,
+                        "answerText": "腹泻"
+                    },
+                    {
+                        "answerId": 665,
+                        "answerVal": 1,
+                        "answerText": "便秘"
+                    },
+                    {
+                        "answerId": 666,
+                        "answerVal": 1,
+                        "answerText": "慢性腹泻"
+                    },
+                    {
+                        "answerId": 667,
+                        "answerVal": 1,
+                        "answerText": "上消化道出血"
+                    },
+                    {
+                        "answerId": 668,
+                        "answerVal": 1,
+                        "answerText": "便血"
+                    },
+                    {
+                        "answerId": 669,
+                        "answerVal": 1,
+                        "answerText": "黑便"
+                    }
+                ],
+                "questionPortraitId": 90
+            },
+            {
+                "questionPortraitName": "初步结论",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 670,
+                        "answerVal": 1,
+                        "answerText": "消化系统功能减退"
+                    },
+                    {
+                        "answerId": 671,
+                        "answerVal": 1,
+                        "answerText": "消化系统器官衰竭"
+                    },
+                    {
+                        "answerId": 672,
+                        "answerVal": 1,
+                        "answerText": "消化系统功能紊乱"
+                    }
+                ],
+                "questionPortraitId": 91
+            },
+            {
+                "questionPortraitName": "可能出现的问题",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 673,
+                        "answerVal": 1,
+                        "answerText": "胃穿孔"
+                    },
+                    {
+                        "answerId": 674,
+                        "answerVal": 1,
+                        "answerText": "肝昏迷"
+                    },
+                    {
+                        "answerId": 675,
+                        "answerVal": 1,
+                        "answerText": "消瘦"
+                    },
+                    {
+                        "answerId": 676,
+                        "answerVal": 1,
+                        "answerText": "褥疮"
+                    },
+                    {
+                        "answerId": 677,
+                        "answerVal": 1,
+                        "answerText": "脱水"
+                    },
+                    {
+                        "answerId": 678,
+                        "answerVal": 1,
+                        "answerText": "贫血"
+                    },
+                    {
+                        "answerId": 679,
+                        "answerVal": 1,
+                        "answerText": "急性消化道出血"
+                    }
+                ],
+                "questionPortraitId": 92
+            }
+        ]
+    },
+    {
+        "questionCrosswiseId": 28,
+        "questions": [
+            {
+                "questionPortraitName": "老人的病症及存在的问题",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 680,
+                        "answerVal": 1,
+                        "answerText": "慢性肾盂肾炎"
+                    },
+                    {
+                        "answerId": 681,
+                        "answerVal": 1,
+                        "answerText": "慢性胃炎"
+                    },
+                    {
+                        "answerId": 682,
+                        "answerVal": 1,
+                        "answerText": "尿频"
+                    },
+                    {
+                        "answerId": 683,
+                        "answerVal": 1,
+                        "answerText": "尿急"
+                    },
+                    {
+                        "answerId": 684,
+                        "answerVal": 1,
+                        "answerText": "尿痛"
+                    },
+                    {
+                        "answerId": 685,
+                        "answerVal": 1,
+                        "answerText": "腰痛"
+                    },
+                    {
+                        "answerId": 686,
+                        "answerVal": 1,
+                        "answerText": "水肿"
+                    },
+                    {
+                        "answerId": 687,
+                        "answerVal": 1,
+                        "answerText": "乏力"
+                    },
+                    {
+                        "answerId": 688,
+                        "answerVal": 1,
+                        "answerText": "前列腺肥大"
+                    },
+                    {
+                        "answerId": 689,
+                        "answerVal": 1,
+                        "answerText": "前列腺增生"
+                    }
+                ],
+                "questionPortraitId": 93
+            },
+            {
+                "questionPortraitName": "初步结论",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 690,
+                        "answerVal": 1,
+                        "answerText": "秘尿系统功能减退"
+                    },
+                    {
+                        "answerId": 691,
+                        "answerVal": 1,
+                        "answerText": "秘尿系统器官衰竭"
+                    }
+                ],
+                "questionPortraitId": 94
+            },
+            {
+                "questionPortraitName": "可能出现的问题",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 692,
+                        "answerVal": 1,
+                        "answerText": "慢性肾衰"
+                    },
+                    {
+                        "answerId": 693,
+                        "answerVal": 1,
+                        "answerText": "尿毒症"
+                    },
+                    {
+                        "answerId": 694,
+                        "answerVal": 1,
+                        "answerText": "尿路感染"
+                    },
+                    {
+                        "answerId": 695,
+                        "answerVal": 1,
+                        "answerText": "排尿困难"
+                    },
+                    {
+                        "answerId": 696,
+                        "answerVal": 1,
+                        "answerText": "尿潴留"
+                    }
+                ],
+                "questionPortraitId": 95
+            }
+        ]
+    },
+    {
+        "questionCrosswiseId": 29,
+        "questions": [
+            {
+                "questionPortraitName": "老人的病症及存在的问题",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 697,
+                        "answerVal": 1,
+                        "answerText": "贫血"
+                    },
+                    {
+                        "answerId": 698,
+                        "answerVal": 1,
+                        "answerText": "白血病"
+                    },
+                    {
+                        "answerId": 699,
+                        "answerVal": 1,
+                        "answerText": "皮肤黏膜淤血、淤斑"
+                    },
+                    {
+                        "answerId": 700,
+                        "answerVal": 1,
+                        "answerText": "血肿"
+                    },
+                    {
+                        "answerId": 701,
+                        "answerVal": 1,
+                        "answerText": "鼻出血"
+                    },
+                    {
+                        "answerId": 702,
+                        "answerVal": 1,
+                        "answerText": "牙龈出血"
+                    },
+                    {
+                        "answerId": 703,
+                        "answerVal": 1,
+                        "answerText": "关节出血"
+                    },
+                    {
+                        "answerId": 704,
+                        "answerVal": 1,
+                        "answerText": "子宫出血"
+                    },
+                    {
+                        "answerId": 705,
+                        "answerVal": 1,
+                        "answerText": "胃肠道出血"
+                    },
+                    {
+                        "answerId": 706,
+                        "answerVal": 1,
+                        "answerText": "头晕"
+                    },
+                    {
+                        "answerId": 707,
+                        "answerVal": 1,
+                        "answerText": "乏力"
+                    },
+                    {
+                        "answerId": 708,
+                        "answerVal": 1,
+                        "answerText": "心悸"
+                    },
+                    {
+                        "answerId": 709,
+                        "answerVal": 1,
+                        "answerText": "气短"
+                    },
+                    {
+                        "answerId": 710,
+                        "answerVal": 1,
+                        "answerText": "休息时有气短"
+                    },
+                    {
+                        "answerId": 711,
+                        "answerVal": 1,
+                        "answerText": "心绞痛"
+                    },
+                    {
+                        "answerId": 712,
+                        "answerVal": 1,
+                        "answerText": "心衰"
+                    },
+                    {
+                        "answerId": 713,
+                        "answerVal": 1,
+                        "answerText": "血红蛋白120—91G/L"
+                    },
+                    {
+                        "answerId": 714,
+                        "answerVal": 1,
+                        "answerText": "血红蛋白90—61/L"
+                    },
+                    {
+                        "answerId": 715,
+                        "answerVal": 1,
+                        "answerText": "血红蛋白小于60G/L"
+                    }
+                ],
+                "questionPortraitId": 96
+            },
+            {
+                "questionPortraitName": "初步结论",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 716,
+                        "answerVal": 1,
+                        "answerText": "凝血功能障碍"
+                    },
+                    {
+                        "answerId": 717,
+                        "answerVal": 1,
+                        "answerText": "造血系统功能障碍"
+                    },
+                    {
+                        "answerId": 718,
+                        "answerVal": 1,
+                        "answerText": "轻度贫血"
+                    },
+                    {
+                        "answerId": 719,
+                        "answerVal": 1,
+                        "answerText": "中度贫血"
+                    },
+                    {
+                        "answerId": 720,
+                        "answerVal": 1,
+                        "answerText": "重度贫血"
+                    }
+                ],
+                "questionPortraitId": 97
+            },
+            {
+                "questionPortraitName": "可能出现的问题",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 721,
+                        "answerVal": 1,
+                        "answerText": "严重感染"
+                    },
+                    {
+                        "answerId": 722,
+                        "answerVal": 1,
+                        "answerText": "皮肤淤血处血肿破溃"
+                    },
+                    {
+                        "answerId": 723,
+                        "answerVal": 1,
+                        "answerText": "慢性失血"
+                    },
+                    {
+                        "answerId": 724,
+                        "answerVal": 1,
+                        "answerText": "摔跤"
+                    },
+                    {
+                        "answerId": 725,
+                        "answerVal": 1,
+                        "answerText": "休克"
+                    }
+                ],
+                "questionPortraitId": 98
+            }
+        ]
+    },
+    {
+        "questionCrosswiseId": 30,
+        "questions": [
+            {
+                "questionPortraitName": "老人的病症及存在的问题",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 726,
+                        "answerVal": 1,
+                        "answerText": "甲亢"
+                    },
+                    {
+                        "answerId": 727,
+                        "answerVal": 1,
+                        "answerText": "糖尿病"
+                    },
+                    {
+                        "answerId": 728,
+                        "answerVal": 1,
+                        "answerText": "肥胖"
+                    },
+                    {
+                        "answerId": 729,
+                        "answerVal": 1,
+                        "answerText": "消瘦"
+                    },
+                    {
+                        "answerId": 730,
+                        "answerVal": 1,
+                        "answerText": "精神不振"
+                    },
+                    {
+                        "answerId": 731,
+                        "answerVal": 1,
+                        "answerText": "食欲不振"
+                    },
+                    {
+                        "answerId": 732,
+                        "answerVal": 1,
+                        "answerText": "记忆力下降"
+                    },
+                    {
+                        "answerId": 733,
+                        "answerVal": 1,
+                        "answerText": "疲乏无力"
+                    },
+                    {
+                        "answerId": 734,
+                        "answerVal": 1,
+                        "answerText": "月经紊乱"
+                    },
+                    {
+                        "answerId": 735,
+                        "answerVal": 1,
+                        "answerText": "闭经不育"
+                    }
+                ],
+                "questionPortraitId": 99
+            },
+            {
+                "questionPortraitName": "初步结论",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 736,
+                        "answerVal": 1,
+                        "answerText": "营养失调"
+                    },
+                    {
+                        "answerId": 737,
+                        "answerVal": 1,
+                        "answerText": "内分泌失调"
+                    },
+                    {
+                        "answerId": 738,
+                        "answerVal": 1,
+                        "answerText": "内分泌系统功能紊乱"
+                    }
+                ],
+                "questionPortraitId": 100
+            },
+            {
+                "questionPortraitName": "可能出现的问题",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 739,
+                        "answerVal": 1,
+                        "answerText": "进行性消瘦、精神异常"
+                    },
+                    {
+                        "answerId": 740,
+                        "answerVal": 1,
+                        "answerText": "低血糖、尿毒症"
+                    },
+                    {
+                        "answerId": 741,
+                        "answerVal": 1,
+                        "answerText": "高血压、糖尿病"
+                    },
+                    {
+                        "answerId": 742,
+                        "answerVal": 1,
+                        "answerText": "恶液质"
+                    },
+                    {
+                        "answerId": 743,
+                        "answerVal": 1,
+                        "answerText": "消瘦"
+                    },
+                    {
+                        "answerId": 744,
+                        "answerVal": 1,
+                        "answerText": "健忘、痴呆"
+                    }
+                ],
+                "questionPortraitId": 101
+            }
+        ]
+    },
+    {
+        "questionCrosswiseId": 31,
+        "questions": [
+            {
+                "questionPortraitName": "老人的病症及存在的问题",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 745,
+                        "answerVal": 1,
+                        "answerText": "高血压"
+                    },
+                    {
+                        "answerId": 746,
+                        "answerVal": 1,
+                        "answerText": "脑出血"
+                    },
+                    {
+                        "answerId": 747,
+                        "answerVal": 1,
+                        "answerText": "脑梗塞"
+                    },
+                    {
+                        "answerId": 748,
+                        "answerVal": 1,
+                        "answerText": "偏瘫"
+                    },
+                    {
+                        "answerId": 749,
+                        "answerVal": 1,
+                        "answerText": "大小便失禁"
+                    },
+                    {
+                        "answerId": 750,
+                        "answerVal": 1,
+                        "answerText": "失语"
+                    },
+                    {
+                        "answerId": 751,
+                        "answerVal": 1,
+                        "answerText": "吞烟困难"
+                    },
+                    {
+                        "answerId": 752,
+                        "answerVal": 1,
+                        "answerText": "言语不清"
+                    },
+                    {
+                        "answerId": 753,
+                        "answerVal": 1,
+                        "answerText": "肌肉萎缩"
+                    },
+                    {
+                        "answerId": 754,
+                        "answerVal": 1,
+                        "answerText": "意识障碍"
+                    },
+                    {
+                        "answerId": 755,
+                        "answerVal": 1,
+                        "answerText": "癫痫病"
+                    },
+                    {
+                        "answerId": 756,
+                        "answerVal": 1,
+                        "answerText": "帕金森综合症"
+                    },
+                    {
+                        "answerId": 757,
+                        "answerVal": 1,
+                        "answerText": "肌张力高"
+                    },
+                    {
+                        "answerId": 758,
+                        "answerVal": 1,
+                        "answerText": "血管性痴呆"
+                    }
+                ],
+                "questionPortraitId": 102
+            },
+            {
+                "questionPortraitName": "初步结论",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 759,
+                        "answerVal": 1,
+                        "answerText": "神经系统功能障碍"
+                    }
+                ],
+                "questionPortraitId": 103
+            },
+            {
+                "questionPortraitName": "可能出现的问题",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 760,
+                        "answerVal": 1,
+                        "answerText": "高血压性心脏病脑出血"
+                    },
+                    {
+                        "answerId": 761,
+                        "answerVal": 1,
+                        "answerText": "瘫痪卧床"
+                    },
+                    {
+                        "answerId": 762,
+                        "answerVal": 1,
+                        "answerText": "卧床褥疮肢体僵硬萎缩"
+                    },
+                    {
+                        "answerId": 763,
+                        "answerVal": 1,
+                        "answerText": "大小便浸湿裤子或被服"
+                    },
+                    {
+                        "answerId": 764,
+                        "answerVal": 1,
+                        "answerText": "交流障碍"
+                    },
+                    {
+                        "answerId": 765,
+                        "answerVal": 1,
+                        "answerText": "呛咳噎食"
+                    },
+                    {
+                        "answerId": 766,
+                        "answerVal": 1,
+                        "answerText": "肢体变形"
+                    },
+                    {
+                        "answerId": 767,
+                        "answerVal": 1,
+                        "answerText": "癫痫病不定时发作"
+                    },
+                    {
+                        "answerId": 768,
+                        "answerVal": 1,
+                        "answerText": "摔跤"
+                    }
+                ],
+                "questionPortraitId": 104
+            }
+        ]
+    },
+    {
+        "questionCrosswiseId": 32,
+        "questions": [
+            {
+                "questionPortraitName": "老人的病症及存在的问题",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 769,
+                        "answerVal": 1,
+                        "answerText": "骨折术后"
+                    },
+                    {
+                        "answerId": 770,
+                        "answerVal": 1,
+                        "answerText": "骨折保守治疗"
+                    },
+                    {
+                        "answerId": 771,
+                        "answerVal": 1,
+                        "answerText": "骨质疏松"
+                    },
+                    {
+                        "answerId": 772,
+                        "answerVal": 1,
+                        "answerText": "骨质增生"
+                    }
+                ],
+                "questionPortraitId": 105
+            },
+            {
+                "questionPortraitName": "初步结论",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 773,
+                        "answerVal": 1,
+                        "answerText": "骨骼功能受损"
+                    },
+                    {
+                        "answerId": 774,
+                        "answerVal": 1,
+                        "answerText": "骨骼系统病变"
+                    }
+                ],
+                "questionPortraitId": 106
+            },
+            {
+                "questionPortraitName": "可能出现的问题",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 775,
+                        "answerVal": 1,
+                        "answerText": "卧床"
+                    },
+                    {
+                        "answerId": 776,
+                        "answerVal": 1,
+                        "answerText": "骨折处局部肿胀、疼痛"
+                    },
+                    {
+                        "answerId": 777,
+                        "answerVal": 1,
+                        "answerText": "卧床、压疮"
+                    },
+                    {
+                        "answerId": 778,
+                        "answerVal": 1,
+                        "answerText": "骨折"
+                    },
+                    {
+                        "answerId": 779,
+                        "answerVal": 1,
+                        "answerText": "疼痛"
+                    },
+                    {
+                        "answerId": 780,
+                        "answerVal": 1,
+                        "answerText": "行走困难"
+                    },
+                    {
+                        "answerId": 781,
+                        "answerVal": 1,
+                        "answerText": "摔跤"
+                    }
+                ],
+                "questionPortraitId": 107
+            }
+        ]
+    },
+    {
+        "questionCrosswiseId": 33,
+        "questions": [
+            {
+                "questionPortraitName": "老人的病症及存在的问题",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 782,
+                        "answerVal": 1,
+                        "answerText": "记忆减退"
+                    },
+                    {
+                        "answerId": 783,
+                        "answerVal": 1,
+                        "answerText": "注意力不集中"
+                    },
+                    {
+                        "answerId": 784,
+                        "answerVal": 1,
+                        "answerText": "时间观念产生混肴"
+                    },
+                    {
+                        "answerId": 785,
+                        "answerVal": 1,
+                        "answerText": "性格的改变"
+                    },
+                    {
+                        "answerId": 786,
+                        "answerVal": 1,
+                        "answerText": "迷失方向做事犹豫不决"
+                    },
+                    {
+                        "answerId": 787,
+                        "answerVal": 1,
+                        "answerText": "对生活中的爱好失去兴趣"
+                    },
+                    {
+                        "answerId": 788,
+                        "answerVal": 1,
+                        "answerText": "生活自理能力下降"
+                    },
+                    {
+                        "answerId": 789,
+                        "answerVal": 1,
+                        "answerText": "不记得上厕所或随地大小便"
+                    },
+                    {
+                        "answerId": 790,
+                        "answerVal": 1,
+                        "answerText": "不记得吃饭"
+                    },
+                    {
+                        "answerId": 791,
+                        "answerVal": 1,
+                        "answerText": "不记得洗澡"
+                    },
+                    {
+                        "answerId": 792,
+                        "answerVal": 1,
+                        "answerText": "生活规律紊乱"
+                    },
+                    {
+                        "answerId": 793,
+                        "answerVal": 1,
+                        "answerText": "行为异常"
+                    },
+                    {
+                        "answerId": 794,
+                        "answerVal": 1,
+                        "answerText": "出门后找不回家门"
+                    },
+                    {
+                        "answerId": 795,
+                        "answerVal": 1,
+                        "answerText": "不能辨认家人、朋友"
+                    },
+                    {
+                        "answerId": 796,
+                        "answerVal": 1,
+                        "answerText": "语言表达不清"
+                    },
+                    {
+                        "answerId": 797,
+                        "answerVal": 1,
+                        "answerText": "胡言乱语"
+                    },
+                    {
+                        "answerId": 798,
+                        "answerVal": 1,
+                        "answerText": "游荡"
+                    },
+                    {
+                        "answerId": 799,
+                        "answerVal": 1,
+                        "answerText": "生活不能自理"
+                    }
+                ],
+                "questionPortraitId": 108
+            },
+            {
+                "questionPortraitName": "初步结论",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 800,
+                        "answerVal": 1,
+                        "answerText": "早期老年痴呆"
+                    },
+                    {
+                        "answerId": 801,
+                        "answerVal": 1,
+                        "answerText": "中期老年痴呆"
+                    },
+                    {
+                        "answerId": 802,
+                        "answerVal": 1,
+                        "answerText": "晚期老年痴呆"
+                    }
+                ],
+                "questionPortraitId": 109
+            },
+            {
+                "questionPortraitName": "可能出现的问题",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 803,
+                        "answerVal": 1,
+                        "answerText": "黑白颠倒"
+                    },
+                    {
+                        "answerId": 804,
+                        "answerVal": 1,
+                        "answerText": "忧郁"
+                    },
+                    {
+                        "answerId": 805,
+                        "answerVal": 1,
+                        "answerText": "烦躁"
+                    },
+                    {
+                        "answerId": 806,
+                        "answerVal": 1,
+                        "answerText": "到处走动"
+                    },
+                    {
+                        "answerId": 807,
+                        "answerVal": 1,
+                        "answerText": "到处拉大小便"
+                    },
+                    {
+                        "answerId": 808,
+                        "answerVal": 1,
+                        "answerText": "不配合生活护理"
+                    },
+                    {
+                        "answerId": 809,
+                        "answerVal": 1,
+                        "answerText": "走失"
+                    },
+                    {
+                        "answerId": 810,
+                        "answerVal": 1,
+                        "answerText": "摔跤"
+                    }
+                ],
+                "questionPortraitId": 110
+            }
+        ]
+    },
+    {
+        "questionCrosswiseId": 34,
+        "questions": [
+            {
+                "questionPortraitName": "老人的病症及存在的问题",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 811,
+                        "answerVal": 1,
+                        "answerText": "关节红肿"
+                    },
+                    {
+                        "answerId": 812,
+                        "answerVal": 1,
+                        "answerText": "关节僵硬畸形"
+                    },
+                    {
+                        "answerId": 813,
+                        "answerVal": 1,
+                        "answerText": "关节痛"
+                    },
+                    {
+                        "answerId": 814,
+                        "answerVal": 1,
+                        "answerText": "关节炎"
+                    }
+                ],
+                "questionPortraitId": 111
+            },
+            {
+                "questionPortraitName": "初步结论",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 815,
+                        "answerVal": 1,
+                        "answerText": "关节退行性病变"
+                    }
+                ],
+                "questionPortraitId": 112
+            },
+            {
+                "questionPortraitName": "可能出现的问题",
+                "answerType": 1,
+                "answers": [
+                    {
+                        "answerId": 816,
+                        "answerVal": 1,
+                        "answerText": "行走困难"
+                    },
+                    {
+                        "answerId": 817,
+                        "answerVal": 1,
+                        "answerText": "摔跤"
+                    },
+                    {
+                        "answerId": 818,
+                        "answerVal": 1,
+                        "answerText": "卧床"
+                    },
+                    {
+                        "answerId": 819,
+                        "answerVal": 1,
+                        "answerText": "感染"
+                    }
+                ],
+                "questionPortraitId": 113
+            }
+        ]
+    }
+]

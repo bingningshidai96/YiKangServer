@@ -1,0 +1,352 @@
+{
+    "questions": [
+        {
+            "questionId": 84,
+            "answers": [
+                {
+                    "answerId": 910,
+                    "answerVal": 0,
+                    "answerText": "无"
+                },
+                {
+                    "answerId": 911,
+                    "answerVal": 1,
+                    "answerText": "1期  局部出现红，肿，热，痛或麻木，及时压 迫解除也不消退"
+                },
+                {
+                    "answerId": 912,
+                    "answerVal": 2,
+                    "answerText": "2期  受压迫部分呈红色，皮下产生硬结，皮肤 因水肿而变薄，可出现水包"
+                },
+                {
+                    "answerId": 913,
+                    "answerVal": 3,
+                    "answerText": "3期  表皮水包逐渐扩大，破溃，真皮层创面有 黄色渗出液，感染后表皮有脓液覆盖"
+                },
+                {
+                    "answerId": 914,
+                    "answerVal": 4,
+                    "answerText": "4期  坏死组织侵入真皮下层和肌肉层，感染可 向周围边及深部扩展，可深达骨面。脓液较多 坏死组织发黑，脓性分泌物增多，有臭味"
+                }
+            ],
+            "description": "最近一个月压疮发生情况",
+            "questionText": "压疮"
+        },
+        {
+            "questionId": 85,
+            "answers": [
+                {
+                    "answerId": 915,
+                    "answerVal": 0,
+                    "answerText": "无"
+                },
+                {
+                    "answerId": 916,
+                    "answerVal": 1,
+                    "answerText": "1-2次癫痫发作"
+                },
+                {
+                    "answerId": 917,
+                    "answerVal": 2,
+                    "answerText": "3次或以上癫痫发作"
+                }
+            ],
+            "description": "最近一个月癫痫发作情况",
+            "questionText": "癫痫发作"
+        },
+        {
+            "questionId": 86,
+            "answers": [
+                {
+                    "answerId": 918,
+                    "answerVal": 0,
+                    "answerText": "无"
+                },
+                {
+                    "answerId": 919,
+                    "answerVal": 1,
+                    "answerText": "1-2个肢体受累"
+                },
+                {
+                    "answerId": 920,
+                    "answerVal": 2,
+                    "answerText": "2个以上肢体受累"
+                }
+            ],
+            "description": "最近一个月肢体挛缩发生情况",
+            "questionText": "肢体挛缩"
+        },
+        {
+            "questionId": 87,
+            "answers": [
+                {
+                    "answerId": 921,
+                    "answerVal": 0,
+                    "answerText": "无"
+                },
+                {
+                    "answerId": 922,
+                    "answerVal": 1,
+                    "answerText": "震颤影响正常功能，进食穿衣和其他日常生活活动需要间歇的指导和／或身体上的帮助"
+                },
+                {
+                    "answerId": 923,
+                    "answerVal": 2,
+                    "answerText": "震颤影响正常功能，老年人的日常生活活动需要持续的指导和／或身体上的帮助"
+                }
+            ],
+            "description": "最近一个月震颤发生情况",
+            "questionText": "震颤"
+        },
+        {
+            "questionId": 88,
+            "answers": [
+                {
+                    "answerId": 924,
+                    "answerVal": 0,
+                    "answerText": "无"
+                },
+                {
+                    "answerId": 925,
+                    "answerVal": 1,
+                    "answerText": "仅见于眼脸，眶下软组织，胫骨前，踝部皮下 组织，指压后可见组织轻度下陷，平复较快"
+                },
+                {
+                    "answerId": 926,
+                    "answerVal": 2,
+                    "answerText": "全身组织均见明显水肿，指压后可出现明显的 或较深的组织下陷，平复缓慢"
+                },
+                {
+                    "answerId": 927,
+                    "answerVal": 3,
+                    "answerText": "全身组织严重水肿，身体地位皮肤紧张发亮， 甚至有液体渗出。胸腔等浆膜腔内可见积液， 外阴部亦可见严重水肿"
+                }
+            ],
+            "description": "最近一个月压疮发生情况",
+            "questionText": "水肿"
+        },
+        {
+            "questionId": 89,
+            "answers": [
+                {
+                    "answerId": 928,
+                    "answerVal": 0,
+                    "answerText": "无"
+                },
+                {
+                    "answerId": 929,
+                    "answerVal": 1,
+                    "answerText": "有"
+                }
+            ],
+            "description": "最近一个月下体溃疡发生情况",
+            "questionText": "下体溃疡"
+        },
+        {
+            "questionId": 90,
+            "answers": [
+                {
+                    "answerId": 930,
+                    "answerVal": 0,
+                    "answerText": "无"
+                },
+                {
+                    "answerId": 931,
+                    "answerVal": 1,
+                    "answerText": "有"
+                }
+            ],
+            "description": "目前偏瘫/截瘫发生情况",
+            "questionText": "偏瘫／截瘫"
+        },
+        {
+            "questionId": 91,
+            "answers": [
+                {
+                    "answerId": 932,
+                    "answerVal": 0,
+                    "answerText": "无"
+                },
+                {
+                    "answerId": 933,
+                    "answerVal": 1,
+                    "answerText": "有"
+                }
+            ],
+            "description": "目前四肢瘫痪发生情况",
+            "questionText": "四肢瘫痪"
+        },
+        {
+            "questionId": 92,
+            "answers": [
+                {
+                    "answerId": 934,
+                    "answerVal": 0,
+                    "answerText": "无"
+                },
+                {
+                    "answerId": 935,
+                    "answerVal": 1,
+                    "answerText": "有"
+                }
+            ],
+            "description": "目前尿道感染发生情况",
+            "questionText": "尿道感染"
+        },
+        {
+            "questionId": 93,
+            "answers": [
+                {
+                    "answerId": 936,
+                    "answerVal": 0,
+                    "answerText": "无"
+                },
+                {
+                    "answerId": 937,
+                    "answerVal": 1,
+                    "answerText": "有"
+                }
+            ],
+            "description": "最近一个月内尿失禁发生情况",
+            "questionText": "尿失禁"
+        },
+        {
+            "questionId": 94,
+            "answers": [
+                {
+                    "answerId": 938,
+                    "answerVal": 0,
+                    "answerText": "无"
+                },
+                {
+                    "answerId": 939,
+                    "answerVal": 1,
+                    "answerText": "有"
+                }
+            ],
+            "description": "最近一个月内便失禁发生情况",
+            "questionText": "便失禁"
+        },
+        {
+            "questionId": 95,
+            "answers": [
+                {
+                    "answerId": 940,
+                    "answerVal": 0,
+                    "answerText": "无"
+                },
+                {
+                    "answerId": 941,
+                    "answerVal": 1,
+                    "answerText": "有"
+                }
+            ],
+            "description": "最近三个月内骨折的发生情况",
+            "questionText": "骨折"
+        },
+        {
+            "questionId": 96,
+            "answers": [
+                {
+                    "answerId": 942,
+                    "answerVal": 0,
+                    "answerText": "无"
+                },
+                {
+                    "answerId": 943,
+                    "answerVal": 1,
+                    "answerText": "有"
+                }
+            ],
+            "description": "最近六个月内截肢的发生情况",
+            "questionText": "截肢"
+        },
+        {
+            "questionId": 97,
+            "answers": [
+                {
+                    "answerId": 944,
+                    "answerVal": 0,
+                    "answerText": "无"
+                },
+                {
+                    "answerId": 945,
+                    "answerVal": 1,
+                    "answerText": "有"
+                }
+            ],
+            "description": "目前晚期疾病的情况",
+            "questionText": "晚期疾病"
+        },
+        {
+            "questionId": 98,
+            "answers": [
+                {
+                    "answerId": 946,
+                    "answerVal": 0,
+                    "answerText": "无"
+                },
+                {
+                    "answerId": 947,
+                    "answerVal": 1,
+                    "answerText": "有"
+                }
+            ],
+            "description": "目前造口的情况",
+            "questionText": "造口"
+        },
+        {
+            "questionId": 99,
+            "answers": [
+                {
+                    "answerId": 948,
+                    "answerVal": 0,
+                    "answerText": "无"
+                },
+                {
+                    "answerId": 949,
+                    "answerVal": 1,
+                    "answerText": "有"
+                }
+            ],
+            "description": "目前留置尿管的情况",
+            "questionText": "留置尿管"
+        },
+        {
+            "questionId": 100,
+            "answers": [
+                {
+                    "answerId": 950,
+                    "answerVal": 0,
+                    "answerText": "无"
+                },
+                {
+                    "answerId": 951,
+                    "answerVal": 1,
+                    "answerText": "有"
+                }
+            ],
+            "description": "目前鼻饲管的情况",
+            "questionText": "鼻饲管"
+        },
+        {
+            "questionId": 101,
+            "answers": [
+                {
+                    "answerId": 952,
+                    "answerVal": 0,
+                    "answerText": "无"
+                },
+                {
+                    "answerId": 953,
+                    "answerVal": 1,
+                    "answerText": "有"
+                }
+            ],
+            "description": "目前气管切开置管的情况",
+            "questionText": "气管切开置管"
+        }
+    ],
+    "surveyTableId": 11,
+    "tableName": "老年人常见问题"
+}

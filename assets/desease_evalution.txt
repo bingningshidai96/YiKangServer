@@ -1,0 +1,48 @@
+[
+    {
+        "questions": [
+            {
+                "questionCrosswiseName": "呼吸系统",
+                "questionCrosswiseId": 25
+            },
+            {
+                "questionCrosswiseName": "循环系统",
+                "questionCrosswiseId": 26
+            },
+            {
+                "questionCrosswiseName": "消化系统",
+                "questionCrosswiseId": 27
+            },
+            {
+                "questionCrosswiseName": "泌尿系统",
+                "questionCrosswiseId": 28
+            },
+            {
+                "questionCrosswiseName": "造血系统",
+                "questionCrosswiseId": 29
+            },
+            {
+                "questionCrosswiseName": "内分泌",
+                "questionCrosswiseId": 30
+            },
+            {
+                "questionCrosswiseName": "神经系统",
+                "questionCrosswiseId": 31
+            },
+            {
+                "questionCrosswiseName": "骨骼系统",
+                "questionCrosswiseId": 32
+            },
+            {
+                "questionCrosswiseName": "其他",
+                "questionCrosswiseId": 33
+            },
+            {
+                "questionCrosswiseName": "关节",
+                "questionCrosswiseId": 34
+            }
+        ],
+        "surveyTableId": 3,
+        "tableName": "疾病评估"
+    }
+]

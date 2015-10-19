@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <include
+            android:id="@+id/titleBar"
+            layout="@layout/include_title_bar" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/mine_bg_topbg"
+            android:gravity="center"
+            android:paddingBottom="30dp"
+            android:paddingTop="30dp" >
+
+            <ImageView
+                android:id="@+id/iv_mine_avatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@null"
+                android:src="@drawable/register_avatar_defalt"/>
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout style="@style/style_mine_item" >
+
+                    <TextView
+                        style="@style/style_countInfo_item_text"
+                        android:layout_weight="1"
+                        android:text="姓名" />
+
+                    <TextView
+                        android:id="@+id/tv_mine_name"
+                        style="@style/style_countInfo_item_text"
+                        android:layout_weight="2"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/style_mine_item"
+                    android:layout_marginTop="1px" >
+
+                    <TextView
+                        style="@style/style_countInfo_item_text"
+                        android:layout_weight="1"
+                        android:text="@string/employee_number" />
+
+                    <TextView
+                        android:id="@+id/tv_mine_employee_id"
+                        style="@style/style_countInfo_item_text"
+                        android:layout_weight="2"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/style_mine_item"
+                    android:layout_marginTop="10dp" >
+
+                    <TextView
+                        style="@style/style_countInfo_item_text"
+                        android:layout_weight="1"
+                        android:text="@string/profession" />
+
+                    <TextView
+                        android:id="@+id/tv_mine_profession"
+                        style="@style/style_countInfo_item_text"
+                        android:layout_weight="2"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/style_mine_item"
+                    android:layout_marginTop="1px" >
+
+                    <TextView
+                        style="@style/style_countInfo_item_text"
+                        android:layout_weight="1"
+                        android:text="@string/profession_lever" />
+
+                    <TextView
+                        android:id="@+id/tv_mine_profession_lever"
+                        style="@style/style_countInfo_item_text"
+                        android:layout_weight="2"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/style_mine_item"
+                    android:layout_marginTop="1px" >
+
+                    <TextView
+                        style="@style/style_countInfo_item_text"
+                        android:layout_weight="1"
+                        android:text="@string/distinct_area" />
+
+                    <TextView
+                        android:id="@+id/tv_mine_distinct"
+                        style="@style/style_countInfo_item_text"
+                        android:layout_weight="2"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/style_mine_item"
+                    android:layout_marginTop="1px" >
+
+                    <TextView
+                        style="@style/style_countInfo_item_text"
+                        android:layout_weight="1"
+                        android:text="@string/customer_number" />
+
+                    <TextView
+                        android:id="@+id/tv_mine_customer_number"
+                        style="@style/style_countInfo_item_text"
+                        android:layout_weight="2"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ly_mine_free_time"
+                    style="@style/style_mine_item"
+                    android:layout_marginTop="1px" >
+
+                    <TextView
+                        style="@style/style_countInfo_item_text"
+                        android:layout_weight="1"
+                        android:text="@string/free_time" />
+
+                    <TextView
+                        style="@style/style_countInfo_item_text"
+                        android:layout_weight="2"
+                        android:drawableRight="@drawable/ic_arrow_right"
+                        android:paddingRight="20dp"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_mine_photo_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" >
+    </FrameLayout>
+
+</RelativeLayout>

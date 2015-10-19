@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical" >
+
+     <FrameLayout 
+        android:id="@+id/title_bar_container"
+        android:layout_width="match_parent" 
+        android:layout_height="wrap_content">
+        <include
+            android:id="@+id/titlebar"
+            layout="@layout/include_title_bar" />
+       
+    </FrameLayout>
+    
+    <ScrollView
+        android:id="@+id/scroVi_seniorInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+       <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ty_senior_info_table"
+            android:orientation="vertical"
+            android:focusable="true"
+            android:padding="20dp"
+            android:focusableInTouchMode="true"
+            android:stretchColumns="1" >
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" >
+
+                <TextView
+                    android:id="@+id/tv_seniorInfo_name_hint"
+                    style="@style/style_text_seniorInfo_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="姓名" />
+
+                <EditText
+                    android:id="@+id/edt_seniorInfo_name"
+                    style="@style/style_edt_seniorInfo"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp" >
+
+                <TextView
+                    android:id="@+id/tv_seniorInfo_sexs_hint"
+                    style="@style/style_text_seniorInfo_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="性别" />
+
+                <com.yikang.app.yikangserver.view.TextSpinner
+                    android:id="@+id/edt_seniorInfo_sex"
+                    style="@style/style_edp_seniorInfo"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+            </TableRow>
+            
+             <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp" >
+
+                <TextView
+                    android:id="@+id/tv_seniorInfo_profession_hint"
+                    style="@style/style_text_seniorInfo_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="职业" />
+
+                <EditText
+                    android:id="@+id/edt_seniorInfo_profession"
+                    style="@style/style_edt_seniorInfo"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"/> 
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp" >
+
+                <TextView
+                    android:id="@+id/tv_seniorInfo_tel_hint"
+                    style="@style/style_text_seniorInfo_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="联系方式" />
+
+                <EditText
+                    android:id="@+id/edt_seniorInfo_tel"
+                    style="@style/style_edt_seniorInfo"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp" >
+
+                <TextView
+                    android:id="@+id/tv_seniorInfo_birthday_hint"
+                    style="@style/style_text_seniorInfo_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="出生日期" />
+
+                <TextView
+                    android:id="@+id/tv_seniorInfo_birthday"
+                    style="@style/style_edp_seniorInfo"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp" >
+
+                <TextView
+                    android:id="@+id/tv_seniorInfo_ident_type_hint"
+                    style="@style/style_text_seniorInfo_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="证件类型" />
+
+                <com.yikang.app.yikangserver.view.TextSpinner
+                    android:id="@+id/edt_seniorInfo_ident_type"
+                    style="@style/style_edp_seniorInfo"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                   />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp" >
+
+                <TextView
+                    android:id="@+id/tv_seniorInfo_ident_num_hint"
+                    style="@style/style_text_seniorInfo_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="证件号" />
+
+                <EditText
+                    android:id="@+id/edt_seniorInfo_ident_num"
+                    style="@style/style_edt_seniorInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp" >
+
+                <TextView
+                    android:id="@+id/tv_seniorInfo_social_security_hint"
+                    style="@style/style_text_seniorInfo_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="社保号" />
+
+                <EditText
+                    android:id="@+id/edt_seniorInfo_social_security"
+                    style="@style/style_edt_seniorInfo"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp" >
+
+                <TextView
+                    android:id="@+id/tv_seniorInfo_race_hint"
+                    style="@style/style_text_seniorInfo_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="民族" />
+
+                <com.yikang.app.yikangserver.view.TextSpinner
+                    android:id="@+id/edt_seniorInfo_race"
+                    style="@style/style_edp_seniorInfo"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp" >
+
+                <TextView
+                    android:id="@+id/tv_seniorInfo_faith_hint"
+                    style="@style/style_text_seniorInfo_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="宗教" />
+
+                <com.yikang.app.yikangserver.view.TextSpinner
+                    android:id="@+id/edt_seniorInfo_faith"
+                    style="@style/style_edp_seniorInfo"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp" >
+
+                <TextView
+                    android:id="@+id/tv_seniorInfo_living_condition_hint"
+                    style="@style/style_text_seniorInfo_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="居住环境" />
+
+                <com.yikang.app.yikangserver.view.TextSpinner
+                    android:id="@+id/edt_seniorInfo_living_condition"
+                    style="@style/style_edp_seniorInfo"
+                   	android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp" >
+
+                <TextView
+                    android:id="@+id/tv_seniorInfo_payment_type_hint"
+                    style="@style/style_text_seniorInfo_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:text="费用支付方式" />
+
+                <com.yikang.app.yikangserver.view.TextSpinner
+                    android:id="@+id/edt_seniorInfo_payment_type"
+                    style="@style/style_edp_seniorInfo"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp" >
+
+                <TextView
+                    android:id="@+id/tv_seniorInfo_income_sources_hint"
+                    style="@style/style_text_seniorInfo_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="经济来源" />
+
+                <com.yikang.app.yikangserver.view.TextSpinner
+                    android:id="@+id/edt_seniorInfo_income_sources"
+                    style="@style/style_edp_seniorInfo"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp" >
+
+                <TextView
+                    android:id="@+id/tv_seniorInfo_room_orientation_hint"
+                    style="@style/style_text_seniorInfo_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="房屋朝向" />
+
+                <com.yikang.app.yikangserver.view.TextSpinner
+                    android:id="@+id/edt_seniorInfo_room_orientation"
+                    style="@style/style_edp_seniorInfo"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp" >
+
+                <TextView
+                    android:id="@+id/tv_seniorInfo_out_window_hint"
+                    style="@style/style_text_seniorInfo_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="是否有窗户" />
+
+                <com.yikang.app.yikangserver.view.TextSpinner
+                    android:id="@+id/edt_seniorInfo_out_window"
+                    style="@style/style_edp_seniorInfo"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+
+            
+         <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp" >
+
+                <TextView
+                    android:id="@+id/tv_seniorInfo_city_hint"
+                    style="@style/style_text_seniorInfo_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="城市" />
+
+                <com.yikang.app.yikangserver.view.TextSpinner
+                    android:id="@+id/edt_seniorInfo_city"
+                    style="@style/style_edp_seniorInfo"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+            
+         <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp" >
+
+                <TextView
+                    android:id="@+id/tv_seniorInfo_area_hint"
+                    style="@style/style_text_seniorInfo_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="城区" />
+
+                <com.yikang.app.yikangserver.view.TextSpinner
+                    android:id="@+id/edt_seniorInfo_area"
+                    style="@style/style_edp_seniorInfo"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+            
+         
+         
+            
+         	
+         	<TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp" >
+
+                <TextView
+                    android:id="@+id/tv_seniorInfo_residential_quarter_hint"
+                    style="@style/style_text_seniorInfo_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="居住小区"/>
+
+                <EditText
+                    android:id="@+id/edt_seniorInfo_residential_quarter"
+                    style="@style/style_edt_seniorInfo"
+                   android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+            
+         	<TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp" >
+
+                <TextView
+                    android:id="@+id/tv_seniorInfo_floor_hint"
+                    style="@style/style_text_seniorInfo_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="居住楼层" />
+
+                <EditText
+                    android:id="@+id/edt_seniorInfo_floor"
+                    style="@style/style_edt_seniorInfo"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" 
+                    android:inputType="number"/>
+            </TableRow>
+            
+
+            <Button
+                android:id="@+id/bt_senior_info_submit"
+                style="@style/style_common_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"
+                android:layout_marginTop="40dp"
+                android:text="确定" />
+        </TableLayout>
+
+        
+        
+           
+    
+    
+    
+    </ScrollView>
+
+</LinearLayout>

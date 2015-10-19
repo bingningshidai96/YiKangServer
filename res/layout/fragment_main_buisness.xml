@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/include_title_bar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/ly_opration_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ly_buisness_item_senorlist"
+                android:layout_margin="10dp"
+                style="@style/style_buiness_item" >
+
+                <ImageView
+                    android:id="@+id/iv_buisness_item_senoirs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:src="@drawable/selector_buisness_item_seniorlist" />
+
+                <TextView
+                    style="@style/style_buisness_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="@string/senior_list_title_text" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ly_buisness_service_calendar"
+                style="@style/style_buiness_item"
+                android:paddingLeft="20dp"
+                android:layout_margin="10dp">
+
+                <ImageView
+                    android:id="@+id/iv_buisness_item_calendar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/selector_buisness_item_calendar" />
+
+                <TextView
+                    style="@style/style_buisness_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="@string/service_carlendar" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

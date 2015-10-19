@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/common_grey"
+    android:orientation="vertical" >
+    
+    <FrameLayout 
+        android:id="@+id/title_bar_container"
+        android:layout_width="match_parent" 
+        android:layout_height="wrap_content">
+        <include
+            android:id="@+id/titlebar"
+            layout="@layout/include_title_bar" />
+    </FrameLayout>
+
+    <ListView
+        android:id="@+id/lv_senior_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@color/line_blue"
+        android:dividerHeight="1dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:scrollbars="none" >
+    </ListView>
+	
+    <TextView 
+        android:id="@+id/tv_fragment_buisness_no_content_tip"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="@string/senior_list_no_content_tip"/>
+</LinearLayout>

@@ -1,0 +1,31 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/drawer_bg"
+    android:orientation="vertical"
+    tools:context="com.yikang.app.server.yikangserver.fragment.EvaluationDrawerFragment" >
+
+    <ImageButton 
+        android:id="@+id/ibtn_evaluation_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:background="@null"
+         android:layout_marginTop="10dp"
+         android:layout_gravity="center_horizontal"
+        android:src="@drawable/home"/>
+    <ListView
+        android:id="@+id/lv_papers_drawNav_paperList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" 
+        android:layout_weight="1"
+        android:divider="@color/white"
+        android:dividerHeight="1dp"
+        android:layout_marginTop="20dp">
+    </ListView>
+
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white"/>
+</LinearLayout>

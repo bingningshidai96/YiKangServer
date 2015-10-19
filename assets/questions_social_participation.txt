@@ -1,0 +1,161 @@
+{
+    "questions": [
+        {
+            "questionId": 16,
+            "answers": [
+                {
+                    "answerId": 838,
+                    "answerVal": 0,
+                    "answerText": "除个人生活自理外（如饮食，洗漱，穿戴，二便），能料理家务（如做饭，洗衣）或当家管理事务"
+                },
+                {
+                    "answerId": 839,
+                    "answerVal": 1,
+                    "answerText": "除个人生活资料外，能做家务，但欠好，家庭事务安排欠条例"
+                },
+                {
+                    "answerId": 840,
+                    "answerVal": 2,
+                    "answerText": "个人生活能自理，只有在他人帮助下才能做些家务，但质量不好"
+                },
+                {
+                    "answerId": 841,
+                    "answerVal": 3,
+                    "answerText": "个人基本生活事务能自理（如饮食，二便）在督促下可洗漱"
+                },
+                {
+                    "answerId": 842,
+                    "answerVal": 4,
+                    "answerText": "个人基本生活事务（如饮食，二便）需要部分帮助或完全依赖他人帮助"
+                }
+            ],
+            "questionText": "生活能力"
+        },
+        {
+            "questionId": 17,
+            "answers": [
+                {
+                    "answerId": 843,
+                    "answerVal": 0,
+                    "answerText": "原来熟练的脑力工作或体力技巧性工作可照常进行"
+                },
+                {
+                    "answerId": 844,
+                    "answerVal": 1,
+                    "answerText": "原来熟练的脑力工作或体力技巧性工作能力有所下降"
+                },
+                {
+                    "answerId": 845,
+                    "answerVal": 2,
+                    "answerText": "原来熟练的脑力工作或体力技巧性工作明显不如以往，部分遗忘"
+                },
+                {
+                    "answerId": 846,
+                    "answerVal": 3,
+                    "answerText": "对熟练工作只有一些片段保留，技能全部遗忘"
+                },
+                {
+                    "answerId": 847,
+                    "answerVal": 4,
+                    "answerText": "对以往的知识或技能全部磨灭"
+                }
+            ],
+            "questionText": "工作能力"
+        },
+        {
+            "questionId": 18,
+            "answers": [
+                {
+                    "answerId": 848,
+                    "answerVal": 0,
+                    "answerText": "时间观念（年，月，日，时）清楚；可单独出远门，能很快掌握新环境的方位"
+                },
+                {
+                    "answerId": 849,
+                    "answerVal": 1,
+                    "answerText": "时间观念有所下降，年，月，日清楚，但有时相差几天；可单独来往于附近街道，知道现住地的名称和方向，但不知回家路线"
+                },
+                {
+                    "answerId": 850,
+                    "answerVal": 2,
+                    "answerText": "时间观念较差，年，月，日不清楚，可知上半年或下半年；只能单独在家附近行动，对现住地只知名称，不知道方位"
+                },
+                {
+                    "answerId": 851,
+                    "answerVal": 3,
+                    "answerText": "时间观念很差，年，月，日不清楚，可知上午或下午；只能在左邻右舍串门，对现住地不知名称和方位"
+                },
+                {
+                    "answerId": 852,
+                    "answerVal": 4,
+                    "answerText": "无时间观念；不能单独外出"
+                }
+            ],
+            "questionText": "时间/空间定向"
+        },
+        {
+            "questionId": 19,
+            "answers": [
+                {
+                    "answerId": 853,
+                    "answerVal": 0,
+                    "answerText": "知道周围人们的关系，知道祖孙，叔伯，姑姨，侄子侄女等称谓的意义；可分辨陌生人的大致年龄和身份，可用适当称呼"
+                },
+                {
+                    "answerId": 854,
+                    "answerVal": 1,
+                    "answerText": "只知家中亲密近亲的关系，不会分辨陌生人的大致年龄，不能称呼陌生人"
+                },
+                {
+                    "answerId": 855,
+                    "answerVal": 2,
+                    "answerText": "只能称呼家中人，或只能照样称呼，不知其关系，不辨辈分"
+                },
+                {
+                    "answerId": 856,
+                    "answerVal": 3,
+                    "answerText": "只认识常同住的亲人，可称呼子女或孙子女，可辨熟人和生人"
+                },
+                {
+                    "answerId": 857,
+                    "answerVal": 4,
+                    "answerText": "只认识保护人，不辨熟人和生人"
+                }
+            ],
+            "questionText": "人物定向"
+        },
+        {
+            "questionId": 20,
+            "answers": [
+                {
+                    "answerId": 858,
+                    "answerVal": 0,
+                    "answerText": "参与社会，在社会环境有一定的适应能力，待人接物恰当"
+                },
+                {
+                    "answerId": 859,
+                    "answerVal": 1,
+                    "answerText": "能适应单纯环境，主动接触人，初见面时难让人发现有智力问题，不能理解隐喻语"
+                },
+                {
+                    "answerId": 860,
+                    "answerVal": 2,
+                    "answerText": "脱离社会，可被动接触，不会主动待人，谈话中有很多不适词句，容易上当受骗"
+                },
+                {
+                    "answerId": 861,
+                    "answerVal": 3,
+                    "answerText": "勉强可与人交往，谈吐内容不清楚，表情不恰当"
+                },
+                {
+                    "answerId": 862,
+                    "answerVal": 4,
+                    "answerText": "难于人接触"
+                }
+            ],
+            "questionText": "社会交往能力"
+        }
+    ],
+    "surveyTableId": 6,
+    "tableName": "社会参与评估表"
+}

@@ -1,0 +1,65 @@
+<resources>
+
+    <string name="app_name">护龄家员工</string>
+    
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
+    <string name="select_all">全选</string>
+    <string name="submit">提交</string>
+    
+    <string name="submit_succeed_tip">提交成功</string>
+    <string name="submit_fail_tip">抱歉，提交失败</string>
+    
+   	<string name="login_title">登录</string>
+   	<string name="login_passw_error_tip">用户名或密码不正确</string>
+    
+    <string name="title_bar_add">新增</string>
+    <string name="senior_list_title_text">老人列表</string>
+    <string name="senior_info_title_text">老人信息</string>
+	<string name="tip_double_click_exit">再次点击退出</string>
+	<string name="sucess_create_record">新建评估记录</string>
+	<string name="senior_list_no_content_tip">暂无老人，可通过点击"新建"添加</string>
+    
+	<string name="service_carlendar">服务日程</string>
+	
+	<string name="regist_avatar">头像</string>
+	<string name="regist_name_hint">姓名  请输入姓名</string>
+	<string name="regist_profrssion_hint">职位</string>
+	<string name="regist_profrssion_lever_hint">职级 专职</string>
+	<string name="regist_area">区域</string>
+	<string name="regist_destinct_area">居住区域</string>
+	<string name="regist_login_and_regist">注册并登录</string>
+	
+	
+    <string name="input_userId_hint">请输入您的工号</string>
+    <string name="new_recoed">新建评估</string>
+    <string name ="evaluaton_back_hint">确定退出评估页面？如果评估没有完成，请选择继续评估</string>
+    <string name="submit_fail_redo">提交失败，请重新提交</string>
+	
+    <string name="mine_title">我的</string>
+    <string name="employee_number">工号</string>
+    <string name="profession">职位</string>
+    <string name="profession_lever">职级</string>
+    <string name="distinct_area">城区</string>
+    <string name="customer_number">患者数</string>
+    <string name="free_time">空间时间</string>
+    
+    
+    <string name="addrSearch_myAddr">我的地址</string>
+    <string name="currentLoacation">当前位置</string>
+     
+     <string name="appointment_title">预约信息</string>
+      <string name="choose_addr_title">选择地址</string>
+     <string name="capture">拍摄</string>
+     <string name="choose_from_gallery">相册选择</string>
+     <string name="main_business">业务流程</string>
+     <string name="main_information">我的档案</string>
+     
+     <string name="error_alias_empty">设置错误，别名不应该为空</string>
+     <string name="error_tag_gs_empty">设置错误，tag无效</string>
+     
+     <string name="edtTime_title">选择时间</string>
+     <string name="freeTime_title">服务时间</string>
+     
+    
+</resources>

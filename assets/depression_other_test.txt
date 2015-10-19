@@ -1,0 +1,486 @@
+{
+    "questions": [
+        {
+            "questionId": 54,
+            "answers": [
+                {
+                    "answerId": 906,
+                    "answerVal": 0,
+                    "answerText": "是"
+                },
+                {
+                    "answerId": 907,
+                    "answerVal": 1,
+                    "answerText": "否"
+                }
+            ],
+            "questionText": "您对生活基本上满意吗？"
+        },
+        {
+            "questionId": 55,
+            "answers": [
+                {
+                    "answerId": 908,
+                    "answerVal": 1,
+                    "answerText": "是"
+                },
+                {
+                    "answerId": 909,
+                    "answerVal": 0,
+                    "answerText": "否"
+                }
+            ],
+            "questionText": "您是否已经放弃了很多兴趣？"
+        },
+        {
+            "questionId": 56,
+            "answers": [
+                {
+                    "answerId": 908,
+                    "answerVal": 1,
+                    "answerText": "是"
+                },
+                {
+                    "answerId": 909,
+                    "answerVal": 0,
+                    "answerText": "否"
+                }
+            ],
+            "questionText": "您是否觉得生活空虚？"
+        },
+        {
+            "questionId": 57,
+            "answers": [
+                {
+                    "answerId": 908,
+                    "answerVal": 1,
+                    "answerText": "是"
+                },
+                {
+                    "answerId": 909,
+                    "answerVal": 0,
+                    "answerText": "否"
+                }
+            ],
+            "questionText": "您是否常感到厌倦？"
+        },
+        {
+            "questionId": 58,
+            "answers": [
+                {
+                    "answerId": 906,
+                    "answerVal": 0,
+                    "answerText": "是"
+                },
+                {
+                    "answerId": 907,
+                    "answerVal": 1,
+                    "answerText": "否"
+                }
+            ],
+            "questionText": "您觉得未来有希望吗？"
+        },
+        {
+            "questionId": 59,
+            "answers": [
+                {
+                    "answerId": 908,
+                    "answerVal": 1,
+                    "answerText": "是"
+                },
+                {
+                    "answerId": 909,
+                    "answerVal": 0,
+                    "answerText": "否"
+                }
+            ],
+            "questionText": "您是否因为脑子里有一些想法摆脱不掉而烦恼？"
+        },
+        {
+            "questionId": 60,
+            "answers": [
+                {
+                    "answerId": 906,
+                    "answerVal": 0,
+                    "answerText": "是"
+                },
+                {
+                    "answerId": 907,
+                    "answerVal": 1,
+                    "answerText": "否"
+                }
+            ],
+            "questionText": "您是否大部分时间精力充沛？"
+        },
+        {
+            "questionId": 61,
+            "answers": [
+                {
+                    "answerId": 908,
+                    "answerVal": 1,
+                    "answerText": "是"
+                },
+                {
+                    "answerId": 909,
+                    "answerVal": 0,
+                    "answerText": "否"
+                }
+            ],
+            "questionText": "您是否害怕有不幸的事落到你头上？"
+        },
+        {
+            "questionId": 62,
+            "answers": [
+                {
+                    "answerId": 906,
+                    "answerVal": 0,
+                    "answerText": "是"
+                },
+                {
+                    "answerId": 907,
+                    "answerVal": 1,
+                    "answerText": "否"
+                }
+            ],
+            "questionText": "您是否大部分时间感到幸福？"
+        },
+        {
+            "questionId": 63,
+            "answers": [
+                {
+                    "answerId": 908,
+                    "answerVal": 1,
+                    "answerText": "是"
+                },
+                {
+                    "answerId": 909,
+                    "answerVal": 0,
+                    "answerText": "否"
+                }
+            ],
+            "questionText": "您是否常感到孤立无援？"
+        },
+        {
+            "questionId": 64,
+            "answers": [
+                {
+                    "answerId": 908,
+                    "answerVal": 1,
+                    "answerText": "是"
+                },
+                {
+                    "answerId": 909,
+                    "answerVal": 0,
+                    "answerText": "否"
+                }
+            ],
+            "questionText": "您是否常坐立不安，心烦意乱？"
+        },
+        {
+            "questionId": 65,
+            "answers": [
+                {
+                    "answerId": 908,
+                    "answerVal": 1,
+                    "answerText": "是"
+                },
+                {
+                    "answerId": 909,
+                    "answerVal": 0,
+                    "answerText": "否"
+                }
+            ],
+            "questionText": "您是否希望经常待在家里而不去做些新鲜事？"
+        },
+        {
+            "questionId": 66,
+            "answers": [
+                {
+                    "answerId": 908,
+                    "answerVal": 1,
+                    "answerText": "是"
+                },
+                {
+                    "answerId": 909,
+                    "answerVal": 0,
+                    "answerText": "否"
+                }
+            ],
+            "questionText": "您是否常常担心未来？"
+        },
+        {
+            "questionId": 67,
+            "answers": [
+                {
+                    "answerId": 908,
+                    "answerVal": 1,
+                    "answerText": "是"
+                },
+                {
+                    "answerId": 909,
+                    "answerVal": 0,
+                    "answerText": "否"
+                }
+            ],
+            "questionText": "您是否觉得记忆力比以前差？"
+        },
+        {
+            "questionId": 68,
+            "answers": [
+                {
+                    "answerId": 906,
+                    "answerVal": 0,
+                    "answerText": "是"
+                },
+                {
+                    "answerId": 907,
+                    "answerVal": 1,
+                    "answerText": "否"
+                }
+            ],
+            "questionText": "您是否觉得现在生活很惬意？"
+        },
+        {
+            "questionId": 69,
+            "answers": [
+                {
+                    "answerId": 908,
+                    "answerVal": 1,
+                    "answerText": "是"
+                },
+                {
+                    "answerId": 909,
+                    "answerVal": 0,
+                    "answerText": "否"
+                }
+            ],
+            "questionText": "您是否常感到心情沉重，郁闷？"
+        },
+        {
+            "questionId": 70,
+            "answers": [
+                {
+                    "answerId": 908,
+                    "answerVal": 1,
+                    "answerText": "是"
+                },
+                {
+                    "answerId": 909,
+                    "answerVal": 0,
+                    "answerText": "否"
+                }
+            ],
+            "questionText": "您是否觉得像现在这样生活毫无意义？"
+        },
+        {
+            "questionId": 71,
+            "answers": [
+                {
+                    "answerId": 908,
+                    "answerVal": 1,
+                    "answerText": "是"
+                },
+                {
+                    "answerId": 909,
+                    "answerVal": 0,
+                    "answerText": "否"
+                }
+            ],
+            "questionText": "您是否常为过去的事忧愁？"
+        },
+        {
+            "questionId": 72,
+            "answers": [
+                {
+                    "answerId": 906,
+                    "answerVal": 0,
+                    "answerText": "是"
+                },
+                {
+                    "answerId": 907,
+                    "answerVal": 1,
+                    "answerText": "否"
+                }
+            ],
+            "questionText": "您觉得生活很令人兴奋吗？"
+        },
+        {
+            "questionId": 73,
+            "answers": [
+                {
+                    "answerId": 908,
+                    "answerVal": 1,
+                    "answerText": "是"
+                },
+                {
+                    "answerId": 909,
+                    "answerVal": 0,
+                    "answerText": "否"
+                }
+            ],
+            "questionText": "您开始一件新的工作困难吗？"
+        },
+        {
+            "questionId": 74,
+            "answers": [
+                {
+                    "answerId": 906,
+                    "answerVal": 0,
+                    "answerText": "是"
+                },
+                {
+                    "answerId": 907,
+                    "answerVal": 1,
+                    "answerText": "否"
+                }
+            ],
+            "questionText": "您觉得生活充满活力吗？"
+        },
+        {
+            "questionId": 75,
+            "answers": [
+                {
+                    "answerId": 908,
+                    "answerVal": 1,
+                    "answerText": "是"
+                },
+                {
+                    "answerId": 909,
+                    "answerVal": 0,
+                    "answerText": "否"
+                }
+            ],
+            "questionText": "您是否觉得您的处境毫无希望？"
+        },
+        {
+            "questionId": 76,
+            "answers": [
+                {
+                    "answerId": 908,
+                    "answerVal": 1,
+                    "answerText": "是"
+                },
+                {
+                    "answerId": 909,
+                    "answerVal": 0,
+                    "answerText": "否"
+                }
+            ],
+            "questionText": "您是否觉得大多数人比你强太多？"
+        },
+        {
+            "questionId": 77,
+            "answers": [
+                {
+                    "answerId": 908,
+                    "answerVal": 1,
+                    "answerText": "是"
+                },
+                {
+                    "answerId": 909,
+                    "answerVal": 0,
+                    "answerText": "否"
+                }
+            ],
+            "questionText": "您是否常为些小事伤心？"
+        },
+        {
+            "questionId": 78,
+            "answers": [
+                {
+                    "answerId": 908,
+                    "answerVal": 1,
+                    "answerText": "是"
+                },
+                {
+                    "answerId": 909,
+                    "answerVal": 0,
+                    "answerText": "否"
+                }
+            ],
+            "questionText": "您是否常觉得想哭？"
+        },
+        {
+            "questionId": 79,
+            "answers": [
+                {
+                    "answerId": 908,
+                    "answerVal": 1,
+                    "answerText": "是"
+                },
+                {
+                    "answerId": 909,
+                    "answerVal": 0,
+                    "answerText": "否"
+                }
+            ],
+            "questionText": "您集中精力困难吗？"
+        },
+        {
+            "questionId": 80,
+            "answers": [
+                {
+                    "answerId": 906,
+                    "answerVal": 0,
+                    "answerText": "是"
+                },
+                {
+                    "answerId": 907,
+                    "answerVal": 1,
+                    "answerText": "否"
+                }
+            ],
+            "questionText": "您早晨起床开心吗？"
+        },
+        {
+            "questionId": 81,
+            "answers": [
+                {
+                    "answerId": 908,
+                    "answerVal": 1,
+                    "answerText": "是"
+                },
+                {
+                    "answerId": 909,
+                    "answerVal": 0,
+                    "answerText": "否"
+                }
+            ],
+            "questionText": "您希望避开聚会吗？"
+        },
+        {
+            "questionId": 82,
+            "answers": [
+                {
+                    "answerId": 906,
+                    "answerVal": 0,
+                    "answerText": "是"
+                },
+                {
+                    "answerId": 907,
+                    "answerVal": 1,
+                    "answerText": "否"
+                }
+            ],
+            "questionText": "您做决定很容易吗？"
+        },
+        {
+            "questionId": 83,
+            "answers": [
+                {
+                    "answerId": 906,
+                    "answerVal": 0,
+                    "answerText": "是"
+                },
+                {
+                    "answerId": 907,
+                    "answerVal": 1,
+                    "answerText": "否"
+                }
+            ],
+            "questionText": "您的头脑像往常一样清醒吗？"
+        }
+    ],
+    "surveyTableId": 10,
+    "tableName": "抑郁评估表"
+}

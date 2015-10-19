@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- 基本颜色 -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="red">#FF0000</color>
+    <color name="transparent">#00ffffff</color>
+     
+    <!-- 应用级别颜色 -->
+    <color name="statue_bar_color">#2d86ff</color>
+    <color name="common_text_color">#333333</color>
+    
+    <color name="common_grey">#fcfcfc</color>
+    <color name="line_blue">#2d86ff</color> 
+    <color name="line_grey">#d2d2d2</color>
+    
+    <color name="text_color_disable">#cfcdcd</color>
+    
+    <!-- 页面级别颜色 -->
+    <color name="item_text_check">#2d86ff</color>
+    <color name="item_text_uncheck">#555555</color>
+    <color name="mian_photo_text_color">#ff7119</color>    
+    <color name="choose_time_free">#FFFFFF</color>
+    <color name="choose_time_not_free">#66bffb</color>
+    <color name="evaluation_tv_common_table">#FFFFFF</color>
+    <color name="evaluation_tv_current_table">#fe043f</color>
+    
+    <color name="main_item_text_hl">#f5d4fe</color>
+</resources>
