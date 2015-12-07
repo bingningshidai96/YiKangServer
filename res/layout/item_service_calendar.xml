@@ -5,7 +5,7 @@
 	android:padding="10dp"
 	android:gravity="center_vertical"
     android:orientation="vertical" 
-    android:background="@drawable/bg_buisiness_blue">
+    android:background="@drawable/shap_themecolor_reactangle_solid">
     
     <TextView 
         android:id="@+id/tv_service_carlendar_name"
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:textSize="20sp"
-        android:text="王韩非"/>
+        android:text=""/>
     
     <TextView
         android:id="@+id/tv_service_carlendar_date" 
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:textColor="@color/white"
-        android:text="2015年9月21号"
+        android:text=""
         android:textSize="20sp"/>
     
     <TextView 
@@ -33,7 +33,16 @@
         android:textColor="@color/white"
         android:layout_marginTop="5dp"
         android:drawableLeft="@drawable/ic_addr_white"
-        android:text="北京市海淀区万寿路地铁1号线"
+        android:text=""
         android:textSize="19sp"/>
+
+    <View
+        android:id="@+id/view_service_carlendar_badge"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_alignBottom="@+id/tv_service_carlendar_date"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/red_dot" />
     
 </RelativeLayout>

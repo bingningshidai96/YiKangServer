@@ -5,15 +5,15 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.ListView;
 
-public class NoInterActionListView extends ListView{
+public class NoInterActionListView extends ListView {
 	private boolean isItemsEnable;
-	
+
 	public NoInterActionListView(Context context) {
-		this(context,null);
+		this(context, null);
 	}
 
 	public NoInterActionListView(Context context, AttributeSet attrs) {
-		this(context, attrs,0);
+		this(context, attrs, 0);
 	}
 
 	public NoInterActionListView(Context context, AttributeSet attrs,
@@ -21,30 +21,28 @@ public class NoInterActionListView extends ListView{
 		super(context, attrs, defStyleAttr);
 	}
 
-	
 	@Override
 	public boolean onTouchEvent(MotionEvent ev) {
-		if(isItemsEnable){
+		if (isItemsEnable) {
 			return super.onTouchEvent(ev);
-		}else{
+		} else {
 			super.onTouchEvent(ev);
 			return true;
 		}
-	} 
-	
+	}
+
 	@Override
 	public boolean performClick() {
 		return super.performClick();
 	}
-	
+
 	@Override
 	public boolean onInterceptTouchEvent(MotionEvent ev) {
 		return !isItemsEnable;
 	}
-	
-	
-	public void setItemsEnable(boolean isItemsEnable){
+
+	public void setItemsEnable(boolean isItemsEnable) {
 		this.isItemsEnable = isItemsEnable;
 	}
-	
+
 }

@@ -2,38 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:orientation="vertical"
-    
+    android:fitsSystemWindows="true"
     android:background="@color/white">
 
     <include layout="@layout/include_title_bar" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal"
-        android:padding="5dp" >
-
-        <EditText
-            android:id="@+id/edt_addrSearch_input"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" 
-             android:background="@android:drawable/edit_text"/>
-
-        <Button
-            android:id="@+id/bt_addrSearch_confirm"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@drawable/selector_btn_bg_orange"
-            android:includeFontPadding="false"
-            android:text="@string/confirm"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="15dp"
-            android:textColor="@color/white" />
-    </LinearLayout>
+      <EditText
+         android:id="@+id/edt_addrSearch_input"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:hint="@string/addrSearch_input_hint"
+         android:background="@android:drawable/edit_text"/>
+      <EditText
+         android:id="@+id/edt_addrSearch_input_detail"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:hint="@string/addrSearch_detial_hint"
+         android:visibility="gone"
+         android:background="@android:drawable/edit_text"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -62,13 +49,18 @@
         android:paddingBottom="10dp"
         android:paddingLeft="15dp"
         android:text="@string/currentLoacation" />
-     
+    <TextView 
+        android:id="@+id/tv_no_addr_tips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="没有搜索到相关地址"/>
     <ListView 
        android:id="@+id/lv_addrSearch_addrs_prompt"
        android:layout_width="match_parent"
        android:layout_height="0dp"
        android:layout_weight="1" >
-        
     </ListView>
-
+    
 </LinearLayout>

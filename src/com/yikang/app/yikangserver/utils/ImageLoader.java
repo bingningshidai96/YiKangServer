@@ -124,8 +124,7 @@ public class ImageLoader {
 			protected int sizeOf(String key, Bitmap value) {
 				return value.getRowBytes() * value.getHeight();
 			};
-			
-			
+
 		};
 
 		mThreadPool = Executors.newFixedThreadPool(threadCount);
@@ -150,7 +149,7 @@ public class ImageLoader {
 				@Override
 				public void handleMessage(Message msg) {
 					ImgBeanHolder holder = (ImgBeanHolder) msg.obj;
-					msg.obj =null;
+					msg.obj = null;
 					ImageView imageView = holder.imageView;
 					Bitmap bm = holder.bitmap;
 					String path = holder.path;
@@ -385,17 +384,12 @@ public class ImageLoader {
 		}
 		return value;
 	}
-	
+
 	/**
 	 * 清除LruCache的缓存
 	 */
-	public void clearCache(){
+	public void clearCache() {
 		mLruCache.evictAll();
 	}
-	
-	
-	
-	
-	
-	
+
 }

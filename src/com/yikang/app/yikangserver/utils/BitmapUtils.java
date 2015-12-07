@@ -55,7 +55,7 @@ public class BitmapUtils {
 		String[] proj = { MediaStore.Images.Media.DATA };
 		Cursor cursor = context.getContentResolver().query(contentUri, proj,
 				null, null, null);
-		if (cursor!=null&&cursor.moveToFirst()) {
+		if (cursor != null && cursor.moveToFirst()) {
 			int column_index = cursor
 					.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
 			res = cursor.getString(column_index);
@@ -70,20 +70,19 @@ public class BitmapUtils {
 	public static Bitmap getBitmap(Context context, Uri uri, int weidth,
 			int height) {
 		String imgPath = getImagePathFromURI(context, uri);
-		if(TextUtils.isEmpty(imgPath)){
-			LOG.w(TAG, "[getBitmap]"+"通过uri找不到图片");
+		if (TextUtils.isEmpty(imgPath)) {
+			LOG.w(TAG, "[getBitmap]" + "通过uri找不到图片");
 			return null;
 		}
 		return getBitmap(context, imgPath, weidth, height);
 	}
-	
-	public static Bitmap getBitmap(Context context, String imgPath,
-			int weidth, int height) {
+
+	public static Bitmap getBitmap(Context context, String imgPath, int weidth,
+			int height) {
 		BitmapFactory.Options options = new BitmapFactory.Options();
 		options.inJustDecodeBounds = true;
 		BitmapFactory.decodeFile(imgPath);
-		int simleZise = Math.min(options.outHeight / weidth, 
-				options.outHeight/ height);
+		int simleZise = Math.min(options.outHeight / weidth, options.outHeight/ height);
 		options.inJustDecodeBounds = false;
 		options.inSampleSize = simleZise;
 		return BitmapFactory.decodeFile(imgPath);

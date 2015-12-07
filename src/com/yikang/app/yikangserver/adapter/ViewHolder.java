@@ -9,15 +9,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class ViewHolder
-{
+public class ViewHolder {
 	private final SparseArray<View> mViews;
 	private int mPosition;
 	private View mConvertView;
 
 	private ViewHolder(Context context, ViewGroup parent, int layoutId,
-			int position)
-	{
+			int position) {
 		this.mPosition = position;
 		this.mViews = new SparseArray<View>();
 		mConvertView = LayoutInflater.from(context).inflate(layoutId, parent,

@@ -3,12 +3,12 @@ package com.yikang.app.yikangserver.bean;
 import java.io.Serializable;
 import java.util.List;
 
-public class CrossWirses implements Serializable{
+public class CrossWirses implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String questionCrosswiseName;
 	private int questionCrosswiseId;
 	private String tableName;
-	
+
 	private List<QuestionPortrait> questions;
 
 	public String getQuestionCrosswiseName() {
@@ -35,7 +35,6 @@ public class CrossWirses implements Serializable{
 		this.tableName = tableName;
 	}
 
-
 	public List<QuestionPortrait> getQuestions() {
 		return questions;
 	}
@@ -51,5 +50,5 @@ public class CrossWirses implements Serializable{
 				+ ", tableName=" + tableName + ", questionPortraits="
 				+ questions + "]";
 	}
-	
+
 }

@@ -11,22 +11,22 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.widget.TextView;
 
-public class LeftMenuAdapter extends CommonAdapter<TableType>{
+public class LeftMenuAdapter extends CommonAdapter<TableType> {
 	private Drawable rightDrawable;
 	private HashSet<Integer> submitTabs;
 	private int currentTabId;
-	
+
 	private int commonTextColor;
 	private int currentTextColor;
-	
+
 	public LeftMenuAdapter(Context context, List<TableType> datas) {
 		super(context, datas, R.layout.item_drawer_table_name);
 		Resources res = context.getResources();
 		commonTextColor = res.getColor(R.color.evaluation_tv_common_table);
 		currentTextColor = res.getColor(R.color.evaluation_tv_current_table);
 		rightDrawable = res.getDrawable(R.drawable.evalu_menu_submited_flag);
-		rightDrawable.setBounds(new Rect(0, 0, rightDrawable.getIntrinsicWidth(), 
-				rightDrawable.getIntrinsicHeight()));
+		rightDrawable.setBounds(new Rect(0, 0, rightDrawable
+				.getIntrinsicWidth(), rightDrawable.getIntrinsicHeight()));
 	}
 
 	@Override
@@ -34,25 +34,24 @@ public class LeftMenuAdapter extends CommonAdapter<TableType>{
 		TextView tv = holder.getView(R.id.tv_item_table_name);
 		setItemStyle(tv, item);
 		tv.setText(item.getTableName());
-		
+
 	}
 
-	private void setItemStyle(TextView tv,TableType item){
-		if(item.getTableId()==currentTabId){
+	private void setItemStyle(TextView tv, TableType item) {
+		if (item.getTableId() == currentTabId) {
 			tv.setTextColor(currentTextColor);
-		}else{
+		} else {
 			tv.setTextColor(commonTextColor);
 		}
-		
-		if(submitTabs!=null && 
-				submitTabs.contains(item.getTableId())){
+
+		if (submitTabs != null && submitTabs.contains(item.getTableId())) {
 			tv.setCompoundDrawables(null, null, rightDrawable, null);
-		}else{
+		} else {
 			tv.setCompoundDrawables(null, null, null, null);
 		}
 	}
-	
-	public void setSubmitTabs(HashSet<Integer> submitTabs){
+
+	public void setSubmitTabs(HashSet<Integer> submitTabs) {
 		this.submitTabs = submitTabs;
 	}
 

@@ -3,12 +3,12 @@ package com.yikang.app.yikangserver.bean;
 import com.alibaba.fastjson.annotation.JSONField;
 
 public class TimeDuration {
-	@JSONField(name="timeQuantumId")
+	@JSONField(name = "timeQuantumId")
 	public int serviceId;
-	@JSONField(name="startTime")
+	@JSONField(name = "startTime")
 	public int startTime;
-	@JSONField(name="endTime")
+	@JSONField(name = "endTime")
 	public int endTime;
-	@JSONField(name="isChecked")
+	@JSONField(name = "isChecked")
 	public boolean isChecked;
 }

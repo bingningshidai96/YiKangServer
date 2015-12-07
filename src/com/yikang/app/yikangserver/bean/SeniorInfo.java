@@ -1,20 +1,26 @@
 package com.yikang.app.yikangserver.bean;
 
+/**
+ * 老年人信息 1.在病患列表中就显示
+ */
 public class SeniorInfo {
-	private int seniorId;
+	private String seniorId;
 	private String name;
-	public int getSeniorId() {
+
+	public String getSeniorId() {
 		return seniorId;
 	}
-	public void setSeniorId(int seniorId) {
+
+	public void setSeniorId(String seniorId) {
 		this.seniorId = seniorId;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
+
 }

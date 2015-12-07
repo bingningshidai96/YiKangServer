@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.yikang.app.yikangserver"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionCode="2"
+    android:versionName="1.0.1" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -44,61 +44,92 @@
         android:theme="@style/AppTheme" >
         
         <!-- 高德地图key -->
+         <!-- 测试 android:value="28ec11032427e844647cbcfb29c149bf" -->
+         <!-- 正式 android:value="9ab3799a1001675e83a70df31b21e784" -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="28ec11032427e844647cbcfb29c149bf" />
-
-        <activity android:name="com.yikang.app.yikangserver.SplushActivtiy" >
-            <intent-filter>
+        
+        <activity android:name="com.yikang.app.yikangserver.TestActivity">
+        </activity>
+        
+        <activity android:name="com.yikang.app.yikangserver.ui.SplashActivtiy"
+             android:screenOrientation="portrait">
+             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
        
-        <activity android:name="com.yikang.app.yikangserver.SeniorInfoActivity" >
-        </activity>
+        <activity android:name="com.yikang.app.yikangserver.ui.SeniorInfoActivity"
+             android:screenOrientation="portrait"></activity>
         
         <activity
-            android:name="com.yikang.app.yikangserver.MainActivity"
+            android:name="com.yikang.app.yikangserver.ui.MainActivity"
+            
              android:launchMode="singleTask">
         </activity>
         
         <activity
-            android:name="com.yikang.app.yikangserver.EvaluationActivity"
+            android:name="com.yikang.app.yikangserver.ui.EvaluationActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.yikang.app.yikangserver.DetailQuestionActivity"
+            android:name="com.yikang.app.yikangserver.ui.DetailQuestionActivity"
             android:screenOrientation="portrait" >
         </activity>
         
         <activity
-            android:name="com.yikang.app.yikangserver.EvaluationRecordActivity"
+            android:name="com.yikang.app.yikangserver.ui.EvaluationRecordActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name="com.yikang.app.yikangserver.AddrSarchActivity"
+            android:name="com.yikang.app.yikangserver.ui.AddrSarchActivity"
             android:screenOrientation="portrait" >
         </activity>
         
-        <activity android:name="com.yikang.app.yikangserver.RegistActivtiy"
+        <activity android:name="com.yikang.app.yikangserver.ui.RegistActivtiy"
             android:screenOrientation="portrait" 
-            android:windowSoftInputMode="stateHidden"
-            >
+            android:windowSoftInputMode="stateHidden">
         </activity>
         
-        <activity android:name="com.yikang.app.yikangserver.LoginActivity"
+        <activity android:name="com.yikang.app.yikangserver.ui.LoginActivity"
             android:screenOrientation="portrait" >
         </activity>
         
-        <activity android:name="com.yikang.app.yikangserver.FreeTimeCalendarActivty"></activity>
-        <activity android:name="com.yikang.app.yikangserver.EditTimeActivity"></activity>
-        <activity android:name="com.yikang.app.yikangserver.SeniorListActivity"></activity>
-        <activity android:name="com.yikang.app.yikangserver.ScheduleItemActivty"></activity>
-        <activity android:name="com.yikang.app.yikangserver.ServiceCalendarActivity"></activity>
+        <activity android:name="com.yikang.app.yikangserver.ui.FreeTimeCalendarActivty"
+             android:screenOrientation="portrait">
+        </activity>
         
-        <service android:name="com.yikang.app.yikangserver.service.UpLoadService"></service>
+        <activity android:name="com.yikang.app.yikangserver.ui.EditTimeActivity"
+             android:screenOrientation="portrait">
+        </activity>
+        
+        <activity android:name="com.yikang.app.yikangserver.ui.SeniorListActivity"
+             android:screenOrientation="portrait">
+        </activity>
+        
+        <activity android:name="com.yikang.app.yikangserver.ui.InviteCustomerListActivity"
+             android:screenOrientation="portrait">
+        </activity>
+        
+        <activity android:name="com.yikang.app.yikangserver.ui.ServiceOrderDetailActivty"
+             android:screenOrientation="portrait"
+             android:windowSoftInputMode="stateHidden">
+        </activity>
+        
+        <activity android:name="com.yikang.app.yikangserver.ui.ServiceCalendarActivity"
+             android:screenOrientation="portrait">
+        </activity>
+        
+        <service android:name="com.yikang.app.yikangserver.service.UpLoadService"
+             android:screenOrientation="portrait">
+        </service>
+        
+        <activity android:name="com.yikang.app.yikangserver.ui.EditMineInfoActivity"
+             android:screenOrientation="portrait">
+        </activity>
         
          
         <!-- **********************************极光推送**************************************-->
@@ -113,6 +144,7 @@
                 <category android:name="com.yikang.app.yikangserver" />
             </intent-filter>
         </activity>
+        
         <!-- Required  SDK核心功能-->
         <service
             android:name="cn.jpush.android.service.DownloadService"
@@ -132,17 +164,6 @@
                 <action android:name="cn.jpush.android.intent.PushService" />
                 <action android:name="cn.jpush.android.intent.PUSH_TIME" />
                 
-            </intent-filter>
-        </service>
-        
-        <!-- Required SDK 核心功能-->
-        <service 
-            android:name="cn.jpush.android.service.DaemonService"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter >
-                <action android:name="cn.jpush.android.intent.DaemonService" />
-                <category android:name="com.yikang.app.yikangserver"/>
             </intent-filter>
         </service>
         
@@ -172,6 +193,7 @@
         <!-- Required SDK核心功能-->
         <receiver android:name="cn.jpush.android.service.AlarmReceiver" />
         
+        
         <!-- User defined.  For test only  用户自定义的广播接收器-->
         <receiver
             android:name="com.yikang.app.yikangserver.reciever.JPushBuinessReciever" >
@@ -190,7 +212,7 @@
         
         <!-- Required  . Enable it you can get statistics data with channel -->
         <meta-data android:name="JPUSH_CHANNEL" android:value="developer-default"/>
-        <meta-data android:name="JPUSH_APPKEY" android:value="9de890837df54fce0b818cc4" /> <!--  </>值来自开发者平台取得的AppKey-->
+        <meta-data android:name="JPUSH_APPKEY" android:value="9de890837df54fce0b818cc4" /> 
         <!-- *********************************极光推送*****9de890837df54fce0b818cc4********************************* -->
         
         

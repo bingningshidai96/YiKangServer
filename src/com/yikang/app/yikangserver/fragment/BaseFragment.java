@@ -1,5 +1,6 @@
 package com.yikang.app.yikangserver.fragment;
 
+import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.view.CustomWatingDialog;
 
 import android.app.Dialog;
@@ -10,7 +11,7 @@ public class BaseFragment extends Fragment {
 	private Dialog watingDaiglog;
 
 	protected void showWatingDailog() {
-		showWatingDailog("正在加载，请稍候...");
+		showWatingDailog(getString(R.string.waiting_loading));
 	}
 
 	/**
@@ -23,6 +24,7 @@ public class BaseFragment extends Fragment {
 		if (!watingDaiglog.isShowing())
 			watingDaiglog.show();
 	}
+	
 
 	/**
 	 * dismiss 等待的diaglog

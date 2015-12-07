@@ -5,13 +5,14 @@ import org.json.JSONObject;
 import com.yikang.app.yikangserver.utils.AES;
 
 public class ResponseContent {
-	public static final String STATUS_OK ="000000"; 
-	
+	public static final String STATUS_OK = "000000";
+
 	private String status;
 	private String message;
 	private String data;
-	
-	private ResponseContent(){}
+
+	private ResponseContent() {
+	}
 
 	public String getStatus() {
 		return status;
@@ -41,14 +42,17 @@ public class ResponseContent {
 			throws Exception {
 		return toResposeContent(result, true);
 	}
-	
+
 	/**
 	 * 
-	 * @param result 结果字符串
-	 * @param isAES  结果是否加密
+	 * @param result
+	 *            结果字符串
+	 * @param isAES
+	 *            结果是否加密
 	 * @return
 	 */
-	public static ResponseContent toResposeContent(String result,boolean isAES) throws Exception{
+	public static ResponseContent toResposeContent(String result, boolean isAES)
+			throws Exception {
 		JSONObject object;
 		ResponseContent resposeContent = null;
 		try {
@@ -61,12 +65,13 @@ public class ResponseContent {
 		} catch (Exception e) {
 			throw new Exception("retult 格式不正确");
 		}
-		if (object != null) { //当object不为空，即前面不发生异常
+		if (object != null) { // 当object不为空，即前面不发生异常
 			String srcData = null;
 			try {
-				if(!object.isNull("data")){
+				if (!object.isNull("data")) {
 					srcData = object.getString("data");
-					String data = isAES? AES.decrypt(srcData, AES.AES_KEY) : srcData;
+					String data = isAES ? AES.decrypt(srcData, AES.AES_KEY)
+							: srcData;
 					resposeContent.setData(data);
 				}
 			} catch (JSONException e) {
@@ -75,8 +80,8 @@ public class ResponseContent {
 		}
 		return resposeContent;
 	}
-	
-	public boolean isStautsOk(){
+
+	public boolean isStautsOk() {
 		return STATUS_OK.equals(status);
 	}
 }
