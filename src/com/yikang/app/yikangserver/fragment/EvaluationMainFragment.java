@@ -29,10 +29,10 @@ import com.yikang.app.yikangserver.bean.Question;
 import com.yikang.app.yikangserver.bean.RequestParam;
 import com.yikang.app.yikangserver.bean.ResponseContent;
 import com.yikang.app.yikangserver.bean.Table;
-import com.yikang.app.yikangserver.dailog.ProgressDialogFactory;
+import com.yikang.app.yikangserver.dailog.DialogFactory;
 import com.yikang.app.yikangserver.data.BusinessState.SenoirState.EvalutionState;
-import com.yikang.app.yikangserver.data.QuestionData;
-import com.yikang.app.yikangserver.data.QuestionData.TableType;
+import com.yikang.app.yikangserver.data.EvaluationLocalData;
+import com.yikang.app.yikangserver.data.EvaluationLocalData.TableType;
 import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.interf.EvaInterActctionListnter;
 import com.yikang.app.yikangserver.utils.BuisNetUtils;
@@ -142,7 +142,7 @@ public class EvaluationMainFragment extends Fragment implements
 	 */
 	private void getData() {
 		// 获取字符串
-		String json = QuestionData.getData(getActivity(), tableType);
+		String json = EvaluationLocalData.getData(getActivity(), tableType);
 		// 解析数据
 		Table table = JSON.parseObject(json, Table.class);
 		questions.addAll(table.getQuestions());
@@ -179,7 +179,7 @@ public class EvaluationMainFragment extends Fragment implements
 		case depression_other: // 抑郁症评估
 			adapter = new SingleDepressionAdapter(getActivity(), questions);
 			break;
-		case senior_common_question: // 老年人常见问题
+		case senior_common_question: // 病人常见问题
 			adapter = new SeniorCommonQuestionAdapter(getActivity(), questions,
 					R.layout.item_answer_radiobutton);
 			break;
@@ -298,8 +298,8 @@ public class EvaluationMainFragment extends Fragment implements
 
 	private void showSubmitDialog() {
 		if (proDialog == null) {
-			proDialog = ProgressDialogFactory.getProgressDailog(
-					ProgressDialogFactory.TYPE_SUBMIT_DATA, getActivity());
+			proDialog = DialogFactory.getProgressDailog(
+					DialogFactory.TYPE_SUBMIT_DATA, getActivity());
 		}
 		proDialog.show();
 	}
@@ -312,8 +312,8 @@ public class EvaluationMainFragment extends Fragment implements
 
 	private void showDialog() {
 		if (loadingDialog == null) {
-			loadingDialog = ProgressDialogFactory.getProgressDailog(
-					ProgressDialogFactory.TYPE_LOADING_DATA, getActivity());
+			loadingDialog = DialogFactory.getProgressDailog(
+					DialogFactory.TYPE_LOADING_DATA, getActivity());
 		}
 		loadingDialog.show();
 	}

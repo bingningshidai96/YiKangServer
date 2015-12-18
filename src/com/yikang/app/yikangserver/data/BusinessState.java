@@ -7,7 +7,7 @@ import java.util.HashMap;
  */
 public class BusinessState {
 	/**
-	 * 这个一个老人的状态
+	 * 这个一个病人的状态
 	 * 
 	 */
 	public static class SenoirState {
@@ -16,7 +16,7 @@ public class BusinessState {
 		 */
 		public static boolean hasNewRecord;
 
-		public static String currSeniorId; // 当前老年人
+		public static String currSeniorId; // 当前病人
 
 		/**
 		 * 一次评估的评估状态， 这个类的存在周期应该只在EvaluationActivity的生命周期之内，

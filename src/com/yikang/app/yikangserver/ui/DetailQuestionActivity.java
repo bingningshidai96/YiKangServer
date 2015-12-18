@@ -9,7 +9,7 @@ import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.bean.CrossWirses;
 import com.yikang.app.yikangserver.data.BusinessState.SenoirState.EvalutionState;
-import com.yikang.app.yikangserver.data.QuestionData.TableType;
+import com.yikang.app.yikangserver.data.EvaluationLocalData.TableType;
 import com.yikang.app.yikangserver.fragment.CrossWiresFragment;
 import com.yikang.app.yikangserver.fragment.DetialQuestionFragment;
 import com.yikang.app.yikangserver.interf.EvaInterActctionListnter;

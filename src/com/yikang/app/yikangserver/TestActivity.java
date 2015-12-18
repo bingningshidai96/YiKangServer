@@ -1,9 +1,11 @@
 package com.yikang.app.yikangserver;
 
-import com.yikang.app.yikangserver.ui.BaseActivity;
-
-import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
+
+import com.yikang.app.yikangserver.ui.BaseActivity;
+import com.yikang.app.yikangserver.utils.AES;
 
 public class TestActivity extends BaseActivity {
 	@Override
@@ -20,7 +22,7 @@ public class TestActivity extends BaseActivity {
 
 	@Override
 	protected void setContentView() {
-		setContentView(R.layout.activity_service_detail);
+		setContentView(R.layout.test);
 	}
 
 	@Override
@@ -30,8 +32,11 @@ public class TestActivity extends BaseActivity {
 
 	@Override
 	protected void initViewConent() {
-		showWatingDailog();
 		
+	}
+	
+	public void getkey(View v){
+		Toast.makeText(this, AES.getKey(), 0).show();
 	}
 	
 	

@@ -334,25 +334,7 @@
             </TableRow>
 
             
-         <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp" >
-
-                <TextView
-                    android:id="@+id/tv_seniorInfo_city_hint"
-                    style="@style/style_text_seniorInfo_hint"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="城市" />
-
-                <com.yikang.app.yikangserver.view.TextSpinner
-                    android:id="@+id/edt_seniorInfo_city"
-                    style="@style/style_edp_seniorInfo"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content" />
-            </TableRow>
+  
             
          <TableRow
                 android:layout_width="match_parent"

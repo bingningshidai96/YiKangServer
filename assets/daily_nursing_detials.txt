@@ -3,7 +3,7 @@
         "questionCrosswiseId": 1,
         "questions": [
             {
-                "questionPortraitName": "老人情况",
+                "questionPortraitName": "病人情况",
                 "answerType": 1,
                 "answers": [
                     {
@@ -84,7 +84,7 @@
         "questionCrosswiseId": 2,
         "questions": [
             {
-                "questionPortraitName": "老人情况",
+                "questionPortraitName": "病人情况",
                 "answerType": 1,
                 "answers": [
                     {
@@ -180,7 +180,7 @@
         "questionCrosswiseId": 3,
         "questions": [
             {
-                "questionPortraitName": "老人情况",
+                "questionPortraitName": "病人情况",
                 "answerType": 1,
                 "answers": [
                     {
@@ -276,7 +276,7 @@
         "questionCrosswiseId": 4,
         "questions": [
             {
-                "questionPortraitName": "老人情况",
+                "questionPortraitName": "病人情况",
                 "answerType": 1,
                 "answers": [
                     {
@@ -377,7 +377,7 @@
         "questionCrosswiseId": 5,
         "questions": [
             {
-                "questionPortraitName": "老人情况",
+                "questionPortraitName": "病人情况",
                 "answerType": 1,
                 "answers": [
                     {
@@ -498,7 +498,7 @@
         "questionCrosswiseId": 6,
         "questions": [
             {
-                "questionPortraitName": "老人情况",
+                "questionPortraitName": "病人情况",
                 "answerType": 1,
                 "answers": [
                     {
@@ -563,7 +563,7 @@
                     {
                         "answerId": 82,
                         "answerVal": 1,
-                        "answerText": "不能很好的满足老人的需要 "
+                        "answerText": "不能很好的满足病人的需要 "
                     }
                 ],
                 "questionPortraitId": 18
@@ -574,7 +574,7 @@
         "questionCrosswiseId": 7,
         "questions": [
         	 {
-                "questionPortraitName": "老人情况",
+                "questionPortraitName": "病人情况",
                 "answerType": 1,
                 "answers": [
                     {
@@ -640,7 +640,7 @@
                     {
                         "answerId": 92,
                         "answerVal": 1,
-                        "answerText": "和其他老人吵架"
+                        "answerText": "和其他人吵架"
                     },
                     {
                         "answerId": 93,
@@ -666,7 +666,7 @@
         "questionCrosswiseId": 8,
         "questions": [
             {
-                "questionPortraitName": "老人情况",
+                "questionPortraitName": "病人情况",
                 "answerType": 1,
                 "answers": [
                     {
@@ -737,7 +737,7 @@
         "questionCrosswiseId": 9,
         "questions": [
             {
-                "questionPortraitName": "老人情况",
+                "questionPortraitName": "病人情况",
                 "answerType": 1,
                 "answers": [
                     {
@@ -898,7 +898,7 @@
         "questionCrosswiseId": 10,
         "questions": [
             {
-                "questionPortraitName": "老人情况",
+                "questionPortraitName": "病人情况",
                 "answerType": 1,
                 "answers": [
                     {
@@ -989,7 +989,7 @@
         "questionCrosswiseId": 11,
         "questions": [
             {
-                "questionPortraitName": "老人情况",
+                "questionPortraitName": "病人情况",
                 "answerType": 1,
                 "answers": [
                     {
@@ -1074,7 +1074,7 @@
                     {
                         "answerId": 158,
                         "answerVal": 1,
-                        "answerText": "男性老人龟头水肿"
+                        "answerText": "男性病人龟头水肿"
                     },
                     {
                         "answerId": 159,
@@ -1100,7 +1100,7 @@
         "questionCrosswiseId": 12,
         "questions": [
             {
-                "questionPortraitName": "老人情况",
+                "questionPortraitName": "病人情况",
                 "answerType": 1,
                 "answers": [
                     {
@@ -1201,7 +1201,7 @@
         "questionCrosswiseId": 13,
         "questions": [
             {
-                "questionPortraitName": "老人情况",
+                "questionPortraitName": "病人情况",
                 "answerType": 1,
                 "answers": [
                     {
@@ -1337,7 +1337,7 @@
         "questionCrosswiseId": 14,
         "questions": [
             {
-                "questionPortraitName": "老人情况",
+                "questionPortraitName": "病人情况",
                 "answerType": 1,
                 "answers": [
                     {
@@ -1358,27 +1358,27 @@
                     {
                         "answerId": 202,
                         "answerVal": 1,
-                        "answerText": "老人不愿住老年公寓家属送进来"
+                        "answerText": "病人不愿住老年公寓家属送进来"
                     },
                     {
                         "answerId": 203,
                         "answerVal": 1,
-                        "answerText": "久病老人有无用感"
+                        "answerText": "久病有无用感"
                     },
                     {
                         "answerId": 204,
                         "answerVal": 1,
-                        "answerText": "疾病带来的身体不适老人心情忧郁"
+                        "answerText": "疾病带来的身体不适病人忧郁"
                     },
                     {
                         "answerId": 205,
                         "answerVal": 1,
-                        "answerText": "老伴突然离去老人感到孤独无助"
+                        "answerText": "老伴突然离去病人感到孤独无助"
                     },
                     {
                         "answerId": 206,
                         "answerVal": 1,
-                        "answerText": "外地老人子女不能常来看望"
+                        "answerText": "外地病人子女不能常来看望"
                     }
                 ],
                 "questionPortraitId": 40
@@ -1458,23 +1458,23 @@
         "questionCrosswiseId": 15,
         "questions": [
             {
-                "questionPortraitName": "老人情况",
+                "questionPortraitName": "病人情况",
                 "answerType": 1,
                 "answers": [
                     {
                         "answerId": 218,
                         "answerVal": 1,
-                        "answerText": "老人与亲属关系融洽"
+                        "answerText": "病人与亲属关系融洽"
                     },
                     {
                         "answerId": 219,
                         "answerVal": 1,
-                        "answerText": "老人与亲属关系不好"
+                        "answerText": "病人与亲属关系不好"
                     },
                     {
                         "answerId": 220,
                         "answerVal": 1,
-                        "answerText": "与同房老人关系不融洽"
+                        "answerText": "与同房病人关系不融洽"
                     }
                 ],
                 "questionPortraitId": 43
@@ -1529,7 +1529,7 @@
         "questionCrosswiseId": 16,
         "questions": [
             {
-                "questionPortraitName": "老人情况",
+                "questionPortraitName": "病人情况",
                 "answerType": 1,
                 "answers": [
                     {
@@ -1540,12 +1540,12 @@
                     {
                         "answerId": 228,
                         "answerVal": 1,
-                        "answerText": "老人不会用电话"
+                        "answerText": "不会用电话"
                     },
                     {
                         "answerId": 229,
                         "answerVal": 1,
-                        "answerText": "老人不能自行收寄信件或其他物品。"
+                        "answerText": "不能自行收寄信件或其他物品。"
                     },
                     {
                         "answerId": 230,
@@ -1605,7 +1605,7 @@
         "questionCrosswiseId": 25,
         "questions": [
             {
-                "questionPortraitName": "老人的病症及存在的问题",
+                "questionPortraitName": "病人的病症及存在的问题",
                 "answerType": 1,
                 "answers": [
                     {
@@ -1771,7 +1771,7 @@
         "questionCrosswiseId": 26,
         "questions": [
             {
-                "questionPortraitName": "老人的病症及存在的问题",
+                "questionPortraitName": "病人的病症及存在的问题",
                 "answerType": 1,
                 "answers": [
                     {
@@ -1927,7 +1927,7 @@
         "questionCrosswiseId": 27,
         "questions": [
             {
-                "questionPortraitName": "老人的病症及存在的问题",
+                "questionPortraitName": "病人的病症及存在的问题",
                 "answerType": 1,
                 "answers": [
                     {
@@ -2098,7 +2098,7 @@
         "questionCrosswiseId": 28,
         "questions": [
             {
-                "questionPortraitName": "老人的病症及存在的问题",
+                "questionPortraitName": "病人的病症及存在的问题",
                 "answerType": 1,
                 "answers": [
                     {
@@ -2209,7 +2209,7 @@
         "questionCrosswiseId": 29,
         "questions": [
             {
-                "questionPortraitName": "老人的病症及存在的问题",
+                "questionPortraitName": "病人的病症及存在的问题",
                 "answerType": 1,
                 "answers": [
                     {
@@ -2380,7 +2380,7 @@
         "questionCrosswiseId": 30,
         "questions": [
             {
-                "questionPortraitName": "老人的病症及存在的问题",
+                "questionPortraitName": "病人的病症及存在的问题",
                 "answerType": 1,
                 "answers": [
                     {
@@ -2501,7 +2501,7 @@
         "questionCrosswiseId": 31,
         "questions": [
             {
-                "questionPortraitName": "老人的病症及存在的问题",
+                "questionPortraitName": "病人的病症及存在的问题",
                 "answerType": 1,
                 "answers": [
                     {
@@ -2647,7 +2647,7 @@
         "questionCrosswiseId": 32,
         "questions": [
             {
-                "questionPortraitName": "老人的病症及存在的问题",
+                "questionPortraitName": "病人的病症及存在的问题",
                 "answerType": 1,
                 "answers": [
                     {
@@ -2738,7 +2738,7 @@
         "questionCrosswiseId": 33,
         "questions": [
             {
-                "questionPortraitName": "老人的病症及存在的问题",
+                "questionPortraitName": "病人的病症及存在的问题",
                 "answerType": 1,
                 "answers": [
                     {
@@ -2909,7 +2909,7 @@
         "questionCrosswiseId": 34,
         "questions": [
             {
-                "questionPortraitName": "老人的病症及存在的问题",
+                "questionPortraitName": "病人的病症及存在的问题",
                 "answerType": 1,
                 "answers": [
                     {

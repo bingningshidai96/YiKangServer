@@ -10,10 +10,10 @@ import com.alibaba.fastjson.JSON;
 import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.adapter.CrossWirsesItemAdapter;
 import com.yikang.app.yikangserver.bean.CrossWirses;
-import com.yikang.app.yikangserver.dailog.ProgressDialogFactory;
+import com.yikang.app.yikangserver.dailog.DialogFactory;
 import com.yikang.app.yikangserver.data.BusinessState.SenoirState.EvalutionState;
-import com.yikang.app.yikangserver.data.QuestionData;
-import com.yikang.app.yikangserver.data.QuestionData.TableType;
+import com.yikang.app.yikangserver.data.EvaluationLocalData;
+import com.yikang.app.yikangserver.data.EvaluationLocalData.TableType;
 import com.yikang.app.yikangserver.ui.DetailQuestionActivity;
 import com.yikang.app.yikangserver.utils.LOG;
 import android.app.Fragment;
@@ -129,8 +129,8 @@ public class CrossWiresFragment extends Fragment implements OnItemClickListener 
 
 	private void showLoadingDialog() {
 		if (loadingDialog == null) {
-			loadingDialog = ProgressDialogFactory.getProgressDailog(
-					ProgressDialogFactory.TYPE_LOADING_DATA, getActivity());
+			loadingDialog = DialogFactory.getProgressDailog(
+					DialogFactory.TYPE_LOADING_DATA, getActivity());
 		}
 		loadingDialog.show();
 	}
@@ -143,7 +143,7 @@ public class CrossWiresFragment extends Fragment implements OnItemClickListener 
 
 	private void loadDataFromLoacl() {
 		showLoadingDialog();
-		String json = QuestionData.getData(getActivity(), tableType);
+		String json = EvaluationLocalData.getData(getActivity(), tableType);
 		try {
 			JSONObject object = new JSONArray(json).getJSONObject(0);
 			// 解析问题

@@ -32,7 +32,7 @@ import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.bean.RequestParam;
 import com.yikang.app.yikangserver.bean.ResponseContent;
-import com.yikang.app.yikangserver.dailog.ProgressDialogFactory;
+import com.yikang.app.yikangserver.dailog.DialogFactory;
 import com.yikang.app.yikangserver.data.BusinessState.SenoirState;
 import com.yikang.app.yikangserver.data.MyData;
 import com.yikang.app.yikangserver.data.MyData.City;
@@ -50,7 +50,7 @@ public class SeniorInfoActivity extends BaseActivity implements
 	private Button btSubmit;
 	private TextSpinner edpSex, edpIdentType, edpRace, edpFaith, edpLiveWith,
 			edpPayType, edpIncomeSour, edpRoomOrientation, edpOutWindow,
-			edpCity, edpArea;
+			edpArea;
 
 	private EditText edtName, edtProfess, edtTel, edtIdNum, edtSocialSecurity,
 			edtFloor, edtResidential;
@@ -71,8 +71,8 @@ public class SeniorInfoActivity extends BaseActivity implements
 		super.onCreate(savedInstanceState);
 		initContent();
 		initTitleBar(getResources().getString(R.string.senior_info_title_text));
-		progressDialog = ProgressDialogFactory.getProgressDailog(
-				ProgressDialogFactory.TYPE_SUBMIT_DATA, this);
+		progressDialog = DialogFactory.getProgressDailog(
+				DialogFactory.TYPE_SUBMIT_DATA, this);
 	}
 
 	@Override
@@ -156,7 +156,6 @@ public class SeniorInfoActivity extends BaseActivity implements
 		edpRoomOrientation = (TextSpinner) findViewById(R.id.edt_seniorInfo_room_orientation);
 		edpOutWindow = (TextSpinner) findViewById(R.id.edt_seniorInfo_out_window);
 
-		edpCity = (TextSpinner) findViewById(R.id.edt_seniorInfo_city);
 		edpArea = (TextSpinner) findViewById(R.id.edt_seniorInfo_area);
 
 		edtFloor = (EditText) findViewById(R.id.edt_seniorInfo_floor);
@@ -179,16 +178,14 @@ public class SeniorInfoActivity extends BaseActivity implements
 									.toResposeContent(result);
 							String status = reContent.getStatus();
 							if (ResponseContent.STATUS_OK.equals(status)) {
-								JSONObject jo = new JSONObject(reContent
-										.getData());
+								JSONObject jo = new JSONObject(reContent.getData());
 								int assessmentId = jo.getInt("assessmentId");
 								LOG.i(TAG, "获得assessmentId" + assessmentId);
 								SenoirState.currSeniorId = seniorId;
-								Intent intent = new Intent(
-										SeniorInfoActivity.this,
-										EvaluationActivity.class);
+								Intent intent = new Intent(SeniorInfoActivity.this,EvaluationActivity.class);
 								intent.putExtra("assessmentId", assessmentId);
 								startActivity(intent);
+								finish();
 							}
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -227,15 +224,13 @@ public class SeniorInfoActivity extends BaseActivity implements
 									notifyAddSenior();
 									addEvaluationBag(seniorId);
 								} else {
-									AppContext
-											.showToast(R.string.submit_fail_redo);
+									AppContext.showToast(R.string.submit_fail_redo);
 								}
 							} catch (Exception e) {
 								e.printStackTrace();
 								AppContext.showToast(R.string.submit_fail_tip);
 							}
 						}
-
 					});
 		}
 	}
@@ -271,12 +266,11 @@ public class SeniorInfoActivity extends BaseActivity implements
 				.getItems(MyData.outWindowMap)));
 		setDropDownListeners();// 设置监听器，主要作用是让其他editText失去焦点。避免下拉选择后，屏幕会移动到焦点的位置
 		List<City> items = MyData.getItems(MyData.cityMap);
-		List<String> cityNames = new ArrayList<String>();
-		for (City city : items) {
-			cityNames.add(city.getName());
-		}
-		edpCity.setAdapter(new PopListAdapter(this, cityNames));
-		// edpCity.setText(cityNames.get(0));
+//		List<String> cityNames = new ArrayList<String>();
+//		for (City city : items) {
+//			cityNames.add(city.getName());
+//		}
+//		edpCity.setAdapter(new PopListAdapter(this, cityNames));
 		areas = items.get(0).getListArea();
 		edpArea.setAdapter(new PopListAdapter(this, areas));
 		tvBirth.setOnClickListener(new OnClickListener() {
@@ -296,7 +290,6 @@ public class SeniorInfoActivity extends BaseActivity implements
 	 * 
 	 */
 	private void setDropDownListeners() {
-		edpCity.setOnDropDownItemClickListener(this);
 		edpArea.setOnDropDownItemClickListener(this);
 		edpFaith.setOnDropDownItemClickListener(this);
 		edpIdentType.setOnDropDownItemClickListener(this);
@@ -309,6 +302,8 @@ public class SeniorInfoActivity extends BaseActivity implements
 		edpSex.setOnDropDownItemClickListener(this);
 	}
 
+	
+	
 	/**
 	 * 根据用户输入的生成map
 	 */
@@ -328,15 +323,14 @@ public class SeniorInfoActivity extends BaseActivity implements
 		String socialSecurity = edtSocialSecurity.getText().toString();
 		String tel = edtTel.getText().toString();
 		String profession = edtProfess.getText().toString();
-		String city = edpCity.getText().toString();
 		String area = edpArea.getText().toString();
 		String floor = edtFloor.getText().toString();
 		String residential_quarter = edtResidential.getText().toString();
 
 		boolean isNoEmpty = checkEmpty(sex, name);
 		if (!isNoEmpty) { // 如果包含空的数据
-			Toast.makeText(this, "抱歉，您还有数据为空,请检查输入的数据", Toast.LENGTH_SHORT)
-					.show();
+			Toast.makeText(this, "抱歉，您还有数据为空,请检查输入的数据",
+					Toast.LENGTH_SHORT).show();
 			return null;
 		}
 
@@ -349,31 +343,34 @@ public class SeniorInfoActivity extends BaseActivity implements
 		addToParamMap("liveWith", liveCondi, MyData.livWithMap, map);
 		addToParamMap("paymentType", payTyp, MyData.payMentMap, map);
 		addToParamMap("incomeSources", incomeSour, MyData.inCometSourceMap, map);
-		addToParamMap("roomOrientation", roomOrientation,
-				MyData.roomOritentationMap, map);
+		addToParamMap("roomOrientation", roomOrientation,MyData.roomOritentationMap, map);
 		addToParamMap("outWindow", outWindow, MyData.outWindowMap, map);
 		addToParamMap("socialSecurity", socialSecurity, map);
 		addToParamMap("cardNumber", idNum, map);
 		addToParamMap("phoneNo", tel, map);
 		addToParamMap("profession", profession, map);
 		addToParamMap("birthday", birth, map);
-
+		
+		//final String cityStr = "北京";
 		// 获取用户所选城市的的编码
-		int cityCode = -1;
-		for (int i = 0; i < MyData.cityMap.size(); i++) {
-			City cityObject = MyData.cityMap.valueAt(i);
-			if (cityObject.getName().equals(city)) {
-				cityCode = MyData.cityMap.keyAt(i);
-				addToParamMap("city", cityCode, map);//
-				break;
-			}
-		}
+		final String cityCode = "110000";
+		addToParamMap("city", cityCode, map);
+//		for (int i = 0; i < MyData.cityMap.size(); i++) {
+//			City cityObject = MyData.cityMap.valueAt(i);
+//			if (cityObject.getName().equals(cityStr)) {
+//				cityCode = cityObject.getCityCode();
+//				addToParamMap("city", cityCode, map);//
+//				break;
+//			}
+//		}
 		// 获取地区的编码
-		int areaCode = -1;
-		if (cityCode != -1 && !TextUtils.isEmpty(area)) {
-			areaCode = MyData.cityMap.get(cityCode).getAreaIntkey(area);
+		if (!TextUtils.isEmpty(cityCode)&& !TextUtils.isEmpty(area)) {
+			City city = MyData.cityMap.get(0);
+			int areaKey = city.getAreaIntkey(area);
+			final String areaCode = city.getAreaCodeValue(areaKey);
 			addToParamMap("district", areaCode, map);
 		}
+		
 		addToParamMap("residentialQuarter", residential_quarter, map);
 		addToParamMap("floor",
 				!TextUtils.isEmpty(floor) ? Integer.parseInt(floor) : null, map);
@@ -493,15 +490,15 @@ public class SeniorInfoActivity extends BaseActivity implements
 
 	@Override
 	public void onItemClickListern(TextSpinner spinner, int position) {
-		int id = spinner.getId();
-		if (R.id.edt_seniorInfo_city == id) {
-			City city = MyData.cityMap.valueAt(position);
-			List<String> area = city.getListArea();
-			areas.clear();
-			areas.addAll(area);
-			edpArea.setText("");
-			((PopListAdapter) edpArea.getAdapter()).notifyDataSetChanged();
-		}
+//		int id = spinner.getId();
+//		if (R.id.edt_seniorInfo_city == id) {
+//			City city = MyData.cityMap.valueAt(position);
+//			List<String> area = city.getListArea();
+//			areas.clear();
+//			areas.addAll(area);
+//			edpArea.setText("");
+//			((PopListAdapter) edpArea.getAdapter()).notifyDataSetChanged();
+//		}
 		formTable.requestFocus();
 	}
 

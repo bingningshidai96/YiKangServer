@@ -32,12 +32,11 @@
     <color name="text_color_disable">#cfcdcd</color>
     
     <!-- 页面级别颜色 -->
-    <color name="item_text_check">#2d86ff</color>
+    <color name="item_text_check">#58cbec</color>
     <color name="item_text_uncheck">#555555</color>
     <color name="mian_photo_text_color">#ff7119</color>    
     <color name="choose_time_free">#FFFFFF</color>
     <color name="choose_time_not_free">#66bffb</color>
-    <color name="evaluation_tv_common_table">#FFFFFF</color>
     <color name="evaluation_tv_current_table">#fe043f</color>
     
     <color name="main_tab_text_color">#989898</color>
@@ -45,5 +44,11 @@
     <color name="register_bg_color">#00A1D9</color>
     
     <color name="patientList_stauts_registed">#47D9BF</color>
-    <color name="patientList_stauts_consumed">#F45778</color>
+    <color name="patientList_stauts_consumed">#F45778</color> 
+    
+    <color name="evalutation_left_item_hl_bg">#ff9223</color>
+    <color name="evalutation_cross_wire_item_bg">#38cbec</color>
+	<color name="crosswire_item_bg_undone">#47d9bf</color>  
+	<color name="crosswire_item_bg_done">#d9d9d9</color>
+    
 </resources>

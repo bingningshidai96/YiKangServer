@@ -4,13 +4,11 @@ import javax.crypto.*;
 import javax.crypto.spec.*;
 
 public class AES {
-	public static final String AES_KEY = "1234567890abcDEF";
-
 	public static void main(String[] args) throws Exception {
 		/*
 		 * 加密用的Key 可以用16个字母和数字组成，最好不要用保留字符，虽然不会错，至于怎么裁决，个人看情况而定
 		 */
-		String cKey = "1234567890abcDEF";
+		String cKey =  getKey();
 		// 需要加密的字串
 		String cSrc = "abcd";
 		// 加密
@@ -28,7 +26,13 @@ public class AES {
 		System.out.println("解密耗时：" + lUseTime + "毫秒");
 
 	}
-
+	
+	public static native String getKey();
+	
+	static{
+		System.loadLibrary("mykey");
+	}
+	
 	/**
 	 * 解密
 	 * 

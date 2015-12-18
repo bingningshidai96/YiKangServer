@@ -1,24 +1,23 @@
 package com.yikang.app.yikangserver.data;
 
-import com.yikang.app.yikangserver.data.QuestionData.TableType;
+import com.yikang.app.yikangserver.data.EvaluationLocalData.TableType;
 
 public class UrlConstants {
 	/** 中国主机 */
 	private static final String SERVER_HOST = "http://54.223.35.197";
-	private static final String IMAGE_SERVER_HOST = "http://192.168.8.125";
+	private static final String IMAGE_SERVER_HOST = "http://54.223.35.197";
 
 	/** 测试主机 */
-	private static final String SERVER_TEST = "http://192.168.8.130";
-	private static final String IMAGE_SERVER_HOST_TEST = "http://192.168.8.130";
+	private static final String SERVER_TEST = "http://192.168.8.131";
+	private static final String IMAGE_SERVER_HOST_TEST = "http://192.168.8.131";
 
 	/************* 下面才是基地址 ***********/
 	/** 接口开发的地址 */
 	public static final String URL_BASE_SERVICE_URL = SERVER_HOST 
 			+ ":8088/yikangservice/service";
 	/** 文件上传服务器的地址 */
-	private static final String URL_BASE_FILE_SERVER = IMAGE_SERVER_HOST_TEST
-			+ ":8081/yikangFileManage";
-
+	private static final String URL_BASE_FILE_SERVER = IMAGE_SERVER_HOST
+			+ ":8088/yikangFileManage";
 	public static final String URL_SENOIR_INFO_SUBMIT = URL_BASE_SERVICE_URL
 			+ "/00-01-01";
 	/** 获取一个用户所有的老人 */
@@ -30,7 +29,6 @@ public class UrlConstants {
 			+ "/00-03-02";
 	public static final String URL_EVALUTION_DISEASE_CROSSWIRSES_DATA = URL_BASE_SERVICE_URL
 			+ "/00-06-01";
-	
 	public static final String URL_LOGIN_LOGIN = URL_BASE_SERVICE_URL
 			+ "/login";
 	public static final String URL_REGISTER = URL_BASE_SERVICE_URL
@@ -73,7 +71,6 @@ public class UrlConstants {
 	/** 保存选择的时间 */
 	public static final String URL_SAVE_FREE_TIME = URL_BASE_SERVICE_URL
 			+ "/00-19-03";
-	
 	
 	public static final String URL_ORDER_LIST = URL_BASE_SERVICE_URL
 			+ "/00-21-04";

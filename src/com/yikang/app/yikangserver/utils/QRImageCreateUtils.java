@@ -4,7 +4,6 @@ import java.util.Hashtable;
 
 import android.graphics.Bitmap;
 import android.widget.ImageView;
-
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.WriterException;
@@ -34,8 +33,9 @@ public class QRImageCreateUtils {
 			if (url == null || "".equals(url) || url.length() < 1) {
 				return;
 			}
-			Hashtable<EncodeHintType, String> hints = new Hashtable<EncodeHintType, String>();
+			Hashtable<EncodeHintType, Object> hints = new Hashtable<EncodeHintType, Object>();
 			hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
+			hints.put(EncodeHintType.MARGIN, 1); 
 			// 图像数据转换，使用了矩阵转换
 			BitMatrix bitMatrix = new QRCodeWriter().encode(url,
 					BarcodeFormat.QR_CODE, QR_WIDTH, QR_HEIGHT, hints);

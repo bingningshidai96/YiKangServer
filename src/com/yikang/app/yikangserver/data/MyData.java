@@ -9,9 +9,6 @@ import android.util.SparseArray;
 /**
  * 老人信息的数据项 SparseArray具有以下特征： 1.内部采用数组存储结构 2.key只能是int型
  * 3.内部按照key值从小到大对键值排序。查找时采用二分法
- * 
- * @author LGhui
- * 
  */
 public class MyData {
 	
@@ -50,7 +47,7 @@ public class MyData {
 	// 城市
 	public static final SparseArray<City> cityMap = new SparseArray<City>(2);
 
-	//
+	
 	public static final SparseArray<String> profeLeversMap = new SparseArray<String>(
 			2);
 
@@ -133,49 +130,45 @@ public class MyData {
 
 		// 北京市区
 		final SparseArray<String> beijingArea = new SparseArray<String>(6);
-		// 上海市区
-		final SparseArray<String> shanghaiArea = new SparseArray<String>(6);
+		// 北京市区
+		final SparseArray<String> beijingCode = new SparseArray<String>(6);
+		
+		beijingArea.put(0, "东城区");
+		beijingArea.put(1, "西城区");
+		beijingArea.put(2, "朝阳区");
+		beijingArea.put(3, "海淀区");
+		beijingArea.put(4, "丰台区");
+		beijingArea.put(5, "石景山区");
+		beijingArea.put(6, "门头沟区");
+		beijingArea.put(7, "房山区");
+		beijingArea.put(8, "通州区");
+		beijingArea.put(9, "顺义区");
+		beijingArea.put(10, "昌平区");
+		beijingArea.put(11, "大兴区");
+		beijingArea.put(12, "怀柔区");
+		beijingArea.put(13, "平谷区");
+		beijingArea.put(14, "密云县");
+		beijingArea.put(15, "延庆县");
+		
+		beijingCode.put(0, "110101");
+		beijingCode.put(1, "110102");
+		beijingCode.put(2, "110105");
+		beijingCode.put(3, "110108");
+		beijingCode.put(4, "110106");
+		beijingCode.put(5, "110107");
+		beijingCode.put(6, "110109");
+		beijingCode.put(7, "110111");
+		beijingCode.put(8, "110112");
+		beijingCode.put(9, "110113");
+		beijingCode.put(10, "110114");
+		beijingCode.put(11, "110115");
+		beijingCode.put(12, "110116");
+		beijingCode.put(13, "110117");
+		beijingCode.put(14, "110228");
+		beijingCode.put(15, "110229");
 
-		beijingArea.put(3, "东城区");
-		beijingArea.put(4, "西城区");
-		beijingArea.put(5, "朝阳区");
-		beijingArea.put(6, "海淀区");
-		beijingArea.put(7, "丰台区");
-		beijingArea.put(8, "石景山区");
-		beijingArea.put(9, "门头沟区");
-		beijingArea.put(10, "房山区");
-		beijingArea.put(11, "通州区");
-		beijingArea.put(12, "顺义区");
-		beijingArea.put(13, "昌平区");
-		beijingArea.put(14, "大兴区");
-		beijingArea.put(15, "怀柔区");
-		beijingArea.put(16, "平谷区");
-		beijingArea.put(17, "密云县");
-		beijingArea.put(18, "延庆县");
-
-		shanghaiArea.put(0, "黄浦区");
-		shanghaiArea.put(1, "浦东新区");
-		shanghaiArea.put(2, "徐汇区");
-		shanghaiArea.put(3, "长宁区");
-		shanghaiArea.put(4, "静安区");
-		shanghaiArea.put(5, "普陀区");
-		shanghaiArea.put(6, "闸北区");
-		shanghaiArea.put(7, "虹口区");
-		shanghaiArea.put(8, "杨浦区");
-		shanghaiArea.put(9, "闵行区");
-		shanghaiArea.put(10, "宝山区");
-		shanghaiArea.put(11, "嘉定区");
-		shanghaiArea.put(12, "金山区");
-		shanghaiArea.put(13, "松江区");
-		shanghaiArea.put(14, "青浦区");
-		shanghaiArea.put(15, "奉贤区");
-		shanghaiArea.put(16, "崇明县");
-
-		City beijing = new City("北京", beijingArea);
-		City shanghai = new City("上海", shanghaiArea);
-
+		City beijing = new City("北京", "110000",beijingArea,beijingCode);
 		cityMap.put(0, beijing);
-		cityMap.put(5, shanghai);
 
 	}
 
@@ -263,33 +256,44 @@ public class MyData {
 	 */
 	public static class City {
 		private final String name;
+		private final String cityCode;
 		private final SparseArray<String> areas; // 区列表
-
-		public City(String name, SparseArray<String> areas) {
+		private final SparseArray<String> areaCodes;
+		
+		public City(String name, String cityCode,SparseArray<String> areas,SparseArray<String> areaCodes) {
 			this.areas = areas;
 			this.name = name;
+			this.areaCodes =areaCodes;
+			this.cityCode = cityCode;
 		}
-
+		
+		public String getCityCode(){
+			return cityCode;
+		}
+		
 		public String getName() {
 			return name;
 		}
 
 		public List<String> getListArea() {
 			return getItems(areas);
-
 		}
 
 		public SparseArray<String> getSparseArea() {
 			return areas;
-
 		}
 
 		public int getAreaIntkey(String value) {
 			return getIntKey(value, areas);
 		}
-
+		
 		public String getAreaValue(int key) {
 			return areas.get(key);
+		}
+		
+		
+		public String getAreaCodeValue(int key){
+			return areaCodes.get(key);
 		}
 	}
 }

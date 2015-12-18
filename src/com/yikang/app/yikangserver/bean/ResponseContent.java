@@ -70,8 +70,7 @@ public class ResponseContent {
 			try {
 				if (!object.isNull("data")) {
 					srcData = object.getString("data");
-					String data = isAES ? AES.decrypt(srcData, AES.AES_KEY)
-							: srcData;
+					String data = isAES ? AES.decrypt(srcData, AES.getKey()): srcData;
 					resposeContent.setData(data);
 				}
 			} catch (JSONException e) {

@@ -2,7 +2,11 @@ package com.yikang.app.yikangserver.ui;
 
 import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.fragment.SeniorListFragment;
+import com.yikang.app.yikangserver.reciever.UserInfoAltedRevicer;
+
 import android.app.FragmentTransaction;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,7 +19,7 @@ import android.widget.TextView;
  */
 public class SeniorListActivity extends BaseActivity {
 	protected static final String TAG = "SeniorListActivity";
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,6 +47,8 @@ public class SeniorListActivity extends BaseActivity {
 		ft.commit();
 	}
 
+	
+	
 	@Override
 	protected void initTitleBar(String title) {
 		View view = findViewById(R.id.titlebar);

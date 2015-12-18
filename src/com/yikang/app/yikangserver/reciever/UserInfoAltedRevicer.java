@@ -14,6 +14,10 @@ public class UserInfoAltedRevicer extends BroadcastReceiver{
 		}
 	}
 	
+	/**
+	 * 获取并消费这一次获取的事件。
+	 * @return 如果有收到广播，返回true,但获取一次之后会被消费并重置，再次获取时为false
+	 */
 	public boolean getAndConsume(){
 		boolean currentState = isAlted;
 		isAlted = false;

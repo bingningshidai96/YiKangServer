@@ -9,7 +9,8 @@ import android.util.Log;
  * 
  */
 public class LOG {
-	public static int current_lever = 3;
+	//在发布时可以将此调成0或者1
+	public static int current_lever = 6;
 
 	public static final int LEVER_VERBOSE = 5;
 	public static final int LEVER_DEBUG = 4;
@@ -19,31 +20,26 @@ public class LOG {
 
 	public static void v(String tag, String msg) {
 		if (current_lever >= LEVER_VERBOSE)
-			;
 		Log.v(tag, msg);
 	}
 
 	public static void d(String tag, String msg) {
 		if (current_lever >= LEVER_DEBUG)
-			;
 		Log.d(tag, msg);
 	}
 
 	public static void i(String tag, String msg) {
 		if (current_lever >= LEVER_INFO)
-			;
 		Log.i(tag, msg);
 	}
 
 	public static void w(String tag, String msg) {
 		if (current_lever >= LEVER_WARN)
-			;
 		Log.w(tag, msg);
 	}
 
 	public static void e(String tag, String msg) {
 		if (current_lever >= LEVER_ERROR)
-			;
 		Log.e(tag, msg);
 	}
 }

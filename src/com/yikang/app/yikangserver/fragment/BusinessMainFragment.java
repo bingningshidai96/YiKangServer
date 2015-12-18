@@ -2,11 +2,14 @@ package com.yikang.app.yikangserver.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+
+import com.tencent.bugly.crashreport.CrashReport;
 import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.bean.User;
@@ -20,8 +23,6 @@ public class BusinessMainFragment extends BaseFragment implements
 	protected static final String TAG = "BusinessFragment";
 
 	private boolean hasDataChanged = false;
-
-	// private NotifyEntity notifyEntity;
 
 	private User user;
 
@@ -70,28 +71,8 @@ public class BusinessMainFragment extends BaseFragment implements
 		}
 	}
 
-	protected void getData() {
-	}
+	protected void getData() {}
 
-	// private class DataChageReciver extends BroadcastReceiver{
-	// @Override
-	// public void onReceive(Context context, Intent intent) {
-	// final String action = intent.getAction();
-	// if(notifyEntity == null){
-	// notifyEntity = new NotifyEntity();
-	// }
-	// if(ConstantData.ACTION_BROADCAST_ADD_SENOIR.equals(action)){
-	// final int newSenor = intent.getIntExtra("newSeniorCount", 0);
-	// notifyEntity.newSenior += newSenor;
-	//
-	// }else if(ConstantData.ACTION_BROADCAST_NEW_SERVICE_TIEM.equals(action)){
-	// final int newService = intent.getIntExtra("newServiceCount", 0);
-	// notifyEntity.newSerivce += newService;
-	// }
-	// hasDataChanged = true;
-	// LOG.i(TAG, "接受到广播：数据改变");
-	// }
-	// }
 
 	@Override
 	public void onClick(View v) {

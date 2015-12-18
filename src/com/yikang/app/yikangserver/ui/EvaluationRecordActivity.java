@@ -18,7 +18,7 @@ import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.bean.EvalutionRecord;
 import com.yikang.app.yikangserver.bean.RequestParam;
 import com.yikang.app.yikangserver.bean.ResponseContent;
-import com.yikang.app.yikangserver.dailog.ProgressDialogFactory;
+import com.yikang.app.yikangserver.dailog.DialogFactory;
 import com.yikang.app.yikangserver.data.BusinessState.SenoirState;
 import com.yikang.app.yikangserver.data.BusinessState.SenoirState.EvalutionState;
 import com.yikang.app.yikangserver.data.MyData;
@@ -75,8 +75,8 @@ public class EvaluationRecordActivity extends BaseActivity implements
 
 	private void showDialog() {
 		if (loadingDialog == null) {
-			loadingDialog = ProgressDialogFactory.getProgressDailog(
-					ProgressDialogFactory.TYPE_LOADING_DATA, this);
+			loadingDialog = DialogFactory.getProgressDailog(
+					DialogFactory.TYPE_LOADING_DATA, this);
 		}
 		loadingDialog.show();
 	}

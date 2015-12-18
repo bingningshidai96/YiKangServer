@@ -126,13 +126,14 @@ public abstract class BaseListFragment<T> extends BaseFragment implements
 			mFootView = inflater.inflate(R.layout.list_foot_tips, mListView,false);
 			mListView.addFooterView(mFootView);
 		}
+		mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.srl_swiperefreshlayout);
+		mRefreshLayout.setColorSchemeResources(R.color.common_blue,R.color.common_orange, R.color.red);
+		mRefreshLayout.setOnRefreshListener(this);
+		
 		mListView.setAdapter(mAdapter);
 		mListView.setOnScrollListener(this);
 		mListView.setOnItemClickListener(this);
 
-		mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.srl_swiperefreshlayout);
-		mRefreshLayout.setColorSchemeResources(R.color.common_blue,R.color.common_orange, R.color.red);
-		mRefreshLayout.setOnRefreshListener(this);
 		return view;
 	}
 
@@ -162,7 +163,7 @@ public abstract class BaseListFragment<T> extends BaseFragment implements
 		if ((mState & STATE_REFRESH) != 0) { // 防止多次下拉
 			return;
 		}
-		onRefreshing(); // 设置为刷新状态
+		onRefreshing(); // 设置为刷新状态 
 		mHasLoadOnce = true;
 		sendRequestData(RequestType.refresh); // 请求数据
 	}
@@ -190,11 +191,27 @@ public abstract class BaseListFragment<T> extends BaseFragment implements
 	@Override
 	public void onScroll(AbsListView view, int firstVisibleItem,
 			int visibleItemCount, int totalItemCount) {
+		boolean scrollTop = isScrollTop(view,firstVisibleItem);
+		mRefreshLayout.setEnabled(scrollTop);
 	}
-
+	
+	/**
+	 * 判断是否滑动到顶部
+	 */
+	private boolean isScrollTop(AbsListView view,int firstVisible){
+		if(view.getChildCount()==0){
+			return true;
+		}
+		if(view.getFirstVisiblePosition()==0
+				&& view.getChildAt(0).getTop()==0){
+			return true;
+		}
+		return false;
+	}
+	
+	
 	@Override
 	public void onScrollStateChanged(AbsListView view, int scrollState) {
-		LOG.i(TAG, "[onScrollStateChanged]" + mState);
 		if (!mLoadMoreEnbale || (mState & STATE_LOADMORE) != 0) {
 			return;
 		}

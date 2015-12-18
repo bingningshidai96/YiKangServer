@@ -26,10 +26,10 @@ import com.yikang.app.yikangserver.bean.CrossWirses;
 import com.yikang.app.yikangserver.bean.QuestionPortrait;
 import com.yikang.app.yikangserver.bean.RequestParam;
 import com.yikang.app.yikangserver.bean.ResponseContent;
-import com.yikang.app.yikangserver.dailog.ProgressDialogFactory;
+import com.yikang.app.yikangserver.dailog.DialogFactory;
 import com.yikang.app.yikangserver.data.BusinessState.SenoirState.EvalutionState;
-import com.yikang.app.yikangserver.data.QuestionData;
-import com.yikang.app.yikangserver.data.QuestionData.TableType;
+import com.yikang.app.yikangserver.data.EvaluationLocalData;
+import com.yikang.app.yikangserver.data.EvaluationLocalData.TableType;
 import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.interf.EvaInterActctionListnter;
 import com.yikang.app.yikangserver.utils.HttpUtils;
@@ -154,11 +154,11 @@ public class DetialQuestionFragment extends Fragment implements OnClickListener 
 	protected void getData() {
 		questions = new ArrayList<QuestionPortrait>();
 		if (loadingDialog == null) {
-			loadingDialog = ProgressDialogFactory.getProgressDailog(
-					ProgressDialogFactory.TYPE_LOADING_DATA, getActivity());
+			loadingDialog = DialogFactory.getProgressDailog(
+					DialogFactory.TYPE_LOADING_DATA, getActivity());
 		}
 		loadingDialog.show();
-		String json = QuestionData.readFileFromAssert(getActivity(),
+		String json = EvaluationLocalData.readFileFromAssert(getActivity(),
 				"daily_nursing_detials.txt");
 		String data = null;
 		try {
@@ -205,8 +205,8 @@ public class DetialQuestionFragment extends Fragment implements OnClickListener 
 	 */
 	private void loadRecordAnswers() {
 		if (loadingDialog == null) {
-			loadingDialog = ProgressDialogFactory.getProgressDailog(
-					ProgressDialogFactory.TYPE_LOADING_DATA, getActivity());
+			loadingDialog = DialogFactory.getProgressDailog(
+					DialogFactory.TYPE_LOADING_DATA, getActivity());
 		}
 		loadingDialog.show();
 		String url = UrlConstants.URL_GET_CROSS_ANSWER;
@@ -244,8 +244,8 @@ public class DetialQuestionFragment extends Fragment implements OnClickListener 
 	 */
 	private void submit(Map<String, Object> paramData) {
 		if (proDialog == null) {
-			proDialog = ProgressDialogFactory.getProgressDailog(
-					ProgressDialogFactory.TYPE_SUBMIT_DATA, getActivity());
+			proDialog = DialogFactory.getProgressDailog(
+					DialogFactory.TYPE_SUBMIT_DATA, getActivity());
 		}
 		proDialog.show();
 		// 开始提交数据

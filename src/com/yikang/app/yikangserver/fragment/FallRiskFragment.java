@@ -25,10 +25,10 @@ import com.yikang.app.yikangserver.bean.CrossWirses;
 import com.yikang.app.yikangserver.bean.RequestParam;
 import com.yikang.app.yikangserver.bean.ResponseContent;
 import com.yikang.app.yikangserver.bean.TableCoross;
-import com.yikang.app.yikangserver.dailog.ProgressDialogFactory;
+import com.yikang.app.yikangserver.dailog.DialogFactory;
 import com.yikang.app.yikangserver.data.BusinessState.SenoirState.EvalutionState;
-import com.yikang.app.yikangserver.data.QuestionData;
-import com.yikang.app.yikangserver.data.QuestionData.TableType;
+import com.yikang.app.yikangserver.data.EvaluationLocalData;
+import com.yikang.app.yikangserver.data.EvaluationLocalData.TableType;
 import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.interf.EvaInterActctionListnter;
 import com.yikang.app.yikangserver.utils.HttpUtils;
@@ -164,7 +164,7 @@ public class FallRiskFragment extends Fragment implements
 	 */
 	public void getData() {
 		// 获取字符串
-		String json = QuestionData.getData(getActivity(), tableType);
+		String json = EvaluationLocalData.getData(getActivity(), tableType);
 
 		// 解析数据
 		TableCoross tableCoross = JSON.parseObject(json, TableCoross.class);
@@ -218,8 +218,8 @@ public class FallRiskFragment extends Fragment implements
 
 	private void showDialog() {
 		if (loadingDialog == null) {
-			loadingDialog = ProgressDialogFactory.getProgressDailog(
-					ProgressDialogFactory.TYPE_LOADING_DATA, getActivity());
+			loadingDialog = DialogFactory.getProgressDailog(
+					DialogFactory.TYPE_LOADING_DATA, getActivity());
 		}
 		loadingDialog.show();
 	}
@@ -232,8 +232,8 @@ public class FallRiskFragment extends Fragment implements
 
 	private void showSubmitDialog() {
 		if (submitDialog == null) {
-			submitDialog = ProgressDialogFactory.getProgressDailog(
-					ProgressDialogFactory.TYPE_SUBMIT_DATA, getActivity());
+			submitDialog = DialogFactory.getProgressDailog(
+					DialogFactory.TYPE_SUBMIT_DATA, getActivity());
 		}
 		submitDialog.show();
 	}

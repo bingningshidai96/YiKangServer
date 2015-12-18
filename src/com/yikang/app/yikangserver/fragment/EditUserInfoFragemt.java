@@ -45,6 +45,7 @@ public class EditUserInfoFragemt extends BaseFragment implements OnClickListener
 	/** 头像相关 */
 	private String selectAvatarPath; // 临时文件，用于指向拍摄的照片
 	private SystemSelectPhotoFragment selePhotofragment;
+	private String avatarUrl;
 
 	/** 各个职业各自的ui */
 	private DoctorUI doctorUI;
@@ -60,6 +61,7 @@ public class EditUserInfoFragemt extends BaseFragment implements OnClickListener
 		super.onCreate(savedInstanceState);
 		proLeverAdapter = new PopListAdapter(getActivity(),MyData.getItems(MyData.profeLeversMap));
 		proLeverAdapter.setCurrentSelected(-1);
+		AppContext.showToast(R.string.mine_enter_tips);
 	}
 
 	@Override
@@ -112,6 +114,7 @@ public class EditUserInfoFragemt extends BaseFragment implements OnClickListener
 			detail = user.addressDetail;
 			title = user.mapPositionAddress;
 			adCode = user.districtCode;
+			avatarUrl = user.avatarImg;
 		}
 	}
 
@@ -279,7 +282,8 @@ public class EditUserInfoFragemt extends BaseFragment implements OnClickListener
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("userName", edtName.getText().toString());
 		map.put("userPosition", tspProfession.getCurrentSelction());
-
+		map.put("photoUrl", avatarUrl);
+		
 		ProfessionUI professionUI = getProfessionUI();
 
 		Map<String, Object> inputData = professionUI.getInputData();
@@ -336,7 +340,7 @@ public class EditUserInfoFragemt extends BaseFragment implements OnClickListener
 	
 	private class DoctorUI extends ProfessionUI {
 		public EditText edtHospital;
-		public TextSpinner tspDepartment;
+		public EditText edtDepartment;
 
 		public DoctorUI(User user) {
 			super(user);
@@ -347,12 +351,11 @@ public class EditUserInfoFragemt extends BaseFragment implements OnClickListener
 			if (rootView == null) return;
 			privateUI.setVisibility(View.VISIBLE);
 			edtHospital = (EditText) privateUI.findViewById(R.id.edt_register_doctor_hospital);
-			tspDepartment = (TextSpinner) privateUI.findViewById(R.id.tsp_register_doctor_department);
-			tspDepartment.setAdapter(new PopListAdapter(getActivity(), MyData.getItems(MyData.departmentMap)));
+			edtDepartment = (EditText) privateUI.findViewById(R.id.edt_register_doctor_department);
 
 			if (user != null) {
 				edtHospital.setText(user.hosital);
-				tspDepartment.setCurrentSelection(user.deparment);
+				edtDepartment.setText(user.deparment);
 				user = null;
 			}
 		}
@@ -360,21 +363,22 @@ public class EditUserInfoFragemt extends BaseFragment implements OnClickListener
 		@Override
 		public Map<String, Object> getInputData() {
 			String hospital = edtHospital.getText().toString();
-			int currentSelction = tspDepartment.getCurrentSelction();
-			if (TextUtils.isEmpty(hospital) || currentSelction == -1) {
-				return null;
-			}
+			String department = edtDepartment.getText().toString();
+//			int currentSelction = edtDepartment.getCurrentSelction();
+//			if (TextUtils.isEmpty(hospital) || currentSelction == -1) {
+//				return null;
+//			}
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("hospital", hospital);
-			map.put("offices", currentSelction);
+			map.put("offices", department);
 			return map;
 		}
 
 		@Override
 		public boolean check() {
 			String hospital = edtHospital.getText().toString();
-			int currentSelction = tspDepartment.getCurrentSelction();
-			return (!TextUtils.isEmpty(hospital) && currentSelction != -1);
+			String department =  edtDepartment.getText().toString();
+			return (!TextUtils.isEmpty(hospital) && !TextUtils.isEmpty(department));
 		}
 	}
 

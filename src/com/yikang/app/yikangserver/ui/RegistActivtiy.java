@@ -2,6 +2,8 @@ package com.yikang.app.yikangserver.ui;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.BroadcastReceiver;
@@ -15,6 +17,7 @@ import com.yikang.app.yikangserver.application.AppConfig;
 import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.bean.RequestParam;
 import com.yikang.app.yikangserver.bean.ResponseContent;
+import com.yikang.app.yikangserver.dailog.DialogFactory;
 import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.fragment.RegisterAccountFragment;
 import com.yikang.app.yikangserver.fragment.RegisterAccountFragment.OnNextListener;
@@ -73,8 +76,7 @@ public class RegistActivtiy extends BaseActivity implements OnNextListener,
 		Fragment fragment = new EditUserInfoFragemt();
 		FragmentTransaction ft = getFragmentManager().beginTransaction();
 		ft.replace(R.id.fl_register_fragment_container, fragment);
-		ft.addToBackStack("toTepTwo");
-		ft.commit();
+		ft.addToBackStack("toTepTwo").commit();
 	}
 
 	@Override
@@ -205,6 +207,9 @@ public class RegistActivtiy extends BaseActivity implements OnNextListener,
 	 */
 	private void onRegistFailure(String msg) {
 		AppContext.showToast("注册失败:" + msg);
+		AlertDialog dialog = DialogFactory.getCommerAlertDiaglog(this, 
+				getString(R.string.alert), "注册失败:"+msg);
+		dialog.show();
 	}
 
 	/**

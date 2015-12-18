@@ -8,6 +8,8 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.drawable.Drawable;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -16,9 +18,11 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.widget.Toast;
 import cn.jpush.android.api.JPushInterface;
+
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.tencent.bugly.crashreport.CrashReport;
 import com.yikang.app.yikangserver.bean.User;
 import com.yikang.app.yikangserver.utils.LOG;
 
@@ -37,7 +41,7 @@ public class AppContext extends Application {
 	private int diviceIdType = -1;
 	private String diviceId;
 
-	public static final boolean DEBUG = true;
+	public static final boolean DEBUG = false;
 
 	@Override
 	public void onCreate() {
@@ -47,7 +51,7 @@ public class AppContext extends Application {
 		JPushInterface.setDebugMode(DEBUG); // 设置开启日志,发布时请关闭日志
 		JPushInterface.init(this); // 初始化 JPush
 		initCachePath();
-
+		CrashReport.initCrashReport(appContext, "900015194", false);
 		ImageLoaderConfiguration.Builder configBuilder = new ImageLoaderConfiguration.Builder(
 				this);
 		configBuilder.tasksProcessingOrder(QueueProcessingType.LIFO)
@@ -83,17 +87,16 @@ public class AppContext extends Application {
 				setIntProperty("user.jobType", user.jobType);
 				setIntProperty("user.paintsNums", user.paintsNums);
 				setStringProperty("user.hosital", user.hosital);
-				setIntProperty("user.deparment", user.deparment);
+				setStringProperty("user.deparment", user.deparment);
 				setStringProperty("user.special", user.special);
 				setStringProperty("user.inviteCode", user.inviteCode);
 				setStringProperty("user.avatarImg", user.avatarImg);
 				setIntProperty("user.status", user.status);
-
-				setStringProperty("user.mapPositionAddress",
-						user.mapPositionAddress);
+				setStringProperty("user.mapPositionAddress",user.mapPositionAddress);
 				setStringProperty("user.addressDetail", user.addressDetail);
 				setStringProperty("user.districtCode", user.districtCode);
 				setStringProperty("user.consumerTime", user.consumerTime);
+				setStringProperty("user.invitationUrl", user.invitationUrl);
 			}
 
 			private void setIntProperty(String key, int value) {
@@ -153,7 +156,7 @@ public class AppContext extends Application {
 		user.jobType = getIntProperty("user.jobType");
 		user.paintsNums = getIntProperty("user.paintsNums");
 		user.hosital = getProperty("user.hosital");
-		user.deparment = getIntProperty("user.deparment");
+		user.deparment = getProperty("user.deparment");
 		user.special = getProperty("user.special");
 		user.inviteCode = getProperty("user.inviteCode");
 		user.avatarImg = getProperty("user.avatarImg");
@@ -163,6 +166,7 @@ public class AppContext extends Application {
 		user.addressDetail = getProperty("user.addressDetail");
 		user.districtCode = getProperty("user.districtCode");
 		user.consumerTime = getProperty("user.consumerTime");
+		user.invitationUrl = getProperty("user.invitationUrl");
 		return user;
 	}
 
@@ -273,7 +277,21 @@ public class AppContext extends Application {
 		AppConfig.getAppConfig(this).setProperty(key, ticket);
 		accessTicket = ticket;
 	}
-
+	
+	
+	public int getVersionCode(){
+		int versionCode = 0;
+		try {
+			versionCode = appContext.getPackageManager()
+			.getPackageInfo(appContext.getPackageName(), 
+					0).versionCode;
+		} catch (NameNotFoundException e) {
+			e.printStackTrace();
+		}
+		return versionCode;
+	}
+	
+	
 	/**
 	 * 判断sd卡是否挂载
 	 */
@@ -285,6 +303,8 @@ public class AppContext extends Application {
 	public void setProperties(Properties ps) {
 		AppConfig.getAppConfig(this).saveProperties(ps);
 	}
+	
+	
 
 	/**
 	 * 获取cookie时传AppConfig.CONF_COOKIE, 如果不存在会返回null

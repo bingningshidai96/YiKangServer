@@ -2,6 +2,7 @@ package com.yikang.app.yikangserver.fragment;
 
 import java.util.List;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -15,13 +16,27 @@ import com.yikang.app.yikangserver.bean.RequestParam;
 import com.yikang.app.yikangserver.bean.ResponseContent;
 import com.yikang.app.yikangserver.bean.SeniorInfo;
 import com.yikang.app.yikangserver.data.UrlConstants;
+import com.yikang.app.yikangserver.reciever.UserInfoAltedRevicer;
 import com.yikang.app.yikangserver.ui.EvaluationRecordActivity;
 import com.yikang.app.yikangserver.utils.BuisNetUtils;
 
 public class SeniorListFragment extends BaseListFragment<SeniorInfo> {
 	private static final String TAG = "SeniorListFragment";
-	private boolean hasDataChanged;
-
+	private UserInfoAltedRevicer refreshReceiver = new UserInfoAltedRevicer();
+	
+	public void onCreate(android.os.Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		final String action = UserInfoAltedRevicer.ACTION_USER_INFO_ALTED; 
+		IntentFilter filter = new IntentFilter(action);
+		getActivity().registerReceiver(refreshReceiver, filter);
+	}
+	
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		getActivity().unregisterReceiver(refreshReceiver);
+	}
+	
 	@Override
 	protected int getItemLayoutId() {
 		return R.layout.item_senoir;
@@ -32,7 +47,7 @@ public class SeniorListFragment extends BaseListFragment<SeniorInfo> {
 		TextView tvName = holder.getView(R.id.tv_item_senior_name);
 		tvName.setText(item.getName());
 	}
-
+	
 	
 	@Override
 	protected void sendRequestData(final RequestType requestType) {
@@ -40,7 +55,6 @@ public class SeniorListFragment extends BaseListFragment<SeniorInfo> {
 		BuisNetUtils.requestStr(UrlConstants.URL_GET_SENIOR_LIST, params,new BuisNetUtils.ResponceCallBack() {
 			@Override
 			public void onSuccess(ResponseContent content) {
-				hasDataChanged = false;
 				String json = content.getData();
 				if (!TextUtils.isEmpty(json)) {
 					mData.clear();
@@ -96,8 +110,8 @@ public class SeniorListFragment extends BaseListFragment<SeniorInfo> {
 	 * 检查是否有更新
 	 */
 	private void checkRefresh() {
-		if (hasDataChanged) {
-			sendRequestData(RequestType.refresh);
+		if (refreshReceiver.getAndConsume()) {
+			onRefresh();
 		}
 	}
 

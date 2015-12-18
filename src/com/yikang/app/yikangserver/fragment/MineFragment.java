@@ -17,8 +17,9 @@ import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.bean.User;
 import com.yikang.app.yikangserver.data.MyData;
 import com.yikang.app.yikangserver.ui.EditMineInfoActivity;
-import com.yikang.app.yikangserver.ui.FreeTimeCalendarActivty;
+import com.yikang.app.yikangserver.ui.FreeDayCalendarActivty;
 import com.yikang.app.yikangserver.utils.LOG;
+import com.yikang.app.yikangserver.utils.QRImageCreateUtils;
 
 public class MineFragment extends BaseFragment implements OnClickListener {
 	protected static final String TAG = "MineFragment";
@@ -67,32 +68,37 @@ public class MineFragment extends BaseFragment implements OnClickListener {
 	private void fillToViews() {
 		User user = AppContext.getAppContext().getUser();
 		LOG.d(TAG, "[fillToViews]:" + user);
-		String userName = user.name;
-		String addressDetail = user.mapPositionAddress + user.addressDetail;
-		int profession = user.profession;
-		int num = user.paintsNums;
-		tvName.setText(userName);
 
-		if (profession >= 0) {
-			tvProfession.setText(MyData.professionMap.valueAt(profession));
+		tvName.setText(user.name);//名字
+		tvInviteCode.setText(user.inviteCode); //邀请码
+
+		if (user.profession >= 0) { //职业
+			String profession = MyData.professionMap.valueAt(user.profession);
+			tvProfession.setText(profession);
 		}
-		
-		tvInviteCode.setText(user.inviteCode);
-		tvCustomerNum.setText(num + "人");
 
-		if (!TextUtils.isEmpty(user.avatarImg)) {
+		if (!TextUtils.isEmpty(user.avatarImg)) { // 显示头像
 			ImageLoader.getInstance().displayImage(user.avatarImg, ivAvatar);
 		}
 
+		if (!TextUtils.isEmpty(user.invitationUrl)) { // 显示二维码
+			QRImageCreateUtils utils = new QRImageCreateUtils(ivQRCode);
+			utils.createQRImage(user.invitationUrl);
+		}
+		
+		//患者人数
+		final String customNumStr = String.format(
+				getString(R.string.mine_format_customer_nums), user.paintsNums);
+		tvCustomerNum.setText(customNumStr);
+		
+		//职业相关的
+		String addressDetail = user.mapPositionAddress + user.addressDetail;
 		if (user.profession == MyData.DOCTOR) {
 			rootView.findViewById(R.id.mine_container_hospital).setVisibility(
 					View.VISIBLE);
 			rootView.findViewById(R.id.mine_container_department)
 					.setVisibility(View.VISIBLE);
-			if(user.deparment>=0){
-				String depatment = MyData.departmentMap.valueAt(user.deparment);
-				tvDepartment.setText(depatment);
-			}
+			tvDepartment.setText(user.deparment);
 			tvHospital.setText(user.hosital);
 		} else if (user.profession == MyData.NURSING) {
 			rootView.findViewById(R.id.mine_container_special).setVisibility(View.VISIBLE);
@@ -101,7 +107,7 @@ public class MineFragment extends BaseFragment implements OnClickListener {
 			tvHospital.setText(user.hosital);
 			
 			lyDistinct.setVisibility(View.VISIBLE);
-			if(user.jobType == MyData.FULL_TIME){
+			if(user.jobType == MyData.PAER_TIME){
 				lyFreeTime.setVisibility(View.VISIBLE);
 			}
 			tvDistinct.setText(addressDetail);
@@ -122,8 +128,7 @@ public class MineFragment extends BaseFragment implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.ly_mine_free_time:
-			Intent intent = new Intent(getActivity(),
-					FreeTimeCalendarActivty.class);
+			Intent intent = new Intent(getActivity(),FreeDayCalendarActivty.class);
 			startActivity(intent);
 			break;
 		case R.id.ibtn_mine_edit:

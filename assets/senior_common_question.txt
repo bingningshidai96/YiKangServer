@@ -92,7 +92,7 @@
                 {
                     "answerId": 923,
                     "answerVal": 2,
-                    "answerText": "震颤影响正常功能，老年人的日常生活活动需要持续的指导和／或身体上的帮助"
+                    "answerText": "震颤影响正常功能，病人的日常生活活动需要持续的指导和／或身体上的帮助"
                 }
             ],
             "description": "最近一个月震颤发生情况",
@@ -348,5 +348,5 @@
         }
     ],
     "surveyTableId": 11,
-    "tableName": "老年人常见问题"
+    "tableName": "病人常见问题"
 }

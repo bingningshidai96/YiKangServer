@@ -16,7 +16,7 @@ import com.yikang.app.yikangserver.application.AppConfig;
 import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.bean.RequestParam;
 import com.yikang.app.yikangserver.bean.ResponseContent;
-import com.yikang.app.yikangserver.dailog.ProgressDialogFactory;
+import com.yikang.app.yikangserver.dailog.DialogFactory;
 import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.utils.BuisNetUtils;
 import com.yikang.app.yikangserver.utils.LOG;
@@ -81,7 +81,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 		String userName = config.getProperty("login.userName");
 		String passw = config.getProperty("login.password");
 		boolean autoLogin = AppContext.get("autoLogin", false);
-		if(TextUtils.isEmpty(userName) && !userName.equals(edtUserId.getText())){
+		if(!TextUtils.isEmpty(userName) && !userName.equals(edtUserId.getText())){
 			edtPassw.setText(passw);
 			edtUserId.setText(userName);
 		}
@@ -121,22 +121,25 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 	 */
 	private void findPassw() {
 		String userId = edtUserId.getText().toString();
-		if(TextUtils.isEmpty(userId)){
+		if(TextUtils.isEmpty(userId)||userId.length()!=11){
 			AppContext.showToast(R.string.login_find_passw_input_tips);
 			edtUserId.requestFocus();
 			return ;
 		}
+		showWatingDailog();
 		String url = UrlConstants.URL_FIND_PASSW;
 		RequestParam param = new RequestParam();
 		param.add("loginName", userId);
 		BuisNetUtils.requestStr(url, param, new BuisNetUtils.ResponceCallBack() {
 			@Override
 			public void onSuccess(ResponseContent content) {
+				dismissWatingDailog();
 				AppContext.showToast(R.string.login_find_passw_find_seucess);
 			}
 			
 			@Override
 			public void onFialure(String status, String message) {
+				dismissWatingDailog();
 				String msg = getString(R.string.login_find_passw_find_fail);
 				AppContext.showToast(msg+":"+message);
 			}
@@ -192,8 +195,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
 	private void showSubmitDialog() {
 		if (proDialog == null) {
-			proDialog = ProgressDialogFactory.getProgressDailog(
-					ProgressDialogFactory.TYPE_SUBMIT_DATA, this);
+			proDialog = DialogFactory.getProgressDailog(
+					DialogFactory.TYPE_SUBMIT_DATA, this);
 		}
 		proDialog.show();
 	}

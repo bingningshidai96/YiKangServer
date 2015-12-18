@@ -27,7 +27,7 @@ import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.bean.RequestParam;
 import com.yikang.app.yikangserver.bean.ResponseContent;
 import com.yikang.app.yikangserver.data.BusinessState.SenoirState.EvalutionState;
-import com.yikang.app.yikangserver.data.QuestionData.TableType;
+import com.yikang.app.yikangserver.data.EvaluationLocalData.TableType;
 import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.fragment.CrossWiresFragment;
 import com.yikang.app.yikangserver.fragment.EvaluationMainFragment;
@@ -177,8 +177,7 @@ public class EvaluationActivity extends BaseActivity implements
 		menu.setOnOpenListener(new SlidingMenu.OnOpenListener() {
 			@Override
 			public void onOpen() {
-				LOG.d(TAG,
-						"[initSlidingMenu]当前评估表id" + adapter.getCurrentTabId());
+				LOG.d(TAG,"[initSlidingMenu]当前评估表id" + adapter.getCurrentTabId());
 				adapter.notifyDataSetChanged();
 			}
 		});
@@ -204,27 +203,19 @@ public class EvaluationActivity extends BaseActivity implements
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle(R.string.evaluation_dialog_title);
 		builder.setMessage(AppContext.getStrRes(R.string.evaluaton_back_hint))
-				.setPositiveButton(R.string.confirm,
-						new DialogInterface.OnClickListener() {
-
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								Intent intent = new Intent(
-										EvaluationActivity.this,
-										MainActivity.class);
-								startActivity(intent);
-							}
-						})
-				.setNegativeButton(R.string.evaluation_dialog_continu,
-						new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								if (!menu.isMenuShowing())
-									menu.toggle();
-							}
-						});
+			.setPositiveButton(R.string.confirm,new DialogInterface.OnClickListener() {
+			    @Override
+				public void onClick(DialogInterface dialog,int which) {
+					finish();
+				}
+			})
+			.setNegativeButton(R.string.evaluation_dialog_continu,new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog,int which) {
+					if (!menu.isMenuShowing())
+						menu.toggle();
+				}
+			});
 		return builder.create();
 	}
 
@@ -240,8 +231,7 @@ public class EvaluationActivity extends BaseActivity implements
 	 * 根据表的类型初始化一个fragment来展示
 	 * 
 	 * @param tableType
-	 * @param isEnable
-	 *            初始化的fragment是否可以交互
+	 * @param isEnable 初始化的fragment是否可以交互
 	 */
 	private void initFragmentToShow(TableType tableType) {
 		EvalutionState.currTableId = tableType.getTableId(); // 设置当前的currentTable
@@ -259,7 +249,7 @@ public class EvaluationActivity extends BaseActivity implements
 			break;
 		}
 		FragmentTransaction ft = getFragmentManager().beginTransaction();
-		ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);// 增加一个动画
+		ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);// 增加一个动画
 		ft.replace(R.id.fl_evalution_main_container, fragment).commit();
 		tvTitle.setText(tableType.getTableName());
 		tvTotalPoint.setText("");
@@ -318,6 +308,7 @@ public class EvaluationActivity extends BaseActivity implements
 	protected void onDestroy() {
 		super.onDestroy();
 		EvalutionState.clearAllState();
+		LOG.i(TAG, "[onDestroy]>>>>>>>>>>>");
 		LOG.d(TAG, EvalutionState.currAssementId + " " + " "
 				+ EvalutionState.stateMap);
 	}

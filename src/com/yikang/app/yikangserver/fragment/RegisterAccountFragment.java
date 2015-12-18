@@ -22,7 +22,7 @@ import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.application.AppContext;
-import com.yikang.app.yikangserver.dailog.ProgressDialogFactory;
+import com.yikang.app.yikangserver.dailog.DialogFactory;
 import com.yikang.app.yikangserver.utils.LOG;
 
 public class RegisterAccountFragment extends Fragment implements OnClickListener {
@@ -226,12 +226,12 @@ public class RegisterAccountFragment extends Fragment implements OnClickListener
 				@Override
 				public void run() {
 					Message msg = Message.obtain();
-					if (timerCount > 0) {
+					if (timerCount > 0) { //handler发送倒数数字
 						msg.what = 100;
 						msg.arg1 = timerCount;
 						handler.sendMessage(msg);
 						timerCount--;
-					} else {
+					} else { //handler发送恢复消息
 						msg.what = 101;
 						handler.sendMessage(msg);
 						timer.cancel();
@@ -293,8 +293,8 @@ public class RegisterAccountFragment extends Fragment implements OnClickListener
 
 	private void showDailog() {
 		if (waitingDialog == null) {
-			waitingDialog = ProgressDialogFactory.getProgressDailog(
-					ProgressDialogFactory.TYPE_SUBMIT_DATA, getActivity());
+			waitingDialog = DialogFactory.getProgressDailog(
+					DialogFactory.TYPE_SUBMIT_DATA, getActivity());
 		}
 		waitingDialog.show();
 	}

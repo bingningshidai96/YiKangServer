@@ -1,7 +1,7 @@
 package com.yikang.app.yikangserver.bean;
 
 /**
- * 老年人信息 1.在病患列表中就显示
+ * 病人信息 1.在病患列表中就显示
  */
 public class SeniorInfo {
 	private String seniorId;

@@ -19,7 +19,7 @@ import com.yikang.app.yikangserver.utils.LOG;
  */
 public class RequestParam {
 	private static final String TAG = "RequsetParam";
-	private static final String ENCRYPT_KEY = "1234567890abcDEF";
+	private static final String ENCRYPT_KEY = AES.getKey();
 
 	public static final String KEY_APPID = "appId";
 	public static final String KEY_ACCESS_TICKET = "accessTicket";

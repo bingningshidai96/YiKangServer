@@ -25,8 +25,8 @@ public class User implements Serializable {
 	@JSONField(name = "hospital")
 	public String hosital;
 
-	//TODO @JSONField(name = "offices")
-	public int deparment;
+	@JSONField(name = "offices")
+	public String deparment;
 
 	@JSONField(name = "adept")
 	public String special;
@@ -37,7 +37,6 @@ public class User implements Serializable {
 	@JSONField(name = "photoUrl")
 	public String avatarImg;
 
-	// TODO
 	@JSONField(name = "photoUrl")
 	public int status;
 
@@ -52,6 +51,9 @@ public class User implements Serializable {
 
 	@JSONField(name = "photoUrl")
 	public String consumerTime;
+	
+	@JSONField(name ="invitationUrl")
+	public String invitationUrl;
 
 	@Override
 	public String toString() {
@@ -62,7 +64,9 @@ public class User implements Serializable {
 				+ inviteCode + ", avatarImg=" + avatarImg + ", status="
 				+ status + ", mapPositionAddress=" + mapPositionAddress
 				+ ", addressDetail=" + addressDetail + ", districtCode="
-				+ districtCode + ", consumerTime=" + consumerTime + "]";
+				+ districtCode + ", consumerTime=" + consumerTime
+				+ ", invitationUrl=" + invitationUrl + "]";
 	}
 
+	
 }

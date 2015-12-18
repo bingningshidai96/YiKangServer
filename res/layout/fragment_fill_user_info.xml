@@ -107,8 +107,8 @@
                     android:background="@color/line_grey2" />
                 
                 
-                 <com.yikang.app.yikangserver.view.TextSpinner
-                    android:id="@+id/tsp_register_doctor_department"
+                 <EditText
+                    android:id="@+id/edt_register_doctor_department"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="15dp"

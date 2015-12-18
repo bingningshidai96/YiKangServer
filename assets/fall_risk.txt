@@ -2080,5 +2080,5 @@
         }
     ],
     "surveyTableId": 2,
-    "tableName": "老人跌倒风险评估"
+    "tableName": "跌倒风险评估"
 }

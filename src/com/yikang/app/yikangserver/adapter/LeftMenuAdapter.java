@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import com.yikang.app.yikangserver.R;
-import com.yikang.app.yikangserver.data.QuestionData.TableType;
+import com.yikang.app.yikangserver.data.EvaluationLocalData.TableType;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Rect;
@@ -16,14 +16,13 @@ public class LeftMenuAdapter extends CommonAdapter<TableType> {
 	private HashSet<Integer> submitTabs;
 	private int currentTabId;
 
-	private int commonTextColor;
-	private int currentTextColor;
+	private int hlBgColor;
+	private int commonBgColor;
 
 	public LeftMenuAdapter(Context context, List<TableType> datas) {
 		super(context, datas, R.layout.item_drawer_table_name);
 		Resources res = context.getResources();
-		commonTextColor = res.getColor(R.color.evaluation_tv_common_table);
-		currentTextColor = res.getColor(R.color.evaluation_tv_current_table);
+		hlBgColor = res.getColor(R.color.evalutation_left_item_hl_bg);
 		rightDrawable = res.getDrawable(R.drawable.evalu_menu_submited_flag);
 		rightDrawable.setBounds(new Rect(0, 0, rightDrawable
 				.getIntrinsicWidth(), rightDrawable.getIntrinsicHeight()));
@@ -39,9 +38,9 @@ public class LeftMenuAdapter extends CommonAdapter<TableType> {
 
 	private void setItemStyle(TextView tv, TableType item) {
 		if (item.getTableId() == currentTabId) {
-			tv.setTextColor(currentTextColor);
+			tv.setBackgroundColor(hlBgColor);
 		} else {
-			tv.setTextColor(commonTextColor);
+			tv.setBackgroundColor(commonBgColor);
 		}
 
 		if (submitTabs != null && submitTabs.contains(item.getTableId())) {

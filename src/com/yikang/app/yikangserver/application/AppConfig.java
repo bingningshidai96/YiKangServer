@@ -21,10 +21,15 @@ public class AppConfig {
 	public static final String CONF_DEVICE_ID = "DEVICE_ID";
 	public static final String CONF_DEVICE_ID_TYPE = "DEVICE_ID_TYPE";
 	public static final String CONF_IS_DEVICE_REGISTED = "IS_DEVICE_REGISTED";
-
+	
+	public static final String PRE_APP_FIRST_RUN = "app.isFirstRun";
+	
+	
 	static final String CONF_APPID = "APPID";
 	static final String CONF_APP_USER_ID = "APP_USER_ID";
 	static final String CON_APP_ACCESS_TICKET = "ACCESS_TICKET";
+	
+	
 
 	public static final String APP_CONFIG = "config";
 	private static final String TAG = "AppConfig";
