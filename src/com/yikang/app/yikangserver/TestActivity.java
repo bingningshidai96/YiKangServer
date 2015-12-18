@@ -14,7 +14,7 @@ public class TestActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		initContent();
 	}
-
+    
 	@Override
 	protected void findViews() {
 		
