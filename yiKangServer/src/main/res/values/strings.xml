@@ -1,0 +1,160 @@
+<resources>
+
+    <string name="app_name">护理家</string>
+    
+    <string name="waiting_loading">正在加载...</string>
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
+    <string name="select_all">全选</string>
+    <string name="submit">提交</string>
+    <string name="complete">完成</string>
+    <string name="alert">提示</string>
+    
+    <string name="default_content_data_fail_describe">暂无此信息</string>
+    <string name="default_network_data_fail_describe">网络错误，请检查网络</string>
+    
+    <!-- 常用字符串 -->
+    <string name="name">名字</string>
+    <string name="dialog_title_prompt">提示</string>
+    
+    <string name="submit_succeed_tip">提交成功</string>
+    <string name="submit_fail_tip">抱歉，提交失败</string>
+    
+   	<string name="login_title">登录</string>
+   	<string name="login_login">登录</string>
+   	<string name="login_passw_hint">请输入密码</string>
+   	<string name="login_username_hint">请输入手机号码</string>
+    <string name="login_regist_entry">新用户点击注册</string>
+    <string name="login_forget_entry">忘记密码?</string>
+   	<string name="login_passw_error_tip">用户名或密码不正确</string>
+   	<string name="login_find_passw_input_tips">请输入正确的手机号码</string> 
+	<string name="login_find_passw_find_seucess">操作成功，密码将以短信的方式发送到您的手机上</string>
+	<string name="login_find_passw_find_fail">操作失败</string>	
+   	
+	
+    
+    <string name="title_bar_add">新增</string>
+    <string name="senior_list_title_text">被护理人员</string>
+	<string name="tip_double_click_exit">再次点击退出</string>
+	<string name="sucess_create_record">新建评估记录</string>
+	<string name="senior_list_no_content_tip">暂无病人，可通过点击"新建"添加</string>
+    <string name="senior_info_title_text">病人信息</string>
+	<string name="senior_info_location_fail">抱歉，定位失败。请开启wifi或GPS</string>
+	
+	<string name="evaluation_dialog_continu">继续评估</string>
+	<string name="evaluation_dialog_title">提示</string>
+	<string name="evalation_sum_points">总分\n</string>
+	<string name="evaluation_record_title">评估记录</string>
+	
+	
+    <string name="regist_tel_hint">请输入手机号码</string>
+	<string name="regist_pass_hint">请输入6-16位密码</string>
+	<string name="regist_pass_again_hint">请再次输入密码</string>
+	<string name="regist_verlify_code_hint">验证码</string>
+    <string name="regist_get_verlify_code">获取验证码</string>
+    <string name="regist_get_void_code_hint">收不到验证码？\n点此电话收听语音验证码，请注意接听来电~</string>
+	<string name="regist_next_step">下一步</string>
+	<string name="regist_operation_hint">这项操作需要验证手机号，请接收并输入验证码</string>
+	<string name="regist_phoneNumber_error_hint">请输入正确的手机号</string>
+	<string name="regist_passw_error_hint">两次输入的密码不一致</string>
+	<string name="regist_verlify_succeed">验证码校验成功</string>
+	<string name="regist_verlify_fail">验证码校验失败</string>
+	<string name="regist_send_sms_succees">短信已发送，请稍候</string>
+	<string name="regist_send_voice_succees">请注意接听来电</string>
+	<string name="regist_obtiain_sms_fail">获取验证码失败</string>
+	<string name="regist_obtiain_voice_fail">获取语音验证码</string>
+	<string name="regist_verlify_success">验证成功</string>
+	<string name="regist_verlifu_fail">验证失败</string>
+	<string name="regist_sms_sdk_exception">抱歉，系统异常，请稍候再试</string>
+	
+	<string name="regist_title">注册</string>
+	<string name="regist_avatar">头像</string>
+	<string name="regist_name_hint">姓名</string>
+	<string name="regist_profrssion_hint">职位</string>
+	<string name="regist_work_type">工作方式</string>
+	<string name="regist_area">区域</string>
+	<string name="regist_hospital">医院</string>
+	<string name="regist_department">科室</string>
+	<string name="regist_speciality">擅长</string>
+	
+	<string name="regist_addr">地址</string>
+	<string name="regist_login_and_regist">注册并登录</string>
+	<string name="regist_null_tip">请填写全部的必要资料(除头像外都是必要的)</string>
+	
+    <string name="new_recoed">新建评估</string>
+    <string name ="evaluaton_back_hint">确定退出评估页面？如果评估没有完成，请选择继续评估</string>
+    <string name="submit_fail_redo">提交失败，请重新提交</string>
+	
+     <string name="main_business">业务流程</string>
+     <string name="main_information">我的档案</string>
+     
+     
+     <string name="buisness_service_carlendar">服务日程</string>
+     <string name="buisness_titile">业务流程</string>
+     <string name="buiness_nursedlist">被护理人员</string>
+     <string name="buiness_customerList">病患列表</string>
+    
+    <string name="mine_title">我的</string>
+    <string name="mine_right_logout">注销</string>
+    <string name="mine_name">姓名:</string>
+    <string name="mine_employee_number">工号:</string>
+    <string name="mine_hospital">医院:</string>
+    <string name="mine_department">科室:</string>
+    <string name="mine_special">擅长:</string>
+    <string name="mine_profession">职位:</string>
+    <string name="mine_invite_code">邀请码</string>
+    <string name="mine_profession_lever">职级</string>
+    <string name="mine_distinct_area">居住区域</string>
+    <string name="mine_customer_number">患者数</string>
+    <string name="mine_enter_tips">请填写相关资料信息</string>     
+    <string name="mine_free_time">选择时间</string>
+    <string name="mine_format_customer_nums">%d人</string>
+    <string name="logout_dialog_message">确定注销此账户？</string>
+    
+    <string name="addrSearch_myAddr">我的地址</string>
+    <string name="currentLoacation">当前位置</string><string name="appointment_title">预约信息</string>
+    <string name="choose_addr_title">选择地址</string>
+    <string name="capture">拍摄</string>
+    <string name="choose_from_gallery">相册选择</string>
+    <string name="error_alias_empty">设置错误，别名不应该为空</string>
+    <string name="error_tag_gs_empty">设置错误，tag无效</string>
+    <string name="edtTime_title">选择时间</string>
+    <string name="edtTime_choose_contraint_tip">至少选择一个时间段</string>
+    <string name="freeTime_title">服务时间</string>
+    <string name="addrSearch_input_hint">搜索地址（如小区名、街道名）</string>
+    <string name="addrSearch_detial_hint">详细地址，例如单元、门牌号等</string>
+    <string name="addrSearch_detial_toast">请出入详细地址</string>
+    <string name="addrSearch_addr_input_toast">请输入地址</string>
+    <string name="schedule_item_title">服务详情</string>
+    <string name="schedule_item_call_phone_promt">给%s打电话</string>
+    
+	<string name="service_carlendar_title">你的服务日程</string>
+    <string name="service_carlendar_no_calarden">暂时没有未完成的服务</string>
+    <string name="service_order_detail_date">服务时间</string>
+    <string name="service_order_detail_addr">服务地址</string>
+    <string name="service_order_detail_info">病人情况</string>
+    <string name="service_order_detail_evalution_result">评估情况</string>
+    <string name="service_order_detail_custom_phone">客户电话:</string>
+    <string name="service_order_detail_servered_phone">服务对象电话:</string>
+    <string name="service_order_detail_feedback">服务反馈</string>
+    <string name="service_order_feedback_success">提交反馈成功</string>
+    
+    <!-- 病患列表中 -->
+    <string name="customerList_title">病患列表</string>
+    <string name="customerList_all">&#160;&#160;全部 &#160;</string> 
+    <string name="customerList_status_registed">已注册</string> 
+    <string name="customerList_status_consumed">已消费</string> 
+    <string name="customerList_item_service_time">服务时间：</string>
+   	<string name="customerList_no_customer_register_tip">暂时没有推荐的人注册</string>
+    <string name="customerList_no_customer_consume_tip">暂时没有推荐的人消费</string>
+    <string name="edit_mine_info">填写资料</string>
+
+    <string name="reset_passw_title">重置密码</string>
+    <string name="reset_passw_input_tel">请输入要找回的手机号</string>
+    <string name="reset_passw_passw">请输入6-16位新的密码</string>
+    <string name="reset_passw_passw_again">请重新输入密码</string>
+
+
+    <string name="qr_dialog_tips">扫一扫关爱家人</string>
+
+</resources>

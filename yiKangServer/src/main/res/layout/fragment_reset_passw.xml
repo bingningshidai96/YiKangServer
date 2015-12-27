@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/register_bg_color" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:padding="30dp"
+        android:paddingBottom="100dp" >
+
+        <EditText
+            android:id="@+id/edt_register_phoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shap_edit_bg"
+            android:hint="@string/regist_tel_hint"
+            android:inputType="phone"
+            android:padding="12dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/edt_register_verlifi_code"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/shap_edit_bg"
+                android:hint="@string/regist_verlify_code_hint"
+                android:inputType="phone"
+                android:padding="12dp" />
+
+            <TextView
+                android:id="@+id/tv_register_get_verlifiCode"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/selector_btn_bg_theme"
+                android:gravity="center"
+                android:paddingBottom="13sp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="13sp"
+                android:text="@string/regist_get_verlify_code"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/edt_register_passw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/shap_edit_bg"
+            android:hint="@string/reset_passw_passw"
+            android:inputType="textPassword"
+            android:padding="12dp" />
+
+        <EditText
+            android:id="@+id/edt_register_passw_again"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/shap_edit_bg"
+            android:hint="@string/regist_pass_again_hint"
+            android:inputType="textPassword"
+            android:padding="12dp" />
+
+        <LinearLayout
+            android:id="@+id/ly_register_voice_code_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <TextView
+                android:id="@+id/tv_regist_get_voice_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/regist_get_void_code_hint"
+                android:textColor="#ffa919" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/bt_register_next"
+            style="@style/style_common_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/confirm" />
+    </LinearLayout>
+
+</ScrollView>

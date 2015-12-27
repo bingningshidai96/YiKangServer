@@ -1,0 +1,74 @@
+{
+    "questions": [
+        {
+            "questionId": 21,
+            "descriptions": [
+                "“（1）我说三样东西，请您重复一遍，并且记住，一会儿我还会问您，这三样东西是：苹果，手表，国旗”",
+                "（2）（画种测验）“请您在这儿画一个圆形的时钟表盘，用时针和分针在表盘上标出8点20分”",
+                "（3）（回忆词语）“现在请您告诉我，刚才我要您记住的三样东西是什么？”答：___，___，___（不必按顺序）"
+            ],
+            "answers": [
+                {
+                    "answerId": 863,
+                    "answerVal": 0,
+                    "answerText": "画钟测验正确（画出一个闭合的圆，指针位置正确），且能回忆出2-3个词"
+                },
+                {
+                    "answerId": 864,
+                    "answerVal": 1,
+                    "answerText": "画钟测验错误（画的不闭合，或指针位置不正确），或只回忆出0-1个词"
+                },
+                {
+                    "answerId": 865,
+                    "answerVal": 2,
+                    "answerText": "已确诊为老年痴呆"
+                }
+            ],
+            "questionText": "认知功能"
+        },
+        {
+            "questionId": 22,
+            "answers": [
+                {
+                    "answerId": 866,
+                    "answerVal": 0,
+                    "answerText": "无身体攻击行为（如打/踢/推/咬/抓/摔东西）或语言攻击行为（如骂人，语言威胁，尖叫）"
+                },
+                {
+                    "answerId": 867,
+                    "answerVal": 1,
+                    "answerText": "每月有数次身体攻击行为，或每周有数次语言攻击行为"
+                },
+                {
+                    "answerId": 868,
+                    "answerVal": 2,
+                    "answerText": "每周有数次身体攻击行为，或每日有语言攻击行为"
+                }
+            ],
+            "questionText": "攻击行为"
+        },
+        {
+            "questionId": 23,
+            "answers": [
+                {
+                    "answerId": 869,
+                    "answerVal": 0,
+                    "answerText": "无"
+                },
+                {
+                    "answerId": 870,
+                    "answerVal": 1,
+                    "answerText": "情绪低落，不爱说话，不爱梳洗，不爱活动"
+                },
+                {
+                    "answerId": 871,
+                    "answerVal": 2,
+                    "answerText": "有自杀念头或自杀行为"
+                }
+            ],
+            "questionText": "抑郁症状"
+        }
+    ],
+    "surveyTableId": 7,
+    "tableName": "精神状态评估表"
+}

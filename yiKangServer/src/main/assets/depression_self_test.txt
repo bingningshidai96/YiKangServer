@@ -1,0 +1,526 @@
+{
+    "questions": [
+        {
+            "questionId": 34,
+            "answers": [
+                {
+                    "answerId": 902,
+                    "answerVal": 1,
+                    "answerText": "很少有"
+                },
+                {
+                    "answerId": 903,
+                    "answerVal": 2,
+                    "answerText": "有时有"
+                },
+                {
+                    "answerId": 904,
+                    "answerVal": 3,
+                    "answerText": "大部分时间有"
+                },
+                {
+                    "answerId": 905,
+                    "answerVal": 4,
+                    "answerText": "绝大部分时间有"
+                }
+            ],
+            "questionText": "我觉得闷闷不乐，情绪低沉"
+        },
+        {
+            "questionId": 35,
+            "answers": [
+                {
+                    "answerId": 902,
+                    "answerVal": 1,
+                    "answerText": "很少有"
+                },
+                {
+                    "answerId": 903,
+                    "answerVal": 2,
+                    "answerText": "有时有"
+                },
+                {
+                    "answerId": 904,
+                    "answerVal": 3,
+                    "answerText": "大部分时间有"
+                },
+                {
+                    "answerId": 905,
+                    "answerVal": 4,
+                    "answerText": "绝大部分时间有"
+                }
+            ],
+            "questionText": "我觉得一天之中早晨心情最好"
+        },
+        {
+            "questionId": 36,
+            "answers": [
+                {
+                    "answerId": 902,
+                    "answerVal": 1,
+                    "answerText": "很少有"
+                },
+                {
+                    "answerId": 903,
+                    "answerVal": 2,
+                    "answerText": "有时有"
+                },
+                {
+                    "answerId": 904,
+                    "answerVal": 3,
+                    "answerText": "大部分时间有"
+                },
+                {
+                    "answerId": 905,
+                    "answerVal": 4,
+                    "answerText": "绝大部分时间有"
+                }
+            ],
+            "questionText": "我想哭或者一阵阵的哭出来"
+        },
+        {
+            "questionId": 37,
+            "answers": [
+                {
+                    "answerId": 902,
+                    "answerVal": 1,
+                    "answerText": "很少有"
+                },
+                {
+                    "answerId": 903,
+                    "answerVal": 2,
+                    "answerText": "有时有"
+                },
+                {
+                    "answerId": 904,
+                    "answerVal": 3,
+                    "answerText": "大部分时间有"
+                },
+                {
+                    "answerId": 905,
+                    "answerVal": 4,
+                    "answerText": "绝大部分时间有"
+                }
+            ],
+            "questionText": "我晚上睡眠不好"
+        },
+        {
+            "questionId": 38,
+            "answers": [
+                {
+                    "answerId": 902,
+                    "answerVal": 1,
+                    "answerText": "很少有"
+                },
+                {
+                    "answerId": 903,
+                    "answerVal": 2,
+                    "answerText": "有时有"
+                },
+                {
+                    "answerId": 904,
+                    "answerVal": 3,
+                    "answerText": "大部分时间有"
+                },
+                {
+                    "answerId": 905,
+                    "answerVal": 4,
+                    "answerText": "绝大部分时间有"
+                }
+            ],
+            "questionText": "我吃得跟平常一样多"
+        },
+        {
+            "questionId": 39,
+            "answers": [
+                {
+                    "answerId": 902,
+                    "answerVal": 1,
+                    "answerText": "很少有"
+                },
+                {
+                    "answerId": 903,
+                    "answerVal": 2,
+                    "answerText": "有时有"
+                },
+                {
+                    "answerId": 904,
+                    "answerVal": 3,
+                    "answerText": "大部分时间有"
+                },
+                {
+                    "answerId": 905,
+                    "answerVal": 4,
+                    "answerText": "绝大部分时间有"
+                }
+            ],
+            "questionText": "我与异性亲密接触时和以往一样感到愉快"
+        },
+        {
+            "questionId": 40,
+            "answers": [
+                {
+                    "answerId": 902,
+                    "answerVal": 1,
+                    "answerText": "很少有"
+                },
+                {
+                    "answerId": 903,
+                    "answerVal": 2,
+                    "answerText": "有时有"
+                },
+                {
+                    "answerId": 904,
+                    "answerVal": 3,
+                    "answerText": "大部分时间有"
+                },
+                {
+                    "answerId": 905,
+                    "answerVal": 4,
+                    "answerText": "绝大部分时间有"
+                }
+            ],
+            "questionText": "我发觉我的体重在下降"
+        },
+        {
+            "questionId": 41,
+            "answers": [
+                {
+                    "answerId": 902,
+                    "answerVal": 1,
+                    "answerText": "很少有"
+                },
+                {
+                    "answerId": 903,
+                    "answerVal": 2,
+                    "answerText": "有时有"
+                },
+                {
+                    "answerId": 904,
+                    "answerVal": 3,
+                    "answerText": "大部分时间有"
+                },
+                {
+                    "answerId": 905,
+                    "answerVal": 4,
+                    "answerText": "绝大部分时间有"
+                }
+            ],
+            "questionText": "我有便秘的苦恼"
+        },
+        {
+            "questionId": 42,
+            "answers": [
+                {
+                    "answerId": 902,
+                    "answerVal": 1,
+                    "answerText": "很少有"
+                },
+                {
+                    "answerId": 903,
+                    "answerVal": 2,
+                    "answerText": "有时有"
+                },
+                {
+                    "answerId": 904,
+                    "answerVal": 3,
+                    "answerText": "大部分时间有"
+                },
+                {
+                    "answerId": 905,
+                    "answerVal": 4,
+                    "answerText": "绝大部分时间有"
+                }
+            ],
+            "questionText": "我心跳比平时快"
+        },
+        {
+            "questionId": 43,
+            "answers": [
+                {
+                    "answerId": 902,
+                    "answerVal": 1,
+                    "answerText": "很少有"
+                },
+                {
+                    "answerId": 903,
+                    "answerVal": 2,
+                    "answerText": "有时有"
+                },
+                {
+                    "answerId": 904,
+                    "answerVal": 3,
+                    "answerText": "大部分时间有"
+                },
+                {
+                    "answerId": 905,
+                    "answerVal": 4,
+                    "answerText": "绝大部分时间有"
+                }
+            ],
+            "questionText": "我无缘无故感到疲乏"
+        },
+        {
+            "questionId": 44,
+            "answers": [
+                {
+                    "answerId": 902,
+                    "answerVal": 1,
+                    "answerText": "很少有"
+                },
+                {
+                    "answerId": 903,
+                    "answerVal": 2,
+                    "answerText": "有时有"
+                },
+                {
+                    "answerId": 904,
+                    "answerVal": 3,
+                    "answerText": "大部分时间有"
+                },
+                {
+                    "answerId": 905,
+                    "answerVal": 4,
+                    "answerText": "绝大部分时间有"
+                }
+            ],
+            "questionText": "我的头脑跟平常一样清楚"
+        },
+        {
+            "questionId": 45,
+            "answers": [
+                {
+                    "answerId": 902,
+                    "answerVal": 1,
+                    "answerText": "很少有"
+                },
+                {
+                    "answerId": 903,
+                    "answerVal": 2,
+                    "answerText": "有时有"
+                },
+                {
+                    "answerId": 904,
+                    "answerVal": 3,
+                    "answerText": "大部分时间有"
+                },
+                {
+                    "answerId": 905,
+                    "answerVal": 4,
+                    "answerText": "绝大部分时间有"
+                }
+            ],
+            "questionText": "我觉得做以前经常做的事并没有困难"
+        },
+        {
+            "questionId": 46,
+            "answers": [
+                {
+                    "answerId": 902,
+                    "answerVal": 1,
+                    "answerText": "很少有"
+                },
+                {
+                    "answerId": 903,
+                    "answerVal": 2,
+                    "answerText": "有时有"
+                },
+                {
+                    "answerId": 904,
+                    "answerVal": 3,
+                    "answerText": "大部分时间有"
+                },
+                {
+                    "answerId": 905,
+                    "answerVal": 4,
+                    "answerText": "绝大部分时间有"
+                }
+            ],
+            "questionText": "我坐立不安，难以保持平静"
+        },
+        {
+            "questionId": 47,
+            "answers": [
+                {
+                    "answerId": 902,
+                    "answerVal": 1,
+                    "answerText": "很少有"
+                },
+                {
+                    "answerId": 903,
+                    "answerVal": 2,
+                    "answerText": "有时有"
+                },
+                {
+                    "answerId": 904,
+                    "answerVal": 3,
+                    "answerText": "大部分时间有"
+                },
+                {
+                    "answerId": 905,
+                    "answerVal": 4,
+                    "answerText": "绝大部分时间有"
+                }
+            ],
+            "questionText": "我对将来抱有希望"
+        },
+        {
+            "questionId": 48,
+            "answers": [
+                {
+                    "answerId": 902,
+                    "answerVal": 1,
+                    "answerText": "很少有"
+                },
+                {
+                    "answerId": 903,
+                    "answerVal": 2,
+                    "answerText": "有时有"
+                },
+                {
+                    "answerId": 904,
+                    "answerVal": 3,
+                    "answerText": "大部分时间有"
+                },
+                {
+                    "answerId": 905,
+                    "answerVal": 4,
+                    "answerText": "绝大部分时间有"
+                }
+            ],
+            "questionText": "我比平常容易激动"
+        },
+        {
+            "questionId": 49,
+            "answers": [
+                {
+                    "answerId": 902,
+                    "answerVal": 1,
+                    "answerText": "很少有"
+                },
+                {
+                    "answerId": 903,
+                    "answerVal": 2,
+                    "answerText": "有时有"
+                },
+                {
+                    "answerId": 904,
+                    "answerVal": 3,
+                    "answerText": "大部分时间有"
+                },
+                {
+                    "answerId": 905,
+                    "answerVal": 4,
+                    "answerText": "绝大部分时间有"
+                }
+            ],
+            "questionText": "我觉得做出决定是容易的"
+        },
+        {
+            "questionId": 50,
+            "answers": [
+                {
+                    "answerId": 902,
+                    "answerVal": 1,
+                    "answerText": "很少有"
+                },
+                {
+                    "answerId": 903,
+                    "answerVal": 2,
+                    "answerText": "有时有"
+                },
+                {
+                    "answerId": 904,
+                    "answerVal": 3,
+                    "answerText": "大部分时间有"
+                },
+                {
+                    "answerId": 905,
+                    "answerVal": 4,
+                    "answerText": "绝大部分时间有"
+                }
+            ],
+            "questionText": "我觉得自己是个有用的人，有人需要我"
+        },
+        {
+            "questionId": 51,
+            "answers": [
+                {
+                    "answerId": 902,
+                    "answerVal": 1,
+                    "answerText": "很少有"
+                },
+                {
+                    "answerId": 903,
+                    "answerVal": 2,
+                    "answerText": "有时有"
+                },
+                {
+                    "answerId": 904,
+                    "answerVal": 3,
+                    "answerText": "大部分时间有"
+                },
+                {
+                    "answerId": 905,
+                    "answerVal": 4,
+                    "answerText": "绝大部分时间有"
+                }
+            ],
+            "questionText": "我的生活过得很有意思"
+        },
+        {
+            "questionId": 52,
+            "answers": [
+                {
+                    "answerId": 902,
+                    "answerVal": 1,
+                    "answerText": "很少有"
+                },
+                {
+                    "answerId": 903,
+                    "answerVal": 2,
+                    "answerText": "有时有"
+                },
+                {
+                    "answerId": 904,
+                    "answerVal": 3,
+                    "answerText": "大部分时间有"
+                },
+                {
+                    "answerId": 905,
+                    "answerVal": 4,
+                    "answerText": "绝大部分时间有"
+                }
+            ],
+            "questionText": "我认为如果我死了别人会生活得好些"
+        },
+        {
+            "questionId": 53,
+            "answers": [
+                {
+                    "answerId": 902,
+                    "answerVal": 1,
+                    "answerText": "很少有"
+                },
+                {
+                    "answerId": 903,
+                    "answerVal": 2,
+                    "answerText": "有时有"
+                },
+                {
+                    "answerId": 904,
+                    "answerVal": 3,
+                    "answerText": "大部分时间有"
+                },
+                {
+                    "answerId": 905,
+                    "answerVal": 4,
+                    "answerText": "绝大部分时间有"
+                }
+            ],
+            "questionText": "平常感兴趣的事我仍然照样感兴趣"
+        }
+    ],
+    "surveyTableId": 9,
+    "tableName": "抑郁自测评估表"
+}

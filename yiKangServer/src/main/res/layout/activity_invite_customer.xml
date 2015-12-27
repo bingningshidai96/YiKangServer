@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:id="@+id/title_bar_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <include
+            android:id="@+id/titlebar"
+            layout="@layout/include_title_bar" />
+    </FrameLayout>
+
+    <RadioGroup
+        android:id="@+id/rg_inviteCustomer_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:padding="3dp"
+        android:background="@color/white"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/rb_inviteCustomer_item_tab_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingLeft="0dp"
+            android:drawableRight="@drawable/line_grey_gradent_vertical"
+            android:text="@string/customerList_all"
+            android:textColor="@drawable/selector_grey_blue_color"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/rb_inviteCustomer_item_tab_registed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingLeft="0dp"
+            android:drawableRight="@drawable/line_grey_gradent_vertical"
+            android:text="@string/customerList_status_registed"
+            android:textColor="@drawable/selector_grey_blue_color"
+            android:textSize="16sp" />
+        
+        
+         <RadioButton
+            android:id="@+id/rb_inviteCustomer_item_tab_consumed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingLeft="0dp"
+            android:text="@string/customerList_status_consumed"
+            android:textColor="@drawable/selector_grey_blue_color"
+            android:textSize="16sp" />
+    </RadioGroup>
+
+    <View
+        android:id="@+id/view_inviteCustomer_item_indicator"
+        android:layout_width="100dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="3dp"
+        android:background="@color/common_blue" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/common_grey" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_inviteCustomer_item_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
