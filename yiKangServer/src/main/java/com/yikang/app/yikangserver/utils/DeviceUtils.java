@@ -38,7 +38,8 @@ public class DeviceUtils {
     /**
      * 判断网络是否已经连接
      */
-    public static boolean checkNetWorkIsOk(Context context) {
+    public static boolean checkNetWorkIsOk() {
+        AppContext context = AppContext.getAppContext();
         ConnectivityManager manager = (ConnectivityManager) context
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = manager.getActiveNetworkInfo();

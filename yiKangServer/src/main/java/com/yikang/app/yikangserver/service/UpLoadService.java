@@ -7,10 +7,11 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.text.TextUtils;
 import com.alibaba.fastjson.JSON;
+import com.yikang.app.yikangserver.api.FileRequestParam;
 import com.yikang.app.yikangserver.application.AppContext;
-import com.yikang.app.yikangserver.bean.ResponseContent;
+import com.yikang.app.yikangserver.api.ResponseContent;
 import com.yikang.app.yikangserver.data.UrlConstants;
-import com.yikang.app.yikangserver.utils.ApiClient;
+import com.yikang.app.yikangserver.api.ApiClient;
 import com.yikang.app.yikangserver.utils.LOG;
 
 /**
@@ -50,15 +51,10 @@ public class UpLoadService extends IntentService {
 	 */
 	private void upLoadSingleFile(File file, String url) {
 		LOG.i(TAG, "[upLoadSingleFile]上传文件开始...");
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("fileGroup", "headImage");
-		map.put("files", file);
-		map.put("appId", "appId");
-		map.put("accessTicket", "aaa");
-		map.put("machineCode", AppContext.getAppContext().getDeviceID());
-		LOG.i(TAG, "[upLoadSingleFile]" + map.toString());
-		LOG.i(TAG, "[upLoadSingleFile]" + file.isFile() + file.exists());
-		ApiClient.UploadSingleFile(url, map, new ApiClient.ResponceCallBack() {
+		FileRequestParam param = new FileRequestParam("headImage");
+		param.addFile(file);
+
+		ApiClient.upLoadFiles(url, param, new ApiClient.ResponceCallBack() {
 			@Override
 			public void onSuccess(ResponseContent content) {
 				String data = content.getData();
@@ -76,6 +72,33 @@ public class UpLoadService extends IntentService {
 				upLoadFail(message);
 			}
 		});
+
+//		HashMap<String, Object> map = new HashMap<String, Object>();
+//		map.put("fileGroup", "headImage");
+//		map.put("files", file);
+//		//map.put("appId", "appId");
+//		//map.put("accessTicket", "aaa");
+//		map.put("machineCode", AppContext.getAppContext().getDeviceID());
+//		LOG.i(TAG, "[upLoadSingleFile]" + map.toString());
+//		LOG.i(TAG, "[upLoadSingleFile]" + file.isFile() + file.exists());
+//		ApiClient.UploadSingleFile(url, map, new ApiClient.ResponceCallBack() {
+//			@Override
+//			public void onSuccess(ResponseContent content) {
+//				String data = content.getData();
+//				@SuppressWarnings("unchecked")
+//				Map<String, Object> map = (Map<String, Object>) JSON
+//						.parse(data);
+//				LOG.i(TAG, "[upLoadSingleFile-->onSuccess]" + map.toString());
+//				String fileUrl = (String) map.get("fileUrl");
+//				upLoadSuccess(fileUrl);
+//			}
+//
+//			@Override
+//			public void onFialure(String status, String message) {
+//				LOG.i(TAG, "[upLoadSingleFile-->onFialure]" + message);
+//				upLoadFail(message);
+//			}
+//		});
 	}
 
 	private void upLoadFail(String message) {

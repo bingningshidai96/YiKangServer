@@ -23,8 +23,8 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.adapter.LeftMenuAdapter;
 import com.yikang.app.yikangserver.application.AppContext;
-import com.yikang.app.yikangserver.bean.RequestParam;
-import com.yikang.app.yikangserver.bean.ResponseContent;
+import com.yikang.app.yikangserver.api.RequestParam;
+import com.yikang.app.yikangserver.api.ResponseContent;
 import com.yikang.app.yikangserver.data.BusinessState.SenoirState.EvalutionState;
 import com.yikang.app.yikangserver.data.EvaluationLocalData.TableType;
 import com.yikang.app.yikangserver.data.UrlConstants;
@@ -32,7 +32,7 @@ import com.yikang.app.yikangserver.fragment.CrossWiresFragment;
 import com.yikang.app.yikangserver.fragment.EvaluationMainFragment;
 import com.yikang.app.yikangserver.fragment.FallRiskFragment;
 import com.yikang.app.yikangserver.interf.EvaInterActctionListnter;
-import com.yikang.app.yikangserver.utils.ApiClient;
+import com.yikang.app.yikangserver.api.ApiClient;
 import com.yikang.app.yikangserver.utils.LOG;
 
 /**

@@ -24,15 +24,15 @@ import com.yikang.app.yikangserver.adapter.SingleDepressionAdapter;
 import com.yikang.app.yikangserver.adapter.SinglePointChoiseAdapter;
 import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.bean.Question;
-import com.yikang.app.yikangserver.bean.RequestParam;
-import com.yikang.app.yikangserver.bean.ResponseContent;
+import com.yikang.app.yikangserver.api.RequestParam;
+import com.yikang.app.yikangserver.api.ResponseContent;
 import com.yikang.app.yikangserver.bean.Table;
 import com.yikang.app.yikangserver.data.BusinessState.SenoirState.EvalutionState;
 import com.yikang.app.yikangserver.data.EvaluationLocalData;
 import com.yikang.app.yikangserver.data.EvaluationLocalData.TableType;
 import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.interf.EvaInterActctionListnter;
-import com.yikang.app.yikangserver.utils.ApiClient;
+import com.yikang.app.yikangserver.api.ApiClient;
 import com.yikang.app.yikangserver.utils.LOG;
 import com.yikang.app.yikangserver.view.NoInterActionListView;
 

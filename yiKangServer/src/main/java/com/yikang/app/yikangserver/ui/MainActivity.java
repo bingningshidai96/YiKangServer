@@ -29,15 +29,15 @@ import com.alibaba.fastjson.JSONObject;
 import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.application.AppConfig;
 import com.yikang.app.yikangserver.application.AppContext;
-import com.yikang.app.yikangserver.bean.RequestParam;
-import com.yikang.app.yikangserver.bean.ResponseContent;
+import com.yikang.app.yikangserver.api.RequestParam;
+import com.yikang.app.yikangserver.api.ResponseContent;
 import com.yikang.app.yikangserver.bean.User;
 import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.fragment.BusinessMainFragment;
 import com.yikang.app.yikangserver.fragment.MineFragment;
 import com.yikang.app.yikangserver.reciever.UserInfoAltedRevicer;
-import com.yikang.app.yikangserver.utils.ApiClient;
-import com.yikang.app.yikangserver.utils.ApiClient.ResponceCallBack;
+import com.yikang.app.yikangserver.api.ApiClient;
+import com.yikang.app.yikangserver.api.ApiClient.ResponceCallBack;
 import com.yikang.app.yikangserver.utils.DeviceUtils;
 import com.yikang.app.yikangserver.utils.DoubleClickExitHelper;
 import com.yikang.app.yikangserver.utils.LOG;
@@ -392,7 +392,7 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 				logs = "Failed to set alias and tags due to timeout. Try again after 60s.";
 				LOG.i(TAG, "[mAliasCallback.gotResult]:" + logs);
 				count++;
-				if (DeviceUtils.checkNetWorkIsOk(getApplicationContext())
+				if (DeviceUtils.checkNetWorkIsOk()
 						&& count < 10) {
 					mHandler.sendMessageDelayed(
 							mHandler.obtainMessage(MSG_SET_ALIAS, alias),
@@ -430,7 +430,7 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 			case 6002:
 				logs = "Failed to set alias and tags due to timeout. Try again after 60s.";
 				LOG.i(TAG, "[mTagsCallback.gotResult]" + logs);
-				if (DeviceUtils.checkNetWorkIsOk(getApplicationContext())) {
+				if (DeviceUtils.checkNetWorkIsOk()) {
 					mHandler.sendMessageDelayed(
 							mHandler.obtainMessage(MSG_SET_TAGS, tags),
 							1000 * 60);

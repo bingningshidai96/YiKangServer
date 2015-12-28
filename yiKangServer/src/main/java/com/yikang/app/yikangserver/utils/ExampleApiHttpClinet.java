@@ -6,8 +6,9 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
-import com.yikang.app.yikangserver.bean.RequestParam;
-import com.yikang.app.yikangserver.bean.ResponseContent;
+import com.yikang.app.yikangserver.api.ApiClient;
+import com.yikang.app.yikangserver.api.RequestParam;
+import com.yikang.app.yikangserver.api.ResponseContent;
 
 import java.io.IOException;
 

@@ -1,10 +1,11 @@
 package com.yikang.app.yikangserver.utils;
 
 import com.alibaba.fastjson.JSON;
+import com.yikang.app.yikangserver.api.ApiClient;
 import com.yikang.app.yikangserver.application.AppContext;
-import com.yikang.app.yikangserver.bean.RequestParam;
-import com.yikang.app.yikangserver.bean.ResponseContent;
-import com.yikang.app.yikangserver.utils.ApiClient.ResponceCallBack;
+import com.yikang.app.yikangserver.api.RequestParam;
+import com.yikang.app.yikangserver.api.ResponseContent;
+import com.yikang.app.yikangserver.api.ApiClient.ResponceCallBack;
 import com.yikang.app.yikangserver.view.CustomWatingDialog;
 import android.app.Activity;
 import android.app.Dialog;

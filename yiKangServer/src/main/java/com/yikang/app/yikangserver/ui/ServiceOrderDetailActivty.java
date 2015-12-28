@@ -16,12 +16,12 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.application.AppContext;
-import com.yikang.app.yikangserver.bean.RequestParam;
-import com.yikang.app.yikangserver.bean.ResponseContent;
+import com.yikang.app.yikangserver.api.RequestParam;
+import com.yikang.app.yikangserver.api.ResponseContent;
 import com.yikang.app.yikangserver.bean.ServiceOrder;
 import com.yikang.app.yikangserver.data.MyData;
 import com.yikang.app.yikangserver.data.UrlConstants;
-import com.yikang.app.yikangserver.utils.ApiClient;
+import com.yikang.app.yikangserver.api.ApiClient;
 import com.yikang.app.yikangserver.utils.LOG;
 
 import java.util.Date;
@@ -193,14 +193,14 @@ public class ServiceOrderDetailActivty extends BaseActivity implements
 		.setTitle(R.string.dialog_title_prompt)
 		.setMessage(message)
 		.setPositiveButton(R.string.confirm, new Dialog.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog,
-								int which) {
-				Intent intent = new Intent(Intent.ACTION_CALL);
-				intent.setData(Uri.parse("tel:" + phone));
-				startActivity(intent);
-			}
-		})
+            @Override
+            public void onClick(DialogInterface dialog,
+                                int which) {
+                Intent intent = new Intent(Intent.ACTION_CALL);
+                intent.setData(Uri.parse("tel:" + phone));
+                startActivity(intent);
+            }
+        })
 		.create().show();
 
 	}

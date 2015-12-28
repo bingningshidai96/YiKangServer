@@ -12,13 +12,13 @@ import com.alibaba.fastjson.JSON;
 import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.adapter.ViewHolder;
 import com.yikang.app.yikangserver.application.AppContext;
-import com.yikang.app.yikangserver.bean.RequestParam;
-import com.yikang.app.yikangserver.bean.ResponseContent;
+import com.yikang.app.yikangserver.api.RequestParam;
+import com.yikang.app.yikangserver.api.ResponseContent;
 import com.yikang.app.yikangserver.bean.SeniorInfo;
 import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.reciever.UserInfoAltedRevicer;
 import com.yikang.app.yikangserver.ui.EvaluationRecordActivity;
-import com.yikang.app.yikangserver.utils.ApiClient;
+import com.yikang.app.yikangserver.api.ApiClient;
 
 public class SeniorListFragment extends BaseListFragment<SeniorInfo> {
 	private static final String TAG = "SeniorListFragment";

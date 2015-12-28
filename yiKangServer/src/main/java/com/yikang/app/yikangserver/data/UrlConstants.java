@@ -13,7 +13,7 @@ public class UrlConstants {
 
 	/************* 下面才是基地址 ***********/
 	/** 接口开发的地址 */
-	public static final String URL_BASE_SERVICE_URL = SERVER_TEST
+	public static final String URL_BASE_SERVICE_URL = SERVER_HOST
 			+ ":8088/yikangservice/service";
 	/** 文件上传服务器的地址 */
 	private static final String URL_BASE_FILE_SERVER = IMAGE_SERVER_HOST
