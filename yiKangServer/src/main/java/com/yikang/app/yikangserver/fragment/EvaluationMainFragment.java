@@ -273,43 +273,6 @@ public class EvaluationMainFragment extends BaseFragment implements
 				AppContext.showToast(message);
 			}
 		});
-
-
-//		Map<String, Object> map = adapter.toAnwerMap();
-//
-//		map.put("surveyTableId", surveyId);
-//		map.put("assessmentId", EvalutionState.currAssementId);
-//		param.setParamData(map);
-//		LOG.d(TAG, "[submit]" + UrlConstants.getQustrionSubmitUrl(tableType));
-//
-//		HttpUtils.requestPost(UrlConstants.getQustrionSubmitUrl(tableType),
-//				param.toParams(), new HttpUtils.ResultCallBack() {
-//					@Override
-//					public void postResult(String result) {
-//
-//						try {
-//							ResponseContent resposeContent = ResponseContent
-//									.toResposeContent(result);
-//							if (ResponseContent.STATUS_OK.equals(resposeContent
-//									.getStatus())) {
-//								AppContext.showToast("提交成功");
-//								// 通知主fragment提交成功
-//								listener.onInterAction(
-//										EvaInterActctionListnter.WHAT_SUBMIT,
-//										surveyId);
-//							} else {
-//								String failTip = AppContext
-//										.getStrRes(R.string.submit_fail_redo);
-//								AppContext.showToast(failTip);
-//							}
-//						} catch (Exception e) {
-//							e.printStackTrace();
-//							String failTip = AppContext
-//									.getStrRes(R.string.submit_fail_redo);
-//							AppContext.showToast(failTip);
-//						}
-//					}
-//				});
 	}
 
 }

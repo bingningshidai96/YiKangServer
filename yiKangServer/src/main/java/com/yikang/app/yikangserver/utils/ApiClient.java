@@ -1,20 +1,32 @@
 package com.yikang.app.yikangserver.utils;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
 import java.util.Map;
+import java.util.Set;
+
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.FormEncodingBuilder;
+import com.squareup.okhttp.MediaType;
+import com.squareup.okhttp.MultipartBuilder;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
+import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.bean.RequestParam;
 import com.yikang.app.yikangserver.bean.ResponseContent;
+
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
 
 /**
  * 业务网络请求工具类
@@ -32,13 +44,11 @@ public class ApiClient {
 	}
 
 	public interface ResponceCallBack {
-		public static String STATUS_OK = "000000";
-		public static String STATUS_NET_ERORR = "99999";
-		public static String STATUS_DATA_ERORR = "99998";
-
-		public void onSuccess(ResponseContent content);
-
-		public void onFialure(String status, String message);
+		String STATUS_OK = "000000";
+		String STATUS_NET_ERORR = "99999";
+		String STATUS_DATA_ERORR = "99998";
+		void onSuccess(ResponseContent content);
+		void onFialure(String status, String message);
 	}
 
 	public static void requestStr(String url, RequestParam param,
@@ -139,29 +149,58 @@ public class ApiClient {
 	 * @param callBack
 	 */
 	public static void UploadSingleFile(String url,Map<String, Object> paramMap, final ResponceCallBack callBack) {
-		HttpUtils.uploadFile(url, paramMap, new HttpUtils.ResultCallBack() {
+
+		if (!DeviceUtils.checkNetWorkIsOk(AppContext.getAppContext())) {
+			callBack.onFialure(ResponceCallBack.STATUS_NET_ERORR,"抱歉网络错误");
+			return;
+		}
+		if (paramMap == null || paramMap.isEmpty()) {
+			throw new IllegalArgumentException("传入param的不能为null，或者empty");
+		}
+		Set<String> keySet = paramMap.keySet();
+		MultipartBuilder builder = new MultipartBuilder().type(MultipartBuilder.FORM);
+		for (String key : keySet) {
+			Object object = paramMap.get(key);
+			if (object instanceof File) {
+				File file = (File) object;
+				MediaType DEFAULT_BINARY = MediaType.parse("application/octet-stream");
+				builder.addFormDataPart(key,file.getName(),RequestBody.create(DEFAULT_BINARY,file));
+			} else if (object instanceof String) {
+				builder.addFormDataPart(key,(String)object);
+			} else {
+				throw new IllegalArgumentException(
+						"传入的map参数中只能包含File或者String对象");
+			}
+		}
+		final Request request = new Request.Builder().url(url).post(builder.build()).build();
+		client.newCall(request).enqueue(new Callback() {
 			@Override
-			public void postResult(String result) {
-				if (TextUtils.isEmpty(result)) {
+			public void onFailure(Request request, IOException e) {
+				callBack.onFialure(ResponceCallBack.STATUS_NET_ERORR,"加载失败,请检查网络");
+			}
+
+			@Override
+			public void onResponse(Response response) throws IOException {
+				if(response.code() !=200){
 					callBack.onFialure(ResponceCallBack.STATUS_NET_ERORR,"加载失败,请检查网络");
 					return;
 				}
-				try {
-					ResponseContent content = ResponseContent.toResposeContent(
-							result, false);
-					if (content.isStautsOk()) {
+				String result = response.body().string();
+				try{
+					ResponseContent content = ResponseContent.toResposeContent(result,false);
+					if(content.isStautsOk()){
 						callBack.onSuccess(content);
-					} else {
+					}else{
 						callBack.onFialure(content.getStatus(),
 								content.getMessage());
 					}
-				} catch (Exception e) {
-					e.printStackTrace();
+				}catch(Exception e){
 					callBack.onFialure(ResponceCallBack.STATUS_DATA_ERORR,
 							"本地数据解析错误");
 				}
 			}
 		});
+
 	}
 
 }

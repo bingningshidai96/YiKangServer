@@ -38,6 +38,7 @@ import com.yikang.app.yikangserver.fragment.MineFragment;
 import com.yikang.app.yikangserver.reciever.UserInfoAltedRevicer;
 import com.yikang.app.yikangserver.utils.ApiClient;
 import com.yikang.app.yikangserver.utils.ApiClient.ResponceCallBack;
+import com.yikang.app.yikangserver.utils.DeviceUtils;
 import com.yikang.app.yikangserver.utils.DoubleClickExitHelper;
 import com.yikang.app.yikangserver.utils.HttpUtils;
 import com.yikang.app.yikangserver.utils.LOG;
@@ -379,7 +380,7 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 				logs = "Failed to set alias and tags due to timeout. Try again after 60s.";
 				LOG.i(TAG, "[mAliasCallback.gotResult]:" + logs);
 				count++;
-				if (HttpUtils.checkNetWorkIsOk(getApplicationContext())
+				if (DeviceUtils.checkNetWorkIsOk(getApplicationContext())
 						&& count < 10) {
 					mHandler.sendMessageDelayed(
 							mHandler.obtainMessage(MSG_SET_ALIAS, alias),
@@ -413,7 +414,7 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 			case 6002:
 				logs = "Failed to set alias and tags due to timeout. Try again after 60s.";
 				LOG.i(TAG, "[mTagsCallback.gotResult]" + logs);
-				if (HttpUtils.checkNetWorkIsOk(getApplicationContext())) {
+				if (DeviceUtils.checkNetWorkIsOk(getApplicationContext())) {
 					mHandler.sendMessageDelayed(
 							mHandler.obtainMessage(MSG_SET_TAGS, tags),
 							1000 * 60);
