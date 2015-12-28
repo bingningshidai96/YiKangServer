@@ -1,6 +1,5 @@
 package com.yikang.app.yikangserver.ui;
 
-import java.util.Date;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -24,6 +23,8 @@ import com.yikang.app.yikangserver.data.MyData;
 import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.utils.ApiClient;
 import com.yikang.app.yikangserver.utils.LOG;
+
+import java.util.Date;
 
 /**
  * 服务详情页面
@@ -186,23 +187,22 @@ public class ServiceOrderDetailActivty extends BaseActivity implements
 	 * 呼叫电话
 	 */
 	private void callPhone(final String phone) {
+		String message = String.format(getString(R.string.schedule_item_call_phone_promt),phone);
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle(R.string.dialog_title_prompt)
-				.setMessage(
-						String.format(
-								getString(R.string.schedule_item_call_phone_promt),
-								phone))
-				.setCancelable(true)
-				.setPositiveButton(R.string.confirm,
-						new Dialog.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								Intent intent = new Intent(Intent.ACTION_CALL);
-								intent.setData(Uri.parse("tel:" + phone));
-								startActivity(intent);
-							}
-						}).create().show();
+		builder.setCancelable(true)
+		.setTitle(R.string.dialog_title_prompt)
+		.setMessage(message)
+		.setPositiveButton(R.string.confirm, new Dialog.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog,
+								int which) {
+				Intent intent = new Intent(Intent.ACTION_CALL);
+				intent.setData(Uri.parse("tel:" + phone));
+				startActivity(intent);
+			}
+		})
+		.create().show();
+
 	}
 
 }

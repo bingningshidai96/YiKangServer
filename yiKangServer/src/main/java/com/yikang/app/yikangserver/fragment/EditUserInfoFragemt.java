@@ -263,7 +263,9 @@ public class EditUserInfoFragemt extends BaseFragment implements OnClickListener
 			return;
 		}
 		HashMap<String, Object> collectInfo = collectInfo();
+		LOG.e(TAG, collectInfo.toString());
 		listener.onComplete(collectInfo);
+
 	}
 
 	/**
@@ -271,8 +273,9 @@ public class EditUserInfoFragemt extends BaseFragment implements OnClickListener
 	 */
 	private boolean generalcheck() {
 		String name = edtName.getText().toString();
-		int selction = tspProfession.getCurrentSelction();
-		return !TextUtils.isEmpty(name) && selction != -1;
+		int selection = tspProfession.getCurrentSelction();
+		LOG.e(TAG,"[generalcheck]"+selection+">>>>>>"+tspProfession.getCurrentSelction());
+		return !TextUtils.isEmpty(name) && selection != -1;
 	}
 
 	/**
@@ -423,7 +426,7 @@ public class EditUserInfoFragemt extends BaseFragment implements OnClickListener
 			int proLever = tspWorkType.getCurrentSelction();
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("adept", speciality);
-			map.put("userPosition", proLever);
+			map.put("jobCategory", proLever);
 			map.put("districtCode", adCode);
 			map.put("addressDetail", detail);
 			map.put("mapPositionAddress", title);

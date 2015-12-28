@@ -110,6 +110,7 @@ public class TextSpinner extends TextView {
 				String str = (String) parent.getAdapter().getItem(position);
 				TextSpinner.this.setText(str);
 				currentSelect = position;
+				LOG.i(TAG,">>>>>>>>>>>>>"+position);
 				if (listener != null) {
 					listener.onItemClickListern(TextSpinner.this, position);
 				}

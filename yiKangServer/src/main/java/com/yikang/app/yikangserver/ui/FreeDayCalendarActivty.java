@@ -24,15 +24,12 @@ import com.yikang.app.yikangserver.utils.LOG;
 
 public class FreeDayCalendarActivty extends BaseActivity implements
 		OnItemClickListener {
-	private static final int REQUEST_CODE_EDITTIME = 0x101;
 	private static final String TAG = "FreeTimeCalendarActivty";
-	/**
-	 * 
-	 */
+	private static final int REQUEST_CODE_EDITTIME = 0x101;
 	private GridView gvCarlendar;
 
 	private ArrayList<ServiceScheduleData> data = new ArrayList<ServiceScheduleData>();
-	private int updataPosition;
+	private int updatePosition;
 	private CommonAdapter<ServiceScheduleData> adapter;
 
 	@Override
@@ -105,24 +102,13 @@ public class FreeDayCalendarActivty extends BaseActivity implements
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
 		ServiceScheduleData schedule = data.get(position);
-		updataPosition = position;
+		updatePosition = position;
 		Intent intent = new Intent(this, FreeTimeActivity.class);
 		intent.putExtra(FreeTimeActivity.EXTRA_SERVICE_DATE,
 				schedule.serviceDate);
 		intent.putExtra(FreeTimeActivity.EXTRA_SERVICE_DATE_STR,
 				schedule.serviceDayStr);
 		startActivityForResult(intent, REQUEST_CODE_EDITTIME);
-		// if(position==2){ /
-		// ServiceScheduleData schedule = data.get(position);
-		// updataPosition = position;
-		// Intent intent = new Intent(this, EditTimeActivity.class);
-		// intent.putExtra(EditTimeActivity.EXTRA_SERVICE_DATA,
-		// schedule.serviceDate);
-		// intent.putExtra(EditTimeActivity.EXTRA_IS_EDITEABLE, true);
-		// startActivityForResult(intent, REQUEST_CODE_EDITTIME);
-		// LOG.i(TAG, "[onItemClick]"+schedule.serviceDate);
-		// }
-		// LOG.i(TAG, "[onItemClick]"+position);
 	}
 
 	@Override
@@ -133,7 +119,7 @@ public class FreeDayCalendarActivty extends BaseActivity implements
 			boolean isSuccess = intent.getBooleanExtra(
 					FreeTimeActivity.EXTRA_IS_EDITE_SUCCESS, false);
 			if (isSuccess) {
-				data.get(updataPosition).scheduleStatus = ServiceScheduleData.status_selected;
+				data.get(updatePosition).scheduleStatus = ServiceScheduleData.status_selected;
 				adapter.notifyDataSetChanged();
 			}
 		}

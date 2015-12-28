@@ -451,15 +451,6 @@ public class SeniorInfoActivity extends BaseActivity implements
 
     @Override
     public void onItemClickListern(TextSpinner spinner, int position) {
-//		int id = spinner.getId();
-//		if (R.id.edt_seniorInfo_city == id) {
-//			City city = MyData.cityMap.valueAt(position);
-//			List<String> area = city.getListArea();
-//			areas.clear();
-//			areas.addAll(area);
-//			edpArea.setText("");
-//			((PopListAdapter) edpArea.getAdapter()).notifyDataSetChanged();
-//		}
         formTable.requestFocus();
     }
 

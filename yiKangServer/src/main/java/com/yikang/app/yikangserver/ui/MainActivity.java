@@ -40,7 +40,6 @@ import com.yikang.app.yikangserver.utils.ApiClient;
 import com.yikang.app.yikangserver.utils.ApiClient.ResponceCallBack;
 import com.yikang.app.yikangserver.utils.DeviceUtils;
 import com.yikang.app.yikangserver.utils.DoubleClickExitHelper;
-import com.yikang.app.yikangserver.utils.HttpUtils;
 import com.yikang.app.yikangserver.utils.LOG;
 
 public class MainActivity extends BaseActivity implements OnCheckedChangeListener{
@@ -112,6 +111,7 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 			refreshFragments(); 
 		}
 	}
+
 	
 	
 	/**
@@ -176,8 +176,9 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 		});
 	}
 
-	
-	
+	/**
+	 * init views after loading data;
+	 */
 	private void initViewsAfterGetInfo() {
 		// 将fragment添加到MainActivity中
 		Fragment busiFragment = new BusinessMainFragment();
@@ -188,7 +189,7 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 	}
 
 	/**
-	 * 将framgent天骄到主页面中，tag设置为id
+	 * 将fragment天骄到主页面中，tag设置为id
 	 */
 	private void addTabsFragment(Fragment framgent, String tag) {
 		fragList.add(framgent);
@@ -220,6 +221,9 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 		ft.commit();
 	}
 
+	/**
+	 * 在fragment切换时需要改变标题栏
+	 */
 	protected void changeTitleBar() {
 		if (currentCheck == R.id.rb_main_business) {
 			findViewById(R.id.ibtn_title_back).setVisibility(View.GONE);
@@ -260,7 +264,10 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 							}
 						}).create().show();
 	}
-	
+
+	/**
+	 * 注销用户
+	 */
 	private void logout(){
 		AppContext.getAppContext().logout();
 		Intent intent = new Intent(MainActivity.this,LoginActivity.class);
@@ -288,6 +295,7 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 		if (mHandler.hasMessages(MSG_SET_TAGS)) {
 			mHandler.removeMessages(MSG_SET_TAGS);
 		}
+
 	}
 
 	@Override
@@ -363,6 +371,10 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 		}
 	};
 
+
+	/**
+	 * 设置别名的回调
+	 */
 	private final TagAliasCallback mAliasCallback = new TagAliasCallback() {
 		int count = 0;
 
@@ -400,6 +412,10 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 		}
 	};
 
+
+	/**
+	 * 设置标签的回调
+	 */
 	private final TagAliasCallback mTagsCallback = new TagAliasCallback() {
 
 		@Override
@@ -432,12 +448,17 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 
 	};
 
-	// 校验Tag Alias 只能是数字,英文字母和中文
+
+	/**
+	 * 校验Tag Alias 只能是数字,英文字母和中文
+	 */
 	public boolean isValidTagAndAlias(String s) {
 		Pattern p = Pattern.compile("^[\u4E00-\u9FA50-9a-zA-Z_-]{0,}$");
 		Matcher m = p.matcher(s);
 		return m.matches();
 	}
+
+
 
 	private void setTag(ArrayList<String> tags) {
 		// ","隔开的多个 转换成 Set

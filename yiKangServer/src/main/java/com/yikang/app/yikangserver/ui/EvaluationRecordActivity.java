@@ -37,7 +37,6 @@ public class EvaluationRecordActivity extends BaseActivity implements
 	private GridView griView;
 	private RecordAdapter adapter;
 
-	private ProgressDialog loadingDialog;
 
 	// 是否新建了病历夹,新建了之后就要刷新数据
 	private boolean hasNewRecord = true;
@@ -73,19 +72,7 @@ public class EvaluationRecordActivity extends BaseActivity implements
 		griView.setOnItemClickListener(this);
 	}
 
-	private void showDialog() {
-		if (loadingDialog == null) {
-			loadingDialog = DialogFactory.getProgressDailog(
-					DialogFactory.TYPE_LOADING_DATA, this);
-		}
-		loadingDialog.show();
-	}
 
-	private void dismissDialog() {
-		if (loadingDialog != null && loadingDialog.isShowing()) {
-			loadingDialog.dismiss();
-		}
-	}
 
 	@Override
 	protected void onStart() {
@@ -98,7 +85,7 @@ public class EvaluationRecordActivity extends BaseActivity implements
 
 	// 从网络上获取数据
 	private void laodDataFromNet() {
-		showDialog();
+		showWatingDailog();
 		String url = UrlConstants.URL_GET_EVALUATION_RECORD;
 		RequestParam param = new RequestParam();
 		param.add("seniorId", SenoirState.currSeniorId);
@@ -124,7 +111,7 @@ public class EvaluationRecordActivity extends BaseActivity implements
 
 			@Override
 			public void onFialure(String status, String message) {
-				dismissDialog();
+				dismissWatingDailog();
 				AppContext.showToast(EvaluationRecordActivity.this,
 						message);
 			}
@@ -132,7 +119,7 @@ public class EvaluationRecordActivity extends BaseActivity implements
 	}
 
 	private void newEvaluationRecord() {
-		showDialog();
+		dismissWatingDailog();
 		RequestParam param = new RequestParam();
 		param.add("seniorId", SenoirState.currSeniorId);
 		final String url =UrlConstants.URL_ADD_EVALUATION_BAG;

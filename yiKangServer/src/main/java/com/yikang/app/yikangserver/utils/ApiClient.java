@@ -1,15 +1,8 @@
 package com.yikang.app.yikangserver.utils;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.CookieManager;
-import java.net.CookiePolicy;
-import java.util.Map;
-import java.util.Set;
-
 import android.os.Handler;
 import android.os.Looper;
-import android.text.TextUtils;
+
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.FormEncodingBuilder;
 import com.squareup.okhttp.MediaType;
@@ -22,11 +15,12 @@ import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.bean.RequestParam;
 import com.yikang.app.yikangserver.bean.ResponseContent;
 
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.ContentType;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.StringBody;
+import java.io.File;
+import java.io.IOException;
+import java.net.CookieManager;
+import java.net.CookiePolicy;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * 业务网络请求工具类
