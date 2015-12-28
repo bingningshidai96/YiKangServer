@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.bean.RequestParam;
 import com.yikang.app.yikangserver.bean.ResponseContent;
-import com.yikang.app.yikangserver.utils.BuisNetUtils.ResponceCallBack;
+import com.yikang.app.yikangserver.utils.ApiClient.ResponceCallBack;
 import com.yikang.app.yikangserver.view.CustomWatingDialog;
 import android.app.Activity;
 import android.app.Dialog;
@@ -71,7 +71,7 @@ public class UpdateManger {
 		final String url = "";
 		RequestParam param = new RequestParam();
 		
-		BuisNetUtils.requestStr(url, param, mCallBack);
+		ApiClient.requestStr(url, param, mCallBack);
 	}
 	
 	

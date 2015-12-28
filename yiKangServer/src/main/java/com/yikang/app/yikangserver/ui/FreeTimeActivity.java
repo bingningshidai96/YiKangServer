@@ -23,7 +23,7 @@ import com.yikang.app.yikangserver.bean.RequestParam;
 import com.yikang.app.yikangserver.bean.ResponseContent;
 import com.yikang.app.yikangserver.bean.TimeDuration;
 import com.yikang.app.yikangserver.data.UrlConstants;
-import com.yikang.app.yikangserver.utils.BuisNetUtils;
+import com.yikang.app.yikangserver.utils.ApiClient;
 import com.yikang.app.yikangserver.utils.LOG;
 
 /**
@@ -126,7 +126,7 @@ public class FreeTimeActivity extends BaseActivity implements OnClickListener,
 		RequestParam param = new RequestParam();
 		param.add("serviceDate", serviceDate);
 		LOG.i(TAG, "[getEditableTime]" + serviceDate);
-		BuisNetUtils.requestStr(url, param,new BuisNetUtils.ResponceCallBack() {
+		ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
 			@Override
 			public void onSuccess(ResponseContent content) {
 				dismissWatingDailog();
@@ -136,8 +136,8 @@ public class FreeTimeActivity extends BaseActivity implements OnClickListener,
 				final Integer submitEnable = object.getInteger("isCanSubmit");
 				setEditable(submitEnable == 0);
 				final String dataStr = object.getString("data");
-				LOG.i(TAG,"[onSuccess]" + submitEnable+ object.getBoolean("isCanSubmit"));
-				List<TimeDuration> list = JSON.parseArray(dataStr,TimeDuration.class);
+				LOG.i(TAG, "[onSuccess]" + submitEnable + object.getBoolean("isCanSubmit"));
+				List<TimeDuration> list = JSON.parseArray(dataStr, TimeDuration.class);
 				setTimeDurationData(list);
 			}
 
@@ -188,7 +188,7 @@ public class FreeTimeActivity extends BaseActivity implements OnClickListener,
 		RequestParam param = new RequestParam();
 		param.add("serviceDate", serviceDate);
 		param.add("timeQuantumIds", selectedList);
-		BuisNetUtils.requestStr(url, param,new BuisNetUtils.ResponceCallBack() {
+		ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
 			@Override
 			public void onSuccess(ResponseContent content) {
 				dismissWatingDailog();

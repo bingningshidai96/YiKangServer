@@ -3,11 +3,9 @@ package com.yikang.app.yikangserver.fragment;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
+
 import org.json.JSONObject;
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,14 +27,12 @@ import com.yikang.app.yikangserver.bean.Question;
 import com.yikang.app.yikangserver.bean.RequestParam;
 import com.yikang.app.yikangserver.bean.ResponseContent;
 import com.yikang.app.yikangserver.bean.Table;
-import com.yikang.app.yikangserver.dailog.DialogFactory;
 import com.yikang.app.yikangserver.data.BusinessState.SenoirState.EvalutionState;
 import com.yikang.app.yikangserver.data.EvaluationLocalData;
 import com.yikang.app.yikangserver.data.EvaluationLocalData.TableType;
 import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.interf.EvaInterActctionListnter;
-import com.yikang.app.yikangserver.utils.BuisNetUtils;
-import com.yikang.app.yikangserver.utils.HttpUtils;
+import com.yikang.app.yikangserver.utils.ApiClient;
 import com.yikang.app.yikangserver.utils.LOG;
 import com.yikang.app.yikangserver.view.NoInterActionListView;
 
@@ -219,7 +215,7 @@ public class EvaluationMainFragment extends BaseFragment implements
 		param.add("surveyTableId", surveyId);
 		param.add("assessmentId", EvalutionState.currAssementId);
 
-		BuisNetUtils.requestStr(url, param, new BuisNetUtils.ResponceCallBack() {
+		ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
 
 			@Override
 			public void onSuccess(ResponseContent content) {
@@ -260,7 +256,7 @@ public class EvaluationMainFragment extends BaseFragment implements
 
 		final String url = UrlConstants.getQustrionSubmitUrl(tableType);
 
-		BuisNetUtils.requestStr(url,param,new BuisNetUtils.ResponceCallBack(){
+		ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
 
 			@Override
 			public void onSuccess(ResponseContent content) {

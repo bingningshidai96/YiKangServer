@@ -19,7 +19,7 @@ import com.yikang.app.yikangserver.bean.ResponseContent;
 import com.yikang.app.yikangserver.bean.User;
 import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.ui.EvaluationRecordActivity;
-import com.yikang.app.yikangserver.utils.BuisNetUtils;
+import com.yikang.app.yikangserver.utils.ApiClient;
 import com.yikang.app.yikangserver.utils.LOG;
 import com.yikang.app.yikangserver.view.CircleImageView;
 
@@ -111,22 +111,22 @@ public class InviteCustomerFragment extends BaseListFragment<InviteCustomer> {
 		final String url = UrlConstants.URL_INVITE_LIST;
 		RequestParam param = new RequestParam();
 		param.add("userStatus", type.getCode());
-		BuisNetUtils.requestStr(url, param,new BuisNetUtils.ResponceCallBack() {
+		ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
 			@Override
 			public void onSuccess(ResponseContent content) {
 				String json = content.getData();
-				List<InviteCustomer> list = JSON.parseArray(json,InviteCustomer.class);
+				List<InviteCustomer> list = JSON.parseArray(json, InviteCustomer.class);
 				mData.clear();
 				mData.addAll(list);
 				mAdapter.notifyDataSetChanged();
 				LOG.i(TAG, "[sendRequestData]" + json);
-				onLoadResult(requestType,true);
+				onLoadResult(requestType, true);
 			}
 
 			@Override
 			public void onFialure(String status, String message) {
 				AppContext.showToast(message);
-				onLoadResult(requestType,false);
+				onLoadResult(requestType, false);
 			}
 		});
 	}

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import com.alibaba.fastjson.JSON;
@@ -32,68 +34,64 @@ public class RequestParam {
 	private Map<String, Object> paramData;
 
 	public RequestParam() {
-		this(null, null);
-		AppContext context = AppContext.getAppContext();
-		this.appId = context.getAppId();
-		this.accessTicket = context.getAccessTicket();
-		this.machineCode = AppContext.getAppContext().getDeviceID();
+		this(AppContext.getAppContext().getAppId(),
+				AppContext.getAppContext().getAccessTicket());
 	}
 
 	public RequestParam(String appId, String acessTicket) {
-		this(appId, acessTicket, null, null);
-		this.machineCode = AppContext.getAppContext().getDeviceID();
+		this(appId, acessTicket, AppContext.getAppContext().getDeviceID());
 	}
 
-	public RequestParam(String appId, String acessTicket, String machineCode,
-			Map<String, Object> paramData) {
+
+	public RequestParam(String appId, String acessTicket, String machineCode) {
 		this.accessTicket = acessTicket;
 		this.appId = appId;
-		this.paramData = paramData;
 		this.machineCode = machineCode;
+		this.paramData = new HashMap<>();
 	}
 
-	public void add(String key, Object value) {
-		if (paramData == null) {
-			paramData = new HashMap<String, Object>();
-		}
-		paramData.put(key, value);
-	}
 
-	public void addAll(Map<String, Object> map) {
-		if (paramData == null) {
-			paramData = new HashMap<String, Object>();
-		}
-		paramData.putAll(map);
-	}
 
 	public String getAppId() {
 		return appId;
 	}
 
-	public void setAppId(String appId) {
-		this.appId = appId;
-	}
 
 	public String getAccessTicket() {
 		return accessTicket;
 	}
 
-	public void setAccessTicket(String accessTicket) {
-		this.accessTicket = accessTicket;
+
+	public String getMachineCode() {
+		return machineCode;
 	}
 
-	public Map<String, Object> getParamData() {
-		return paramData;
+
+	public void add(String key, Object value) {
+		paramData.put(key, value);
+	}
+
+
+	public void addAll(Map<String, Object> map) {
+		paramData.putAll(map);
+	}
+
+
+	public Object remove(String key){
+		return paramData.remove(key);
+	}
+
+	public boolean isParamEmpty(){
+		return paramData.isEmpty();
 	}
 
 	/**
-	 * 如果之前设置了参数，这个将会调用覆盖之前设置的所有paramData参数 如果不是必要，请使用{@link #addAll(Map<String, Object>) }方法，那个更加安全
-	 * 
-	 * @param paramData
+	 * 获得json化的paramData
 	 */
-	public void setParamData(Map<String, Object> paramData) {
-		this.paramData = paramData;
+	public String getParamJson(){
+		return toJson(paramData);
 	}
+
 
 	/**
 	 * 将本对象转换成参数列表
@@ -110,8 +108,6 @@ public class RequestParam {
 		if (machineCode != null) {
 			params.add(new BasicNameValuePair(KEY_MACHINECODE, machineCode));
 		}
-		// LOG.d(TAG, "[toParams]"+KEY_APPID+"="+appId);
-		// LOG.d(TAG, "[toParams]"+KEY_ACCESS_TICKET+"="+accessTicket);
 		LOG.d(TAG, "[toParams]" + KEY_MACHINECODE + "=" + machineCode);
 		if (paramData != null) {
 			String json = toJson(paramData);
@@ -148,6 +144,9 @@ public class RequestParam {
 	 * @return
 	 */
 	private static String toJson(Object object) {
+		if(object == null){
+			return null;
+		}
 		return JSON.toJSONString(object);
 	}
 

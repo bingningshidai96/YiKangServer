@@ -3,7 +3,6 @@ package com.yikang.app.yikangserver.ui;
 import java.util.HashMap;
 import java.util.Map;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -25,7 +24,7 @@ import com.yikang.app.yikangserver.fragment.RegisterAccountFragment.OnNextListen
 import com.yikang.app.yikangserver.fragment.EditUserInfoFragemt;
 import com.yikang.app.yikangserver.fragment.EditUserInfoFragemt.OnCompleteListener;
 import com.yikang.app.yikangserver.service.UpLoadService;
-import com.yikang.app.yikangserver.utils.BuisNetUtils;
+import com.yikang.app.yikangserver.utils.ApiClient;
 import com.yikang.app.yikangserver.utils.LOG;
 /**
  *注册activity
@@ -169,8 +168,8 @@ public class RegistActivtiy extends BaseActivity implements OnNextListener,
 		RequestParam param = new RequestParam("appid", "accessTicket");
 		param.addAll(paramMap);
 		LOG.i(TAG, "" + param.toParams());
-		BuisNetUtils.requestStr(url, param,
-				new BuisNetUtils.ResponceCallBack() {
+		ApiClient.requestStr(url, param,
+				new ApiClient.ResponceCallBack() {
 					@Override
 					public void onSuccess(ResponseContent content) {
 						dismissWatingDailog();
@@ -223,8 +222,8 @@ public class RegistActivtiy extends BaseActivity implements OnNextListener,
 		param.add("loginName", userName);
 		param.add("passWord", passw);
 		param.add("machineCode", AppContext.getAppContext().getDeviceID());
-		BuisNetUtils.requestStr(url, param,
-				new BuisNetUtils.ResponceCallBack() {
+		ApiClient.requestStr(url, param,
+				new ApiClient.ResponceCallBack() {
 					@Override
 					public void onSuccess(ResponseContent content) {
 						dismissWatingDailog();

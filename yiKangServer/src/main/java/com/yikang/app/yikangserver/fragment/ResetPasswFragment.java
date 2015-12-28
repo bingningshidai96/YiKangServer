@@ -1,10 +1,6 @@
 package com.yikang.app.yikangserver.fragment;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.ProgressDialog;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -23,7 +19,7 @@ import com.yikang.app.yikangserver.bean.RequestParam;
 import com.yikang.app.yikangserver.bean.ResponseContent;
 import com.yikang.app.yikangserver.dailog.DialogFactory;
 import com.yikang.app.yikangserver.data.UrlConstants;
-import com.yikang.app.yikangserver.utils.BuisNetUtils;
+import com.yikang.app.yikangserver.utils.ApiClient;
 import com.yikang.app.yikangserver.utils.LOG;
 
 import org.json.JSONObject;
@@ -296,7 +292,7 @@ public class ResetPasswFragment extends BaseFragment implements View.OnClickList
         RequestParam param = new RequestParam();
         param.add("loginName", phoneNumber);
         param.add("password", passWord);
-        BuisNetUtils.requestStr(url, param, new BuisNetUtils.ResponceCallBack() {
+        ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
 
             @Override
             public void onSuccess(ResponseContent content) {

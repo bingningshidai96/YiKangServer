@@ -15,9 +15,8 @@ import com.yikang.app.yikangserver.bean.RequestParam;
 import com.yikang.app.yikangserver.bean.ResponseContent;
 import com.yikang.app.yikangserver.bean.ServiceOrder;
 import com.yikang.app.yikangserver.data.UrlConstants;
-import com.yikang.app.yikangserver.fragment.BaseListFragment.RequestType;
 import com.yikang.app.yikangserver.ui.ServiceOrderDetailActivty;
-import com.yikang.app.yikangserver.utils.BuisNetUtils;
+import com.yikang.app.yikangserver.utils.ApiClient;
 
 /**
  * 被服务对象列表
@@ -117,8 +116,8 @@ public class ServiceCalendarFragment extends BaseListFragment<ServiceOrder> {
 		final String url = UrlConstants.URL_ORDER_LIST;
 		RequestParam param = new RequestParam();
 		param.add("serviceDetailStatus", type.getCode());
-		BuisNetUtils.requestStr(url, param,
-				new BuisNetUtils.ResponceCallBack() {
+		ApiClient.requestStr(url, param,
+				new ApiClient.ResponceCallBack() {
 					@Override
 					public void onSuccess(ResponseContent content) {
 						String result = content.getData();

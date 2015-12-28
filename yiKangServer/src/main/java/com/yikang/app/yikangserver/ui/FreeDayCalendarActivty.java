@@ -19,7 +19,7 @@ import com.yikang.app.yikangserver.bean.RequestParam;
 import com.yikang.app.yikangserver.bean.ResponseContent;
 import com.yikang.app.yikangserver.bean.ServiceScheduleData;
 import com.yikang.app.yikangserver.data.UrlConstants;
-import com.yikang.app.yikangserver.utils.BuisNetUtils;
+import com.yikang.app.yikangserver.utils.ApiClient;
 import com.yikang.app.yikangserver.utils.LOG;
 
 public class FreeDayCalendarActivty extends BaseActivity implements
@@ -60,8 +60,8 @@ public class FreeDayCalendarActivty extends BaseActivity implements
 		Calendar calendar = Calendar.getInstance();
 		param.add("year", calendar.get(Calendar.YEAR));
 		param.add("month", calendar.get(Calendar.MONTH) + 1);
-		BuisNetUtils.requestStr(url, param,
-				new BuisNetUtils.ResponceCallBack() {
+		ApiClient.requestStr(url, param,
+				new ApiClient.ResponceCallBack() {
 
 					@Override
 					public void onSuccess(ResponseContent content) {

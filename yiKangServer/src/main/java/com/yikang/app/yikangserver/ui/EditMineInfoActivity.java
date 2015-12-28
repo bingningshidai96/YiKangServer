@@ -18,7 +18,7 @@ import com.yikang.app.yikangserver.fragment.EditUserInfoFragemt;
 import com.yikang.app.yikangserver.fragment.EditUserInfoFragemt.OnCompleteListener;
 import com.yikang.app.yikangserver.reciever.UserInfoAltedRevicer;
 import com.yikang.app.yikangserver.service.UpLoadService;
-import com.yikang.app.yikangserver.utils.BuisNetUtils;
+import com.yikang.app.yikangserver.utils.ApiClient;
 import com.yikang.app.yikangserver.utils.LOG;
 
 public class EditMineInfoActivity extends BaseActivity implements
@@ -134,7 +134,7 @@ public class EditMineInfoActivity extends BaseActivity implements
 		String url = UrlConstants.URL_EDIT_USER_INFO;
 		RequestParam param = new RequestParam();
 		param.addAll(paramMap);
-		BuisNetUtils.requestStr(url, param,new BuisNetUtils.ResponceCallBack() {
+		ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
 			@Override
 			public void onSuccess(ResponseContent content) {
 				dismissWatingDailog();
@@ -146,7 +146,7 @@ public class EditMineInfoActivity extends BaseActivity implements
 			@Override
 			public void onFialure(String status, String message) {
 				dismissWatingDailog();
-				AppContext.showToast("抱歉，修改失败."+message);
+				AppContext.showToast("抱歉，修改失败." + message);
 			}
 		});
 	}

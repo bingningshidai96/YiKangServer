@@ -36,8 +36,8 @@ import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.fragment.BusinessMainFragment;
 import com.yikang.app.yikangserver.fragment.MineFragment;
 import com.yikang.app.yikangserver.reciever.UserInfoAltedRevicer;
-import com.yikang.app.yikangserver.utils.BuisNetUtils;
-import com.yikang.app.yikangserver.utils.BuisNetUtils.ResponceCallBack;
+import com.yikang.app.yikangserver.utils.ApiClient;
+import com.yikang.app.yikangserver.utils.ApiClient.ResponceCallBack;
 import com.yikang.app.yikangserver.utils.DoubleClickExitHelper;
 import com.yikang.app.yikangserver.utils.HttpUtils;
 import com.yikang.app.yikangserver.utils.LOG;
@@ -122,13 +122,13 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 		param.add("deviceType", 0);
 		param.add("codeType", AppContext.getAppContext().getDeviceIdType());
 		param.add("deviceCode", AppContext.getAppContext().getDeviceID());
-		BuisNetUtils.requestStr(url, param, new BuisNetUtils.ResponceCallBack() {
+		ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
 			@Override
 			public void onSuccess(ResponseContent content) {
 				AppConfig appConfig = AppConfig.getAppConfig(getApplicationContext());
 				appConfig.setProperty(AppConfig.CONF_IS_DEVICE_REGISTED, "" + 1); // 将设备设置为注册成功
 				if (DEBUG) {
-					String log = appConfig.getProperty(AppConfig.CONF_DEVICE_ID_TYPE)+ "******"
+					String log = appConfig.getProperty(AppConfig.CONF_DEVICE_ID_TYPE) + "******"
 							+ appConfig.getProperty(AppConfig.CONF_DEVICE_ID);
 					LOG.e(TAG, "[registDevice]" + log);
 				}
@@ -137,7 +137,7 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 
 			@Override
 			public void onFialure(String status, String message) {
-				LOG.d(TAG,"[registDevice]sorry,device register fail.error message:"+ message);
+				LOG.d(TAG, "[registDevice]sorry,device register fail.error message:" + message);
 			}
 		});
 	}
@@ -153,13 +153,13 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 		showWatingDailog();
 		String url = UrlConstants.URL_GET_USER_INFO;
 		RequestParam param = new RequestParam();
-		BuisNetUtils.requestStr(url, param,new BuisNetUtils.ResponceCallBack() {
+		ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
 			@Override
 			public void onSuccess(ResponseContent content) {
 				dismissWatingDailog();
-				LOG.d(TAG,"[loadData-->requestStr]:" + content.getData());
-				User user = JSON.parseObject(content.getData(),User.class);
-				if(user == null || user.userId == null){
+				LOG.d(TAG, "[loadData-->requestStr]:" + content.getData());
+				User user = JSON.parseObject(content.getData(), User.class);
+				if (user == null || user.userId == null) {
 					logout();
 				}
 				LOG.d(TAG, "[loadData-->requestStr]:" + user);
@@ -301,21 +301,21 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 	 */
 	private void requestAndSetJPushAlias() {
 		final String url = UrlConstants.URL_GET_JPUSH_ALIAS;
-		BuisNetUtils.requestStr(url, new RequestParam(),new ResponceCallBack() {
+		ApiClient.requestStr(url, new RequestParam(), new ResponceCallBack() {
 			@Override
 			public void onSuccess(ResponseContent content) {
-				LOG.i(TAG,"[requestAndSetJPushAlias] get alias success! ");
+				LOG.i(TAG, "[requestAndSetJPushAlias] get alias success! ");
 				JSONObject object = JSON.parseObject(content.getData());
 				String alias = object.getString("alias");
 				if (!TextUtils.isEmpty(alias)) {
-					LOG.i(TAG,"[requestAndSetJPushAlias] correct alias has been parsed from joson");
+					LOG.i(TAG, "[requestAndSetJPushAlias] correct alias has been parsed from joson");
 					setJPushAlias(alias);
 				}
 			}
 
 			@Override
 			public void onFialure(String status, String message) {
-				LOG.w(TAG,"[requestAndSetJPushAlias]sorry! get alias fail.error message:" + message);
+				LOG.w(TAG, "[requestAndSetJPushAlias]sorry! get alias fail.error message:" + message);
 			}
 		});
 	}

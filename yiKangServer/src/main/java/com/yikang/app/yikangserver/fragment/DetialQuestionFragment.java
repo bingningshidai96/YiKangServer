@@ -11,8 +11,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,15 +27,12 @@ import com.yikang.app.yikangserver.bean.CrossWirses;
 import com.yikang.app.yikangserver.bean.QuestionPortrait;
 import com.yikang.app.yikangserver.bean.RequestParam;
 import com.yikang.app.yikangserver.bean.ResponseContent;
-import com.yikang.app.yikangserver.dailog.DialogFactory;
 import com.yikang.app.yikangserver.data.BusinessState.SenoirState.EvalutionState;
 import com.yikang.app.yikangserver.data.EvaluationLocalData;
 import com.yikang.app.yikangserver.data.EvaluationLocalData.TableType;
 import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.interf.EvaInterActctionListnter;
-import com.yikang.app.yikangserver.utils.BuisNetUtils;
-import com.yikang.app.yikangserver.utils.HttpUtils;
-import com.yikang.app.yikangserver.utils.HttpUtils.ResultCallBack;
+import com.yikang.app.yikangserver.utils.ApiClient;
 import com.yikang.app.yikangserver.utils.LOG;
 import com.yikang.app.yikangserver.view.NoInterActionListView;
 
@@ -205,7 +200,7 @@ public class DetialQuestionFragment extends BaseFragment implements OnClickListe
         params.add("surveyTableId", EvalutionState.currTableId);
         params.add("questionCrosswiseId", cWirses.getQuestionCrosswiseId());
 
-        BuisNetUtils.requestStr(url, params, new BuisNetUtils.ResponceCallBack() {
+        ApiClient.requestStr(url, params, new ApiClient.ResponceCallBack() {
 
             @Override
             public void onSuccess(ResponseContent content) {
@@ -272,7 +267,7 @@ public class DetialQuestionFragment extends BaseFragment implements OnClickListe
         param.addAll(paramData);
 
         String url = UrlConstants.getQustrionSubmitUrl(tableType);
-        BuisNetUtils.requestStr(url,param,new BuisNetUtils.ResponceCallBack(){
+        ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
 
             @Override
             public void onSuccess(ResponseContent content) {

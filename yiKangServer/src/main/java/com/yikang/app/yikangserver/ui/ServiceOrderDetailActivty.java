@@ -22,7 +22,7 @@ import com.yikang.app.yikangserver.bean.ResponseContent;
 import com.yikang.app.yikangserver.bean.ServiceOrder;
 import com.yikang.app.yikangserver.data.MyData;
 import com.yikang.app.yikangserver.data.UrlConstants;
-import com.yikang.app.yikangserver.utils.BuisNetUtils;
+import com.yikang.app.yikangserver.utils.ApiClient;
 import com.yikang.app.yikangserver.utils.LOG;
 
 /**
@@ -83,8 +83,8 @@ public class ServiceOrderDetailActivty extends BaseActivity implements
 		final String url = UrlConstants.URL_SERVICE_ORDER_DETAIL;
 		RequestParam param = new RequestParam();
 		param.add("orderServiceDetailId", order.id);
-		BuisNetUtils.requestStr(url, param,
-				new BuisNetUtils.ResponceCallBack() {
+		ApiClient.requestStr(url, param,
+				new ApiClient.ResponceCallBack() {
 					@Override
 					public void onSuccess(ResponseContent content) {
 						dismissWatingDailog();
@@ -163,8 +163,8 @@ public class ServiceOrderDetailActivty extends BaseActivity implements
 		RequestParam param = new RequestParam();
 		param.add("orderServiceDetailId", order.id);
 		param.add("feedback", feedback);
-		BuisNetUtils.requestStr(url, param,
-				new BuisNetUtils.ResponceCallBack() {
+		ApiClient.requestStr(url, param,
+				new ApiClient.ResponceCallBack() {
 					@Override
 					public void onSuccess(ResponseContent content) {
 						dismissWatingDailog();

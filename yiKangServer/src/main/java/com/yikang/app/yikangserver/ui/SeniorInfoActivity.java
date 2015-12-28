@@ -3,7 +3,6 @@ package com.yikang.app.yikangserver.ui;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
@@ -26,25 +25,20 @@ import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.bean.RequestParam;
 import com.yikang.app.yikangserver.bean.ResponseContent;
-import com.yikang.app.yikangserver.dailog.DialogFactory;
 import com.yikang.app.yikangserver.data.BusinessState.SenoirState;
 import com.yikang.app.yikangserver.data.MyData;
 import com.yikang.app.yikangserver.data.MyData.City;
 import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.reciever.UserInfoAltedRevicer;
-import com.yikang.app.yikangserver.utils.HttpUtils;
+import com.yikang.app.yikangserver.utils.ApiClient;
 import com.yikang.app.yikangserver.utils.LOG;
 import com.yikang.app.yikangserver.view.TextSpinner;
 import com.yikang.app.yikangserver.view.TextSpinner.OnDropDownItemClickListener;
 import com.yikang.app.yikangserver.view.adapter.PopListAdapter;
-
-import org.apache.http.NameValuePair;
 import org.json.JSONObject;
-
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class SeniorInfoActivity extends BaseActivity implements
         OnClickListener, AMapLocationListener, OnDropDownItemClickListener {
@@ -64,15 +58,12 @@ public class SeniorInfoActivity extends BaseActivity implements
     private double longitude = 0;// 经度
     private double latitude = 0;// 纬度
     private int loacatTimes = 0; // 经纬度
-    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initContent();
         initTitleBar(getResources().getString(R.string.senior_info_title_text));
-        progressDialog = DialogFactory.getProgressDailog(
-                DialogFactory.TYPE_SUBMIT_DATA, this);
     }
 
     @Override
@@ -165,74 +156,73 @@ public class SeniorInfoActivity extends BaseActivity implements
 
     private void addEvaluationBag(final String seniorId) {
         RequestParam param = new RequestParam();
-        Map<String, Object> paramData = new HashMap<String, Object>();
-        paramData.put("seniorId", seniorId);
-        param.setParamData(paramData);
+        param.add("seniorId", seniorId);
+        String url =UrlConstants.URL_ADD_EVALUATION_BAG;
+        ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
+            @Override
+            public void onSuccess(ResponseContent content) {
+                dismissWatingDailog();
+                try {
+                    JSONObject jo = new JSONObject(content.getData());
+                    int assessmentId = jo.getInt("assessmentId");
+                    LOG.i(TAG, "获得assessmentId" + assessmentId);
+                    SenoirState.currSeniorId = seniorId;
+                    Intent intent = new Intent(SeniorInfoActivity.this, EvaluationActivity.class);
+                    intent.putExtra("assessmentId", assessmentId);
+                    startActivity(intent);
+                    finish();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
 
-        HttpUtils.requestPost(UrlConstants.URL_ADD_EVALUATION_BAG,
-                param.toParams(), new HttpUtils.ResultCallBack() {
-                    @Override
-                    public void postResult(String result) {
-                        try {
-                            ResponseContent reContent = ResponseContent
-                                    .toResposeContent(result);
-                            String status = reContent.getStatus();
-                            if (ResponseContent.STATUS_OK.equals(status)) {
-                                JSONObject jo = new JSONObject(reContent.getData());
-                                int assessmentId = jo.getInt("assessmentId");
-                                LOG.i(TAG, "获得assessmentId" + assessmentId);
-                                SenoirState.currSeniorId = seniorId;
-                                Intent intent = new Intent(SeniorInfoActivity.this, EvaluationActivity.class);
-                                intent.putExtra("assessmentId", assessmentId);
-                                startActivity(intent);
-                                finish();
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
+            @Override
+            public void onFialure(String status, String message) {
+                dismissWatingDailog();
+                AppContext.showToast(message);
+            }
+        });
     }
 
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        if (id == R.id.bt_senior_info_submit) {
-            progressDialog.show();
-            HashMap<String, Object> map = genrateMapFromInput();// 从用户输入的数据生成一个acount
-            RequestParam param = new RequestParam();
-            param.setParamData(map);
-            List<NameValuePair> params = param.toParams();
-            HttpUtils.requestPost(UrlConstants.URL_SENOIR_INFO_SUBMIT, params,
-                    new HttpUtils.ResultCallBack() {
-                        @Override
-                        public void postResult(String result) {
-                            LOG.d(TAG, "==提交老人信息返回结果==" + result);
-                            progressDialog.dismiss();
-                            ResponseContent reContent;
-                            try {
-                                reContent = ResponseContent
-                                        .toResposeContent(result);
-                                if (ResponseContent.STATUS_OK.equals(reContent
-                                        .getStatus())) {
-                                    AppContext
-                                            .showToast(R.string.submit_succeed_tip);
-                                    JSONObject jo = new JSONObject(reContent
-                                            .getData());
-                                    String seniorId = jo.getString("seniorId");
-                                    LOG.d(TAG, "获得seniorId:" + seniorId);
-                                    notifyAddSenior();
-                                    addEvaluationBag(seniorId);
-                                } else {
-                                    AppContext.showToast(R.string.submit_fail_redo);
-                                }
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                                AppContext.showToast(R.string.submit_fail_tip);
-                            }
-                        }
-                    });
-        }
+        if (id == R.id.bt_senior_info_submit) submitInfo();
+
+    }
+
+    /**
+     * 向服务器提交
+     */
+    private void submitInfo() {
+        showWatingDailog();
+        RequestParam param = new RequestParam();
+        param.addAll(genrateMapFromInput());
+        String url = UrlConstants.URL_SENOIR_INFO_SUBMIT;
+
+        ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
+            @Override
+            public void onSuccess(ResponseContent content) {
+                dismissWatingDailog();
+                try {
+                    AppContext.showToast(R.string.submit_succeed_tip);
+                    JSONObject jo = new JSONObject(content.getData());
+                    String seniorId = jo.getString("seniorId");
+                    LOG.d(TAG, "获得seniorId:" + seniorId);
+                    notifyAddSenior();
+                    addEvaluationBag(seniorId);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    AppContext.showToast(R.string.submit_fail_tip);
+                }
+            }
+
+            @Override
+            public void onFialure(String status, String message) {
+                dismissWatingDailog();
+                AppContext.showToast(R.string.submit_fail_redo);
+            }
+        });
     }
 
     /**

@@ -23,8 +23,8 @@ import com.yikang.app.yikangserver.data.BusinessState.SenoirState;
 import com.yikang.app.yikangserver.data.BusinessState.SenoirState.EvalutionState;
 import com.yikang.app.yikangserver.data.MyData;
 import com.yikang.app.yikangserver.data.UrlConstants;
-import com.yikang.app.yikangserver.utils.BuisNetUtils;
-import com.yikang.app.yikangserver.utils.HttpUtils;
+
+import com.yikang.app.yikangserver.utils.ApiClient;
 import com.yikang.app.yikangserver.utils.LOG;
 
 public class EvaluationRecordActivity extends BaseActivity implements
@@ -102,65 +102,61 @@ public class EvaluationRecordActivity extends BaseActivity implements
 		String url = UrlConstants.URL_GET_EVALUATION_RECORD;
 		RequestParam param = new RequestParam();
 		param.add("seniorId", SenoirState.currSeniorId);
-		BuisNetUtils.requestStr(url, param,
-				new BuisNetUtils.ResponceCallBack() {
-					@Override
-					public void onSuccess(ResponseContent content) {
-						dismissDialog();
-						String json = content.getData();
-						datas.clear();
-						hasNewRecord = false;
-						LOG.d(TAG, "====" + json);
-						if (!TextUtils.isEmpty(json)) {
-							List<EvalutionRecord> list = JSON.parseArray(json,
-									EvalutionRecord.class);
-							datas.addAll(list);
-							int profession = AppContext.getAppContext()
-									.getUser().profession;
-							if (profession != MyData.DOCTOR) {
-								adapter.setAddEnable(true);
-							}
-							adapter.notifyDataSetChanged();
-						}
+		ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
+			@Override
+			public void onSuccess(ResponseContent content) {
+				dismissWatingDailog();
+				String json = content.getData();
+				datas.clear();
+				hasNewRecord = false;
+				LOG.d(TAG, "====" + json);
+				if (!TextUtils.isEmpty(json)) {
+					List<EvalutionRecord> list = JSON.parseArray(json,
+							EvalutionRecord.class);
+					datas.addAll(list);
+					int profession = AppContext.getAppContext()
+							.getUser().profession;
+					if (profession != MyData.DOCTOR) {
+						adapter.setAddEnable(true);
 					}
+				}
+			}
 
-					@Override
-					public void onFialure(String status, String message) {
-						dismissDialog();
-						AppContext.showToast(EvaluationRecordActivity.this,
-								message);
-					}
-				});
+			@Override
+			public void onFialure(String status, String message) {
+				dismissDialog();
+				AppContext.showToast(EvaluationRecordActivity.this,
+						message);
+			}
+		});
 	}
 
 	private void newEvaluationRecord() {
 		showDialog();
 		RequestParam param = new RequestParam();
 		param.add("seniorId", SenoirState.currSeniorId);
-		HttpUtils.requestPost(UrlConstants.URL_ADD_EVALUATION_BAG,
-				param.toParams(), new HttpUtils.ResultCallBack() {
-					@Override
-					public void postResult(String result) {
-						try {
-							dismissDialog();
-							ResponseContent reContent = ResponseContent
-									.toResposeContent(result);
-							String status = reContent.getStatus();
-							if (ResponseContent.STATUS_OK.equals(status)) {
-								AppContext.showToast(AppContext
-										.getStrRes(R.string.sucess_create_record));
-								int assessmentId = new JSONObject(reContent
-										.getData()).getInt("assessmentId");
-								LOG.w(TAG, "[newEvaluationRecord]"
-										+ assessmentId);
-								toEvaluationPage(assessmentId, false);
-								hasNewRecord = true;
-							}
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-				});
+		final String url =UrlConstants.URL_ADD_EVALUATION_BAG;
+		ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
+			@Override
+			public void onSuccess(ResponseContent content) {
+				try {
+					dismissWatingDailog();
+					AppContext.showToast(R.string.sucess_create_record);
+					int assessmentId = new JSONObject(content.getData()).getInt("assessmentId");
+					LOG.w(TAG, "[newEvaluationRecord]" + assessmentId);
+					toEvaluationPage(assessmentId, false);
+					hasNewRecord = true;
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+			@Override
+			public void onFialure(String status, String message) {
+				dismissWatingDailog();
+				AppContext.showToast(message);
+			}
+		});
 	}
 
 	/**

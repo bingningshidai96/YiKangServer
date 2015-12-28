@@ -18,7 +18,7 @@ import com.yikang.app.yikangserver.bean.SeniorInfo;
 import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.reciever.UserInfoAltedRevicer;
 import com.yikang.app.yikangserver.ui.EvaluationRecordActivity;
-import com.yikang.app.yikangserver.utils.BuisNetUtils;
+import com.yikang.app.yikangserver.utils.ApiClient;
 
 public class SeniorListFragment extends BaseListFragment<SeniorInfo> {
 	private static final String TAG = "SeniorListFragment";
@@ -52,25 +52,25 @@ public class SeniorListFragment extends BaseListFragment<SeniorInfo> {
 	@Override
 	protected void sendRequestData(final RequestType requestType) {
 		RequestParam params = new RequestParam();
-		BuisNetUtils.requestStr(UrlConstants.URL_GET_SENIOR_LIST, params,new BuisNetUtils.ResponceCallBack() {
+		ApiClient.requestStr(UrlConstants.URL_GET_SENIOR_LIST, params, new ApiClient.ResponceCallBack() {
 			@Override
 			public void onSuccess(ResponseContent content) {
 				String json = content.getData();
 				if (!TextUtils.isEmpty(json)) {
 					mData.clear();
-					List<SeniorInfo> list = JSON.parseArray(json,SeniorInfo.class);
+					List<SeniorInfo> list = JSON.parseArray(json, SeniorInfo.class);
 					if (list != null && !list.isEmpty()) {
 						mData.addAll(list);
 					}
 					mAdapter.notifyDataSetChanged();
 				}
-				onLoadResult(requestType,true);
+				onLoadResult(requestType, true);
 			}
 
 			@Override
 			public void onFialure(String status, String message) {
 				AppContext.showToast(message);
-				onLoadResult(requestType,false);
+				onLoadResult(requestType, false);
 			}
 		});
 	}

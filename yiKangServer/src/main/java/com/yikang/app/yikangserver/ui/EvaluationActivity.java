@@ -32,8 +32,7 @@ import com.yikang.app.yikangserver.fragment.CrossWiresFragment;
 import com.yikang.app.yikangserver.fragment.EvaluationMainFragment;
 import com.yikang.app.yikangserver.fragment.FallRiskFragment;
 import com.yikang.app.yikangserver.interf.EvaInterActctionListnter;
-import com.yikang.app.yikangserver.utils.HttpUtils;
-import com.yikang.app.yikangserver.utils.HttpUtils.ResultCallBack;
+import com.yikang.app.yikangserver.utils.ApiClient;
 import com.yikang.app.yikangserver.utils.LOG;
 
 /**
@@ -128,19 +127,24 @@ public class EvaluationActivity extends BaseActivity implements
 		String url = UrlConstants.URL_GET_TABLE_LIST;
 		RequestParam param = new RequestParam();
 		param.add("assessmentId", EvalutionState.currAssementId);
-		HttpUtils.requestPost(url, param.toParams(), new ResultCallBack() {
+		ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
+
 			@Override
-			public void postResult(String result) {
+			public void onSuccess(ResponseContent content) {
+				String json = content.getData();
+				LOG.d(TAG, "[loadRecordTabState]" + json);
 				try {
-					ResponseContent content = ResponseContent
-							.toResposeContent(result);
-					String json = content.getData();
-					LOG.d(TAG, "[loadRecordTabState]" + json);
 					parseJson(json);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
+
+			@Override
+			public void onFialure(String status, String message) {
+				AppContext.showToast(message);
+			}
+
 
 			private void parseJson(String json) throws Exception {
 				JSONArray array = new JSONArray(json);

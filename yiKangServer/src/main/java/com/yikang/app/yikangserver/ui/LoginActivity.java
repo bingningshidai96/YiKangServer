@@ -18,7 +18,7 @@ import com.yikang.app.yikangserver.bean.RequestParam;
 import com.yikang.app.yikangserver.bean.ResponseContent;
 import com.yikang.app.yikangserver.dailog.DialogFactory;
 import com.yikang.app.yikangserver.data.UrlConstants;
-import com.yikang.app.yikangserver.utils.BuisNetUtils;
+import com.yikang.app.yikangserver.utils.ApiClient;
 import com.yikang.app.yikangserver.utils.LOG;
 import com.yikang.app.yikangserver.utils.UIHelper;
 
@@ -135,7 +135,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 //		String url = UrlConstants.URL_FIND_PASSW;
 //		RequestParam param = new RequestParam();
 //		param.add("loginName", userId);
-//		BuisNetUtils.requestStr(url, param, new BuisNetUtils.ResponceCallBack() {
+//		ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
 //			@Override
 //			public void onSuccess(ResponseContent content) {
 //				dismissWatingDailog();
@@ -175,7 +175,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 		param.add("loginName", userName);
 		param.add("passWord", passw);
 		param.add("machineCode", AppContext.getAppContext().getDeviceID());
-		BuisNetUtils.requestStr(url, param,new BuisNetUtils.ResponceCallBack() {
+		ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
 			@Override
 			public void onSuccess(ResponseContent content) {
 				dismissSubmitDialog();

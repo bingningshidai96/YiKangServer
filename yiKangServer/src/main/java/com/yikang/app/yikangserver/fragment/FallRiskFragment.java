@@ -23,7 +23,7 @@ import com.yikang.app.yikangserver.data.EvaluationLocalData;
 import com.yikang.app.yikangserver.data.EvaluationLocalData.TableType;
 import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.interf.EvaInterActctionListnter;
-import com.yikang.app.yikangserver.utils.BuisNetUtils;
+import com.yikang.app.yikangserver.utils.ApiClient;
 import com.yikang.app.yikangserver.utils.LOG;
 import com.yikang.app.yikangserver.view.NoInterActionListView;
 
@@ -183,7 +183,7 @@ public class FallRiskFragment extends BaseFragment implements
         LOG.i(TAG, "[loadRecordAnswers]" + EvalutionState.currTableId + "==="
                 + EvalutionState.currAssementId);
 
-        BuisNetUtils.requestStr(url, param, new BuisNetUtils.ResponceCallBack() {
+        ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
 
             @Override
             public void onSuccess(ResponseContent content) {
@@ -224,7 +224,7 @@ public class FallRiskFragment extends BaseFragment implements
 
 
         final String url = UrlConstants.getQustrionSubmitUrl(tableType);
-        BuisNetUtils.requestStr(url, param, new BuisNetUtils.ResponceCallBack() {
+        ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
 
             @Override
             public void onSuccess(ResponseContent content) {
