@@ -9,7 +9,6 @@ import com.yikang.app.yikangserver.adapter.ViewHolder;
 import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.utils.LOG;
 
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
@@ -333,7 +332,7 @@ public abstract class BaseListFragment<T> extends BaseFragment implements
             ((TextView) mContentTip.findViewById(R.id.tv_data_fail_describe))
                     .setText(R.string.default_content_data_fail_describe);
             ((ImageView) mContentTip.findViewById(R.id.iv_data_fail))
-                    .setImageResource(R.drawable.img_no_date);
+                    .setImageResource(R.drawable.img_no_data);
         }
         return mContentTip;
     }

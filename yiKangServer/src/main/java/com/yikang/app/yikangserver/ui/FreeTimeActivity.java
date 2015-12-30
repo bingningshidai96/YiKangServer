@@ -126,7 +126,7 @@ public class FreeTimeActivity extends BaseActivity implements OnClickListener,
 		RequestParam param = new RequestParam();
 		param.add("serviceDate", serviceDate);
 		LOG.i(TAG, "[getEditableTime]" + serviceDate);
-		ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
+		ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
 			@Override
 			public void onSuccess(ResponseContent content) {
 				dismissWatingDailog();
@@ -188,7 +188,7 @@ public class FreeTimeActivity extends BaseActivity implements OnClickListener,
 		RequestParam param = new RequestParam();
 		param.add("serviceDate", serviceDate);
 		param.add("timeQuantumIds", selectedList);
-		ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
+		ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
 			@Override
 			public void onSuccess(ResponseContent content) {
 				dismissWatingDailog();

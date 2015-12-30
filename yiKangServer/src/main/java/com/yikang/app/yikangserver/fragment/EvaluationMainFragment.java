@@ -215,7 +215,7 @@ public class EvaluationMainFragment extends BaseFragment implements
 		param.add("surveyTableId", surveyId);
 		param.add("assessmentId", EvalutionState.currAssementId);
 
-		ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
+		ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
 
 			@Override
 			public void onSuccess(ResponseContent content) {
@@ -256,7 +256,7 @@ public class EvaluationMainFragment extends BaseFragment implements
 
 		final String url = UrlConstants.getQustrionSubmitUrl(tableType);
 
-		ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
+		ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
 
 			@Override
 			public void onSuccess(ResponseContent content) {

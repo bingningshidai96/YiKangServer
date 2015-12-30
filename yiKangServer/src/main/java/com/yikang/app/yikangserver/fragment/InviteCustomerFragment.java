@@ -111,7 +111,7 @@ public class InviteCustomerFragment extends BaseListFragment<InviteCustomer> {
 		final String url = UrlConstants.URL_INVITE_LIST;
 		RequestParam param = new RequestParam();
 		param.add("userStatus", type.getCode());
-		ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
+		ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
 			@Override
 			public void onSuccess(ResponseContent content) {
 				String json = content.getData();

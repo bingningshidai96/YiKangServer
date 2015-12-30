@@ -176,30 +176,13 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white" >
+            android:background="@color/line_grey2" >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
-
-                <LinearLayout
-                    style="@style/style_mine_item"
-                    android:layout_marginTop="1px"
-                    android:visibility="gone" >
-
-                    <TextView
-                        style="@style/style_countInfo_item_text"
-                        android:layout_weight="1"
-                        android:text="@string/mine_profession_lever" />
-
-                    <TextView
-                        android:id="@+id/tv_mine_profession_lever"
-                        style="@style/style_countInfo_item_text"
-                        android:layout_weight="2"
-                        android:textColor="@color/black"
-                        android:text=""/>
-                </LinearLayout>
+                android:orientation="vertical"
+                android:background="@color/white">
 
                 <LinearLayout
                     android:id="@+id/ly_mine_distinct_area"
@@ -267,6 +250,12 @@
                         android:paddingRight="20dp"
                         android:textColor="@color/black" />
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/line_grey2" />
+
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

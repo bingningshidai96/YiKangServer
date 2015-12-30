@@ -158,7 +158,7 @@ public class SeniorInfoActivity extends BaseActivity implements
         RequestParam param = new RequestParam();
         param.add("seniorId", seniorId);
         String url =UrlConstants.URL_ADD_EVALUATION_BAG;
-        ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
+        ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
             @Override
             public void onSuccess(ResponseContent content) {
                 dismissWatingDailog();
@@ -200,7 +200,7 @@ public class SeniorInfoActivity extends BaseActivity implements
         param.addAll(genrateMapFromInput());
         String url = UrlConstants.URL_SENOIR_INFO_SUBMIT;
 
-        ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
+        ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
             @Override
             public void onSuccess(ResponseContent content) {
                 dismissWatingDailog();

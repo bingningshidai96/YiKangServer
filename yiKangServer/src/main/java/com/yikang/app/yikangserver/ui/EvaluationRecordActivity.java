@@ -88,7 +88,7 @@ public class EvaluationRecordActivity extends BaseActivity implements
 		String url = UrlConstants.URL_GET_EVALUATION_RECORD;
 		RequestParam param = new RequestParam();
 		param.add("seniorId", SenoirState.currSeniorId);
-		ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
+		ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
 			@Override
 			public void onSuccess(ResponseContent content) {
 				dismissWatingDailog();
@@ -122,7 +122,7 @@ public class EvaluationRecordActivity extends BaseActivity implements
 		RequestParam param = new RequestParam();
 		param.add("seniorId", SenoirState.currSeniorId);
 		final String url =UrlConstants.URL_ADD_EVALUATION_BAG;
-		ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
+		ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
 			@Override
 			public void onSuccess(ResponseContent content) {
 				try {

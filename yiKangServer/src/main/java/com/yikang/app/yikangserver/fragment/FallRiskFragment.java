@@ -183,7 +183,7 @@ public class FallRiskFragment extends BaseFragment implements
         LOG.i(TAG, "[loadRecordAnswers]" + EvalutionState.currTableId + "==="
                 + EvalutionState.currAssementId);
 
-        ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
+        ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
 
             @Override
             public void onSuccess(ResponseContent content) {
@@ -224,7 +224,7 @@ public class FallRiskFragment extends BaseFragment implements
 
 
         final String url = UrlConstants.getQustrionSubmitUrl(tableType);
-        ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
+        ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
 
             @Override
             public void onSuccess(ResponseContent content) {

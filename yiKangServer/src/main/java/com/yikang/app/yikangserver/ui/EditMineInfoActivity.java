@@ -134,7 +134,7 @@ public class EditMineInfoActivity extends BaseActivity implements
 		String url = UrlConstants.URL_EDIT_USER_INFO;
 		RequestParam param = new RequestParam();
 		param.addAll(paramMap);
-		ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
+		ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
 			@Override
 			public void onSuccess(ResponseContent content) {
 				dismissWatingDailog();

@@ -292,7 +292,7 @@ public class ResetPasswFragment extends BaseFragment implements View.OnClickList
         RequestParam param = new RequestParam();
         param.add("loginName", phoneNumber);
         param.add("password", passWord);
-        ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
+        ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
 
             @Override
             public void onSuccess(ResponseContent content) {

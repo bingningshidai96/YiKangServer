@@ -1,6 +1,5 @@
 package com.yikang.app.yikangserver.ui;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -16,7 +15,6 @@ import com.yikang.app.yikangserver.application.AppConfig;
 import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.api.RequestParam;
 import com.yikang.app.yikangserver.api.ResponseContent;
-import com.yikang.app.yikangserver.dailog.DialogFactory;
 import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.api.ApiClient;
 import com.yikang.app.yikangserver.utils.LOG;
@@ -47,13 +45,17 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 		
 		edtUserId.addTextChangedListener(new TextWatcher() {
 			@Override
-			public void onTextChanged(CharSequence s, int start, int before, int count) {}
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+			}
+
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {}
+										  int after) {
+			}
+
 			@Override
 			public void afterTextChanged(Editable s) {
-				if(TextUtils.isEmpty(s.toString())){
+				if (TextUtils.isEmpty(s.toString())) {
 					edtPassw.setText("");
 				}
 			}
@@ -122,33 +124,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 	 */
 	private void findPassw() {
         UIHelper.showFindPasswordPage(this);
-
-
-
-//		String userId = edtUserId.getText().toString();
-//		if(TextUtils.isEmpty(userId)||userId.length()!=11){
-//			AppContext.showToast(R.string.login_find_passw_input_tips);
-//			edtUserId.requestFocus();
-//			return ;
-//		}
-//		showWatingDailog();
-//		String url = UrlConstants.URL_FIND_PASSW;
-//		RequestParam param = new RequestParam();
-//		param.add("loginName", userId);
-//		ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
-//			@Override
-//			public void onSuccess(ResponseContent content) {
-//				dismissWatingDailog();
-//				AppContext.showToast(R.string.login_find_passw_find_seucess);
-//			}
-//
-//			@Override
-//			public void onFialure(String status, String message) {
-//				dismissWatingDailog();
-//				String msg = getString(R.string.login_find_passw_find_fail);
-//				AppContext.showToast(msg+":"+message);
-//			}
-//		});
 	}
 
 	/**
@@ -169,16 +144,16 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 	 * 登录
 	 */
 	private void login(final String userName, final String passw) {
-		showSubmitDialog();
+		showWatingDailog();
 		String url = UrlConstants.URL_LOGIN_LOGIN;
 		RequestParam param = new RequestParam("appid", "accessticket");
 		param.add("loginName", userName);
 		param.add("passWord", passw);
 		param.add("machineCode", AppContext.getAppContext().getDeviceID());
-		ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
+		ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
 			@Override
 			public void onSuccess(ResponseContent content) {
-				dismissSubmitDialog();
+				dismissWatingDailog();
 				accessTicket = content.getData();
 				AppContext.getAppContext().updateAccessTicket(accessTicket);
 				AppConfig appConfig = AppConfig.getAppConfig(getApplicationContext());
@@ -189,36 +164,12 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
 			@Override
 			public void onFialure(String status, String message) {
-				dismissSubmitDialog();
+				dismissWatingDailog();
 				LOG.d(TAG, "[login]" + message);
 				AppContext.showToast(LoginActivity.this, message);
 			}
 		});
 	}
 
-
-	private ProgressDialog proDialog;
-
-	private void showSubmitDialog() {
-		if (proDialog == null) {
-			proDialog = DialogFactory.getProgressDailog(
-					DialogFactory.TYPE_SUBMIT_DATA, this);
-		}
-		proDialog.show();
-	}
-
-	private void dismissSubmitDialog() {
-		if (proDialog != null && proDialog.isShowing()) {
-			proDialog.dismiss();
-		}
-	}
-
-	@Override
-	protected void onStop() {
-		super.onStop();
-		dismissSubmitDialog();
-		proDialog = null;
-
-	}
 
 }

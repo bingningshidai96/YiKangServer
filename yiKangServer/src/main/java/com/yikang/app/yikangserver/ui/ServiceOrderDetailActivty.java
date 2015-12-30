@@ -84,23 +84,23 @@ public class ServiceOrderDetailActivty extends BaseActivity implements
 		final String url = UrlConstants.URL_SERVICE_ORDER_DETAIL;
 		RequestParam param = new RequestParam();
 		param.add("orderServiceDetailId", order.id);
-		ApiClient.requestStr(url, param,
-				new ApiClient.ResponceCallBack() {
-					@Override
-					public void onSuccess(ResponseContent content) {
-						dismissWatingDailog();
-						String reuslt = content.getData();
-						LOG.i(TAG, "[getData]" + reuslt);
-						order = JSON.parseObject(reuslt, ServiceOrder.class);
-						fillData();
-					}
+		ApiClient.postAsyn(url, param,
+                new ApiClient.ResponceCallBack() {
+                    @Override
+                    public void onSuccess(ResponseContent content) {
+                        dismissWatingDailog();
+                        String reuslt = content.getData();
+                        LOG.i(TAG, "[getData]" + reuslt);
+                        order = JSON.parseObject(reuslt, ServiceOrder.class);
+                        fillData();
+                    }
 
-					@Override
-					public void onFialure(String status, String message) {
-						dismissWatingDailog();
-						AppContext.showToast(message);
-					}
-				});
+                    @Override
+                    public void onFialure(String status, String message) {
+                        dismissWatingDailog();
+                        AppContext.showToast(message);
+                    }
+                });
 
 	}
 
@@ -164,23 +164,23 @@ public class ServiceOrderDetailActivty extends BaseActivity implements
 		RequestParam param = new RequestParam();
 		param.add("orderServiceDetailId", order.id);
 		param.add("feedback", feedback);
-		ApiClient.requestStr(url, param,
-				new ApiClient.ResponceCallBack() {
-					@Override
-					public void onSuccess(ResponseContent content) {
-						dismissWatingDailog();
-						order.feedBack = feedback;
-						btConfirm.setEnabled(false);
-						AppContext
-								.showToast(R.string.service_order_feedback_success);
-					}
+		ApiClient.postAsyn(url, param,
+                new ApiClient.ResponceCallBack() {
+                    @Override
+                    public void onSuccess(ResponseContent content) {
+                        dismissWatingDailog();
+                        order.feedBack = feedback;
+                        btConfirm.setEnabled(false);
+                        AppContext
+                                .showToast(R.string.service_order_feedback_success);
+                    }
 
-					@Override
-					public void onFialure(String status, String message) {
-						dismissWatingDailog();
-						AppContext.showToast(message);
-					}
-				});
+                    @Override
+                    public void onFialure(String status, String message) {
+                        dismissWatingDailog();
+                        AppContext.showToast(message);
+                    }
+                });
 	}
 
 	/**

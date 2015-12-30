@@ -2,6 +2,7 @@ package com.yikang.app.yikangserver.api;
 
 import android.os.Handler;
 import android.os.Looper;
+
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.FormEncodingBuilder;
 import com.squareup.okhttp.MediaType;
@@ -10,10 +11,6 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
-import com.yikang.app.yikangserver.api.FileRequestParam;
-import com.yikang.app.yikangserver.application.AppContext;
-import com.yikang.app.yikangserver.api.RequestParam;
-import com.yikang.app.yikangserver.api.ResponseContent;
 import com.yikang.app.yikangserver.utils.AES;
 import com.yikang.app.yikangserver.utils.DeviceUtils;
 import com.yikang.app.yikangserver.utils.LOG;
@@ -49,57 +46,54 @@ public class ApiClient {
 		void onFialure(String status, String message);
 	}
 
-	public static void requestStr(String url, RequestParam param,
-			final ResponceCallBack callBack) {
-		requestStr(url, param, callBack, true);
-	}
 
-	public static void requestStr(String url, RequestParam param, final ResponceCallBack callBack, final boolean isReSultEncrypt) {
-
-		Request request = new Request.Builder()
-				.url(url)
-				.post(buildBody(param))
-				.build();
-
-
-		client.newCall(request).enqueue(new Callback() {
-			@Override
-			public void onFailure(Request request, IOException e) {
-				//处理网络错误
-				mDelivery.post(new Runnable() {
-					@Override
-					public void run() {
-						callBack.onFialure(ResponceCallBack.STATUS_NET_ERORR, "加载失败,请检查网络");
-					}
-				});
-			}
-
-			@Override
-			public void onResponse(Response response) throws IOException {
-				String result = response.body().string();
-				try {
-					final ResponseContent content = ResponseContent.toResposeContent(result, isReSultEncrypt);
-					mDelivery.post(new Runnable() {
-						@Override
-						public void run() {
-							if (ResponseContent.STATUS_OK.equals(content.getStatus())) {
-								callBack.onSuccess(content);
-							} else {
-								callBack.onFialure(content.getStatus(), content.getMessage());
-							}
-						}
-					});
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	/**
+	 * @see #postAsyn(String,RequestParam,ResponceCallBack,boolean)
+	 */
+	public static void postAsyn(String url, RequestParam param,
+								final ResponceCallBack callBack) {
+		postAsyn(url, param, callBack, true);
 	}
 
 
 	/**
+	 * 异步post请求
+	 * @param param 请求参数
+	 * @param callBack 请求结果的回调接口
+	 * @param isReSultEncrypt 结果是否加密
+	 */
+	public static void postAsyn(String url, RequestParam param, final ResponceCallBack callBack,
+								final boolean isReSultEncrypt) {
+
+		Request request = new Request.Builder().url(url)
+				.post(buildBody(param)).build();
+		executeAsyn(request, callBack, isReSultEncrypt);
+	}
+
+
+	/**
+	 * 上传文件
+	 */
+	public static void postFilesAsyn(String url, FileRequestParam param,
+									 final ResponceCallBack callBack){
+		if(!DeviceUtils.checkNetWorkIsOk()){
+			callBack.onFialure(ResponceCallBack.STATUS_NET_ERORR,"抱歉，当前没有网络");
+			return;
+		}
+		ArrayList<File> files = param.getFiles();
+		if(files.isEmpty()){
+			callBack.onFialure(ResponceCallBack.STATUS_DATA_ERORR,"没有上传的文件");
+		}
+
+		final Request request = new Request.Builder().url(url).post(buildBody(param)).build();
+
+		executeAsyn(request,callBack,false);
+	}
+
+
+
+	/**
 	 * 传入一个RequestParam，构建RequestBody
-	 *
 	 * @param param 需要构建的RequestParam
 	 * @return 一个构建好的RequestParam
 	 */
@@ -107,26 +101,47 @@ public class ApiClient {
 		FormEncodingBuilder builder = new FormEncodingBuilder();
 
 		if (param.getAppId() != null) {
-			LOG.i(TAG, "appid");
 			builder.add(RequestParam.KEY_APPID, param.getAppId());
 		}
 		if (param.getAccessTicket() != null) {
-			LOG.i(TAG,"AccessTicket");
 			builder.add(RequestParam.KEY_ACCESS_TICKET, param.getAccessTicket());
 		}
 		if (param.getMachineCode() != null) {
-			LOG.i(TAG,"machineCode");
 			builder.add(RequestParam.KEY_MACHINECODE, param.getMachineCode());
 		}
 		if (!param.isParamEmpty()) {
 			builder.add(RequestParam.KEY_PARAM_DATA, encript(param.getParamJson()));
-			LOG.i(TAG,"paramData"+param.getParamJson());
 		}
-
 		return builder.build();
 	}
 
 
+	/**
+	 * 构建文件请求的requestBody
+	 * @param param 文件请求参数
+	 * @return form 请求提
+	 */
+	private static RequestBody buildBody(FileRequestParam param){
+		ArrayList<File> files = param.getFiles();
+		MediaType DEFAULT_BINARY = MediaType.parse("application/octet-stream");
+		MultipartBuilder builder = new MultipartBuilder().type(MultipartBuilder.FORM);
+		builder.addFormDataPart(FileRequestParam.KEY_APPID,param.appId)
+				.addFormDataPart(FileRequestParam.KEY_ACCESSTICKET,param.accessTicket)
+				.addFormDataPart(FileRequestParam.KEY_MACHINECODE,param.mochineCode)
+				.addFormDataPart(FileRequestParam.KEY_FILEGROUP,param.getFileGroup());
+		for (File file:files) {
+			builder.addFormDataPart(FileRequestParam.KEY_FILES,file.getName(),
+					RequestBody.create(DEFAULT_BINARY,file));
+		}
+		return builder.build();
+	}
+
+
+	/**
+	 * 加密字符串
+	 * @param json 需要加密的json
+	 * @return 返回加密后的json
+	 */
 	private static String encript(String json) {
 		try {
 			return AES.encrypt(json, AES.getKey());
@@ -137,73 +152,59 @@ public class ApiClient {
 	}
 
 
+
 	/**
-	 * 上传文件
-	 * @param url 上传文件的路径
-	 * @param param file参数
+	 * 执行异步请求
+	 * @param request 要执行的请求
 	 * @param callBack 回调接口
+	 * @param isReSultEncrypt 请求结果是否加密
 	 */
-	public static void upLoadFiles(String url,FileRequestParam param,final ResponceCallBack callBack){
-		MediaType DEFAULT_BINARY = MediaType.parse("application/octet-stream");
-		if(!DeviceUtils.checkNetWorkIsOk()){
-			callBack.onFialure(ResponceCallBack.STATUS_NET_ERORR,"抱歉，当前没有网络");
-			return;
-		}
-		ArrayList<File> files = param.getFiles();
-		if(files.isEmpty()){
-			callBack.onFialure(ResponceCallBack.STATUS_DATA_ERORR,"没有上传的文件");
-			return ;
-		}
-
-		MultipartBuilder builder = new MultipartBuilder().type(MultipartBuilder.FORM);
-		builder.addFormDataPart(FileRequestParam.KEY_APPID,param.appId)
-				.addFormDataPart(FileRequestParam.KEY_ACCESSTICKET,param.accessTicket)
-				.addFormDataPart(FileRequestParam.KEY_MACHINECODE,param.mochineCode)
-				.addFormDataPart(FileRequestParam.KEY_FILEGROUP,param.getFileGroup());
-		for (File file:files) {
-			builder.addFormDataPart(FileRequestParam.KEY_FILES,file.getName(),
-					RequestBody.create(DEFAULT_BINARY,file));
-		}
-
-		final Request request = new Request.Builder().url(url).post(builder.build()).build();
-
+	private static void executeAsyn(Request request,final ResponceCallBack callBack,
+									final boolean isReSultEncrypt ){
 		client.newCall(request).enqueue(new Callback() {
 			@Override
 			public void onFailure(Request request, IOException e) {
-				callBack.onFialure(ResponceCallBack.STATUS_NET_ERORR, "加载失败,请检查网络");
+				mDelivery.post(new Runnable() {
+					@Override
+					public void run() {
+						callBack.onFialure(ResponceCallBack.STATUS_NET_ERORR, "加载失败,请检查网络");
+					}
+				});
 			}
 
 			@Override
 			public void onResponse(Response response) throws IOException {
-				if (response.code() != 200) {
-					callBack.onFialure(ResponceCallBack.STATUS_NET_ERORR, "加载失败,请检查网络");
-					return;
-				}
-				String result = response.body().string();
-				try {
-					ResponseContent content = ResponseContent.toResposeContent(result, false);
-					if (content.isStautsOk()) {
-						callBack.onSuccess(content);
-					} else {
-						callBack.onFialure(content.getStatus(),
-								content.getMessage());
+				final String result = response.body().string();
+				mDelivery.post(new Runnable() {
+					@Override
+					public void run() {
+						try {
+							LOG.i(TAG,"[onResponse]"+result);
+							final ResponseContent content = ResponseContent
+									.toResposeContent(result, isReSultEncrypt);
+
+							if (content.isStautsOk()) {
+								callBack.onSuccess(content);
+							} else {
+								callBack.onFialure(content.getStatus(), content.getMessage());
+							}
+						} catch (Exception e) {
+							e.printStackTrace();
+
+							callBack.onFialure(ResponceCallBack.STATUS_DATA_ERORR, "本地数据解析错误");
+						}
 					}
-				} catch (Exception e) {
-					callBack.onFialure(ResponceCallBack.STATUS_DATA_ERORR,
-							"本地数据解析错误");
-				}
+				});
 			}
 		});
 	}
 
+
 	/**
 	 * 上传文件
-	 * 
-	 * @param url
-	 * @param paramMap
-	 * @param callBack
 	 */
-	public static void UploadSingleFile(String url,Map<String, Object> paramMap, final ResponceCallBack callBack) {
+	public static void UploadSingleFile(String url,Map<String, Object> paramMap,
+										final ResponceCallBack callBack) {
 
 		if (!DeviceUtils.checkNetWorkIsOk()) {
 			callBack.onFialure(ResponceCallBack.STATUS_NET_ERORR,"抱歉网络错误");

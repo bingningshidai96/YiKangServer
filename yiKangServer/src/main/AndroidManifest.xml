@@ -144,10 +144,12 @@
         
          
         <!-- **********************************极光推送**************************************-->
-           <!-- Required SDK核心功能-->
+
+        <!-- Required SDK核心功能-->
         <activity
             android:name="cn.jpush.android.ui.PushActivity"
-            android:configChanges="orientation|keyboardHidden" 
+            android:configChanges="orientation|keyboardHidden"
+            android:theme="@android:style/Theme.NoTitleBar"
             android:exported="false">
             <intent-filter>
                 <action android:name="cn.jpush.android.ui.PushActivity" />
@@ -155,16 +157,18 @@
                 <category android:name="com.yikang.app.yikangserver" />
             </intent-filter>
         </activity>
-        
+
+
         <!-- Required  SDK核心功能-->
         <service
             android:name="cn.jpush.android.service.DownloadService"
             android:enabled="true"
             android:exported="false" >
         </service>
-    
-        
+
+
         <!-- Required SDK 核心功能-->
+        <!-- 可配置android:process参数将PushService放在其他进程中 -->
         <service
             android:name="cn.jpush.android.service.PushService"
             android:enabled="true"
@@ -174,17 +178,18 @@
                 <action android:name="cn.jpush.android.intent.REPORT" />
                 <action android:name="cn.jpush.android.intent.PushService" />
                 <action android:name="cn.jpush.android.intent.PUSH_TIME" />
-                
             </intent-filter>
         </service>
-        
-        
+
+
+
+
         <!-- Required SDK核心功能-->
         <receiver
             android:name="cn.jpush.android.service.PushReceiver"
             android:enabled="true"
             android:exported="false">
-             <intent-filter android:priority="1000">
+            <intent-filter android:priority="1000">
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />   <!--Required  显示通知栏 -->
                 <category android:name="com.yikang.app.yikangserver" />
             </intent-filter>
@@ -192,15 +197,17 @@
                 <action android:name="android.intent.action.USER_PRESENT" />
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
-             <!-- Optional -->
+            <!-- Optional -->
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_ADDED" />
                 <action android:name="android.intent.action.PACKAGE_REMOVED" />
                 <data android:scheme="package" />
             </intent-filter>
-   
+
         </receiver>
-        
+
+
+
         <!-- Required SDK核心功能-->
         <receiver android:name="cn.jpush.android.service.AlarmReceiver" />
         
@@ -222,8 +229,10 @@
  
         
         <!-- Required  . Enable it you can get statistics data with channel -->
+        <!-- 正式的key:9de890837df54fce0b818cc4-->
+        <!--测试的key:0dfb92383d653a5bf990b0a1 -->
         <meta-data android:name="JPUSH_CHANNEL" android:value="developer-default"/>
-        <meta-data android:name="JPUSH_APPKEY" android:value="9de890837df54fce0b818cc4" /> 
+        <meta-data android:name="JPUSH_APPKEY" android:value="0dfb92383d653a5bf990b0a1" />
         <!-- *********************************极光推送************************************** -->
         <meta-data android:name="UMENG_APPKEY" android:value="566fdfa6e0f55aad4d0026a8"/>
         <meta-data android:name="UMENG_CHANNEL" android:value="Umeng" />

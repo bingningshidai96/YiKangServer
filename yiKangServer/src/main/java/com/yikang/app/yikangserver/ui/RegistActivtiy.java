@@ -167,8 +167,7 @@ public class RegistActivtiy extends BaseActivity implements OnNextListener,
 		String url = UrlConstants.URL_REGISTER;
 		RequestParam param = new RequestParam("appid", "accessTicket");
 		param.addAll(paramMap);
-		LOG.i(TAG, "" + param.toParams());
-		ApiClient.requestStr(url, param,
+		ApiClient.postAsyn(url, param,
 				new ApiClient.ResponceCallBack() {
 					@Override
 					public void onSuccess(ResponseContent content) {
@@ -222,7 +221,7 @@ public class RegistActivtiy extends BaseActivity implements OnNextListener,
 		param.add("loginName", userName);
 		param.add("passWord", passw);
 		param.add("machineCode", AppContext.getAppContext().getDeviceID());
-		ApiClient.requestStr(url, param,
+		ApiClient.postAsyn(url, param,
 				new ApiClient.ResponceCallBack() {
 					@Override
 					public void onSuccess(ResponseContent content) {

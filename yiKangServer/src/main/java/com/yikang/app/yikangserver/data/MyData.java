@@ -16,8 +16,8 @@ public class MyData {
 	public static final int NURSING = 1;
 	public static final int THERAPIST = 2;
 	
-	public static final int FULL_TIME =0;
-	public static final int PAER_TIME =1;
+	public static final int FULL_TIME =1;
+	public static final int PAER_TIME =0;
 
 	// 性别
 	public static final SparseArray<String> sexMap = new SparseArray<String>(2);
@@ -61,8 +61,9 @@ public class MyData {
 		professionMap.put(NURSING, "护士");
 		professionMap.put(THERAPIST, "康复师");
 
-		profeLeversMap.put(FULL_TIME, "全职");
+
 		profeLeversMap.put(PAER_TIME, "兼职");
+		profeLeversMap.put(FULL_TIME, "全职");
 
 		/**
 		 * 呼吸内科、消化内科、神经内科、心血管内科、肾内科、血液内科、 普外科、神经外科、心胸外科、泌尿外科、心血管外科、肝胆外科、肛肠外科、骨外科

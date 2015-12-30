@@ -47,11 +47,11 @@ public class AppContext extends Application {
 	public void onCreate() {
 		super.onCreate();
 		appContext = this;
+		CrashReport.initCrashReport(appContext, "900015194", false);
 		AppConfig.getAppConfig(this);
 		JPushInterface.setDebugMode(DEBUG); // 设置开启日志,发布时请关闭日志
 		JPushInterface.init(this); // 初始化 JPush
 		initCachePath();
-		CrashReport.initCrashReport(appContext, "900015194", false);
 		ImageLoaderConfiguration.Builder configBuilder = new ImageLoaderConfiguration.Builder(
 				this);
 		configBuilder.tasksProcessingOrder(QueueProcessingType.LIFO)

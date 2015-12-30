@@ -200,7 +200,7 @@ public class DetialQuestionFragment extends BaseFragment implements OnClickListe
         params.add("surveyTableId", EvalutionState.currTableId);
         params.add("questionCrosswiseId", cWirses.getQuestionCrosswiseId());
 
-        ApiClient.requestStr(url, params, new ApiClient.ResponceCallBack() {
+        ApiClient.postAsyn(url, params, new ApiClient.ResponceCallBack() {
 
             @Override
             public void onSuccess(ResponseContent content) {
@@ -267,7 +267,7 @@ public class DetialQuestionFragment extends BaseFragment implements OnClickListe
         param.addAll(paramData);
 
         String url = UrlConstants.getQustrionSubmitUrl(tableType);
-        ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
+        ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
 
             @Override
             public void onSuccess(ResponseContent content) {

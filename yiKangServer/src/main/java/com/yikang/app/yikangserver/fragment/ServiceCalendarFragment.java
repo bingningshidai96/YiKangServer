@@ -116,7 +116,7 @@ public class ServiceCalendarFragment extends BaseListFragment<ServiceOrder> {
 		final String url = UrlConstants.URL_ORDER_LIST;
 		RequestParam param = new RequestParam();
 		param.add("serviceDetailStatus", type.getCode());
-		ApiClient.requestStr(url, param,
+		ApiClient.postAsyn(url, param,
 				new ApiClient.ResponceCallBack() {
 					@Override
 					public void onSuccess(ResponseContent content) {

@@ -52,7 +52,7 @@ public class SeniorListFragment extends BaseListFragment<SeniorInfo> {
 	@Override
 	protected void sendRequestData(final RequestType requestType) {
 		RequestParam params = new RequestParam();
-		ApiClient.requestStr(UrlConstants.URL_GET_SENIOR_LIST, params, new ApiClient.ResponceCallBack() {
+		ApiClient.postAsyn(UrlConstants.URL_GET_SENIOR_LIST, params, new ApiClient.ResponceCallBack() {
 			@Override
 			public void onSuccess(ResponseContent content) {
 				String json = content.getData();

@@ -72,7 +72,7 @@ public class UpdateManger {
 		final String url = "";
 		RequestParam param = new RequestParam();
 		
-		ApiClient.requestStr(url, param, mCallBack);
+		ApiClient.postAsyn(url, param, mCallBack);
 	}
 	
 	

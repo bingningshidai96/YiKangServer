@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.yikang.app.yikangserver.api.ApiClient;
 import com.yikang.app.yikangserver.ui.BaseActivity;
 import com.yikang.app.yikangserver.utils.AES;
 
@@ -18,7 +19,6 @@ public class TestActivity extends BaseActivity {
 
     @Override
     protected void findViews() {
-
     }
 
     @Override

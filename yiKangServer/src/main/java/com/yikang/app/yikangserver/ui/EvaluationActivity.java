@@ -127,7 +127,7 @@ public class EvaluationActivity extends BaseActivity implements
 		String url = UrlConstants.URL_GET_TABLE_LIST;
 		RequestParam param = new RequestParam();
 		param.add("assessmentId", EvalutionState.currAssementId);
-		ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
+		ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
 
 			@Override
 			public void onSuccess(ResponseContent content) {

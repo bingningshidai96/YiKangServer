@@ -33,8 +33,8 @@ public class JPushBuinessReciever extends BroadcastReceiver {
 		} else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(action)) {
 			Log.d(TAG, "[MyReceiver] 用户点击打开了通知");
 			// 打开自定义的Activity
-			// i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			Intent mainIntent = new Intent(context, MainActivity.class);
+			mainIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			context.startActivity(mainIntent);
 		} else if (JPushInterface.ACTION_RICHPUSH_CALLBACK.equals(action)) {
 			Log.d(TAG,"[MyReceiver] 用户收到到RICH PUSH CALLBACK: "+ bundle.getString(JPushInterface.EXTRA_EXTRA));

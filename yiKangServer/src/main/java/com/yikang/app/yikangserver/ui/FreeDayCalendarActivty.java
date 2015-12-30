@@ -57,7 +57,7 @@ public class FreeDayCalendarActivty extends BaseActivity implements
 		Calendar calendar = Calendar.getInstance();
 		param.add("year", calendar.get(Calendar.YEAR));
 		param.add("month", calendar.get(Calendar.MONTH) + 1);
-		ApiClient.requestStr(url, param,
+		ApiClient.postAsyn(url, param,
 				new ApiClient.ResponceCallBack() {
 
 					@Override

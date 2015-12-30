@@ -123,7 +123,7 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 		param.add("deviceType", 0);
 		param.add("codeType", AppContext.getAppContext().getDeviceIdType());
 		param.add("deviceCode", AppContext.getAppContext().getDeviceID());
-		ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
+		ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
 			@Override
 			public void onSuccess(ResponseContent content) {
 				AppConfig appConfig = AppConfig.getAppConfig(getApplicationContext());
@@ -154,16 +154,16 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 		showWatingDailog();
 		String url = UrlConstants.URL_GET_USER_INFO;
 		RequestParam param = new RequestParam();
-		ApiClient.requestStr(url, param, new ApiClient.ResponceCallBack() {
+		ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
 			@Override
 			public void onSuccess(ResponseContent content) {
 				dismissWatingDailog();
-				LOG.d(TAG, "[loadData-->requestStr]:" + content.getData());
+				LOG.d(TAG, "[loadData-->postAsyn]:" + content.getData());
 				User user = JSON.parseObject(content.getData(), User.class);
 				if (user == null || user.userId == null) {
 					logout();
 				}
-				LOG.d(TAG, "[loadData-->requestStr]:" + user);
+				LOG.d(TAG, "[loadData-->postAsyn]:" + user);
 				AppContext.getAppContext().login(user);
 				initViewsAfterGetInfo();
 			}
@@ -310,7 +310,7 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 	 */
 	private void requestAndSetJPushAlias() {
 		final String url = UrlConstants.URL_GET_JPUSH_ALIAS;
-		ApiClient.requestStr(url, new RequestParam(), new ResponceCallBack() {
+		ApiClient.postAsyn(url, new RequestParam(), new ResponceCallBack() {
 			@Override
 			public void onSuccess(ResponseContent content) {
 				LOG.i(TAG, "[requestAndSetJPushAlias] get alias success! ");
@@ -407,8 +407,6 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 				logs = "Failed with errorCode = " + code;
 				Log.e(TAG, "[mAliasCallback.gotResult]:" + logs);
 			}
-
-			AppContext.showToast(logs);
 		}
 	};
 

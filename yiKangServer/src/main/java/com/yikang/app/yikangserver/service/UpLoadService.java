@@ -1,14 +1,12 @@
 package com.yikang.app.yikangserver.service;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.Map;
 import android.app.IntentService;
 import android.content.Intent;
 import android.text.TextUtils;
 import com.alibaba.fastjson.JSON;
 import com.yikang.app.yikangserver.api.FileRequestParam;
-import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.api.ResponseContent;
 import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.api.ApiClient;
@@ -53,8 +51,7 @@ public class UpLoadService extends IntentService {
 		LOG.i(TAG, "[upLoadSingleFile]上传文件开始...");
 		FileRequestParam param = new FileRequestParam("headImage");
 		param.addFile(file);
-
-		ApiClient.upLoadFiles(url, param, new ApiClient.ResponceCallBack() {
+		ApiClient.postFilesAsyn(url, param, new ApiClient.ResponceCallBack() {
 			@Override
 			public void onSuccess(ResponseContent content) {
 				String data = content.getData();
@@ -72,33 +69,6 @@ public class UpLoadService extends IntentService {
 				upLoadFail(message);
 			}
 		});
-
-//		HashMap<String, Object> map = new HashMap<String, Object>();
-//		map.put("fileGroup", "headImage");
-//		map.put("files", file);
-//		//map.put("appId", "appId");
-//		//map.put("accessTicket", "aaa");
-//		map.put("machineCode", AppContext.getAppContext().getDeviceID());
-//		LOG.i(TAG, "[upLoadSingleFile]" + map.toString());
-//		LOG.i(TAG, "[upLoadSingleFile]" + file.isFile() + file.exists());
-//		ApiClient.UploadSingleFile(url, map, new ApiClient.ResponceCallBack() {
-//			@Override
-//			public void onSuccess(ResponseContent content) {
-//				String data = content.getData();
-//				@SuppressWarnings("unchecked")
-//				Map<String, Object> map = (Map<String, Object>) JSON
-//						.parse(data);
-//				LOG.i(TAG, "[upLoadSingleFile-->onSuccess]" + map.toString());
-//				String fileUrl = (String) map.get("fileUrl");
-//				upLoadSuccess(fileUrl);
-//			}
-//
-//			@Override
-//			public void onFialure(String status, String message) {
-//				LOG.i(TAG, "[upLoadSingleFile-->onFialure]" + message);
-//				upLoadFail(message);
-//			}
-//		});
 	}
 
 	private void upLoadFail(String message) {
@@ -116,20 +86,5 @@ public class UpLoadService extends IntentService {
 		intent.putExtra(EXTRA_DATA, url);
 		sendBroadcast(intent);
 	}
-
-	// /**
-	// * 上传多个文件
-	// */
-	// private void upLoadFiles(Files files,String url){
-	// String[] paths = intent.getStringArrayExtra("paths");
-	// if(paths!=null){
-	// ArrayList<File> fileList = new ArrayList<File>();
-	// for (String path : paths) {
-	// fileList.add(new File(path));
-	// }
-	// String url;
-	// HttpUtils.uploadFile(url, param, callBack)
-	// }
-	// }
 
 }
