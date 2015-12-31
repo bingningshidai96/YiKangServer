@@ -170,7 +170,7 @@
                     android:drawablePadding="10dp"
                     android:text="@string/service_order_detail_custom_phone"
                     android:drawableLeft="@drawable/ic_cell_phone"
-                    android:textColor="#2d86ff"
+                    android:textColor="@color/common_theme_color"
                     android:textSize="16sp" />
 
                 <TextView
@@ -180,7 +180,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
                     android:text=""
-                    android:textColor="#2d86ff"
+                    android:textColor="@color/common_theme_color"
                     android:textSize="16sp" />
 
                 <View
@@ -215,7 +215,7 @@
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
                     android:text="@string/service_order_detail_servered_phone"
-                    android:textColor="#2d86ff"
+                    android:textColor="@color/common_theme_color"
                     android:textSize="16sp" />
 
                 <TextView
@@ -225,7 +225,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
                     android:text=""
-                    android:textColor="#2d86ff"
+                    android:textColor="@color/common_theme_color"
                     android:textSize="16sp" />
 
                 <View

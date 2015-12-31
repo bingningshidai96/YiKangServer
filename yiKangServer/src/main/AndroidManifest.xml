@@ -232,7 +232,7 @@
         <!-- 正式的key:9de890837df54fce0b818cc4-->
         <!--测试的key:0dfb92383d653a5bf990b0a1 -->
         <meta-data android:name="JPUSH_CHANNEL" android:value="developer-default"/>
-        <meta-data android:name="JPUSH_APPKEY" android:value="0dfb92383d653a5bf990b0a1" />
+        <meta-data android:name="JPUSH_APPKEY" android:value="9de890837df54fce0b818cc4" />
         <!-- *********************************极光推送************************************** -->
         <meta-data android:name="UMENG_APPKEY" android:value="566fdfa6e0f55aad4d0026a8"/>
         <meta-data android:name="UMENG_CHANNEL" android:value="Umeng" />

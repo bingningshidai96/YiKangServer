@@ -5,7 +5,7 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical" >
     
-	<include layout="@layout/include_title_bar1"/>
+	<include layout="@layout/include_title_bar"/>
 	
 	<FrameLayout 
 	    android:id="@+id/fl_register_fragment_container"

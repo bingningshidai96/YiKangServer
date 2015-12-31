@@ -305,6 +305,11 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 		unregisterReceiver(receiver);
 	}
 
+
+
+
+	/*******以下是从服务器获取标识，病设置给极光推送别名的代码******/
+
 	/**
 	 * 获取别名,获取成功后设置别名
 	 */

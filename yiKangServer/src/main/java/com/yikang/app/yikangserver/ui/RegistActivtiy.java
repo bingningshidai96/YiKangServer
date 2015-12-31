@@ -63,7 +63,7 @@ public class RegistActivtiy extends BaseActivity implements OnNextListener,
 		 FragmentTransaction ft = getFragmentManager().beginTransaction();
 		 ft.replace(R.id.fl_register_fragment_container,
 		 fragment).commit();
-		//next("17822222222", "123456");
+//		next("17822222222", "123456");
 		// next("15836270024","111111");
 	}
 
@@ -116,8 +116,7 @@ public class RegistActivtiy extends BaseActivity implements OnNextListener,
 			public void onReceive(Context context, Intent intent) {
 				dismissWatingDailog();
 				printUploadResult(intent);
-				String avatarUrl = intent
-						.getStringExtra(UpLoadService.EXTRA_DATA);
+				String avatarUrl = intent.getStringExtra(UpLoadService.EXTRA_DATA);
 				if (!TextUtils.isEmpty(avatarUrl)) {
 					paramMap.put(PARAM_LOGIN_PHOTO_URL, avatarUrl);
 				}

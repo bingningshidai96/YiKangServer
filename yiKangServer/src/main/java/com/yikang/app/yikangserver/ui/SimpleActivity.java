@@ -55,6 +55,7 @@ public class SimpleActivity extends  BaseActivity{
 
     public static enum SimplePage{
         findPassw(1,R.string.reset_passw_title, ResetPasswFragment.class,null);
+        //freeTime(2,"空闲时间",)
 
 
         private final int id;

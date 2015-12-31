@@ -50,7 +50,7 @@
     <string name="regist_tel_hint">请输入手机号码</string>
 	<string name="regist_pass_hint">请输入6-16位密码</string>
 	<string name="regist_pass_again_hint">请再次输入密码</string>
-	<string name="regist_verlify_code_hint">验证码</string>
+	<string name="regist_verlify_code_hint">请输入验证码</string>
     <string name="regist_get_verlify_code">获取验证码</string>
     <string name="regist_get_void_code_hint">收不到验证码？\n点此电话收听语音验证码，请注意接听来电~</string>
 	<string name="regist_next_step">下一步</string>
@@ -156,5 +156,6 @@
 
 
     <string name="qr_dialog_tips">扫一扫关爱家人</string>
+    <string name="reset_passw_phone_tip">请输入需要重置的手机号码</string>
 
 </resources>

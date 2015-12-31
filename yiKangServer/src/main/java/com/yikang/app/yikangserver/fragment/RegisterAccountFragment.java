@@ -25,7 +25,7 @@ import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.dailog.DialogFactory;
 import com.yikang.app.yikangserver.utils.LOG;
 
-public class RegisterAccountFragment extends Fragment implements OnClickListener {
+public class RegisterAccountFragment extends BaseFragment implements OnClickListener {
 	protected static final String TAG = null;
 	// 填写从短信SDK应用后台注册得到的APPKEY
 	private static String APPKEY = "a11dd7ffad70";// 463db7238681 27fe7909f8e8
@@ -62,7 +62,7 @@ public class RegisterAccountFragment extends Fragment implements OnClickListener
 	private Handler smsResultHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
-			dismissDaiglog();
+			dismissWatingDailog();
 			final int event = msg.arg1;
 			final int result = msg.arg2;
 			final Object data = msg.obj;
@@ -271,9 +271,10 @@ public class RegisterAccountFragment extends Fragment implements OnClickListener
 			return;
 		}
 
-		showDailog();
+		showWatingDailog();
 		// 提交验证码
 		SMSSDK.submitVerificationCode(CHINA_CODE, phoneNumber, verlifiCode);
+		toNextStepPage();
 	}
 
 	/**
@@ -285,25 +286,11 @@ public class RegisterAccountFragment extends Fragment implements OnClickListener
 		listener.next(phoneNumber, passw);
 	}
 
-	private ProgressDialog waitingDialog;
-	
+
 	private Timer timer;
 	private TextView tvGetVoice;
 	private LinearLayout layout;
 
-	private void showDailog() {
-		if (waitingDialog == null) {
-			waitingDialog = DialogFactory.getProgressDailog(
-					DialogFactory.TYPE_SUBMIT_DATA, getActivity());
-		}
-		waitingDialog.show();
-	}
-
-	private void dismissDaiglog() {
-		if (waitingDialog != null && waitingDialog.isShowing()) {
-			waitingDialog.dismiss();
-		}
-	}
 
 	public interface OnNextListener {
 		public void next(String userName, String passw);

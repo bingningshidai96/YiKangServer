@@ -95,10 +95,8 @@ public class EvaluationRecordActivity extends BaseActivity implements
 				String json = content.getData();
 				datas.clear();
 				hasNewRecord = false;
-				LOG.d(TAG, "====" + json);
 				if (!TextUtils.isEmpty(json)) {
-					List<EvalutionRecord> list = JSON.parseArray(json,
-							EvalutionRecord.class);
+					List<EvalutionRecord> list = JSON.parseArray(json, EvalutionRecord.class);
 					datas.addAll(list);
 					int profession = AppContext.getAppContext()
 							.getUser().profession;

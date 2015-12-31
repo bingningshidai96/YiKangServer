@@ -104,6 +104,9 @@ public class ServiceOrderDetailActivty extends BaseActivity implements
 
 	}
 
+	/**
+	 * 填充数据
+	 */
 	private void fillData() {
 		tvAddr.setText(order.patientAddr);
 		if (order.patientBirthYear > 0) {

@@ -124,7 +124,7 @@ public class MineFragment extends BaseFragment implements OnClickListener {
             tvSpecial.setText(user.special);
 
             lyDistinct.setVisibility(View.VISIBLE);
-            if (user.jobType == MyData.FULL_TIME) {
+            if (user.jobType == MyData.PAER_TIME) {
                 lyFreeTime.setVisibility(View.VISIBLE);
             }
             tvDistinct.setText(addressDetail);

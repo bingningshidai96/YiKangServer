@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/shap_edit_bg"
-            android:hint="@string/regist_tel_hint"
+            android:hint="@string/reset_passw_phone_tip"
             android:inputType="phone"
             android:padding="12dp" />
 

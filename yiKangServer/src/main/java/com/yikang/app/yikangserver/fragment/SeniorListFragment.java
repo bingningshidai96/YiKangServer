@@ -70,7 +70,7 @@ public class SeniorListFragment extends BaseListFragment<SeniorInfo> {
 			@Override
 			public void onFialure(String status, String message) {
 				AppContext.showToast(message);
-				onLoadResult(requestType, false);
+				onLoadResult(requestType, true);
 			}
 		});
 	}

@@ -50,6 +50,9 @@ dependencies {
     compile 'com.tencent.bugly:crashreport:1.2.7'
     compile 'com.squareup.okhttp:okhttp:2.7.0'
     compile files('libs/jpush-android-2.0.5.jar')
+    compile files('libs/SMSSDK-2.0.0.jar')
+    compile files('libs/MobCommons.jar')
+    compile files('libs/MobTools.jar')
 }
 
 bugly {

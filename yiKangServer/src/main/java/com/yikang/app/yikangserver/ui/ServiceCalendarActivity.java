@@ -12,8 +12,8 @@ import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.adapter.SimpleFragmentPagerAdapter;
-import com.yikang.app.yikangserver.fragment.ServiceCalendarFragment;
-import com.yikang.app.yikangserver.fragment.ServiceCalendarFragment.Type;
+import com.yikang.app.yikangserver.fragment.ServiceTaskListFragment;
+import com.yikang.app.yikangserver.fragment.ServiceTaskListFragment.Type;
 
 public class ServiceCalendarActivity extends BaseActivity implements
 		OnCheckedChangeListener {
@@ -57,9 +57,9 @@ public class ServiceCalendarActivity extends BaseActivity implements
 				/ tabIds.length;
 		indicator.setLayoutParams(params);
 
-		ServiceCalendarFragment incompleteFragment = ServiceCalendarFragment
+		ServiceTaskListFragment incompleteFragment = ServiceTaskListFragment
 				.getInstance(Type.Incomplete);
-		ServiceCalendarFragment completeFragment = ServiceCalendarFragment
+		ServiceTaskListFragment completeFragment = ServiceTaskListFragment
 				.getInstance(Type.Complete);
 		fragmentList.add(incompleteFragment);
 		fragmentList.add(completeFragment);

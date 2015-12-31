@@ -125,14 +125,21 @@ public class ApiClient {
 		ArrayList<File> files = param.getFiles();
 		MediaType DEFAULT_BINARY = MediaType.parse("application/octet-stream");
 		MultipartBuilder builder = new MultipartBuilder().type(MultipartBuilder.FORM);
-		builder.addFormDataPart(FileRequestParam.KEY_APPID,param.appId)
-				.addFormDataPart(FileRequestParam.KEY_ACCESSTICKET,param.accessTicket)
-				.addFormDataPart(FileRequestParam.KEY_MACHINECODE,param.mochineCode)
-				.addFormDataPart(FileRequestParam.KEY_FILEGROUP,param.getFileGroup());
+		if (param.appId != null) {
+			builder.addFormDataPart(FileRequestParam.KEY_APPID, param.appId);
+		}
+		if (param.accessTicket != null) {
+			builder.addFormDataPart(FileRequestParam.KEY_ACCESSTICKET, param.accessTicket);
+		}
+		if (param.mochineCode != null) {
+			builder.addFormDataPart(FileRequestParam.KEY_MACHINECODE, param.mochineCode);
+		}
+		builder.addFormDataPart(FileRequestParam.KEY_FILEGROUP,param.getFileGroup());
 		for (File file:files) {
 			builder.addFormDataPart(FileRequestParam.KEY_FILES,file.getName(),
 					RequestBody.create(DEFAULT_BINARY,file));
 		}
+		LOG.i(TAG,param.appId+"=="+param.accessTicket+"==="+param.mochineCode+"==="+param.getFileGroup());
 		return builder.build();
 	}
 
