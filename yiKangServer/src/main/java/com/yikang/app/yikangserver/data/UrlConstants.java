@@ -8,7 +8,7 @@ public class UrlConstants {
 	private static final String IMAGE_SERVER_HOST = "http://54.223.35.197";
 
 	/** 测试主机 */
-	private static final String SERVER_TEST = "http://192.168.1.17";
+	private static final String SERVER_TEST = "http://192.168.1.9";
 	private static final String IMAGE_SERVER_HOST_TEST = "http://54.223.35.197";
 
 	/************* 下面才是基地址 ***********/

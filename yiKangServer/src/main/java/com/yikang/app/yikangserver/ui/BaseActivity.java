@@ -14,9 +14,7 @@ import android.widget.TextView;
 
 /**
  * 基础的Activity,其他activity继承它
- * 
- * @author LGhui
- * 
+ *
  */
 public abstract class BaseActivity extends Activity {
 
@@ -108,6 +106,7 @@ public abstract class BaseActivity extends Activity {
 	 */
 	protected void dismissWatingDailog() {
 		if (watingDaiglog != null && watingDaiglog.isShowing()) {
+			//watingDaiglog.hide();
 			watingDaiglog.dismiss();
 		}
 	}

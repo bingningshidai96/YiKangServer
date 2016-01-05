@@ -10,7 +10,7 @@ import android.util.Log;
  */
 public class LOG {
 	//在发布时可以将此调成0或者1
-	public static int current_lever = 6;
+	public static int current_lever = 2;
 
 	public static final int LEVER_VERBOSE = 5;
 	public static final int LEVER_DEBUG = 4;

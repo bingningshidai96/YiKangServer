@@ -15,6 +15,7 @@ public class TestActivity extends BaseActivity {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         initContent();
+
     }
 
     @Override

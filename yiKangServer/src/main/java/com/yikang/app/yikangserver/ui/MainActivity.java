@@ -46,12 +46,12 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 	protected static final String TAG = "MainActivity";
 	private DoubleClickExitHelper mExitHelper; // 双击退出
 	private RadioGroup rgTabs;//
+	private UserInfoAltedRevicer receiver;
+
 	private int currentCheck; // 当前选中的tab
 	private ArrayList<Fragment> fragList = new ArrayList<Fragment>();
-
 	private final boolean DEBUG = true;
-	private UserInfoAltedRevicer receiver;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -59,7 +59,7 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 		receiver = new UserInfoAltedRevicer();
 		registerReceiver(receiver, filter);
 		initContent();
-		initTitleBar(getResources().getString(R.string.buisness_titile));
+		initTitleBar(getString(R.string.buisness_titile));
 		mExitHelper = new DoubleClickExitHelper(this);
 		if(!AppContext.getAppContext().isDeviceRegisted()){
 			registDevice(); // 注册设备
@@ -354,7 +354,7 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 
 	private final Handler mHandler = new Handler() {
 		@Override
-		public void handleMessage(android.os.Message msg) {
+		public void handleMessage(android.os.Message msg){
 			super.handleMessage(msg);
 			switch (msg.what) {
 			case MSG_SET_ALIAS:
@@ -450,6 +450,7 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 		}
 
 	};
+
 
 
 	/**

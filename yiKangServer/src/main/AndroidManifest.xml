@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.yikang.app.yikangserver"
-    android:versionCode="3"
+    android:versionCode="4"
     android:versionName="1.0.2" >
 
     <uses-sdk
@@ -46,7 +46,6 @@
         android:theme="@style/AppTheme" >
         
         <!-- 高德地图key -->
-         <!-- 测试 android:value="28ec11032427e844647cbcfb29c149bf" -->
          <!-- 正式 android:value="9ab3799a1001675e83a70df31b21e784" -->
         <meta-data
             android:name="com.amap.api.v2.apikey"

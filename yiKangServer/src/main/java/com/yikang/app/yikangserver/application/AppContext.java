@@ -41,7 +41,7 @@ public class AppContext extends Application {
 	private int diviceIdType = -1;
 	private String diviceId;
 
-	public static final boolean DEBUG = false;
+	public static final boolean DEBUG = true;
 
 	@Override
 	public void onCreate() {
