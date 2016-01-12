@@ -87,6 +87,7 @@ public class UrlConstants {
 	/** 上传文件 */
 	public static final String URL_UPLOAD_IMAGE = URL_BASE_FILE_SERVER
 			+ "/fileUpload/imageFileUpload";
+	public static final String URL_UPDATE_INFO = "";
 
 
 	public static final String getQustrionSubmitUrl(TableType type) {

@@ -2,7 +2,6 @@ package com.yikang.app.yikangserver.fragment;
 
 import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.view.CustomWatingDialog;
-
 import android.app.Dialog;
 import android.app.Fragment;
 

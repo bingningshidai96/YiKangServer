@@ -13,15 +13,16 @@ import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 import com.yikang.app.yikangserver.utils.AES;
 import com.yikang.app.yikangserver.utils.DeviceUtils;
+import com.yikang.app.yikangserver.utils.FileUtlis;
 import com.yikang.app.yikangserver.utils.LOG;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * 业务网络请求工具类
@@ -42,8 +43,14 @@ public class ApiClient {
 		String STATUS_OK = "000000";
 		String STATUS_NET_ERORR = "99999";
 		String STATUS_DATA_ERORR = "99998";
+
 		void onSuccess(ResponseContent content);
-		void onFialure(String status, String message);
+		void onFailure(String status, String message);
+	}
+
+	public interface DownloadCallBack extends ResponceCallBack{
+		String STATUS_DOWNLOAD_FAIL = "99997";
+		void onProgress(long total,long current);
 	}
 
 
@@ -64,7 +71,6 @@ public class ApiClient {
 	 */
 	public static void postAsyn(String url, RequestParam param, final ResponceCallBack callBack,
 								final boolean isReSultEncrypt) {
-
 		Request request = new Request.Builder().url(url)
 				.post(buildBody(param)).build();
 		executeAsyn(request, callBack, isReSultEncrypt);
@@ -77,12 +83,12 @@ public class ApiClient {
 	public static void postFilesAsyn(String url, FileRequestParam param,
 									 final ResponceCallBack callBack){
 		if(!DeviceUtils.checkNetWorkIsOk()){
-			callBack.onFialure(ResponceCallBack.STATUS_NET_ERORR,"抱歉，当前没有网络");
+			callBack.onFailure(ResponceCallBack.STATUS_NET_ERORR, "抱歉，当前没有网络");
 			return;
 		}
 		ArrayList<File> files = param.getFiles();
 		if(files.isEmpty()){
-			callBack.onFialure(ResponceCallBack.STATUS_DATA_ERORR,"没有上传的文件");
+			callBack.onFailure(ResponceCallBack.STATUS_DATA_ERORR, "没有上传的文件");
 		}
 
 		final Request request = new Request.Builder().url(url).post(buildBody(param)).build();
@@ -90,6 +96,16 @@ public class ApiClient {
 		executeAsyn(request,callBack,false);
 	}
 
+
+
+	public static void downloadFile(String url,String fileName,final DownloadCallBack callBack){
+		if(!DeviceUtils.checkNetWorkIsOk()){
+			callBack.onFailure(ResponceCallBack.STATUS_NET_ERORR, "抱歉，当前没有网络");
+			return;
+		}
+		Request request = new Request.Builder().url(url).get().build();
+		executeDownloadAsyn(request,fileName,callBack);
+	}
 
 
 	/**
@@ -174,7 +190,7 @@ public class ApiClient {
 				mDelivery.post(new Runnable() {
 					@Override
 					public void run() {
-						callBack.onFialure(ResponceCallBack.STATUS_NET_ERORR, "加载失败,请检查网络");
+						callBack.onFailure(ResponceCallBack.STATUS_NET_ERORR, "加载失败,请检查网络");
 					}
 				});
 			}
@@ -193,12 +209,12 @@ public class ApiClient {
 							if (content.isStautsOk()) {
 								callBack.onSuccess(content);
 							} else {
-								callBack.onFialure(content.getStatus(), content.getMessage());
+								callBack.onFailure(content.getStatus(), content.getMessage());
 							}
 						} catch (Exception e) {
 							e.printStackTrace();
 
-							callBack.onFialure(ResponceCallBack.STATUS_DATA_ERORR, "本地数据解析错误");
+							callBack.onFailure(ResponceCallBack.STATUS_DATA_ERORR, "本地数据解析错误");
 						}
 					}
 				});
@@ -208,62 +224,77 @@ public class ApiClient {
 
 
 	/**
-	 * 上传文件
+	 * 执行下载任务
+	 * @param request 请求
+	 * @param fileName 存储文件名
+	 * @param callBack  回调接口
 	 */
-	public static void UploadSingleFile(String url,Map<String, Object> paramMap,
-										final ResponceCallBack callBack) {
-
-		if (!DeviceUtils.checkNetWorkIsOk()) {
-			callBack.onFialure(ResponceCallBack.STATUS_NET_ERORR,"抱歉网络错误");
-			return;
-		}
-		if (paramMap == null || paramMap.isEmpty()) {
-			throw new IllegalArgumentException("传入param的不能为null，或者empty");
-		}
-		Set<String> keySet = paramMap.keySet();
-		MultipartBuilder builder = new MultipartBuilder().type(MultipartBuilder.FORM);
-		for (String key : keySet) {
-			Object object = paramMap.get(key);
-			if (object instanceof File) {
-				File file = (File) object;
-				MediaType DEFAULT_BINARY = MediaType.parse("application/octet-stream");
-				builder.addFormDataPart(key,file.getName(),RequestBody.create(DEFAULT_BINARY,file));
-			} else if (object instanceof String) {
-				builder.addFormDataPart(key,(String)object);
-			} else {
-				throw new IllegalArgumentException(
-						"传入的map参数中只能包含File或者String对象");
-			}
-		}
-		final Request request = new Request.Builder().url(url).post(builder.build()).build();
+	private static void executeDownloadAsyn(Request request, final String fileName,
+											final DownloadCallBack callBack){
 		client.newCall(request).enqueue(new Callback() {
 			@Override
 			public void onFailure(Request request, IOException e) {
-				callBack.onFialure(ResponceCallBack.STATUS_NET_ERORR, "加载失败,请检查网络");
+				mDelivery.post(new Runnable() {
+					@Override
+					public void run() {
+						callBack.onFailure(ResponceCallBack.STATUS_NET_ERORR, "加载失败,请检查网络");
+					}
+				});
 			}
 
 			@Override
 			public void onResponse(Response response) throws IOException {
-				if (response.code() != 200) {
-					callBack.onFialure(ResponceCallBack.STATUS_NET_ERORR, "加载失败,请检查网络");
+				boolean successful = response.isSuccessful();
+				if (!successful) {
+					callBack.onFailure(String.valueOf(response.code()), "抱歉，下载失败");
 					return;
 				}
-				String result = response.body().string();
-				try {
-					ResponseContent content = ResponseContent.toResposeContent(result, false);
-					if (content.isStautsOk()) {
-						callBack.onSuccess(content);
-					} else {
-						callBack.onFialure(content.getStatus(),
-								content.getMessage());
-					}
-				} catch (Exception e) {
-					callBack.onFialure(ResponceCallBack.STATUS_DATA_ERORR,
-							"本地数据解析错误");
-				}
+				long size = response.body().contentLength();
+				InputStream inputStream = response.body().byteStream();
+				saveWithProgress(inputStream, size, fileName, callBack);
 			}
-		});
 
+		});
+	}
+
+	private static void saveWithProgress(InputStream inputStream,long total,
+										 String filepath,DownloadCallBack callBack){
+		//检查父级目录是否存在
+		File parent = new File(FileUtlis.getParentPath(filepath));
+		if(!parent.exists())  parent.mkdirs();
+
+		//开始写文件
+		File saveFile = new File(parent,FileUtlis.getFileName(filepath));
+		FileOutputStream fos = null;
+		try {
+			fos = new FileOutputStream(saveFile);
+			byte[] buffer = new byte[512];
+			long current = 0; //当前已经下载的
+
+			int count;
+			while((count=inputStream.read(buffer))!=-1){
+				fos.write(buffer,0,count);
+				current+=count;
+				callBack.onProgress(total, current);
+			}
+			fos.flush();
+			callBack.onSuccess(null);
+		} catch (IOException e) {
+			e.printStackTrace();
+			callBack.onFailure(DownloadCallBack.STATUS_DOWNLOAD_FAIL, "下载出现异常");
+		} finally {
+			try{
+				if(inputStream!=null){
+					inputStream.close();
+				}
+				if(fos!=null){
+					fos.close();
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+
+		}
 	}
 
 }

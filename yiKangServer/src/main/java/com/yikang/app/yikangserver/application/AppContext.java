@@ -29,7 +29,8 @@ import com.yikang.app.yikangserver.utils.LOG;
 public class AppContext extends Application {
 	private static final String TAG = "AppContext";
 	//缓存路径
-	private static final String CACHE_PATH = Environment.getExternalStorageDirectory().getAbsolutePath();
+	private static final String CACHE_PATH =
+			Environment.getExternalStorageDirectory().getAbsolutePath()+File.separator+"hulijia";
 	//图片缓存路径
 	public static final String CACHE_IMAGE_PATH = CACHE_PATH + File.separator+ "images";
 	public static final int CACHE_DISK_SIZE = 100*1<<20;

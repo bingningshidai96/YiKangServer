@@ -27,9 +27,6 @@ import android.widget.TextView;
 
 /**
  * 搜索地址的activity，负责确定一个位置
- * 
- * @author LGhui
- * 
  */
 public class AddrSarchActivity extends BaseActivity implements OnClickListener,
 		OnTipsResultListener {

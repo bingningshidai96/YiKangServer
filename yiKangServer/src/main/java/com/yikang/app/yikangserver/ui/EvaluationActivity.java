@@ -141,7 +141,7 @@ public class EvaluationActivity extends BaseActivity implements
 			}
 
 			@Override
-			public void onFialure(String status, String message) {
+			public void onFailure(String status, String message) {
 				AppContext.showToast(message);
 			}
 

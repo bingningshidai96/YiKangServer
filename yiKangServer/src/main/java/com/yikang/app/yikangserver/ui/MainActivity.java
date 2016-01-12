@@ -137,7 +137,7 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 			}
 
 			@Override
-			public void onFialure(String status, String message) {
+			public void onFailure(String status, String message) {
 				LOG.d(TAG, "[registDevice]sorry,device register fail.error message:" + message);
 			}
 		});
@@ -169,7 +169,7 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 			}
 
 			@Override
-			public void onFialure(String status, String message) {
+			public void onFailure(String status, String message) {
 				dismissWatingDailog();
 				AppContext.showToast(message);
 			}
@@ -328,7 +328,7 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 			}
 
 			@Override
-			public void onFialure(String status, String message) {
+			public void onFailure(String status, String message) {
 				LOG.w(TAG, "[requestAndSetJPushAlias]sorry! get alias fail.error message:" + message);
 			}
 		});

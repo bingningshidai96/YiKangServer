@@ -175,7 +175,7 @@ public class RegistActivtiy extends BaseActivity implements OnNextListener,
 					}
 
 					@Override
-					public void onFialure(String status, String message) {
+					public void onFailure(String status, String message) {
 						dismissWatingDailog();
 						onRegistFailure(message);// 注册失败
 					}
@@ -205,8 +205,8 @@ public class RegistActivtiy extends BaseActivity implements OnNextListener,
 	 */
 	private void onRegistFailure(String msg) {
 		AppContext.showToast("注册失败:" + msg);
-		Dialog dialog = DialogFactory.getCommerAlertDiaglog(this,
-				getString(R.string.alert), "注册失败:"+msg);
+		Dialog dialog = DialogFactory.getCommonAlertDialog(this,
+				getString(R.string.alert), "注册失败:" + msg);
 		dialog.show();
 	}
 
@@ -234,7 +234,7 @@ public class RegistActivtiy extends BaseActivity implements OnNextListener,
 					}
 
 					@Override
-					public void onFialure(String status, String message) {
+					public void onFailure(String status, String message) {
 						dismissWatingDailog();
 						LOG.d(TAG, "[login]" + message);
 						AppContext.showToast(RegistActivtiy.this, message);

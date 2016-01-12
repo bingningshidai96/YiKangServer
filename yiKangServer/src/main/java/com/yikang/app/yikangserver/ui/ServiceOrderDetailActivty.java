@@ -96,7 +96,7 @@ public class ServiceOrderDetailActivty extends BaseActivity implements
                     }
 
                     @Override
-                    public void onFialure(String status, String message) {
+                    public void onFailure(String status, String message) {
                         dismissWatingDailog();
                         AppContext.showToast(message);
                     }
@@ -179,7 +179,7 @@ public class ServiceOrderDetailActivty extends BaseActivity implements
                     }
 
                     @Override
-                    public void onFialure(String status, String message) {
+                    public void onFailure(String status, String message) {
                         dismissWatingDailog();
                         AppContext.showToast(message);
                     }

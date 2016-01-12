@@ -32,7 +32,7 @@ public class DialogFactory {
 	/**
 	 * 获得一个普通的提示对话框
 	 */
-	public static final Dialog getCommerAlertDiaglog(Context context,String title,String message){
+	public static final Dialog getCommonAlertDialog(Context context, String title, String message){
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
 		return builder.setTitle(title)
 		.setMessage(message)
@@ -40,8 +40,8 @@ public class DialogFactory {
 	}
 
 
-	public static final Dialog getCommerAlertDiaglog(Context context,String message){
-		return getCommerAlertDiaglog(context,context.getString(R.string.dialog_title_prompt),message);
+	public static final Dialog getCommonAlertDialog(Context context, String message){
+		return getCommonAlertDialog(context, context.getString(R.string.dialog_title_prompt), message);
 
 	}
 

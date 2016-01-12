@@ -64,8 +64,8 @@ public class UpLoadService extends IntentService {
 			}
 
 			@Override
-			public void onFialure(String status, String message) {
-				LOG.i(TAG, "[upLoadSingleFile-->onFialure]" + message);
+			public void onFailure(String status, String message) {
+				LOG.i(TAG, "[upLoadSingleFile-->onFailure]" + message);
 				upLoadFail(message);
 			}
 		});

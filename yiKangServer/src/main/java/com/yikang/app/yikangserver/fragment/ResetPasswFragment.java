@@ -302,9 +302,9 @@ public class ResetPasswFragment extends BaseFragment implements View.OnClickList
             }
 
             @Override
-            public void onFialure(String status, String message) {
+            public void onFailure(String status, String message) {
                 dismissWatingDailog();
-                Dialog dialog = DialogFactory.getCommerAlertDiaglog(getActivity(), message);
+                Dialog dialog = DialogFactory.getCommonAlertDialog(getActivity(), message);
                 dialog.show();
             }
         });

@@ -202,7 +202,7 @@ public class FallRiskFragment extends BaseFragment implements
             }
 
             @Override
-            public void onFialure(String status, String message) {
+            public void onFailure(String status, String message) {
                 AppContext.showToast(message);
                 dismissWatingDailog();
             }
@@ -235,7 +235,7 @@ public class FallRiskFragment extends BaseFragment implements
             }
 
             @Override
-            public void onFialure(String status, String message) {
+            public void onFailure(String status, String message) {
                 dismissWatingDailog();
                 AppContext.showToast(message);
             }

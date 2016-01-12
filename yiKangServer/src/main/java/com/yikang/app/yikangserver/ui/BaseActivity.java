@@ -1,6 +1,7 @@
 package com.yikang.app.yikangserver.ui;
 
 import com.yikang.app.yikangserver.R;
+import com.yikang.app.yikangserver.interf.NetworkReactUI;
 import com.yikang.app.yikangserver.view.CustomWatingDialog;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -16,7 +17,7 @@ import android.widget.TextView;
  * 基础的Activity,其他activity继承它
  *
  */
-public abstract class BaseActivity extends Activity {
+public abstract class BaseActivity extends Activity implements NetworkReactUI{
 
 	@TargetApi(19)
 	protected void initContent() {
@@ -86,14 +87,14 @@ public abstract class BaseActivity extends Activity {
 
 	private Dialog watingDaiglog;
 
-	protected void showWatingDailog() {
+	public void showWatingDailog() {
 		showWatingDailog(getString(R.string.waiting_loading));
 	}
 
 	/**
 	 * 显示等待的diaglog
 	 */
-	protected void showWatingDailog(String message) {
+	public void showWatingDailog(String message) {
 		if (watingDaiglog == null) {
 			watingDaiglog = createDialog(message);
 		}
@@ -104,7 +105,7 @@ public abstract class BaseActivity extends Activity {
 	/**
 	 * dismiss 等待的diaglog
 	 */
-	protected void dismissWatingDailog() {
+	public void dismissWatingDailog() {
 		if (watingDaiglog != null && watingDaiglog.isShowing()) {
 			//watingDaiglog.hide();
 			watingDaiglog.dismiss();

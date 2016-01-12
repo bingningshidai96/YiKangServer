@@ -177,7 +177,7 @@ public class SeniorInfoActivity extends BaseActivity implements
             }
 
             @Override
-            public void onFialure(String status, String message) {
+            public void onFailure(String status, String message) {
                 dismissWatingDailog();
                 AppContext.showToast(message);
             }
@@ -218,7 +218,7 @@ public class SeniorInfoActivity extends BaseActivity implements
             }
 
             @Override
-            public void onFialure(String status, String message) {
+            public void onFailure(String status, String message) {
                 dismissWatingDailog();
                 AppContext.showToast(R.string.submit_fail_redo);
             }

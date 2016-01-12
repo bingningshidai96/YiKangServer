@@ -163,7 +163,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 			}
 
 			@Override
-			public void onFialure(String status, String message) {
+			public void onFailure(String status, String message) {
 				dismissWatingDailog();
 				LOG.d(TAG, "[login]" + message);
 				AppContext.showToast(LoginActivity.this, message);

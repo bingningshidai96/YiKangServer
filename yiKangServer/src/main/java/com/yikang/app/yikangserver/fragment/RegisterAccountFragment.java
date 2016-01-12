@@ -28,9 +28,9 @@ import com.yikang.app.yikangserver.utils.LOG;
 public class RegisterAccountFragment extends BaseFragment implements OnClickListener {
 	protected static final String TAG = null;
 	// 填写从短信SDK应用后台注册得到的APPKEY
-	private static String APPKEY = "e31ed53d38f6";// a11dd7ffad70
+	private static String APPKEY = "e31ed53d38f6";//早期项目a11dd7ffad70
 	// 填写从短信SDK应用后台注册得到的APPSECRET
-	private static String APPSECRET = "60adc5e6a5b842bc424650323c92a8bd";// 8893f3bd45db487a6291460f3904ca46
+	private static String APPSECRET = "60adc5e6a5b842bc424650323c92a8bd";//早期项目 8893f3bd45db487a6291460f3904ca46
 
 	// 默认使用中国区号
 	private static final String CHINA_CODE = "86";
