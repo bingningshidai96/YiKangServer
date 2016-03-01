@@ -10,14 +10,12 @@ import com.alibaba.fastjson.JSON;
 import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.adapter.CrossWirsesItemAdapter;
 import com.yikang.app.yikangserver.bean.CrossWirses;
-import com.yikang.app.yikangserver.dailog.DialogFactory;
 import com.yikang.app.yikangserver.data.BusinessState.SenoirState.EvalutionState;
 import com.yikang.app.yikangserver.data.EvaluationLocalData;
 import com.yikang.app.yikangserver.data.EvaluationLocalData.TableType;
 import com.yikang.app.yikangserver.ui.DetailQuestionActivity;
 import com.yikang.app.yikangserver.utils.LOG;
-import android.app.Fragment;
-import android.app.ProgressDialog;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -120,7 +118,7 @@ public class CrossWiresFragment extends BaseFragment implements OnItemClickListe
 
 
 	private void loadDataFromLoacl() {
-		showWatingDailog();
+		showWaitingUI();
 		String json = EvaluationLocalData.getData(getActivity(), tableType);
 		try {
 			JSONObject object = new JSONArray(json).getJSONObject(0);
@@ -135,7 +133,7 @@ public class CrossWiresFragment extends BaseFragment implements OnItemClickListe
 			e.printStackTrace();
 			LOG.e(TAG, "loadDataFromLoacl" + "解析本地数据异常>>>" + tableType);
 		}
-		dismissWatingDailog();
+		hideWaitingUI();
 	}
 
 	// private void loadDataFromNet(){

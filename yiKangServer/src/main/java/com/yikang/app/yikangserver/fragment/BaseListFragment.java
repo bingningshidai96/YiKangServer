@@ -50,7 +50,7 @@ public abstract class BaseListFragment<T> extends BaseFragment implements
 
     protected int mCurrentPage; // 当前的页码
 
-    private ListView mListView;
+    protected ListView mListView;
 
     protected List<T> mData;
 

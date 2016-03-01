@@ -8,7 +8,7 @@ public class InviteCustomer {
 	@JSONField(name = "name")
 	public String name;
 
-	@JSONField(name = "seniorId")
+	@JSONField(name = "userId")
 	public String userId;
 
 	@JSONField(name = "userStatus")

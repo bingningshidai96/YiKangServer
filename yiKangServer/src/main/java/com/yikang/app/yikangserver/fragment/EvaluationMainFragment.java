@@ -128,7 +128,7 @@ public class EvaluationMainFragment extends BaseFragment implements
 	@Override
 	public void onStop() {
 		super.onStop();
-		dismissWatingDailog();
+		hideWaitingUI();
 	}
 
 	/**
@@ -209,7 +209,7 @@ public class EvaluationMainFragment extends BaseFragment implements
 	 * 从服务器端加载已经提交的数据
 	 */
 	private void loadRecordAnswers() {
-		dismissWatingDailog();
+		hideWaitingUI();
 		String url = UrlConstants.URL_GET_TABLE_ANSWER;
 		RequestParam param = new RequestParam();
 		param.add("surveyTableId", surveyId);
@@ -220,7 +220,7 @@ public class EvaluationMainFragment extends BaseFragment implements
 			@Override
 			public void onSuccess(ResponseContent content) {
 				// TODO Auto-generated method stub
-				dismissWatingDailog();
+				hideWaitingUI();
 				String json = content.getData();
 				LOG.d(TAG, "[loadRecordAnswers]" + json);
 				try {
@@ -238,7 +238,7 @@ public class EvaluationMainFragment extends BaseFragment implements
 
 			@Override
 			public void onFailure(String status, String message) {
-				dismissWatingDailog();
+				hideWaitingUI();
 				AppContext.showToast(message);
 			}
 		});
@@ -248,7 +248,7 @@ public class EvaluationMainFragment extends BaseFragment implements
 	 * 提交数据
 	 */
 	private void submit() {
-		showWatingDailog();
+		showWaitingUI();
 		RequestParam param = new RequestParam();
 		param.addAll(adapter.toAnwerMap());
 		param.add("surveyTableId",surveyId);
@@ -260,7 +260,7 @@ public class EvaluationMainFragment extends BaseFragment implements
 
 			@Override
 			public void onSuccess(ResponseContent content) {
-				dismissWatingDailog();
+				hideWaitingUI();
 				AppContext.showToast("提交成功");
 				// 通知主fragment提交成功
 				listener.onInterAction(EvaInterActctionListnter.WHAT_SUBMIT,
@@ -269,7 +269,7 @@ public class EvaluationMainFragment extends BaseFragment implements
 
 			@Override
 			public void onFailure(String status, String message) {
-				dismissWatingDailog();
+				hideWaitingUI();
 				AppContext.showToast(message);
 			}
 		});

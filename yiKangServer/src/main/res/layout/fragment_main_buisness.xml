@@ -29,6 +29,7 @@
                 android:text="@string/buiness_customerList" />
         </LinearLayout>
 
+        <!--
         <LinearLayout
             android:id="@+id/ly_buisness_item_nursedlist"
             style="@style/style_buiness_item"
@@ -47,6 +48,7 @@
                 android:layout_marginLeft="20dp"
                 android:text="@string/buiness_nursedlist" />
         </LinearLayout>
+        -->
 
         <LinearLayout
             android:id="@+id/ly_buisness_service_calendar"

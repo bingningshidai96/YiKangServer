@@ -89,9 +89,9 @@ public class FreeTimeActivity extends BaseActivity implements OnClickListener,
 	}
 
 	@Override
-	protected void initViewConent() {
+	protected void initViewContent() {
 		btConfirm.setOnClickListener(this);
-		LOG.i(TAG, "[initViewConent]" + submitEnable);
+		LOG.i(TAG, "[initViewContent]" + submitEnable);
 		adapter = new CommonAdapter<TimeDuration>(this, data,
 				R.layout.item_blue_gray_background_check) {
 			@Override
@@ -121,7 +121,7 @@ public class FreeTimeActivity extends BaseActivity implements OnClickListener,
 	 * 获取可编辑的时间
 	 */
 	private void getEditableTime() {
-		showWatingDailog();
+		showWaitingUI();
 		final String url = UrlConstants.URL_GET_WORK_TIME;
 		RequestParam param = new RequestParam();
 		param.add("serviceDate", serviceDate);
@@ -129,7 +129,7 @@ public class FreeTimeActivity extends BaseActivity implements OnClickListener,
 		ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
 			@Override
 			public void onSuccess(ResponseContent content) {
-				dismissWatingDailog();
+				hideWaitingUI();
 				String result = content.getData();
 				LOG.i(TAG, "[getEditableTime]请求成功" + result);
 				JSONObject object = JSON.parseObject(result);
@@ -143,7 +143,7 @@ public class FreeTimeActivity extends BaseActivity implements OnClickListener,
 
 			@Override
 			public void onFailure(String status, String message) {
-				dismissWatingDailog();
+				hideWaitingUI();
 				AppContext.showToast(message);
 			}
 		});
@@ -183,7 +183,7 @@ public class FreeTimeActivity extends BaseActivity implements OnClickListener,
 			AppContext.showToast(R.string.edtTime_choose_contraint_tip);
 			return;
 		}
-		showWatingDailog();
+		showWaitingUI();
 		final String url = UrlConstants.URL_SAVE_FREE_TIME;
 		RequestParam param = new RequestParam();
 		param.add("serviceDate", serviceDate);
@@ -191,7 +191,7 @@ public class FreeTimeActivity extends BaseActivity implements OnClickListener,
 		ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
 			@Override
 			public void onSuccess(ResponseContent content) {
-				dismissWatingDailog();
+				hideWaitingUI();
 				AppContext
 						.showToast(getString(R.string.submit_succeed_tip));
 				Intent intent = new Intent();
@@ -203,7 +203,7 @@ public class FreeTimeActivity extends BaseActivity implements OnClickListener,
 
 			@Override
 			public void onFailure(String status, String message) {
-				dismissWatingDailog();
+				hideWaitingUI();
 				AppContext.showToast(getString(R.string.submit_fail_tip));
 			}
 		});

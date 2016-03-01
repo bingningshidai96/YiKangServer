@@ -1,7 +1,7 @@
 package com.yikang.app.yikangserver.ui;
 
 import com.yikang.app.yikangserver.R;
-import com.yikang.app.yikangserver.interf.NetworkReactUI;
+import com.yikang.app.yikangserver.interf.UINetwork;
 import com.yikang.app.yikangserver.view.CustomWatingDialog;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -17,7 +17,7 @@ import android.widget.TextView;
  * 基础的Activity,其他activity继承它
  *
  */
-public abstract class BaseActivity extends Activity implements NetworkReactUI{
+public abstract class BaseActivity extends Activity implements UINetwork {
 
 	@TargetApi(19)
 	protected void initContent() {
@@ -29,7 +29,7 @@ public abstract class BaseActivity extends Activity implements NetworkReactUI{
 		setContentView();
 		findViews();
 		getData();
-		initViewConent();
+		initViewContent();
 	}
 
 	@TargetApi(19)
@@ -59,15 +59,14 @@ public abstract class BaseActivity extends Activity implements NetworkReactUI{
 	/**
 	 * 展示内容
 	 */
-	protected abstract void initViewConent();
+	protected abstract void initViewContent();
 
 	/**
 	 * 初始化titlebar，BaseActivity中此方法做了两件事 1.将左上角返回按钮设置点击后返回 2.设置标题为参数title
 	 * 
 	 * 如果子类有不同的布局，或者要做更多的事情，请重写这个方法
 	 * 
-	 * @param title
-	 *            要设置的标题
+	 * @param title  要设置的标题
 	 */
 	protected void initTitleBar(String title) {
 		TextView tvTitle = (TextView) findViewById(R.id.tv_title_text);
@@ -85,32 +84,32 @@ public abstract class BaseActivity extends Activity implements NetworkReactUI{
 			});
 	}
 
-	private Dialog watingDaiglog;
+	private Dialog waitingDialog;
 
-	public void showWatingDailog() {
-		showWatingDailog(getString(R.string.waiting_loading));
+	public void showWaitingUI() {
+		showWaitingUI(getString(R.string.waiting_loading));
 	}
 
 	/**
-	 * 显示等待的diaglog
+	 * 显示等待的dialog
 	 */
-	public void showWatingDailog(String message) {
-		if (watingDaiglog == null) {
-			watingDaiglog = createDialog(message);
+	public void showWaitingUI(String message) {
+		if (waitingDialog == null) {
+			waitingDialog = createDialog(message);
 		}
-		if (!watingDaiglog.isShowing())
-			watingDaiglog.show();
+		if (!waitingDialog.isShowing())
+			waitingDialog.show();
 	}
 
 	/**
-	 * dismiss 等待的diaglog
+	 * dismiss 等待的dialog
 	 */
-	public void dismissWatingDailog() {
-		if (watingDaiglog != null && watingDaiglog.isShowing()) {
-			//watingDaiglog.hide();
-			watingDaiglog.dismiss();
+	public void hideWaitingUI() {
+		if (waitingDialog != null && waitingDialog.isShowing()) {
+			waitingDialog.dismiss();
 		}
 	}
+
 
 	/**
 	 * 创建一个dialog，同过复写这个方法可以创建其他样式的dialog
@@ -122,6 +121,6 @@ public abstract class BaseActivity extends Activity implements NetworkReactUI{
 	@Override
 	protected void onStop() {
 		super.onStop();
-		dismissWatingDailog();
+		hideWaitingUI();
 	}
 }

@@ -85,14 +85,14 @@
     <string name ="evaluaton_back_hint">确定退出评估页面？如果评估没有完成，请选择继续评估</string>
     <string name="submit_fail_redo">提交失败，请重新提交</string>
 	
-     <string name="main_business">业务流程</string>
-     <string name="main_information">我的档案</string>
+     <string name="main_business">我的患者</string>
+     <string name="main_information">我的资料</string>
      
      
      <string name="buisness_service_carlendar">服务日程</string>
-     <string name="buisness_titile">业务流程</string>
+     <string name="buisness_titile">我的患者</string>
      <string name="buiness_nursedlist">被护理人员</string>
-     <string name="buiness_customerList">病患列表</string>
+     <string name="buiness_customerList">我的患者</string>
     
     <string name="mine_title">我的</string>
     <string name="mine_right_logout">注销</string>
@@ -138,9 +138,9 @@
     <string name="service_order_detail_servered_phone">服务对象电话:</string>
     <string name="service_order_detail_feedback">服务反馈</string>
     <string name="service_order_feedback_success">提交反馈成功</string>
-    
-    <!-- 病患列表中 -->
-    <string name="customerList_title">病患列表</string>
+
+    <!-- 我的患者列表中 -->
+    <string name="customerList_title">我的患者</string>
     <string name="customerList_all">&#160;&#160;全部 &#160;</string> 
     <string name="customerList_status_registed">已注册</string> 
     <string name="customerList_status_consumed">已消费</string> 
@@ -166,4 +166,7 @@
     <string name="update_force_update_message">您的版本太旧，部分功能已不支持。为了让您拥有更好的体验，请更新新版本。</string>
     <string name="update_get_version_info">正在获取版本信息，请稍候</string>
 
+
+    <string name="order_manager_title">订单列表</string>
+    <string name="order_manger_title">订单管理</string>
 </resources>

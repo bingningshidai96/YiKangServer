@@ -17,7 +17,7 @@ import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.api.RequestParam;
 import com.yikang.app.yikangserver.api.ResponseContent;
-import com.yikang.app.yikangserver.dailog.DialogFactory;
+import com.yikang.app.yikangserver.dialog.DialogFactory;
 import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.api.ApiClient;
 import com.yikang.app.yikangserver.utils.LOG;
@@ -72,7 +72,7 @@ public class ResetPasswFragment extends BaseFragment implements View.OnClickList
     private Handler smsResultHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            dismissWatingDailog();
+            hideWaitingUI();
             final int event = msg.arg1;
             final int result = msg.arg2;
             final Object data = msg.obj;
@@ -273,7 +273,7 @@ public class ResetPasswFragment extends BaseFragment implements View.OnClickList
             return;
         }
 
-        showWatingDailog();
+        showWaitingUI();
 
         // 提交验证码
         SMSSDK.submitVerificationCode(CHINA_CODE, phoneNumber, verlifiCode);
@@ -284,7 +284,7 @@ public class ResetPasswFragment extends BaseFragment implements View.OnClickList
      * 跳到下一步
      */
     private void toNextStepPage() {
-        showWatingDailog();
+        showWaitingUI();
         String phoneNumber = edtUserId.getText().toString();
         String passWord = edtPassw.getText().toString();
 
@@ -296,14 +296,14 @@ public class ResetPasswFragment extends BaseFragment implements View.OnClickList
 
             @Override
             public void onSuccess(ResponseContent content) {
-                dismissWatingDailog();
+                hideWaitingUI();
                 AppContext.showToast("重置密码成功");
                 getActivity().finish();
             }
 
             @Override
             public void onFailure(String status, String message) {
-                dismissWatingDailog();
+                hideWaitingUI();
                 Dialog dialog = DialogFactory.getCommonAlertDialog(getActivity(), message);
                 dialog.show();
             }

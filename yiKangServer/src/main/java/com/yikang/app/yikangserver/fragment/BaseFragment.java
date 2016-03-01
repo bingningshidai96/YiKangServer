@@ -1,37 +1,58 @@
 package com.yikang.app.yikangserver.fragment;
 
 import com.yikang.app.yikangserver.R;
+import com.yikang.app.yikangserver.interf.NetworkErrorHandler;
+import com.yikang.app.yikangserver.interf.UINetwork;
 import com.yikang.app.yikangserver.view.CustomWatingDialog;
 import android.app.Dialog;
 import android.app.Fragment;
 
-public class BaseFragment extends Fragment {
+public class BaseFragment extends Fragment implements UINetwork,NetworkErrorHandler{
 
-	private Dialog watingDaiglog;
+	private Dialog waitingDialog;
 
-	protected void showWatingDailog() {
-		showWatingDailog(getString(R.string.waiting_loading));
+	protected void showWaitingUI() {
+		showWaitingUI(getString(R.string.waiting_loading));
 	}
 
-	/**
-	 * 显示等待的diaglog
-	 */
-	protected void showWatingDailog(String message) {
-		if (watingDaiglog == null) {
-			watingDaiglog = createDialog(message);
+	public void showWaitingUI(String message) {
+		if(getActivity() instanceof UINetwork){
+			((UINetwork) getActivity()).showWaitingUI(message);
+			return;
 		}
-		if (!watingDaiglog.isShowing())
-			watingDaiglog.show();
+
+		if (waitingDialog == null) {
+			waitingDialog = createDialog(message);
+		}
+		if (!waitingDialog.isShowing())
+			waitingDialog.show();
 	}
 	
 
-	/**
-	 * dismiss 等待的diaglog
-	 */
-	protected void dismissWatingDailog() {
-		if (watingDaiglog != null && watingDaiglog.isShowing()) {
-			watingDaiglog.dismiss();
+	public void hideWaitingUI() {
+		if(getActivity() instanceof UINetwork){
+			((UINetwork) getActivity()).hideWaitingUI();
+			return;
 		}
+
+		if (waitingDialog != null && waitingDialog.isShowing()) {
+			waitingDialog.dismiss();
+		}
+	}
+
+	@Override
+	public void showErrorUI() {
+
+	}
+
+	@Override
+	public void hideErrorUI() {
+
+	}
+
+	@Override
+	public void reload() {
+
 	}
 
 	/**
@@ -44,7 +65,7 @@ public class BaseFragment extends Fragment {
 	@Override
 	public void onStop() {
 		super.onStop();
-		dismissWatingDailog();
+		hideWaitingUI();
 	}
 
 }

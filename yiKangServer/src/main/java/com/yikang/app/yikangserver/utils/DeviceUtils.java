@@ -63,4 +63,13 @@ public class DeviceUtils {
         return networkInfo.getType();
     }
 
+
+
+    public static float getDensity() {
+        return AppContext.getAppContext().getResources().getDisplayMetrics().density;
+
+    }
+
+
+
 }

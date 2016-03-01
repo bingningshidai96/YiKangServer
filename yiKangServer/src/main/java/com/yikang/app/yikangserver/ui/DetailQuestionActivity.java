@@ -73,7 +73,7 @@ public class DetailQuestionActivity extends BaseActivity implements
 	}
 
 	@Override
-	protected void initViewConent() {
+	protected void initViewContent() {
 		initFragmentToShow(); // 初始化一个fragment
 	}
 

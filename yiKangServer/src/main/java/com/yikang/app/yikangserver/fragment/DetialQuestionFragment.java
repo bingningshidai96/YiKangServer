@@ -146,7 +146,7 @@ public class DetialQuestionFragment extends BaseFragment implements OnClickListe
      */
     protected void getData() {
         questions = new ArrayList<QuestionPortrait>();
-        showWatingDailog();
+        showWaitingUI();
         String json = EvaluationLocalData.readFileFromAssert(getActivity(),
                 "daily_nursing_detials.txt");
         String data = null;
@@ -164,7 +164,7 @@ public class DetialQuestionFragment extends BaseFragment implements OnClickListe
                     QuestionPortrait.class);
             questions.addAll(portraits);
             cWirses.setQuestions(questions);
-            dismissWatingDailog();
+            hideWaitingUI();
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -193,7 +193,7 @@ public class DetialQuestionFragment extends BaseFragment implements OnClickListe
      * 加载答案的数据
      */
     private void loadRecordAnswers() {
-        dismissWatingDailog();
+        hideWaitingUI();
         String url = UrlConstants.URL_GET_CROSS_ANSWER;
         RequestParam params = new RequestParam();
         params.add("assessmentId", EvalutionState.currAssementId);
@@ -204,7 +204,7 @@ public class DetialQuestionFragment extends BaseFragment implements OnClickListe
 
             @Override
             public void onSuccess(ResponseContent content) {
-                dismissWatingDailog();
+                hideWaitingUI();
                 String json = content.getData();
                 LOG.i(TAG, json);
                 try {
@@ -223,7 +223,7 @@ public class DetialQuestionFragment extends BaseFragment implements OnClickListe
 
             @Override
             public void onFailure(String status, String message) {
-                dismissWatingDailog();
+                hideWaitingUI();
                 AppContext.showToast(message);
 
             }
@@ -232,7 +232,7 @@ public class DetialQuestionFragment extends BaseFragment implements OnClickListe
 //        HttpUtils.requestPost(url, params.toParams(), new ResultCallBack() {
 //            @Override
 //            public void postResult(String result) {
-//                dismissWatingDailog();
+//                hideWaitingUI();
 //                ResponseContent content;
 //                try {
 //                    content = ResponseContent.toResposeContent(result);
@@ -258,7 +258,7 @@ public class DetialQuestionFragment extends BaseFragment implements OnClickListe
      * @param paramData
      */
     private void submit(Map<String, Object> paramData) {
-        showWatingDailog();
+        showWaitingUI();
         // 开始提交数据
         RequestParam param = new RequestParam();
         param.add("surveyTableId", EvalutionState.currTableId);
@@ -271,7 +271,7 @@ public class DetialQuestionFragment extends BaseFragment implements OnClickListe
 
             @Override
             public void onSuccess(ResponseContent content) {
-                dismissWatingDailog();
+                hideWaitingUI();
                 AppContext.showToast(R.string.submit_succeed_tip);
                 listener.onInterAction(
                         EvaInterActctionListnter.WHAT_SUBMIT,
@@ -280,7 +280,7 @@ public class DetialQuestionFragment extends BaseFragment implements OnClickListe
 
             @Override
             public void onFailure(String status, String message) {
-                dismissWatingDailog();
+                hideWaitingUI();
                 AppContext.showToast(message);
             }
         });

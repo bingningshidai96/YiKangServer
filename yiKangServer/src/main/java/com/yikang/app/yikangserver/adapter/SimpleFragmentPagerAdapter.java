@@ -1,15 +1,15 @@
 package com.yikang.app.yikangserver.adapter;
 
-import java.util.List;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.support.v13.app.FragmentPagerAdapter;
 
+import java.util.List;
+
 public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
 	private List<Fragment> mFragmentList;
 
-	public SimpleFragmentPagerAdapter(FragmentManager fm,
-			List<Fragment> fragmentList) {
+	public SimpleFragmentPagerAdapter(FragmentManager fm, List<Fragment> fragmentList) {
 		super(fm);
 		this.mFragmentList = fragmentList;
 	}

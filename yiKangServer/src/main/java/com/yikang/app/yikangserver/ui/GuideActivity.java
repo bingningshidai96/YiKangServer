@@ -42,7 +42,7 @@ public class GuideActivity extends BaseActivity{
 		setContentView();
 		findViews();
 		getData();
-		initViewConent();
+		initViewContent();
 	}
 
 	@Override
@@ -64,7 +64,7 @@ public class GuideActivity extends BaseActivity{
 	protected void getData() {}
 
 	@Override
-	protected void initViewConent() {
+	protected void initViewContent() {
 		imgViews = new ImageView[imgIds.length];
 		for (int i=0;i<imgIds.length;i++) {
 			imgViews[i] = new ImageView(this);

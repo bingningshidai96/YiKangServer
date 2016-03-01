@@ -80,7 +80,7 @@ public class ServiceOrderDetailActivty extends BaseActivity implements
 			throw new IllegalStateException(
 					"must pass an ServiceOrder object which name is EXTRA_ITEM_ORDER");
 		}
-		showWatingDailog();
+		showWaitingUI();
 		final String url = UrlConstants.URL_SERVICE_ORDER_DETAIL;
 		RequestParam param = new RequestParam();
 		param.add("orderServiceDetailId", order.id);
@@ -88,7 +88,7 @@ public class ServiceOrderDetailActivty extends BaseActivity implements
                 new ApiClient.ResponceCallBack() {
                     @Override
                     public void onSuccess(ResponseContent content) {
-                        dismissWatingDailog();
+                        hideWaitingUI();
                         String reuslt = content.getData();
                         LOG.i(TAG, "[getData]" + reuslt);
                         order = JSON.parseObject(reuslt, ServiceOrder.class);
@@ -97,7 +97,7 @@ public class ServiceOrderDetailActivty extends BaseActivity implements
 
                     @Override
                     public void onFailure(String status, String message) {
-                        dismissWatingDailog();
+                        hideWaitingUI();
                         AppContext.showToast(message);
                     }
                 });
@@ -131,7 +131,7 @@ public class ServiceOrderDetailActivty extends BaseActivity implements
 	}
 
 	@Override
-	protected void initViewConent() {
+	protected void initViewContent() {
 		fillData();
 		btConfirm.setEnabled(false);
 		lyCustomerPhone.setOnClickListener(this);
@@ -161,7 +161,7 @@ public class ServiceOrderDetailActivty extends BaseActivity implements
 	 * 提交反馈
 	 */
 	private void submitFeedback() {
-		showWatingDailog();
+		showWaitingUI();
 		final String url = UrlConstants.URL_SERVICE_ORDER_SUBMIT_FEEDBACK;
 		final String feedback = edtFeedBack.getText().toString();
 		RequestParam param = new RequestParam();
@@ -171,7 +171,7 @@ public class ServiceOrderDetailActivty extends BaseActivity implements
                 new ApiClient.ResponceCallBack() {
                     @Override
                     public void onSuccess(ResponseContent content) {
-                        dismissWatingDailog();
+                        hideWaitingUI();
                         order.feedBack = feedback;
                         btConfirm.setEnabled(false);
                         AppContext
@@ -180,7 +180,7 @@ public class ServiceOrderDetailActivty extends BaseActivity implements
 
                     @Override
                     public void onFailure(String status, String message) {
-                        dismissWatingDailog();
+                        hideWaitingUI();
                         AppContext.showToast(message);
                     }
                 });

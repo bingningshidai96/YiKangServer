@@ -6,7 +6,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.nfc.Tag;
 import android.text.TextUtils;
 
 import com.alibaba.fastjson.JSON;
@@ -16,9 +15,9 @@ import com.yikang.app.yikangserver.api.ApiClient.ResponceCallBack;
 import com.yikang.app.yikangserver.api.RequestParam;
 import com.yikang.app.yikangserver.api.ResponseContent;
 import com.yikang.app.yikangserver.application.AppContext;
-import com.yikang.app.yikangserver.dailog.DialogFactory;
+import com.yikang.app.yikangserver.dialog.DialogFactory;
 import com.yikang.app.yikangserver.data.UrlConstants;
-import com.yikang.app.yikangserver.interf.NetworkReactUI;
+import com.yikang.app.yikangserver.interf.UINetwork;
 import com.yikang.app.yikangserver.service.UpdateService;
 
 import java.io.Serializable;
@@ -35,7 +34,7 @@ public class UpdateManger {
 
     private Context mContext;
 
-    private NetworkReactUI lisenter;
+    private UINetwork lisenter;
 
     /**
      * 请求更新的回调
@@ -80,8 +79,8 @@ public class UpdateManger {
     public UpdateManger(Context context, boolean isShow) {
         this.isShow = isShow;
         this.mContext = context;
-        if (mContext instanceof NetworkReactUI) {
-            this.lisenter = (NetworkReactUI) context;
+        if (mContext instanceof UINetwork) {
+            this.lisenter = (UINetwork) context;
         }
     }
 
@@ -127,14 +126,14 @@ public class UpdateManger {
 
     private void showWaitingDialog(String message) {
         if (lisenter != null) {
-            lisenter.showWatingDailog(message);
+            lisenter.showWaitingUI(message);
         }
     }
 
 
     private void dismissWaitingDialog() {
         if (lisenter != null) {
-            lisenter.dismissWatingDailog();
+            lisenter.hideWaitingUI();
         }
     }
 

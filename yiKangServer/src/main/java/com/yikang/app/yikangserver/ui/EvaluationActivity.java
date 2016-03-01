@@ -102,7 +102,7 @@ public class EvaluationActivity extends BaseActivity implements
 	}
 
 	@Override
-	protected void initViewConent() {
+	protected void initViewContent() {
 		initTitleBar(data.get(0).getTableName());
 		initSlidingMenu();
 		// 将fragment添加到页面中

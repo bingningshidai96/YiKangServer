@@ -20,6 +20,8 @@ import com.yikang.app.yikangserver.bean.User;
 import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.ui.EvaluationRecordActivity;
 import com.yikang.app.yikangserver.api.ApiClient;
+import com.yikang.app.yikangserver.ui.OrdersManageActivity;
+import com.yikang.app.yikangserver.ui.SimpleActivity;
 import com.yikang.app.yikangserver.utils.LOG;
 import com.yikang.app.yikangserver.view.CircleImageView;
 
@@ -94,7 +96,7 @@ public class InviteCustomerFragment extends BaseListFragment<InviteCustomer> {
 			tvStatus.setText(getString(R.string.customerList_status_registed));
 			holder.getView(R.id.ly_customer_item_time_container).setVisibility(
 					View.GONE);
-		} else if (item.status == User.STATUS_CONSUMED) {
+		} else if (item.status == InviteCustomer.STATUS_CONSUMED) {
 			tvStatus.setTextColor(getResources().getColor(
 					R.color.patientList_stauts_consumed));
 			tvStatus.setText(getString(R.string.customerList_status_consumed));
@@ -162,11 +164,15 @@ public class InviteCustomerFragment extends BaseListFragment<InviteCustomer> {
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		Intent intent = new Intent(getActivity(),
-				EvaluationRecordActivity.class);
-		Log.d(TAG, "[onItemClick]" + mData.get(position).userId);
-		intent.putExtra(EvaluationRecordActivity.EXTRA_SENIORID,mData.get(position).userId);
-		startActivity(intent);
+		if(mData.get(position).status == InviteCustomer.STATUS_CONSUMED){
+			//显示订单列表
+			Intent intent = new Intent(getActivity(),
+					OrdersManageActivity.class);
+			Log.d(TAG, "[onItemClick]" + mData.get(position).userId);
+			intent.putExtra(OrdersManageActivity.EXTRA_USER_ID,mData.get(position).userId);
+			startActivity(intent);
+		}
+
 	}
 
 }

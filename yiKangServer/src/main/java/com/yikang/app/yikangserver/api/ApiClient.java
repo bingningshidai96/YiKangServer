@@ -257,6 +257,7 @@ public class ApiClient {
 		});
 	}
 
+
 	private static void saveWithProgress(InputStream inputStream,long total,
 										 String filepath,DownloadCallBack callBack){
 		//检查父级目录是否存在

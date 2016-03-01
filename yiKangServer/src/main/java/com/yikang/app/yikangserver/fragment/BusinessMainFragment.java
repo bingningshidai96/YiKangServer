@@ -42,17 +42,16 @@ public class BusinessMainFragment extends BaseFragment implements
 		LinearLayout lyCalendar = (LinearLayout) view
 				.findViewById(R.id.ly_buisness_service_calendar);
 
-		LinearLayout lyNursedList = (LinearLayout) view
-				.findViewById(R.id.ly_buisness_item_nursedlist);
-		// TODO 记得取消注释
+//		LinearLayout lyNursedList = (LinearLayout) view
+//				.findViewById(R.id.ly_buisness_item_nursedlist);
 		 if(user.profession == MyData.DOCTOR){
 			 lyCalendar.setVisibility(View.GONE);
-			 lyNursedList.setVisibility(View.GONE);
+			 //lyNursedList.setVisibility(View.GONE);
 		 }
 
 		lyCustomerList.setOnClickListener(this);
 		lyCalendar.setOnClickListener(this);
-		lyNursedList.setOnClickListener(this);
+	//	lyNursedList.setOnClickListener(this);
 		return view;
 	}
 
@@ -83,9 +82,9 @@ public class BusinessMainFragment extends BaseFragment implements
 		case R.id.ly_buisness_service_calendar:
 			toServiceCalendarPage();
 			break;
-		case R.id.ly_buisness_item_nursedlist:
-			toNursedListPage();
-			break;
+//		case R.id.ly_buisness_item_nursedlist:
+//			toNursedListPage();
+//			break;
 		default:
 			break;
 		}

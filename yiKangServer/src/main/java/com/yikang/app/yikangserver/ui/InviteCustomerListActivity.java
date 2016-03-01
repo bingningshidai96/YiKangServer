@@ -51,7 +51,7 @@ public class InviteCustomerListActivity extends BaseActivity implements
 	protected void getData() {}
 
 	@Override
-	protected void initViewConent() {
+	protected void initViewContent() {
 		LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) indicator
 				.getLayoutParams();
 		params.width = getResources().getDisplayMetrics().widthPixels

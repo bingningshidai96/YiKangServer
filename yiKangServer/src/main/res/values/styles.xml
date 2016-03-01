@@ -132,4 +132,15 @@
         <item name="android:indeterminateDuration">1000</item>
         <item name="android:indeterminateOnly">true</item>
     </style>
+
+    <style name="common_item_text">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:drawablePadding">5dp</item>
+    </style>
+    <style name="item_order_user">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_marginTop">6dp</item>
+    </style>
 </resources>

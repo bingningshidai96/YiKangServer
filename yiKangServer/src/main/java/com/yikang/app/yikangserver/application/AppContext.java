@@ -347,6 +347,13 @@ public class AppContext extends Application {
 		editor.putString(key, value).commit();
 	}
 
+
+	public static void set(String key, int value) {
+		Editor editor = getPreferences().edit();
+		editor.putInt(key, value).commit();
+	}
+
+
 	public static void showToast(String message) {
 		Toast.makeText(appContext, message, Toast.LENGTH_SHORT).show();
 	}

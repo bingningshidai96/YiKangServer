@@ -40,7 +40,7 @@ public class QRImageCreateUtils {
 					if (bitMatrix.get(x, y)) {
 						pixels[y * width + x] = 0xff000000;
 					} else {
-						pixels[y * width + x] = 0xffffffff;
+						pixels[y * width + x] = 0x00ffffff;
 					}
 				}
 			}

@@ -51,7 +51,7 @@ public class FreeDayCalendarActivty extends BaseActivity implements
 
 	@Override
 	protected void getData() {
-		showWatingDailog();
+		showWaitingUI();
 		final String url = UrlConstants.URL_GET_WORK_DAYS;
 		RequestParam param = new RequestParam();
 		Calendar calendar = Calendar.getInstance();
@@ -62,7 +62,7 @@ public class FreeDayCalendarActivty extends BaseActivity implements
 
 					@Override
 					public void onSuccess(ResponseContent content) {
-						dismissWatingDailog();
+						hideWaitingUI();
 						String result = content.getData();
 						LOG.i(TAG, "[getData]" + result);
 						List<ServiceScheduleData> dataList = JSON.parseArray(
@@ -73,14 +73,14 @@ public class FreeDayCalendarActivty extends BaseActivity implements
 
 					@Override
 					public void onFailure(String status, String message) {
-						dismissWatingDailog();
+						hideWaitingUI();
 						AppContext.showToast(message);
 					}
 				});
 	}
 
 	@Override
-	protected void initViewConent() {
+	protected void initViewContent() {
 		gvCarlendar.setOnItemClickListener(this);
 		adapter = new CommonAdapter<ServiceScheduleData>(this, data,
 				R.layout.item_servier_data_textview) {

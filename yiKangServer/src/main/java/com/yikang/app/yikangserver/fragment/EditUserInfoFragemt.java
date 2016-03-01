@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,7 +23,7 @@ import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.bean.User;
 import com.yikang.app.yikangserver.data.MyData;
 import com.yikang.app.yikangserver.fragment.SystemSelectPhotoFragment.OnResultListener;
-import com.yikang.app.yikangserver.ui.AddrSarchActivity;
+import com.yikang.app.yikangserver.ui.AddressSearchActivity;
 import com.yikang.app.yikangserver.utils.BitmapUtils;
 import com.yikang.app.yikangserver.utils.LOG;
 import com.yikang.app.yikangserver.view.TextSpinner;
@@ -56,6 +57,15 @@ public class EditUserInfoFragemt extends BaseFragment implements OnClickListener
 	private String detail;
 	private String adCode;
 
+	private User user;
+
+	private static SparseIntArray defaultAvatar = new SparseIntArray();
+	static {
+		defaultAvatar.put(MyData.DOCTOR,R.drawable.doctor_default_avatar);
+		defaultAvatar.put(MyData.NURSING,R.drawable.nurse_default_avatar);
+		defaultAvatar.put(MyData.THERAPIST,R.drawable.therapists_default_avatar);
+	}
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -75,13 +85,6 @@ public class EditUserInfoFragemt extends BaseFragment implements OnClickListener
 		ivAvatar.setOnClickListener(this);
 		btRegist.setOnClickListener(this);
 		tspProfession.setAdapter(new PopListAdapter(getActivity(), MyData.getItems(MyData.professionMap)));
-		tspProfession.setOnDropDownItemClickListener(new OnDropDownItemClickListener() {
-				@Override
-				public void onItemClickListern(TextSpinner spinner,int position) {
-					coloseOptionUI(); // 将其他的UI关闭
-					getProfessionUI().initUI();
-				}
-		});
 		return rootView;
 	}
 
@@ -89,28 +92,49 @@ public class EditUserInfoFragemt extends BaseFragment implements OnClickListener
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		Bundle arguments = getArguments();
-		User user = null;
 		if (arguments != null) {
 			user = (User) arguments.getSerializable(EXTRA_USER);
 		}
 		initViews(user);
+		tspProfession.setOnDropDownItemClickListener(new OnDropDownItemClickListener() {
+			@Override
+			public void onItemClickListern(TextSpinner spinner, int position) {
+				coloseOptionUI(); // 将其他的UI关闭
+				getProfessionUI().initUI();
+				if(user==null||TextUtils.isEmpty(user.avatarImg)){
+					ivAvatar.setImageResource(defaultAvatar.get(position));
+				}
+			}
+		});
 		
 	}
 
-	private void initViews(User user) {
+
+
+
+	private void initViews(final User user) {
 		// 初始化各个职业的ui可选的UI
 		doctorUI = new DoctorUI(user);
 		nursingUI = new NursingUI(user);
 		therapistUI = new TherapistUI(user);
-		if (user != null) {
-			if (!TextUtils.isEmpty(user.avatarImg)) {
+
+		if(user==null){//从注册页面过来的，设置默认医生
+			tspProfession.setCurrentSelection(MyData.DOCTOR);
+			ivAvatar.setImageResource(R.drawable.doctor_default_avatar);
+			getProfessionUI().initUI();
+		}else {
+			//设置头像
+			if(!TextUtils.isEmpty(user.avatarImg)) {
 				ImageLoader.getInstance()
 						.displayImage(user.avatarImg, ivAvatar);
+			}else{
+				ivAvatar.setImageResource(defaultAvatar.get(user.profession));
 			}
+
 			edtName.setText(user.name);
 			tspProfession.setCurrentSelection(user.profession);
 			getProfessionUI().initUI();
-			
+
 			detail = user.addressDetail;
 			title = user.mapPositionAddress;
 			adCode = user.districtCode;
@@ -129,12 +153,12 @@ public class EditUserInfoFragemt extends BaseFragment implements OnClickListener
 
 	private ProfessionUI getProfessionUI() {
 		ProfessionUI professionUI = null;
-		int currentSelction = tspProfession.getCurrentSelction();
-		if (currentSelction == MyData.DOCTOR) {
+		int currentSelection = tspProfession.getCurrentSelction();
+		if (currentSelection == MyData.DOCTOR) {
 			professionUI = doctorUI;
-		} else if (currentSelction == MyData.NURSING) {
+		} else if (currentSelection == MyData.NURSING) {
 			professionUI = nursingUI;
-		} else if (currentSelction == MyData.THERAPIST) {
+		} else if (currentSelection == MyData.THERAPIST) {
 			professionUI = therapistUI;
 		}
 		return professionUI;
@@ -144,11 +168,11 @@ public class EditUserInfoFragemt extends BaseFragment implements OnClickListener
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == REQUEST_ADDR && data != null) {
-			adCode = data.getStringExtra(AddrSarchActivity.EXTRA_ADCODE);
-			title = data.getStringExtra(AddrSarchActivity.EXTRA_ADDR_TITLE);
-			detail = data.getStringExtra(AddrSarchActivity.EXTRA_ADDR_DETIAL);
+			adCode = data.getStringExtra(AddressSearchActivity.EXTRA_ADCODE);
+			title = data.getStringExtra(AddressSearchActivity.EXTRA_ADDR_TITLE);
+			detail = data.getStringExtra(AddressSearchActivity.EXTRA_ADDR_DETIAL);
 			String district = data
-					.getStringExtra(AddrSarchActivity.EXTRA_ADDR_DISTRICT);
+					.getStringExtra(AddressSearchActivity.EXTRA_ADDR_DISTRICT);
 			if (tspProfession.getCurrentSelction() == 1) {
 				nursingUI.tvAddr.setText(district + title + detail);
 			} else if (tspProfession.getCurrentSelction() == 2) {
@@ -257,7 +281,7 @@ public class EditUserInfoFragemt extends BaseFragment implements OnClickListener
 	 */
 	private void complete() {
 		ProfessionUI professionUI = getProfessionUI();
-		if (!generalcheck() || professionUI == null || !professionUI.check()) { // 检查参数
+		if (!generalCheck() || professionUI == null || !professionUI.check()) { // 检查参数
 			AppContext.showToastLong(getActivity(),
 					getString(R.string.regist_null_tip));
 			return;
@@ -271,7 +295,7 @@ public class EditUserInfoFragemt extends BaseFragment implements OnClickListener
 	/**
 	 * 检查姓名和职业
 	 */
-	private boolean generalcheck() {
+	private boolean generalCheck() {
 		String name = edtName.getText().toString();
 		int selection = tspProfession.getCurrentSelction();
 		LOG.e(TAG,"[generalcheck]"+selection+">>>>>>"+tspProfession.getCurrentSelction());
@@ -301,7 +325,7 @@ public class EditUserInfoFragemt extends BaseFragment implements OnClickListener
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		dismissWatingDailog();
+		hideWaitingUI();
 		if (avatar != null) {
 			avatar.recycle();
 			avatar = null;
@@ -312,7 +336,7 @@ public class EditUserInfoFragemt extends BaseFragment implements OnClickListener
 	 * 获取地址
 	 */
 	private void getDetailAddr() {
-		Intent intent = new Intent(getActivity(), AddrSarchActivity.class);
+		Intent intent = new Intent(getActivity(), AddressSearchActivity.class);
 		startActivityForResult(intent, REQUEST_ADDR);
 	}
 

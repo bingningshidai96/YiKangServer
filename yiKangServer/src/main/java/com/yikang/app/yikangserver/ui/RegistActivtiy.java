@@ -17,7 +17,7 @@ import com.yikang.app.yikangserver.application.AppConfig;
 import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.api.RequestParam;
 import com.yikang.app.yikangserver.api.ResponseContent;
-import com.yikang.app.yikangserver.dailog.DialogFactory;
+import com.yikang.app.yikangserver.dialog.DialogFactory;
 import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.fragment.RegisterAccountFragment;
 import com.yikang.app.yikangserver.fragment.RegisterAccountFragment.OnNextListener;
@@ -58,12 +58,12 @@ public class RegistActivtiy extends BaseActivity implements OnNextListener,
 	protected void getData() {}
 
 	@Override
-	protected void initViewConent() {
+	protected void initViewContent() {
 		 Fragment fragment = new RegisterAccountFragment();
 		 FragmentTransaction ft = getFragmentManager().beginTransaction();
 		 ft.replace(R.id.fl_register_fragment_container,
 		 fragment).commit();
-//		next("17822222222", "123456");
+		//next("17822222222", "123456");
 		// next("15836270024","111111");
 	}
 
@@ -93,7 +93,7 @@ public class RegistActivtiy extends BaseActivity implements OnNextListener,
 		LOG.i(TAG, "[register]选择的头像路劲是" + selectAvatarPath);
 		paramMap.remove("filePath");
 		if (!TextUtils.isEmpty(selectAvatarPath)) {
-			regiserWithAvatar(selectAvatarPath);
+			registerWithAvatar(selectAvatarPath);
 			return;
 		}
 		requestRegist(); // 直接注册
@@ -102,7 +102,7 @@ public class RegistActivtiy extends BaseActivity implements OnNextListener,
 	/**
 	 * 上传头像后注册
 	 */
-	private void regiserWithAvatar(String selectAvatarPath) {
+	private void registerWithAvatar(String selectAvatarPath) {
 		if (TextUtils.isEmpty(selectAvatarPath)) {
 			return;
 		}
@@ -110,11 +110,11 @@ public class RegistActivtiy extends BaseActivity implements OnNextListener,
 			unregisterReceiver(receiver);
 			receiver = null;
 		}
-		showWatingDailog();
+		showWaitingUI();
 		receiver = new BroadcastReceiver() {
 			@Override
 			public void onReceive(Context context, Intent intent) {
-				dismissWatingDailog();
+				hideWaitingUI();
 				printUploadResult(intent);
 				String avatarUrl = intent.getStringExtra(UpLoadService.EXTRA_DATA);
 				if (!TextUtils.isEmpty(avatarUrl)) {
@@ -152,7 +152,7 @@ public class RegistActivtiy extends BaseActivity implements OnNextListener,
 	/**
 	 * 登录成功
 	 */
-	private void onLoginSucess() {
+	private void onLoginSuccess() {
 		Intent intent = new Intent(this, MainActivity.class);
 		startActivity(intent);
 		finish();
@@ -162,7 +162,7 @@ public class RegistActivtiy extends BaseActivity implements OnNextListener,
 	 * 想服务器提交数据注册
 	 */
 	private void requestRegist() {
-		showWatingDailog();
+		showWaitingUI();
 		String url = UrlConstants.URL_REGISTER;
 		RequestParam param = new RequestParam("appid", "accessTicket");
 		param.addAll(paramMap);
@@ -170,13 +170,13 @@ public class RegistActivtiy extends BaseActivity implements OnNextListener,
 				new ApiClient.ResponceCallBack() {
 					@Override
 					public void onSuccess(ResponseContent content) {
-						dismissWatingDailog();
+						hideWaitingUI();
 						onRegistSuccess();// 注册成功
 					}
 
 					@Override
 					public void onFailure(String status, String message) {
-						dismissWatingDailog();
+						hideWaitingUI();
 						onRegistFailure(message);// 注册失败
 					}
 				});
@@ -214,7 +214,7 @@ public class RegistActivtiy extends BaseActivity implements OnNextListener,
 	 * 登录
 	 */
 	private void login(final String userName, final String passw) {
-		showWatingDailog();
+		showWaitingUI();
 		String url = UrlConstants.URL_LOGIN_LOGIN;
 		RequestParam param = new RequestParam("appid", "accessTicket");
 		param.add("loginName", userName);
@@ -224,18 +224,18 @@ public class RegistActivtiy extends BaseActivity implements OnNextListener,
 				new ApiClient.ResponceCallBack() {
 					@Override
 					public void onSuccess(ResponseContent content) {
-						dismissWatingDailog();
+						hideWaitingUI();
 						String ticket = content.getData();
 						AppContext.getAppContext().updateAccessTicket(ticket);
 						AppConfig appConfig = AppConfig.getAppConfig(getApplicationContext());
 						appConfig.setProperty("login.userName", userName);
 						appConfig.setProperty("login.password", passw);
-						onLoginSucess();
+						onLoginSuccess();
 					}
 
 					@Override
 					public void onFailure(String status, String message) {
-						dismissWatingDailog();
+						hideWaitingUI();
 						LOG.d(TAG, "[login]" + message);
 						AppContext.showToast(RegistActivtiy.this, message);
 					}

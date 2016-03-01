@@ -50,7 +50,7 @@ public class EditMineInfoActivity extends BaseActivity implements
 	}
 
 	@Override
-	protected void initViewConent() {
+	protected void initViewContent() {
 		EditUserInfoFragemt fragment = new EditUserInfoFragemt();
 		Bundle args = new Bundle();
 		args.putSerializable(EditUserInfoFragemt.EXTRA_USER, AppContext
@@ -89,11 +89,11 @@ public class EditMineInfoActivity extends BaseActivity implements
 			unregisterReceiver(receiver);
 			receiver = null;
 		}
-		showWatingDailog();
+		showWaitingUI();
 		receiver = new BroadcastReceiver() {
 			@Override
 			public void onReceive(Context context, Intent intent) {
-				dismissWatingDailog();
+				hideWaitingUI();
 				printUploadResult(intent);
 				String avatarUrl = intent.getStringExtra(UpLoadService.EXTRA_DATA);
 				if (!TextUtils.isEmpty(avatarUrl)) {
@@ -130,14 +130,14 @@ public class EditMineInfoActivity extends BaseActivity implements
 	 * 想服务器提交数据注册
 	 */
 	private void updateInfo() {
-		showWatingDailog();
+		showWaitingUI();
 		String url = UrlConstants.URL_EDIT_USER_INFO;
 		RequestParam param = new RequestParam();
 		param.addAll(paramMap);
 		ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
 			@Override
 			public void onSuccess(ResponseContent content) {
-				dismissWatingDailog();
+				hideWaitingUI();
 				AppContext.showToast("修改成功");
 				sendBroadcast(new Intent(UserInfoAltedRevicer.ACTION_USER_INFO_ALTED));
 				finish();
@@ -145,7 +145,7 @@ public class EditMineInfoActivity extends BaseActivity implements
 
 			@Override
 			public void onFailure(String status, String message) {
-				dismissWatingDailog();
+				hideWaitingUI();
 				AppContext.showToast("抱歉，修改失败." + message);
 			}
 		});

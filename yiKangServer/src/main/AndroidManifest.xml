@@ -52,16 +52,16 @@
             android:value="9ab3799a1001675e83a70df31b21e784" />
         
         <activity android:name="com.yikang.app.yikangserver.TestActivity">
+
+        </activity>
+        
+        <activity android:name=".ui.SplashActivity"
+             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        
-        <activity android:name="com.yikang.app.yikangserver.ui.SplashActivtiy"
-             android:screenOrientation="portrait">
-
         </activity>
        
         <activity android:name="com.yikang.app.yikangserver.ui.GuideActivity"
@@ -96,7 +96,7 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name="com.yikang.app.yikangserver.ui.AddrSarchActivity"
+            android:name=".ui.AddressSearchActivity"
             android:screenOrientation="portrait" >
         </activity>
         
@@ -137,6 +137,11 @@
 
         <activity android:name="com.yikang.app.yikangserver.ui.EditMineInfoActivity"
              android:screenOrientation="portrait">
+        </activity>
+
+        <activity android:name=".ui.OrdersManageActivity"
+            android:screenOrientation="portrait">
+
         </activity>
 
 

@@ -78,7 +78,7 @@ public class SeniorInfoActivity extends BaseActivity implements
     /**
      * 初始化view的内容以及行为
      */
-    protected void initViewConent() {
+    protected void initViewContent() {
         btSubmit.setOnClickListener(this);
         initEditors();
 
@@ -161,7 +161,7 @@ public class SeniorInfoActivity extends BaseActivity implements
         ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
             @Override
             public void onSuccess(ResponseContent content) {
-                dismissWatingDailog();
+                hideWaitingUI();
                 try {
                     JSONObject jo = new JSONObject(content.getData());
                     int assessmentId = jo.getInt("assessmentId");
@@ -178,7 +178,7 @@ public class SeniorInfoActivity extends BaseActivity implements
 
             @Override
             public void onFailure(String status, String message) {
-                dismissWatingDailog();
+                hideWaitingUI();
                 AppContext.showToast(message);
             }
         });
@@ -195,7 +195,7 @@ public class SeniorInfoActivity extends BaseActivity implements
      * 向服务器提交
      */
     private void submitInfo() {
-        showWatingDailog();
+        showWaitingUI();
         RequestParam param = new RequestParam();
         param.addAll(genrateMapFromInput());
         String url = UrlConstants.URL_SENOIR_INFO_SUBMIT;
@@ -203,7 +203,7 @@ public class SeniorInfoActivity extends BaseActivity implements
         ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
             @Override
             public void onSuccess(ResponseContent content) {
-                dismissWatingDailog();
+                hideWaitingUI();
                 try {
                     AppContext.showToast(R.string.submit_succeed_tip);
                     JSONObject jo = new JSONObject(content.getData());
@@ -219,7 +219,7 @@ public class SeniorInfoActivity extends BaseActivity implements
 
             @Override
             public void onFailure(String status, String message) {
-                dismissWatingDailog();
+                hideWaitingUI();
                 AppContext.showToast(R.string.submit_fail_redo);
             }
         });

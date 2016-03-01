@@ -50,7 +50,7 @@ public class ServiceCalendarActivity extends BaseActivity implements
 	}
 
 	@Override
-	protected void initViewConent() {
+	protected void initViewContent() {
 		LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) indicator
 				.getLayoutParams();
 		params.width = getResources().getDisplayMetrics().widthPixels

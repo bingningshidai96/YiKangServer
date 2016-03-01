@@ -45,7 +45,7 @@ public class TestActivity extends BaseActivity {
     @Override
     protected void getData() {}
 
-    protected void initViewConent() {}
+    protected void initViewContent() {}
 
     public void onStartService(View v) {
         Intent intent =new Intent(this, UpdateService.class);

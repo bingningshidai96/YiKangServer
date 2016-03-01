@@ -1,4 +1,4 @@
-package com.yikang.app.yikangserver.dailog;
+package com.yikang.app.yikangserver.dialog;
 
 import android.app.Dialog;
 import android.content.Context;

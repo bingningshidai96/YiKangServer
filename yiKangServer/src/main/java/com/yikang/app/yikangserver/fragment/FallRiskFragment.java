@@ -174,7 +174,7 @@ public class FallRiskFragment extends BaseFragment implements
      * 从服务器端加载已经提交的数据
      */
     private void loadRecordAnswers() {
-        showWatingDailog();
+        showWaitingUI();
         String url = UrlConstants.URL_GET_FALLRISK_ANSWER;
         RequestParam param = new RequestParam();
         param.addAll(adapter.toAnwerMap());
@@ -187,7 +187,7 @@ public class FallRiskFragment extends BaseFragment implements
 
             @Override
             public void onSuccess(ResponseContent content) {
-                dismissWatingDailog();
+                hideWaitingUI();
                 String json = content.getData();
                 try {
                     String data = new JSONObject(json).getJSONArray("questionGroups").toString();
@@ -204,7 +204,7 @@ public class FallRiskFragment extends BaseFragment implements
             @Override
             public void onFailure(String status, String message) {
                 AppContext.showToast(message);
-                dismissWatingDailog();
+                hideWaitingUI();
             }
         });
 
@@ -215,7 +215,7 @@ public class FallRiskFragment extends BaseFragment implements
      * 提交数据
      */
     private void submit() {
-        showWatingDailog();
+        showWaitingUI();
         RequestParam param = new RequestParam();
         param.add("surveyTableId", surveyTableId);
         param.add("assessmentId", EvalutionState.currAssementId);
@@ -228,7 +228,7 @@ public class FallRiskFragment extends BaseFragment implements
 
             @Override
             public void onSuccess(ResponseContent content) {
-                dismissWatingDailog();
+                hideWaitingUI();
                 AppContext.showToast(R.string.submit_succeed_tip);
                 listener.onInterAction(EvaInterActctionListnter.WHAT_SUBMIT,
                         surveyTableId);
@@ -236,7 +236,7 @@ public class FallRiskFragment extends BaseFragment implements
 
             @Override
             public void onFailure(String status, String message) {
-                dismissWatingDailog();
+                hideWaitingUI();
                 AppContext.showToast(message);
             }
         });

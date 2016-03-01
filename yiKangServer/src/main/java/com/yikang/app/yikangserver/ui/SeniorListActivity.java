@@ -41,7 +41,7 @@ public class SeniorListActivity extends BaseActivity {
 	}
 
 	@Override
-	protected void initViewConent() {
+	protected void initViewContent() {
 		FragmentTransaction ft = getFragmentManager().beginTransaction();
 		ft.replace(R.id.fl_senoirList_container, new SeniorListFragment());
 		ft.commit();

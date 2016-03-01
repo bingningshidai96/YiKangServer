@@ -33,6 +33,10 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		initContent();
 		initTitleBar(getString(R.string.login_title));
+		if(AppContext.get(AppConfig.PRE_APP_FIRST_USE, true)){
+			toRegiste();
+			AppContext.set(AppConfig.PRE_APP_FIRST_USE,false);
+		}
 	}
 
 	@Override
@@ -71,7 +75,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 	protected void getData() {}
 
 	@Override
-	protected void initViewConent() {
+	protected void initViewContent() {
 		btnLogin.setOnClickListener(this);
 		tvRegist.setOnClickListener(this);
 		tvFindPassw.setOnClickListener(this);
@@ -144,7 +148,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 	 * 登录
 	 */
 	private void login(final String userName, final String passw) {
-		showWatingDailog();
+		showWaitingUI();
 		String url = UrlConstants.URL_LOGIN_LOGIN;
 		RequestParam param = new RequestParam("appid", "accessticket");
 		param.add("loginName", userName);
@@ -153,7 +157,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 		ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
 			@Override
 			public void onSuccess(ResponseContent content) {
-				dismissWatingDailog();
+				hideWaitingUI();
 				accessTicket = content.getData();
 				AppContext.getAppContext().updateAccessTicket(accessTicket);
 				AppConfig appConfig = AppConfig.getAppConfig(getApplicationContext());
@@ -164,7 +168,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
 			@Override
 			public void onFailure(String status, String message) {
-				dismissWatingDailog();
+				hideWaitingUI();
 				LOG.d(TAG, "[login]" + message);
 				AppContext.showToast(LoginActivity.this, message);
 			}

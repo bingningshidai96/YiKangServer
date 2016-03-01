@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,7 +18,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.bean.User;
-import com.yikang.app.yikangserver.dailog.QrCodeDialog;
+import com.yikang.app.yikangserver.dialog.QrCodeDialog;
 import com.yikang.app.yikangserver.data.MyData;
 import com.yikang.app.yikangserver.ui.EditMineInfoActivity;
 import com.yikang.app.yikangserver.ui.FreeDayCalendarActivty;
@@ -37,6 +38,16 @@ public class MineFragment extends BaseFragment implements OnClickListener {
     private TextView tvDistinct, tvCustomerNum;
     private View rootView;
     private User user;
+
+
+
+    private static SparseIntArray defaultAvatar = new SparseIntArray();
+    static {
+        defaultAvatar.put(MyData.DOCTOR,R.drawable.doctor_default_avatar);
+        defaultAvatar.put(MyData.NURSING,R.drawable.nurse_default_avatar);
+        defaultAvatar.put(MyData.THERAPIST,R.drawable.therapists_default_avatar);
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -87,6 +98,8 @@ public class MineFragment extends BaseFragment implements OnClickListener {
 
         if (!TextUtils.isEmpty(user.avatarImg)) { // 显示头像
             ImageLoader.getInstance().displayImage(user.avatarImg, ivAvatar);
+        }else{
+            ivAvatar.setImageResource(defaultAvatar.get(user.profession));
         }
 
         if (!TextUtils.isEmpty(user.invitationUrl)) { // 显示二维码

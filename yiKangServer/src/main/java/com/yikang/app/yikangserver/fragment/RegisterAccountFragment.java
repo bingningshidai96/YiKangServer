@@ -4,8 +4,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 import org.json.JSONObject;
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -22,7 +20,6 @@ import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.application.AppContext;
-import com.yikang.app.yikangserver.dailog.DialogFactory;
 import com.yikang.app.yikangserver.utils.LOG;
 
 public class RegisterAccountFragment extends BaseFragment implements OnClickListener {
@@ -62,7 +59,7 @@ public class RegisterAccountFragment extends BaseFragment implements OnClickList
 	private Handler smsResultHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
-			dismissWatingDailog();
+			hideWaitingUI();
 			final int event = msg.arg1;
 			final int result = msg.arg2;
 			final Object data = msg.obj;
@@ -154,7 +151,7 @@ public class RegisterAccountFragment extends BaseFragment implements OnClickList
 		int id = v.getId();
 		switch (id) {
 		case R.id.tv_register_get_verlifiCode:
-			getverlifiCode();
+			getVerificationCode();
 			break;
 		case R.id.bt_register_next:
 			verlifiPhone();
@@ -169,7 +166,7 @@ public class RegisterAccountFragment extends BaseFragment implements OnClickList
 	/**
 	 * 获取验证码
 	 */
-	private void getverlifiCode() {
+	private void getVerificationCode() {
 		String phoneNumber = edtUserId.getText().toString();
 		if (TextUtils.isEmpty(phoneNumber) || phoneNumber.length() != 11) {
 			AppContext.showToast(R.string.regist_phoneNumber_error_hint);
@@ -215,6 +212,10 @@ public class RegisterAccountFragment extends BaseFragment implements OnClickList
 		}
 	};
 
+
+
+
+
 	/**
 	 * 重置计时器
 	 */
@@ -235,6 +236,7 @@ public class RegisterAccountFragment extends BaseFragment implements OnClickList
 						msg.what = 101;
 						handler.sendMessage(msg);
 						timer.cancel();
+						timer = null;
 						LOG.i(TAG, "[getverlifiCode]计时器timer取消");
 					}
 				}
@@ -271,7 +273,7 @@ public class RegisterAccountFragment extends BaseFragment implements OnClickList
 			return;
 		}
 
-		showWatingDailog();
+		showWaitingUI();
 		// 提交验证码
 		SMSSDK.submitVerificationCode(CHINA_CODE, phoneNumber, verlifiCode);
 		toNextStepPage();

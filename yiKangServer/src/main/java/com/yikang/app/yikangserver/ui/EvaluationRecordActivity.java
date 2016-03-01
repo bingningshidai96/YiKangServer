@@ -65,7 +65,7 @@ public class EvaluationRecordActivity extends BaseActivity implements
 	}
 
 	@Override
-	protected void initViewConent() {
+	protected void initViewContent() {
 		adapter = new RecordAdapter(datas, this);
 		griView.setAdapter(adapter);
 		griView.setOnItemClickListener(this);
@@ -84,14 +84,14 @@ public class EvaluationRecordActivity extends BaseActivity implements
 
 	// 从网络上获取数据
 	private void laodDataFromNet() {
-		showWatingDailog();
+		showWaitingUI();
 		String url = UrlConstants.URL_GET_EVALUATION_RECORD;
 		RequestParam param = new RequestParam();
 		param.add("seniorId", SenoirState.currSeniorId);
 		ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
 			@Override
 			public void onSuccess(ResponseContent content) {
-				dismissWatingDailog();
+				hideWaitingUI();
 				String json = content.getData();
 				datas.clear();
 				hasNewRecord = false;
@@ -108,7 +108,7 @@ public class EvaluationRecordActivity extends BaseActivity implements
 
 			@Override
 			public void onFailure(String status, String message) {
-				dismissWatingDailog();
+				hideWaitingUI();
 				AppContext.showToast(EvaluationRecordActivity.this,
 						message);
 			}
@@ -116,7 +116,7 @@ public class EvaluationRecordActivity extends BaseActivity implements
 	}
 
 	private void newEvaluationRecord() {
-		dismissWatingDailog();
+		hideWaitingUI();
 		RequestParam param = new RequestParam();
 		param.add("seniorId", SenoirState.currSeniorId);
 		final String url =UrlConstants.URL_ADD_EVALUATION_BAG;
@@ -124,7 +124,7 @@ public class EvaluationRecordActivity extends BaseActivity implements
 			@Override
 			public void onSuccess(ResponseContent content) {
 				try {
-					dismissWatingDailog();
+					hideWaitingUI();
 					AppContext.showToast(R.string.sucess_create_record);
 					int assessmentId = new JSONObject(content.getData()).getInt("assessmentId");
 					LOG.w(TAG, "[newEvaluationRecord]" + assessmentId);
@@ -137,7 +137,7 @@ public class EvaluationRecordActivity extends BaseActivity implements
 
 			@Override
 			public void onFailure(String status, String message) {
-				dismissWatingDailog();
+				hideWaitingUI();
 				AppContext.showToast(message);
 			}
 		});

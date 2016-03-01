@@ -83,7 +83,7 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 	protected void getData() {}
 
 	@Override
-	protected void initViewConent() {
+	protected void initViewContent() {
 		refreshFragments();
 		// 手动调用选中第一个
 		RadioButton rb = (RadioButton) findViewById(R.id.rb_main_business);
@@ -151,13 +151,13 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 	 * 获取数据
 	 */
 	private void loadUserInfo() {
-		showWatingDailog();
+		showWaitingUI();
 		String url = UrlConstants.URL_GET_USER_INFO;
 		RequestParam param = new RequestParam();
 		ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
 			@Override
 			public void onSuccess(ResponseContent content) {
-				dismissWatingDailog();
+				hideWaitingUI();
 				LOG.d(TAG, "[loadData-->postAsyn]:" + content.getData());
 				User user = JSON.parseObject(content.getData(), User.class);
 				if (user == null || user.userId == null) {
@@ -170,7 +170,7 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 
 			@Override
 			public void onFailure(String status, String message) {
-				dismissWatingDailog();
+				hideWaitingUI();
 				AppContext.showToast(message);
 			}
 		});
@@ -191,12 +191,12 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 	/**
 	 * 将fragment天骄到主页面中，tag设置为id
 	 */
-	private void addTabsFragment(Fragment framgent, String tag) {
-		fragList.add(framgent);
+	private void addTabsFragment(Fragment fragment, String tag) {
+		fragList.add(fragment);
 		FragmentTransaction ft = getFragmentManager().beginTransaction();
-		ft.add(R.id.fl_main_container, framgent, tag);
+		ft.add(R.id.fl_main_container, fragment, tag);
 		if (!String.valueOf(currentCheck).equals(tag)) {
-			ft.hide(framgent);
+			ft.hide(fragment);
 		}
 		ft.commit();
 	}
@@ -322,7 +322,7 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 				JSONObject object = JSON.parseObject(content.getData());
 				String alias = object.getString("alias");
 				if (!TextUtils.isEmpty(alias)) {
-					LOG.i(TAG, "[requestAndSetJPushAlias] correct alias has been parsed from joson");
+					LOG.i(TAG, "[requestAndSetJPushAlias] correct alias has been parsed from json");
 					setJPushAlias(alias);
 				}
 			}
