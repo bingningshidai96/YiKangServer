@@ -18,7 +18,7 @@ import com.yikang.app.yikangserver.api.RequestParam;
 import com.yikang.app.yikangserver.api.ResponseContent;
 import com.yikang.app.yikangserver.bean.ServiceOrder;
 import com.yikang.app.yikangserver.data.UrlConstants;
-import com.yikang.app.yikangserver.ui.ServiceOrderDetailActivty;
+import com.yikang.app.yikangserver.ui.ServiceOrderDetailActivity;
 import com.yikang.app.yikangserver.api.ApiClient;
 
 /**
@@ -155,8 +155,8 @@ public class ServiceTaskListFragment extends BaseListFragment<ServiceOrder> {
 		final String itemId = mData.get(position).id;
 		setRead(itemId);
 		Intent intent = new Intent(getActivity(),
-				ServiceOrderDetailActivty.class);
-		intent.putExtra(ServiceOrderDetailActivty.EXTRA_ITEM_ORDER,
+				ServiceOrderDetailActivity.class);
+		intent.putExtra(ServiceOrderDetailActivity.EXTRA_ITEM_ORDER,
 				mData.get(position));
 		startActivity(intent);
 	}

@@ -75,11 +75,11 @@ public class RegisterAccountFragment extends BaseFragment implements OnClickList
 				}
 			} else {
 				((Throwable) data).printStackTrace(); // 答应异常
-				String des = null;
+				String des = "";
 				try {
 					Throwable throwable = (Throwable) data;
 					JSONObject object = new JSONObject(throwable.getMessage());
-					des = object.optString("detail")!=null?"\n"+object.optString("detail") : "";
+					des = TextUtils.isEmpty(object.optString("detail"))? "" : "\n"+object.optString("detail");
 				} catch (Exception e) {
 					LOG.e(TAG, e.toString());
 				}
@@ -197,14 +197,11 @@ public class RegisterAccountFragment extends BaseFragment implements OnClickList
 	 */
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
-			if (msg.what == 100) {
+			if (msg.what == 100 && msg.arg1>0) {
 				int count = msg.arg1;
 				tvGetVerlifiCode.setText(count + "s秒后再次获取");
-				if (count <= 0) {
-					tvGetVerlifiCode.setEnabled(true);// 重新启用
-					tvGetVerlifiCode.setText(R.string.regist_get_verlify_code);
-				}
-			} else if (msg.what == 101) {
+
+			} else{
 				tvGetVerlifiCode.setEnabled(true);// 重新启用
 				tvGetVerlifiCode.setText(R.string.regist_get_verlify_code);
 				timerCount = 0;// 取消timer
@@ -276,7 +273,6 @@ public class RegisterAccountFragment extends BaseFragment implements OnClickList
 		showWaitingUI();
 		// 提交验证码
 		SMSSDK.submitVerificationCode(CHINA_CODE, phoneNumber, verlifiCode);
-		toNextStepPage();
 	}
 
 	/**

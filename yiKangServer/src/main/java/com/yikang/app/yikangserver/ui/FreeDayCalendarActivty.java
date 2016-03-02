@@ -26,7 +26,8 @@ public class FreeDayCalendarActivty extends BaseActivity implements
 		OnItemClickListener {
 	private static final String TAG = "FreeTimeCalendarActivty";
 	private static final int REQUEST_CODE_EDITTIME = 0x101;
-	private GridView gvCarlendar;
+	private GridView gvCalendar;
+
 
 	private ArrayList<ServiceScheduleData> data = new ArrayList<ServiceScheduleData>();
 	private int updatePosition;
@@ -41,7 +42,7 @@ public class FreeDayCalendarActivty extends BaseActivity implements
 
 	@Override
 	protected void findViews() {
-		gvCarlendar = (GridView) findViewById(R.id.gv_freeTimeCarlendar_carlendar);
+		gvCalendar = (GridView) findViewById(R.id.gv_freeTimeCarlendar_carlendar);
 	}
 
 	@Override
@@ -81,20 +82,20 @@ public class FreeDayCalendarActivty extends BaseActivity implements
 
 	@Override
 	protected void initViewContent() {
-		gvCarlendar.setOnItemClickListener(this);
+		gvCalendar.setOnItemClickListener(this);
 		adapter = new CommonAdapter<ServiceScheduleData>(this, data,
 				R.layout.item_servier_data_textview) {
 			@Override
 			protected void convert(ViewHolder holder, ServiceScheduleData item) {
 				TextView tvTitle = (TextView) holder.getConvertView();
-				String format = "%02d/%02d";
-				tvTitle.setText(String.format(format, item.serviceDay,item.serviceMonth));
+				String format = "%02d.%02d";
+				tvTitle.setText(String.format(format, item.serviceMonth,item.serviceDay));
 				boolean isEditable = item.scheduleStatus == ServiceScheduleData.status_editable;
 				// 如果不能编辑
 				tvTitle.setEnabled(isEditable);
 			}
 		};
-		gvCarlendar.setAdapter(adapter);
+		gvCalendar.setAdapter(adapter);
 
 	}
 

@@ -62,7 +62,7 @@
 	<string name="regist_send_sms_succees">短信已发送，请稍候</string>
 	<string name="regist_send_voice_succees">请注意接听来电</string>
 	<string name="regist_obtiain_sms_fail">获取验证码失败</string>
-	<string name="regist_obtiain_voice_fail">获取语音验证码</string>
+	<string name="regist_obtiain_voice_fail">获取语音验证码失败</string>
 	<string name="regist_verlify_success">验证成功</string>
 	<string name="regist_verlifu_fail">验证失败</string>
 	<string name="regist_sms_sdk_exception">抱歉，系统异常，请稍候再试</string>
@@ -155,7 +155,7 @@
     <string name="reset_passw_passw_again">请重新输入密码</string>
 
 
-    <string name="qr_dialog_tips">扫一扫关爱家人</string>
+    <string name="qr_dialog_tips">扫一扫预约服务</string>
     <string name="reset_passw_phone_tip">请输入需要重置的手机号码</string>
 
     <string name="update_right_now">现在更新</string>

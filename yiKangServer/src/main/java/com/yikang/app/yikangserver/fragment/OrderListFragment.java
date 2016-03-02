@@ -1,6 +1,5 @@
 package com.yikang.app.yikangserver.fragment;
 
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -19,7 +18,6 @@ import com.yikang.app.yikangserver.bean.Order;
 import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.utils.DeviceUtils;
 import com.yikang.app.yikangserver.utils.LOG;
-
 import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
@@ -45,6 +43,8 @@ public class OrderListFragment extends BaseListFragment<Order> {
         ColorDrawable divider = new ColorDrawable(getResources().getColor(R.color.divider_gray));
         mListView.setDivider(divider);
         mListView.setDividerHeight((int) (DeviceUtils.getDensity() * 10));
+        int backgroundColor = getResources().getColor(R.color.divider_gray);
+        mRefreshLayout.setBackgroundColor(backgroundColor);
         return view;
     }
 

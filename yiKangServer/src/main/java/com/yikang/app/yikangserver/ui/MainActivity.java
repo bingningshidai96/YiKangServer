@@ -94,7 +94,7 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 	 * 加载用户信息刷新界面
 	 */
 	private void refreshFragments(){
-		FragmentTransaction ft = getFragmentManager().beginTransaction();;
+		FragmentTransaction ft = getFragmentManager().beginTransaction();
 		for (Fragment fragment : fragList) {
 			ft.remove(fragment);
 		}
@@ -157,6 +157,7 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 		ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
 			@Override
 			public void onSuccess(ResponseContent content) {
+				findViewById(R.id.main_load_error).setVisibility(View.GONE);
 				hideWaitingUI();
 				LOG.d(TAG, "[loadData-->postAsyn]:" + content.getData());
 				User user = JSON.parseObject(content.getData(), User.class);
@@ -165,16 +166,32 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 				}
 				LOG.d(TAG, "[loadData-->postAsyn]:" + user);
 				AppContext.getAppContext().login(user);
+				hideLoadError();
 				initViewsAfterGetInfo();
 			}
 
 			@Override
 			public void onFailure(String status, String message) {
+				LOG.i(TAG,"[loadUserInfo]加载失败"+message);
 				hideWaitingUI();
 				AppContext.showToast(message);
+				showLoadError();
+
 			}
 		});
 	}
+
+
+	private void hideLoadError(){
+		findViewById(R.id.main_load_error).setVisibility(View.GONE);
+	}
+
+	private void showLoadError(){
+		findViewById(R.id.main_load_error).setVisibility(View.VISIBLE);
+		TextView tvTips = ((TextView) findViewById(R.id.tv_error_tips));
+		tvTips.setText(R.string.default_network_data_fail_describe);
+	}
+
 
 	/**
 	 * init views after loading data;

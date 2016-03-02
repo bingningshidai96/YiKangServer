@@ -202,7 +202,6 @@ public class ApiClient {
 					@Override
 					public void run() {
 						try {
-							LOG.i(TAG,"[onResponse]"+result);
 							final ResponseContent content = ResponseContent
 									.toResposeContent(result, isReSultEncrypt);
 

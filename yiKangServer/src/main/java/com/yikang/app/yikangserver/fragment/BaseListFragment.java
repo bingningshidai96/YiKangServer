@@ -30,11 +30,11 @@ import android.widget.TextView;
  * <li>刷新相关方法：{@link #onRefreshing},{@link #onRefreshFinish},
  * {@link ＃setRefreshEnable}
  * <li>加载更改相关方法：{@link #onLoading},{@link #onLoadFinish},
- * {@link #setLoadMoreEnbale};
+ * {@link #setLoadMoreEnable};
  * </ul>
  */
 public abstract class BaseListFragment<T> extends BaseFragment implements
-        OnRefreshListener, OnScrollListener, OnItemClickListener {
+        OnRefreshListener, OnScrollListener, OnItemClickListener{
     private static final String TAG = "BaseListFragment";
 
     /**
@@ -62,7 +62,7 @@ public abstract class BaseListFragment<T> extends BaseFragment implements
 
     protected CommonAdapter<T> mAdapter;
 
-    private boolean mLoadMoreEnbale;
+    private boolean mLoadMoreEnable;
 
     /**
      * 内容提示，例如请求的列表数据为空,做相关提示
@@ -82,6 +82,7 @@ public abstract class BaseListFragment<T> extends BaseFragment implements
      * 判断数据是否已经加载过一次。例如在ViewPager中加载一次后再滑动到这一页就不再加载
      */
     private boolean mHasLoadOnce;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -109,10 +110,11 @@ public abstract class BaseListFragment<T> extends BaseFragment implements
         }
     }
 
+
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        LOG.d(TAG, "[onViewCreated]" + mIsUserVisible);
         if (mIsUserVisible) { //为了延迟加载，只有当页面可见的时候才加载东西
             onRefresh();
         }
@@ -136,7 +138,7 @@ public abstract class BaseListFragment<T> extends BaseFragment implements
                 false);
         tips = (ViewGroup) view.findViewById(R.id.fl_tip);
         mListView = (ListView) view.findViewById(R.id.lv_listview);
-        if (mLoadMoreEnbale) {
+        if (mLoadMoreEnable) {
             mFootView = inflater.inflate(R.layout.list_foot_tips, mListView, false);
             mListView.addFooterView(mFootView);
         }
@@ -162,8 +164,8 @@ public abstract class BaseListFragment<T> extends BaseFragment implements
     /**
      * 是否允许下拉
      */
-    public void setLoadMoreEnbale(boolean enable) {
-        mLoadMoreEnbale = enable;
+    public void setLoadMoreEnable(boolean enable) {
+        mLoadMoreEnable = enable;
     }
 
     public enum RequestType {
@@ -226,7 +228,7 @@ public abstract class BaseListFragment<T> extends BaseFragment implements
 
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
-        if (!mLoadMoreEnbale || (mState & STATE_LOADMORE) != 0) {
+        if (!mLoadMoreEnable || (mState & STATE_LOADMORE) != 0) {
             return;
         }
         if (scrollState == OnScrollListener.SCROLL_STATE_IDLE) {

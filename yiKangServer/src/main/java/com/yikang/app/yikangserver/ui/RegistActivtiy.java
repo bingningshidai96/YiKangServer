@@ -63,7 +63,6 @@ public class RegistActivtiy extends BaseActivity implements OnNextListener,
 		 FragmentTransaction ft = getFragmentManager().beginTransaction();
 		 ft.replace(R.id.fl_register_fragment_container,
 		 fragment).commit();
-		//next("17822222222", "123456");
 		// next("15836270024","111111");
 	}
 
