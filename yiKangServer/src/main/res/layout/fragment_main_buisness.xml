@@ -12,7 +12,7 @@
 
         <LinearLayout
             android:id="@+id/ly_buisness_item_customerlist"
-            style="@style/style_buiness_item"
+            style="@style/style_business_item"
             android:layout_margin="10dp" >
 
             <ImageView
@@ -22,7 +22,7 @@
                 android:src="@drawable/buisness_senior_list" />
 
             <TextView
-                style="@style/style_buisness_text"
+                style="@style/style_business_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -52,17 +52,17 @@
 
         <LinearLayout
             android:id="@+id/ly_buisness_service_calendar"
-            style="@style/style_buiness_item"
+            style="@style/style_business_item"
             android:layout_margin="10dp" >
 
             <ImageView
                 android:id="@+id/iv_buisness_item_calendar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/selector_buisness_item_calendar" />
+                android:src="@drawable/buisness_service_calendar" />
 
             <TextView
-                style="@style/style_buisness_text"
+                style="@style/style_business_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"

@@ -20,7 +20,7 @@ import com.yikang.app.yikangserver.bean.Question;
 import com.yikang.app.yikangserver.bean.QuestionPortrait;
 import com.yikang.app.yikangserver.utils.LOG;
 import com.yikang.app.yikangserver.view.TextSpinner;
-import com.yikang.app.yikangserver.view.TextSpinner.OnDropDownItemClickListener;
+import com.yikang.app.yikangserver.view.TextSpinner.OnItemSelectedListener;
 import com.yikang.app.yikangserver.view.adapter.PopListAdapter;
 
 /**
@@ -28,7 +28,7 @@ import com.yikang.app.yikangserver.view.adapter.PopListAdapter;
  * 
  */
 public class FallRiskAdapter extends CommonChoiseAdapter<CrossWirses> implements
-		OnDropDownItemClickListener {
+		OnItemSelectedListener {
 
 	private static final String TAG = "FallRiskAdapter";
 
@@ -220,7 +220,7 @@ public class FallRiskAdapter extends CommonChoiseAdapter<CrossWirses> implements
 	}
 
 	@Override
-	public void onItemClickListern(TextSpinner spinner, int position) {
+	public void onItemClickListener(TextSpinner spinner, int position) {
 		spinner.setBackgroundResource(R.drawable.item_bg_pull_down_done);
 		if (icArrow == null) {
 			icArrow = context.getResources().getDrawable(

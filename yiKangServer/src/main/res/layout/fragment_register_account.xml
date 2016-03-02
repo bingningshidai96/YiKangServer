@@ -97,6 +97,17 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:text="@string/regist_next_step" />
+
+        <TextView
+            android:id="@+id/tv_reigster_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="@string/regist_to_login"
+            android:textColor="@color/white" />
+
     </LinearLayout>
 
 </ScrollView>

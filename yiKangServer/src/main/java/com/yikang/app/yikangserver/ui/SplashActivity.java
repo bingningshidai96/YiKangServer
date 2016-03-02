@@ -19,7 +19,7 @@ public class SplashActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		checkIsFirstRun();
+		correctPreference();
 		initContent();
 		mhHandler = new Handler();
 		mhHandler.postDelayed(new Runnable() {
@@ -48,9 +48,9 @@ public class SplashActivity extends BaseActivity {
 
 
 	/**
-	 * 检查是否第一次启动
+	 *如果版本更新，修正数据
 	 */
-	private void checkIsFirstRun(){
+	private void correctPreference(){
 		int currentVersion = AppContext.getAppContext().getVersionCode();
 		int cacheVersionCode = AppContext.get(AppConfig.PRE_VERSION_CODE, 0);
 		if(currentVersion>cacheVersionCode){
@@ -60,11 +60,7 @@ public class SplashActivity extends BaseActivity {
 	}
 
 	private void startNextPage() {
-		if(AppContext.get(AppConfig.PRE_APP_FIRST_RUN, true)){
-			Intent intent = new Intent(this, GuideActivity.class);
-			startActivity(intent);
-			finish();
-		}else if (AppContext.getAppContext().getAccessTicket() == null) {
+		if (AppContext.getAppContext().getAccessTicket() == null) {
 			Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
 			startActivity(intent);
 		}else {

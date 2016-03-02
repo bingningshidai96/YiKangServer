@@ -34,7 +34,7 @@ import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.interf.EvaInterActctionListnter;
 import com.yikang.app.yikangserver.api.ApiClient;
 import com.yikang.app.yikangserver.utils.LOG;
-import com.yikang.app.yikangserver.view.NoInterActionListView;
+import com.yikang.app.yikangserver.view.NoReactListView;
 
 public class EvaluationMainFragment extends BaseFragment implements
 		com.yikang.app.yikangserver.adapter.TotalPointChangedListener,
@@ -116,7 +116,7 @@ public class EvaluationMainFragment extends BaseFragment implements
 					R.layout.fragment_ecalution_questionlist_no_interacton,
 					container, false);
 			lvQuestions = (ListView) view.findViewById(R.id.lv_questions);
-			((NoInterActionListView) lvQuestions)
+			((NoReactListView) lvQuestions)
 					.setItemsEnable(isAnswerEnable);
 			btSubmit.setVisibility(View.GONE); // 将提交按钮隐藏
 		}

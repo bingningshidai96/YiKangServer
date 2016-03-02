@@ -48,7 +48,7 @@ public class AppContext extends Application {
 	public void onCreate() {
 		super.onCreate();
 		appContext = this;
-		CrashReport.initCrashReport(appContext, "900015194", false);
+		CrashReport.initCrashReport(appContext, "900015194", DEBUG);
 		AppConfig.getAppConfig(this);
 		JPushInterface.setDebugMode(DEBUG); // 设置开启日志,发布时请关闭日志
 		JPushInterface.init(this); // 初始化 JPush
@@ -334,8 +334,13 @@ public class AppContext extends Application {
 
 	public static boolean get(String key, boolean defaultVal) {
 		return getPreferences().getBoolean(key, defaultVal);
-
 	}
+
+	public static boolean contains(String key){
+		return getPreferences().contains(key);
+	}
+
+
 
 	public static void set(String key, boolean value) {
 		Editor editor = getPreferences().edit();

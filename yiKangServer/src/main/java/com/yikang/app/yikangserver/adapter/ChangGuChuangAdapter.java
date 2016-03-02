@@ -16,14 +16,14 @@ import com.yikang.app.yikangserver.bean.Answer;
 import com.yikang.app.yikangserver.bean.Question;
 import com.yikang.app.yikangserver.utils.LOG;
 import com.yikang.app.yikangserver.view.TextSpinner;
-import com.yikang.app.yikangserver.view.TextSpinner.OnDropDownItemClickListener;
+import com.yikang.app.yikangserver.view.TextSpinner.OnItemSelectedListener;
 import com.yikang.app.yikangserver.view.adapter.PopListAdapter;
 
 /**
  * 长谷川评估表的适配器
  */
 public class ChangGuChuangAdapter extends CommonChoiseAdapter<Question>
-		implements OnDropDownItemClickListener {
+		implements OnItemSelectedListener {
 	private static final String TAG = "QuestionPullAdapter";
 	@SuppressLint("UseSparseArrays")
 	private Map<Integer, Integer> answerMap = new HashMap<Integer, Integer>();
@@ -86,7 +86,7 @@ public class ChangGuChuangAdapter extends CommonChoiseAdapter<Question>
 	}
 
 	@Override
-	public void onItemClickListern(TextSpinner edtSpinner, int position) {
+	public void onItemClickListener(TextSpinner edtSpinner, int position) {
 		int quesPosition = (Integer) edtSpinner.getTag();
 		float oldValue = getCheckAnserValue(quesPosition);
 		float newValue = getAnswerValue(quesPosition, position);

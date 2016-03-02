@@ -27,7 +27,7 @@ import com.yikang.app.yikangserver.ui.AddressSearchActivity;
 import com.yikang.app.yikangserver.utils.BitmapUtils;
 import com.yikang.app.yikangserver.utils.LOG;
 import com.yikang.app.yikangserver.view.TextSpinner;
-import com.yikang.app.yikangserver.view.TextSpinner.OnDropDownItemClickListener;
+import com.yikang.app.yikangserver.view.TextSpinner.OnItemSelectedListener;
 import com.yikang.app.yikangserver.view.adapter.PopListAdapter;
 
 public class EditUserInfoFragemt extends BaseFragment implements OnClickListener, OnResultListener {
@@ -96,9 +96,9 @@ public class EditUserInfoFragemt extends BaseFragment implements OnClickListener
 			user = (User) arguments.getSerializable(EXTRA_USER);
 		}
 		initViews(user);
-		tspProfession.setOnDropDownItemClickListener(new OnDropDownItemClickListener() {
+		tspProfession.setOnDropDownItemClickListener(new OnItemSelectedListener() {
 			@Override
-			public void onItemClickListern(TextSpinner spinner, int position) {
+			public void onItemClickListener(TextSpinner spinner, int position) {
 				coloseOptionUI(); // 将其他的UI关闭
 				getProfessionUI().initUI();
 				if(user==null||TextUtils.isEmpty(user.avatarImg)){
@@ -153,7 +153,7 @@ public class EditUserInfoFragemt extends BaseFragment implements OnClickListener
 
 	private ProfessionUI getProfessionUI() {
 		ProfessionUI professionUI = null;
-		int currentSelection = tspProfession.getCurrentSelction();
+		int currentSelection = tspProfession.getCurrentSelection();
 		if (currentSelection == MyData.DOCTOR) {
 			professionUI = doctorUI;
 		} else if (currentSelection == MyData.NURSING) {
@@ -173,9 +173,9 @@ public class EditUserInfoFragemt extends BaseFragment implements OnClickListener
 			detail = data.getStringExtra(AddressSearchActivity.EXTRA_ADDR_DETIAL);
 			String district = data
 					.getStringExtra(AddressSearchActivity.EXTRA_ADDR_DISTRICT);
-			if (tspProfession.getCurrentSelction() == 1) {
+			if (tspProfession.getCurrentSelection() == 1) {
 				nursingUI.tvAddr.setText(district + title + detail);
-			} else if (tspProfession.getCurrentSelction() == 2) {
+			} else if (tspProfession.getCurrentSelection() == 2) {
 				therapistUI.tvAddr.setText(district + title + detail);
 			}
 		}
@@ -297,8 +297,8 @@ public class EditUserInfoFragemt extends BaseFragment implements OnClickListener
 	 */
 	private boolean generalCheck() {
 		String name = edtName.getText().toString();
-		int selection = tspProfession.getCurrentSelction();
-		LOG.e(TAG,"[generalcheck]"+selection+">>>>>>"+tspProfession.getCurrentSelction());
+		int selection = tspProfession.getCurrentSelection();
+		LOG.e(TAG,"[generalcheck]"+selection+">>>>>>"+tspProfession.getCurrentSelection());
 		return !TextUtils.isEmpty(name) && selection != -1;
 	}
 
@@ -308,7 +308,7 @@ public class EditUserInfoFragemt extends BaseFragment implements OnClickListener
 	private HashMap<String, Object> collectInfo() {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("userName", edtName.getText().toString());
-		map.put("userPosition", tspProfession.getCurrentSelction());
+		map.put("userPosition", tspProfession.getCurrentSelection());
 		map.put("photoUrl", avatarUrl);
 		
 		ProfessionUI professionUI = getProfessionUI();
@@ -391,7 +391,7 @@ public class EditUserInfoFragemt extends BaseFragment implements OnClickListener
 		public Map<String, Object> getInputData() {
 			String hospital = edtHospital.getText().toString();
 			String department = edtDepartment.getText().toString();
-//			int currentSelction = edtDepartment.getCurrentSelction();
+//			int currentSelction = edtDepartment.getCurrentSelection();
 //			if (TextUtils.isEmpty(hospital) || currentSelction == -1) {
 //				return null;
 //			}
@@ -447,7 +447,7 @@ public class EditUserInfoFragemt extends BaseFragment implements OnClickListener
 		@Override
 		public Map<String, Object> getInputData() {
 			String speciality = edtSpeciality.getText().toString();
-			int proLever = tspWorkType.getCurrentSelction();
+			int proLever = tspWorkType.getCurrentSelection();
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("adept", speciality);
 			map.put("jobCategory", proLever);
@@ -468,7 +468,7 @@ public class EditUserInfoFragemt extends BaseFragment implements OnClickListener
 		public boolean check() {
 			String addr = (String) tvAddr.getText();
 			String speciality = edtSpeciality.getText().toString();
-			int proLever = tspWorkType.getCurrentSelction();
+			int proLever = tspWorkType.getCurrentSelection();
 			return !(TextUtils.isEmpty(addr) || TextUtils.isEmpty(speciality) || proLever == -1);
 		}
 	}
@@ -515,7 +515,7 @@ public class EditUserInfoFragemt extends BaseFragment implements OnClickListener
 		public Map<String, Object> getInputData() {
 			String hospital = edtHospital.getText().toString();
 			String speciality = edtSpeciality.getText().toString();
-			int workType = tspWorkType.getCurrentSelction();
+			int workType = tspWorkType.getCurrentSelection();
 
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("hospital", hospital);
@@ -539,7 +539,7 @@ public class EditUserInfoFragemt extends BaseFragment implements OnClickListener
 			String addr = (String) tvAddr.getText();
 			String hospital = edtHospital.getText().toString();
 			String speciality = edtSpeciality.getText().toString();
-			int proLever = tspWorkType.getCurrentSelction();
+			int proLever = tspWorkType.getCurrentSelection();
 
 			return (!TextUtils.isEmpty(addr) && !TextUtils.isEmpty(hospital)
 					&& !TextUtils.isEmpty(speciality) && proLever != -1);

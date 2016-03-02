@@ -30,7 +30,8 @@
    	<string name="login_find_passw_input_tips">请输入正确的手机号码</string> 
 	<string name="login_find_passw_find_seucess">操作成功，密码将以短信的方式发送到您的手机上</string>
 	<string name="login_find_passw_find_fail">操作失败</string>	
-   	
+
+
 	
     
     <string name="title_bar_add">新增</string>
@@ -52,6 +53,7 @@
 	<string name="regist_pass_again_hint">请再次输入密码</string>
 	<string name="regist_verlify_code_hint">请输入验证码</string>
     <string name="regist_get_verlify_code">获取验证码</string>
+    <string name="regist_to_login">&lt;&lt; 已有账户登录</string>
     <string name="regist_get_void_code_hint">收不到验证码？\n点此电话收听语音验证码，请注意接听来电~</string>
 	<string name="regist_next_step">下一步</string>
 	<string name="regist_operation_hint">这项操作需要验证手机号，请接收并输入验证码</string>
@@ -91,7 +93,6 @@
      
      <string name="buisness_service_carlendar">服务日程</string>
      <string name="buisness_titile">我的患者</string>
-     <string name="buiness_nursedlist">被护理人员</string>
      <string name="buiness_customerList">我的患者</string>
     
     <string name="mine_title">我的</string>
@@ -145,6 +146,7 @@
     <string name="customerList_status_registed">已注册</string> 
     <string name="customerList_status_consumed">已消费</string> 
     <string name="customerList_item_service_time">服务时间：</string>
+    <string name="customerList_item_name">姓名：</string>
    	<string name="customerList_no_customer_register_tip">暂时没有推荐的人注册</string>
     <string name="customerList_no_customer_consume_tip">暂时没有推荐的人消费</string>
     <string name="edit_mine_info">填写资料</string>

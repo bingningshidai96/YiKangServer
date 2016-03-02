@@ -2,20 +2,17 @@ package com.yikang.app.yikangserver.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.tencent.bugly.crashreport.CrashReport;
 import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.bean.User;
 import com.yikang.app.yikangserver.data.MyData;
 import com.yikang.app.yikangserver.ui.InviteCustomerListActivity;
-import com.yikang.app.yikangserver.ui.SeniorListActivity;
 import com.yikang.app.yikangserver.ui.ServiceCalendarActivity;
 
 public class BusinessMainFragment extends BaseFragment implements
@@ -91,10 +88,10 @@ public class BusinessMainFragment extends BaseFragment implements
 
 	}
 
-	private void toNursedListPage() {
-		Intent intent = new Intent(getActivity(), SeniorListActivity.class);
-		startActivity(intent);
-	}
+//	private void toNursedListPage() {
+//		Intent intent = new Intent(getActivity(), SeniorListActivity.class);
+//		startActivity(intent);
+//	}
 
 	private void toServiceCalendarPage() {
 		Intent intent = new Intent(getActivity(), ServiceCalendarActivity.class);

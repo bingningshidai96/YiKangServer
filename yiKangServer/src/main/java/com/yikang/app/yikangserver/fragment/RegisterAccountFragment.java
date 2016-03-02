@@ -1,9 +1,7 @@
 package com.yikang.app.yikangserver.fragment;
 
-import java.util.Timer;
-import java.util.TimerTask;
-import org.json.JSONObject;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -16,11 +14,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import cn.smssdk.EventHandler;
-import cn.smssdk.SMSSDK;
+
 import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.utils.LOG;
+
+import org.json.JSONObject;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+import cn.smssdk.EventHandler;
+import cn.smssdk.SMSSDK;
 
 public class RegisterAccountFragment extends BaseFragment implements OnClickListener {
 	protected static final String TAG = null;
@@ -130,6 +135,9 @@ public class RegisterAccountFragment extends BaseFragment implements OnClickList
 		btNext = (Button) view.findViewById(R.id.bt_register_next);
 		tvGetVoice = (TextView) view.findViewById(R.id.tv_regist_get_voice_code);
 		layout = (LinearLayout) view.findViewById(R.id.ly_register_voice_code_container);
+
+
+		view.findViewById(R.id.tv_reigster_login).setOnClickListener(this);
 		tvGetVerlifiCode.setOnClickListener(this);
 		btNext.setOnClickListener(this);
 		tvGetVoice.setOnClickListener(this);
@@ -150,16 +158,20 @@ public class RegisterAccountFragment extends BaseFragment implements OnClickList
 	public void onClick(View v) {
 		int id = v.getId();
 		switch (id) {
-		case R.id.tv_register_get_verlifiCode:
-			getVerificationCode();
-			break;
-		case R.id.bt_register_next:
-			verlifiPhone();
-			break;
-		case R.id.tv_regist_get_voice_code:
-			getVoiceCode();
-		default:
-			break;
+			case R.id.tv_register_get_verlifiCode:
+				getVerificationCode();
+				break;
+			case R.id.bt_register_next:
+				verlifiPhone();
+				break;
+			case R.id.tv_regist_get_voice_code:
+				getVoiceCode();
+				break;
+			case R.id.tv_reigster_login:
+				getActivity().finish();
+				break;
+			default:
+				break;
 		}
 	}
 

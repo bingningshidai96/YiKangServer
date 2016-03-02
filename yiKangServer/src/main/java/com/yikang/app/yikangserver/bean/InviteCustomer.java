@@ -14,7 +14,7 @@ public class InviteCustomer {
 	@JSONField(name = "userStatus")
 	public int status;
 
-	@JSONField(name = "createTime")
+	@JSONField(name = "createTimeStr")
 	public String consumeDate;
 
 	@JSONField(name = "photoUrl")

@@ -17,7 +17,7 @@ import com.yikang.app.yikangserver.fragment.ServiceTaskListFragment.Type;
 
 public class ServiceCalendarActivity extends BaseActivity implements
 		OnCheckedChangeListener {
-	protected static final String TAG = "SeniorListActivity";
+	protected static final String TAG = "ServiceCalendarActivity";
 	private ViewPager viewpager;
 	private View indicator;
 	private RadioGroup rgTabs;

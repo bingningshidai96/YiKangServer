@@ -22,8 +22,8 @@ public class UrlConstants {
 	public static final String URL_SENOIR_INFO_SUBMIT = URL_BASE_SERVICE_URL
 			+ "/00-01-01";
 	/** 获取一个用户所有的老人 */
-	public static final String URL_GET_SENIOR_LIST = URL_BASE_SERVICE_URL
-			+ "/00-01-03";
+	//public static final String URL_GET_SENIOR_LIST = URL_BASE_SERVICE_URL
+	//		+ "/00-01-03";
 	public static final String URL_EVALUTION_COMMON_CROSSWIRSES_DATA = URL_BASE_SERVICE_URL
 			+ "/00-03-01";
 	public static final String URL_EVALUTION_COMMON_PORTAITS_DATA = URL_BASE_SERVICE_URL

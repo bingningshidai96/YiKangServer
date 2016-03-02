@@ -57,24 +57,18 @@
         
         <activity android:name=".ui.SplashActivity"
              android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-       
-        <activity android:name="com.yikang.app.yikangserver.ui.GuideActivity"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
-        </activity>
-        
-        
-        <activity android:name="com.yikang.app.yikangserver.ui.SeniorInfoActivity"
-             android:screenOrientation="portrait"></activity>
+
 
         <activity android:name=".ui.SimpleActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
         
         <activity
             android:name="com.yikang.app.yikangserver.ui.MainActivity"
@@ -103,6 +97,7 @@
         <activity android:name="com.yikang.app.yikangserver.ui.RegistActivtiy"
             android:screenOrientation="portrait" 
             android:windowSoftInputMode="stateHidden">
+
         </activity>
         
         <activity android:name="com.yikang.app.yikangserver.ui.LoginActivity"
@@ -116,11 +111,7 @@
         <activity android:name="com.yikang.app.yikangserver.ui.FreeTimeActivity"
              android:screenOrientation="portrait">
         </activity>
-        
-        <activity android:name="com.yikang.app.yikangserver.ui.SeniorListActivity"
-             android:screenOrientation="portrait">
-        </activity>
-        
+
         <activity android:name="com.yikang.app.yikangserver.ui.InviteCustomerListActivity"
              android:screenOrientation="portrait">
         </activity>

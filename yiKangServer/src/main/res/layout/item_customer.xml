@@ -12,7 +12,7 @@
     <FrameLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1" >
+        android:layout_weight="1.1" >
 
         <com.yikang.app.yikangserver.view.CircleImageView
             android:id="@+id/iv_customer_item_img"
@@ -25,7 +25,7 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="2"
+        android:layout_weight="2.5"
         android:gravity="center_vertical"
         android:orientation="vertical" >
 
@@ -38,9 +38,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
-                android:text="@string/name"
+                android:text="@string/customerList_item_name"
                 android:textColor="@color/common_text_black"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tv_customer_item_name"
@@ -49,7 +49,7 @@
                 android:singleLine="true"
                 android:text=""
                 android:textColor="@color/common_text_black"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
             
 			<View 
 			    android:layout_width="0dp"
@@ -64,7 +64,7 @@
                 android:layout_marginRight="20dp"
                 android:text="@string/customerList_status_registed"
                 android:textColor="@color/patientList_stauts_registed"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -80,7 +80,7 @@
                 android:singleLine="true"
                 android:text="@string/customerList_item_service_time"
                 android:textColor="@color/common_text_black"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tv_customer_item_service_time"
@@ -89,7 +89,7 @@
                 android:singleLine="true"
                 android:text=""
                 android:textColor="@color/common_text_black"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
