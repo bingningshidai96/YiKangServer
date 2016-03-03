@@ -57,6 +57,7 @@ public class AppContext extends Application {
 				this);
 		configBuilder.tasksProcessingOrder(QueueProcessingType.LIFO)
 		.diskCacheSize(CACHE_DISK_SIZE);
+
 		// DisplayImageOptions.Builder displayOptionBuidler =
 		// new DisplayImageOptions.Builder();
 		//

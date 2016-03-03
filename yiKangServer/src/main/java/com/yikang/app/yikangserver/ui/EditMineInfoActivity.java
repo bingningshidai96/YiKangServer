@@ -16,7 +16,7 @@ import com.yikang.app.yikangserver.api.ResponseContent;
 import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.fragment.EditUserInfoFragemt;
 import com.yikang.app.yikangserver.fragment.EditUserInfoFragemt.OnCompleteListener;
-import com.yikang.app.yikangserver.reciever.UserInfoAltedRevicer;
+import com.yikang.app.yikangserver.reciever.UserInfoAlteredReceiver;
 import com.yikang.app.yikangserver.service.UpLoadService;
 import com.yikang.app.yikangserver.api.ApiClient;
 import com.yikang.app.yikangserver.utils.LOG;
@@ -139,7 +139,7 @@ public class EditMineInfoActivity extends BaseActivity implements
 			public void onSuccess(ResponseContent content) {
 				hideWaitingUI();
 				AppContext.showToast("修改成功");
-				sendBroadcast(new Intent(UserInfoAltedRevicer.ACTION_USER_INFO_ALTED));
+				sendBroadcast(new Intent(UserInfoAlteredReceiver.ACTION_USER_INFO_ALTED));
 				finish();
 			}
 

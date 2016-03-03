@@ -35,7 +35,7 @@ import com.yikang.app.yikangserver.bean.User;
 import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.fragment.BusinessMainFragment;
 import com.yikang.app.yikangserver.fragment.MineFragment;
-import com.yikang.app.yikangserver.reciever.UserInfoAltedRevicer;
+import com.yikang.app.yikangserver.reciever.UserInfoAlteredReceiver;
 import com.yikang.app.yikangserver.api.ApiClient;
 import com.yikang.app.yikangserver.api.ApiClient.ResponceCallBack;
 import com.yikang.app.yikangserver.utils.DeviceUtils;
@@ -46,7 +46,7 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 	protected static final String TAG = "MainActivity";
 	private DoubleClickExitHelper mExitHelper; // 双击退出
 	private RadioGroup rgTabs;//
-	private UserInfoAltedRevicer receiver;
+	private UserInfoAlteredReceiver receiver;
 
 	private int currentCheck; // 当前选中的tab
 	private ArrayList<Fragment> fragList = new ArrayList<Fragment>();
@@ -55,14 +55,14 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		IntentFilter filter = new IntentFilter(UserInfoAltedRevicer.ACTION_USER_INFO_ALTED);
-		receiver = new UserInfoAltedRevicer();
+		IntentFilter filter = new IntentFilter(UserInfoAlteredReceiver.ACTION_USER_INFO_ALTED);
+		receiver = new UserInfoAlteredReceiver();
 		registerReceiver(receiver, filter);
 		initContent();
 		initTitleBar(getString(R.string.buisness_titile));
 		mExitHelper = new DoubleClickExitHelper(this);
 		if(!AppContext.getAppContext().isDeviceRegisted()){
-			registDevice(); // 注册设备
+			registerDevice(); // 注册设备
 		}
 		requestAndSetJPushAlias(); // 设置极光推送的别名,别名是跟用户绑定在一起的
 	}
@@ -117,7 +117,7 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 	/**
 	 * 向服务器请求注册设备
 	 */
-	private void registDevice() {
+	private void registerDevice() {
 		final String url = UrlConstants.URL_REGISTER_DEVICE;
 		RequestParam param = new RequestParam();
 		param.add("deviceType", 0);
@@ -335,11 +335,9 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 		ApiClient.postAsyn(url, new RequestParam(), new ResponceCallBack() {
 			@Override
 			public void onSuccess(ResponseContent content) {
-				LOG.i(TAG, "[requestAndSetJPushAlias] get alias success! ");
 				JSONObject object = JSON.parseObject(content.getData());
 				String alias = object.getString("alias");
 				if (!TextUtils.isEmpty(alias)) {
-					LOG.i(TAG, "[requestAndSetJPushAlias] correct alias has been parsed from json");
 					setJPushAlias(alias);
 				}
 			}

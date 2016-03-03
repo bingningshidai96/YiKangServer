@@ -5,14 +5,13 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:1.5.0'
-        classpath 'com.tencent.bugly:symtabfileuploader:1.2.7'
     }
 }
 
 allprojects {
     repositories {
         jcenter()
-
-        maven { url "https://jitpack.io" }
     }
 }
+
+

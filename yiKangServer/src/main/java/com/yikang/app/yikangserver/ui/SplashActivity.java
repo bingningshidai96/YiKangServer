@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import com.tencent.bugly.crashreport.CrashReport;
 import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.application.AppConfig;
 import com.yikang.app.yikangserver.application.AppContext;
