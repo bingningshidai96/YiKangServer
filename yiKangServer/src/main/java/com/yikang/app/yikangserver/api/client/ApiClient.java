@@ -1,8 +1,9 @@
-package com.yikang.app.yikangserver.api;
+package com.yikang.app.yikangserver.api.client;
 
 import android.os.Handler;
 import android.os.Looper;
-
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.FormEncodingBuilder;
 import com.squareup.okhttp.MediaType;
@@ -11,15 +12,18 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
+import com.yikang.app.yikangserver.api.callback.DownloadCallback;
+import com.yikang.app.yikangserver.api.callback.ResponseCallback;
+import com.yikang.app.yikangserver.api.parse.GsonFatory;
 import com.yikang.app.yikangserver.utils.AES;
 import com.yikang.app.yikangserver.utils.DeviceUtils;
 import com.yikang.app.yikangserver.utils.FileUtlis;
 import com.yikang.app.yikangserver.utils.LOG;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Type;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
 import java.util.ArrayList;
@@ -39,27 +43,15 @@ public class ApiClient {
 		mDelivery = new Handler(Looper.getMainLooper());
 	}
 
-	public interface ResponceCallBack {
-		String STATUS_OK = "000000";
-		String STATUS_NET_ERORR = "99999";
-		String STATUS_DATA_ERORR = "99998";
-
-		void onSuccess(ResponseContent content);
-		void onFailure(String status, String message);
-	}
-
-	public interface DownloadCallBack extends ResponceCallBack{
-		String STATUS_DOWNLOAD_FAIL = "99997";
-		void onProgress(long total,long current);
-	}
-
 
 	/**
-	 * @see #postAsyn(String,RequestParam,ResponceCallBack,boolean)
+	 * @see #execute(String,RequestParam, ResponseCallback,Type,boolean)
 	 */
-	public static void postAsyn(String url, RequestParam param,
-								final ResponceCallBack callBack) {
-		postAsyn(url, param, callBack, true);
+	public static void execute(String url, RequestParam param,
+							   final ResponseCallback callBack,
+							   final Type resultType) {
+
+		execute(url, param, callBack, resultType, true);
 	}
 
 
@@ -67,40 +59,45 @@ public class ApiClient {
 	 * 异步post请求
 	 * @param param 请求参数
 	 * @param callBack 请求结果的回调接口
-	 * @param isReSultEncrypt 结果是否加密
+	 * @param isResultEncrypt 结果是否加密
 	 */
-	public static void postAsyn(String url, RequestParam param, final ResponceCallBack callBack,
-								final boolean isReSultEncrypt) {
+	public static void execute(String url, RequestParam param,
+							   final ResponseCallback callBack,
+							   final Type resultType,
+							   final boolean isResultEncrypt) {
+
 		Request request = new Request.Builder().url(url)
 				.post(buildBody(param)).build();
-		executeAsyn(request, callBack, isReSultEncrypt);
+		executeAsyn(request, callBack,isResultEncrypt,resultType);
 	}
 
 
 	/**
 	 * 上传文件
 	 */
-	public static void postFilesAsyn(String url, FileRequestParam param,
-									 final ResponceCallBack callBack){
+	public static void postFilesAsyn(String url,
+									 FileRequestParam param,
+									 final ResponseCallback callBack,Type type){
+
 		if(!DeviceUtils.checkNetWorkIsOk()){
-			callBack.onFailure(ResponceCallBack.STATUS_NET_ERORR, "抱歉，当前没有网络");
+			callBack.onFailure(ResponseCallback.STATUS_NET_ERROR, "抱歉，当前没有网络");
 			return;
 		}
 		ArrayList<File> files = param.getFiles();
 		if(files.isEmpty()){
-			callBack.onFailure(ResponceCallBack.STATUS_DATA_ERORR, "没有上传的文件");
+			callBack.onFailure(ResponseCallback.STATUS_DATA_ERROR, "没有上传的文件");
 		}
 
 		final Request request = new Request.Builder().url(url).post(buildBody(param)).build();
 
-		executeAsyn(request,callBack,false);
+		executeAsyn(request,callBack,false,type);
 	}
 
 
 
-	public static void downloadFile(String url,String fileName,final DownloadCallBack callBack){
+	public static void downloadFile(String url,String fileName,final DownloadCallback callBack){
 		if(!DeviceUtils.checkNetWorkIsOk()){
-			callBack.onFailure(ResponceCallBack.STATUS_NET_ERORR, "抱歉，当前没有网络");
+			callBack.onFailure(ResponseCallback.STATUS_NET_ERROR, "抱歉，当前没有网络");
 			return;
 		}
 		Request request = new Request.Builder().url(url).get().build();
@@ -126,7 +123,12 @@ public class ApiClient {
 			builder.add(RequestParam.KEY_MACHINECODE, param.getMachineCode());
 		}
 		if (!param.isParamEmpty()) {
-			builder.add(RequestParam.KEY_PARAM_DATA, encript(param.getParamJson()));
+			try {
+				String encryptJson = AES.encrypt(param.getParamJson(), AES.getKey());
+				builder.add(RequestParam.KEY_PARAM_DATA, encryptJson);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		return builder.build();
 	}
@@ -160,66 +162,81 @@ public class ApiClient {
 	}
 
 
-	/**
-	 * 加密字符串
-	 * @param json 需要加密的json
-	 * @return 返回加密后的json
-	 */
-	private static String encript(String json) {
-		try {
-			return AES.encrypt(json, AES.getKey());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-
 
 	/**
 	 * 执行异步请求
 	 * @param request 要执行的请求
 	 * @param callBack 回调接口
-	 * @param isReSultEncrypt 请求结果是否加密
+	 * @param isEncrypt 请求结果是否加密
 	 */
-	private static void executeAsyn(Request request,final ResponceCallBack callBack,
-									final boolean isReSultEncrypt ){
+	private static <T> void executeAsyn(Request request,final ResponseCallback<T> callBack,
+									final boolean isEncrypt,final Type typeOfT){
 		client.newCall(request).enqueue(new Callback() {
 			@Override
 			public void onFailure(Request request, IOException e) {
-				mDelivery.post(new Runnable() {
-					@Override
-					public void run() {
-						callBack.onFailure(ResponceCallBack.STATUS_NET_ERORR, "加载失败,请检查网络");
-					}
-				});
+				mDelivery.post(new OnFailureRunnable(callBack,
+						ResponseCallback.STATUS_NET_ERROR, "加载失败,请检查网络"));
 			}
 
 			@Override
 			public void onResponse(Response response) throws IOException {
 				final String result = response.body().string();
-				mDelivery.post(new Runnable() {
-					@Override
-					public void run() {
-						try {
-							final ResponseContent content = ResponseContent
-									.toResposeContent(result, isReSultEncrypt);
+                Gson gson = GsonFatory.getCommonGsonInstance(isEncrypt);
+                Runnable runnable;
+                try{
+                    ResponseContent<T> content= gson.fromJson(result, typeOfT);
+                    if(content.isStautsOk()){
+                        runnable = new OnSuccessRunnable<>(callBack, content.getData());
 
-							if (content.isStautsOk()) {
-								callBack.onSuccess(content);
-							} else {
-								callBack.onFailure(content.getStatus(), content.getMessage());
-							}
-						} catch (Exception e) {
-							e.printStackTrace();
+                    }else {
+                        runnable = new OnFailureRunnable(callBack,content.getStatus(),
+                                content.getMessage());
+                    }
+                }catch(Exception e){
+                    e.printStackTrace();
+                    runnable =new OnFailureRunnable(callBack,
+                            ResponseCallback.STATUS_DATA_ERROR, "本地数据解析错误");
+                }
+				mDelivery.post(runnable);
 
-							callBack.onFailure(ResponceCallBack.STATUS_DATA_ERORR, "本地数据解析错误");
-						}
-					}
-				});
 			}
 		});
 	}
+
+
+	private static class OnSuccessRunnable<T> implements Runnable{
+		private ResponseCallback callback;
+		private T data;
+
+		OnSuccessRunnable(ResponseCallback<T> callback,T data){
+			this.callback = callback;
+			this.data = data;
+		}
+
+		@Override
+		public void run() {
+			callback.onSuccess(data);
+		}
+	}
+
+
+	private static class OnFailureRunnable implements Runnable{
+		private ResponseCallback callback;
+		private String message;
+		private String statusCode;
+
+		OnFailureRunnable(ResponseCallback callback,String msg,String statusCode){
+			this.callback = callback;
+			this.message =msg;
+			this.statusCode = statusCode;
+		}
+
+		@Override
+		public void run() {
+			callback.onFailure(statusCode, message);
+		}
+	}
+
 
 
 	/**
@@ -229,14 +246,14 @@ public class ApiClient {
 	 * @param callBack  回调接口
 	 */
 	private static void executeDownloadAsyn(Request request, final String fileName,
-											final DownloadCallBack callBack){
+											final DownloadCallback callBack){
 		client.newCall(request).enqueue(new Callback() {
 			@Override
 			public void onFailure(Request request, IOException e) {
 				mDelivery.post(new Runnable() {
 					@Override
 					public void run() {
-						callBack.onFailure(ResponceCallBack.STATUS_NET_ERORR, "加载失败,请检查网络");
+						callBack.onFailure(ResponseCallback.STATUS_NET_ERROR, "加载失败,请检查网络");
 					}
 				});
 			}
@@ -258,7 +275,7 @@ public class ApiClient {
 
 
 	private static void saveWithProgress(InputStream inputStream,long total,
-										 String filepath,DownloadCallBack callBack){
+										 String filepath,DownloadCallback callBack){
 		//检查父级目录是否存在
 		File parent = new File(FileUtlis.getParentPath(filepath));
 		if(!parent.exists())  parent.mkdirs();
@@ -281,7 +298,7 @@ public class ApiClient {
 			callBack.onSuccess(null);
 		} catch (IOException e) {
 			e.printStackTrace();
-			callBack.onFailure(DownloadCallBack.STATUS_DOWNLOAD_FAIL, "下载出现异常");
+			callBack.onFailure(DownloadCallback.STATUS_DOWNLOAD_FAIL, "下载出现异常");
 		} finally {
 			try{
 				if(inputStream!=null){

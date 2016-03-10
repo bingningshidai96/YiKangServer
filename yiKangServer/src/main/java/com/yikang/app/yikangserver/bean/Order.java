@@ -1,7 +1,8 @@
 package com.yikang.app.yikangserver.bean;
 
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
@@ -10,46 +11,46 @@ import java.io.Serializable;
 public class Order implements Serializable {
     private static final long serialVersionUID = 1L;
 
-   @JSONField(name ="orderNumber")
+   @SerializedName("orderNumber")
     public String orderId; //订单号
 
-   @JSONField(name ="myPhoneNumber")
+   @SerializedName("myPhoneNumber")
     public String userName; //用户名
 
-   @JSONField(name ="serviceTitle")
+   @SerializedName("serviceTitle")
     public String serviceName; //服务名
 
 
-   @JSONField(name ="createTimeStr")
+   @SerializedName("createTimeStr")
     public String orderTime; //订单时间
 
-   @JSONField(name ="servicePrice")
+   @SerializedName("servicePrice")
     public int paidCount; //支付金额
 
-   @JSONField(name ="orderStatus")
+   @SerializedName("orderStatus")
     public int orderStatus;//订单状态
 
 
-   @JSONField(name ="startTime")
+   @SerializedName("startTime")
     public String startTime; //预约时间：小时
 
-   @JSONField(name ="appointmentDate")
+   @SerializedName("appointmentDate")
     public String appointmentDate;//预约时间：日期
 
-   @JSONField(name ="remarks")
+   @SerializedName("remarks")
     public String comment; //备注
 
 
-   @JSONField(name ="createUserId")
+   @SerializedName("createUserId")
     public String createUserId; //下单用户
 
-   @JSONField(name ="seniorId")
+   @SerializedName("seniorId")
     public String seniorId;
 
-   @JSONField(name ="mapPostionAddress")
+   @SerializedName("mapPostionAddress")
     public String mapPosition;
 
-   @JSONField(name ="detailAddress")
+   @SerializedName("detailAddress")
     public String addressDetail;
 
     @Override

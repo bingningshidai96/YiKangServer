@@ -3,5 +3,5 @@
     <item android:drawable="@drawable/shap_grey_reactangle" android:state_focused="true"></item>
     <item android:drawable="@drawable/shap_grey_reactangle" android:state_enabled="false"></item>
     <item android:drawable="@drawable/shap_grey_reactangle" android:state_checked="true"></item>
-    <item android:drawable="@drawable/shap_themecolor_reactangle_solid"></item>
+    <item android:drawable="@drawable/shape_theme_rectangle"></item>
 </selector>

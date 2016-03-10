@@ -2,22 +2,17 @@ package com.yikang.app.yikangserver.fragment;
 
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.alibaba.fastjson.JSON;
 import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.adapter.ViewHolder;
-import com.yikang.app.yikangserver.api.ApiClient;
-import com.yikang.app.yikangserver.api.RequestParam;
-import com.yikang.app.yikangserver.api.ResponseContent;
+import com.yikang.app.yikangserver.api.callback.ResponseCallback;
+import com.yikang.app.yikangserver.api.Api;
 import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.bean.Order;
-import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.utils.DeviceUtils;
-import com.yikang.app.yikangserver.utils.LOG;
 import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
@@ -82,20 +77,12 @@ public class OrderListFragment extends BaseListFragment<Order> {
 
     @Override
     protected void sendRequestData(final RequestType requestType) {
-        final String url = UrlConstants.URL_USER_ORDER_LIST;
-        RequestParam param = new RequestParam();
-        if(!TextUtils.isEmpty(userId)){
-            param.add("paramUserId",userId);
-        }
-        ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
+        Api.getOrderList(userId, new ResponseCallback<List<Order>>() {
             @Override
-            public void onSuccess(ResponseContent content) {
-                String json = content.getData();
-                List<Order> list = JSON.parseArray(json, Order.class);
+            public void onSuccess(List<Order> list) {
                 mData.clear();
                 mData.addAll(list);
                 mAdapter.notifyDataSetChanged();
-                LOG.i(TAG, "[sendRequestData]" + json);
                 onLoadResult(requestType, true);
             }
 
@@ -105,6 +92,7 @@ public class OrderListFragment extends BaseListFragment<Order> {
                 onLoadResult(requestType, false);
             }
         });
+
     }
 
 

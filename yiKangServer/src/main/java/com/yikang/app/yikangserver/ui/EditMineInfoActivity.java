@@ -1,7 +1,5 @@
 package com.yikang.app.yikangserver.ui;
 
-import java.util.HashMap;
-import java.util.Map;
 import android.app.FragmentTransaction;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -9,17 +7,19 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.text.TextUtils;
+
 import com.yikang.app.yikangserver.R;
+import com.yikang.app.yikangserver.api.callback.ResponseCallback;
+import com.yikang.app.yikangserver.api.Api;
 import com.yikang.app.yikangserver.application.AppContext;
-import com.yikang.app.yikangserver.api.RequestParam;
-import com.yikang.app.yikangserver.api.ResponseContent;
-import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.fragment.EditUserInfoFragemt;
 import com.yikang.app.yikangserver.fragment.EditUserInfoFragemt.OnCompleteListener;
 import com.yikang.app.yikangserver.reciever.UserInfoAlteredReceiver;
 import com.yikang.app.yikangserver.service.UpLoadService;
-import com.yikang.app.yikangserver.api.ApiClient;
 import com.yikang.app.yikangserver.utils.LOG;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class EditMineInfoActivity extends BaseActivity implements
 		OnCompleteListener {
@@ -113,7 +113,7 @@ public class EditMineInfoActivity extends BaseActivity implements
 
 	/** 上传结果 */
 	private void printUploadResult(Intent intent) {
-		boolean isUploadSucess = intent.getBooleanExtra(UpLoadService.EXTRA_IS_SUCESS, false);
+		boolean isUploadSucess = intent.getBooleanExtra(UpLoadService.EXTRA_IS_SUCCESS, false);
 		String avatarUrl = intent.getStringExtra(UpLoadService.EXTRA_DATA);
 
 		if (isUploadSucess && !TextUtils.isEmpty(avatarUrl)) {
@@ -131,12 +131,9 @@ public class EditMineInfoActivity extends BaseActivity implements
 	 */
 	private void updateInfo() {
 		showWaitingUI();
-		String url = UrlConstants.URL_EDIT_USER_INFO;
-		RequestParam param = new RequestParam();
-		param.addAll(paramMap);
-		ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
+		Api.alterUserInfo(paramMap, new ResponseCallback<Void>() {
 			@Override
-			public void onSuccess(ResponseContent content) {
+			public void onSuccess(Void data) {
 				hideWaitingUI();
 				AppContext.showToast("修改成功");
 				sendBroadcast(new Intent(UserInfoAlteredReceiver.ACTION_USER_INFO_ALTED));

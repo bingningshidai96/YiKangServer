@@ -1,30 +1,30 @@
 package com.yikang.app.yikangserver.bean;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by liu on 16/2/1.
  */
 public class Appointment {
-   @JSONField(name ="appointmentUserId")
-    public String appointmentId;  //订单编号
+   @SerializedName("appointmentUserId")
+   public String appointmentId;  //订单编号
 
-   @JSONField(name ="serviceTitle")
+   @SerializedName("serviceTitle")
     public String serviceName; //服务名
 
-   @JSONField(name ="serviceId")
+   @SerializedName("serviceId")
     public String serviceId; // 该项服务的Id
 
-   @JSONField(name ="createTime")
+   @SerializedName("createTime")
     public String createTime; //订单时间
 
-   @JSONField(name ="remarks")
+   @SerializedName("remarks")
     public String comment; //备注
 
-   @JSONField(name ="mobileNumber")
+   @SerializedName("mobileNumber")
     public String userName; //用户名
 
-   @JSONField(name ="servicePrice")
+   @SerializedName("servicePrice")
     public String servicePrice; //支付价格
 
     public String userId;

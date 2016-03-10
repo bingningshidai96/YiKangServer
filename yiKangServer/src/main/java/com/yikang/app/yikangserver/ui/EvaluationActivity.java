@@ -1,10 +1,5 @@
 package com.yikang.app.yikangserver.ui;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -19,12 +14,12 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.adapter.LeftMenuAdapter;
+import com.yikang.app.yikangserver.api.client.RequestParam;
 import com.yikang.app.yikangserver.application.AppContext;
-import com.yikang.app.yikangserver.api.RequestParam;
-import com.yikang.app.yikangserver.api.ResponseContent;
 import com.yikang.app.yikangserver.data.BusinessState.SenoirState.EvalutionState;
 import com.yikang.app.yikangserver.data.EvaluationLocalData.TableType;
 import com.yikang.app.yikangserver.data.UrlConstants;
@@ -32,8 +27,11 @@ import com.yikang.app.yikangserver.fragment.CrossWiresFragment;
 import com.yikang.app.yikangserver.fragment.EvaluationMainFragment;
 import com.yikang.app.yikangserver.fragment.FallRiskFragment;
 import com.yikang.app.yikangserver.interf.EvaInterActctionListnter;
-import com.yikang.app.yikangserver.api.ApiClient;
 import com.yikang.app.yikangserver.utils.LOG;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
 
 /**
  * 评估的主页面
@@ -127,36 +125,38 @@ public class EvaluationActivity extends BaseActivity implements
 		String url = UrlConstants.URL_GET_TABLE_LIST;
 		RequestParam param = new RequestParam();
 		param.add("assessmentId", EvalutionState.currAssementId);
-		ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
 
-			@Override
-			public void onSuccess(ResponseContent content) {
-				String json = content.getData();
-				LOG.d(TAG, "[loadRecordTabState]" + json);
-				try {
-					parseJson(json);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-
-			@Override
-			public void onFailure(String status, String message) {
-				AppContext.showToast(message);
-			}
-
-
-			private void parseJson(String json) throws Exception {
-				JSONArray array = new JSONArray(json);
-				for (int i = 0; i < array.length(); i++) {
-					JSONObject object = array.getJSONObject(i);
-					int isTest = object.getInt("isTest");
-					int tableId = object.getInt("surveyTableId");
-					if (isTest == 1)// 1表示提交了
-						submitTableIds.add(tableId);
-				}
-			}
-		});
+		//TODO 网络请求更改
+//		ApiClient.execute(url, param, new ApiClient.ResponceCallBack() {
+//
+//			@Override
+//			public void onSuccess(ResponseContent content) {
+//				String json = content.getData();
+//				LOG.d(TAG, "[loadRecordTabState]" + json);
+//				try {
+//					parseJson(json);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//
+//			@Override
+//			public void onFailure(String status, String message) {
+//				AppContext.showToast(message);
+//			}
+//
+//
+//			private void parseJson(String json) throws Exception {
+//				JSONArray array = new JSONArray(json);
+//				for (int i = 0; i < array.length(); i++) {
+//					JSONObject object = array.getJSONObject(i);
+//					int isTest = object.getInt("isTest");
+//					int tableId = object.getInt("surveyTableId");
+//					if (isTest == 1)// 1表示提交了
+//						submitTableIds.add(tableId);
+//				}
+//			}
+//		});
 	}
 
 	/**

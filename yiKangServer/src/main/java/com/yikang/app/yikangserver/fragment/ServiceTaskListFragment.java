@@ -1,25 +1,21 @@
 package com.yikang.app.yikangserver.fragment;
 
-import java.util.List;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import com.alibaba.fastjson.JSON;
 import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.adapter.ViewHolder;
+import com.yikang.app.yikangserver.api.callback.ResponseCallback;
+import com.yikang.app.yikangserver.api.Api;
 import com.yikang.app.yikangserver.application.AppContext;
-import com.yikang.app.yikangserver.api.RequestParam;
-import com.yikang.app.yikangserver.api.ResponseContent;
 import com.yikang.app.yikangserver.bean.ServiceOrder;
-import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.ui.ServiceOrderDetailActivity;
-import com.yikang.app.yikangserver.api.ApiClient;
+import java.util.List;
 
 /**
  * 被服务对象列表
@@ -42,9 +38,6 @@ public class ServiceTaskListFragment extends BaseListFragment<ServiceOrder> {
 		}
 	}
 
-	private ServiceTaskListFragment() {
-		super();
-	}
 
 	public static ServiceTaskListFragment getInstance(Type type) {
 		ServiceTaskListFragment fragment = new ServiceTaskListFragment();
@@ -124,29 +117,21 @@ public class ServiceTaskListFragment extends BaseListFragment<ServiceOrder> {
 	@Override
 	protected void sendRequestData(final RequestType requestType) {
 		// TODO 在这个地方应该根据type来使用不用的url
-		final String url = UrlConstants.URL_ORDER_LIST;
-		RequestParam param = new RequestParam();
-		param.add("serviceDetailStatus", type.getCode());
-		ApiClient.postAsyn(url, param,
-				new ApiClient.ResponceCallBack() {
-					@Override
-					public void onSuccess(ResponseContent content) {
-						String result = content.getData();
-						Log.i(TAG, "[getData]" + result);
-						List<ServiceOrder> list = JSON.parseArray(result,
-								ServiceOrder.class);
-						mData.clear();
-						mData.addAll(list);
-						mAdapter.notifyDataSetChanged();
-						onLoadResult(requestType, true);
-					}
+		Api.getServiceTaskList(type.getCode(), new ResponseCallback<List<ServiceOrder>>() {
+			@Override
+			public void onSuccess(List<ServiceOrder> list) {
+				mData.clear();
+				mData.addAll(list);
+				mAdapter.notifyDataSetChanged();
+				onLoadResult(requestType, true);
+			}
 
-					@Override
-					public void onFailure(String status, String message) {
-						AppContext.showToast(message);
-						onLoadResult(requestType, false);
-					}
-				});
+			@Override
+			public void onFailure(String status, String message) {
+				AppContext.showToast(message);
+				onLoadResult(requestType, false);
+			}
+		});
 	}
 
 	@Override

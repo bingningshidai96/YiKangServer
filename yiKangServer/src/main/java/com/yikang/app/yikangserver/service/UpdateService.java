@@ -6,16 +6,14 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
 
 import com.yikang.app.yikangserver.R;
-import com.yikang.app.yikangserver.api.ApiClient;
-import com.yikang.app.yikangserver.api.ResponseContent;
+import com.yikang.app.yikangserver.api.callback.DownloadCallback;
+import com.yikang.app.yikangserver.api.Api;
 import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.utils.LOG;
 import com.yikang.app.yikangserver.utils.UpdateManger;
@@ -36,6 +34,32 @@ public class UpdateService extends Service {
     private String savePath;
     private NotificationManager manager;
     private UpdateManger.AndroidUpdate mUpdate;
+
+    private DownloadCallback downloadHandler = new DownloadCallback() {
+        @Override
+        public void onProgress(long total, long current) {
+            int currProgress = (int) (current * 100 / total);
+            if (currProgress > progress) {
+                progress = currProgress;
+                sendProgressNotification(progress);
+            }
+        }
+
+        @Override
+        public void onSuccess(Void data) {
+            //安装
+            stopSelf();
+            if(!TextUtils.isEmpty(savePath)){
+                installApk(savePath);
+                LOG.i(TAG,"开始安装。。。。。");
+            }
+        }
+
+        @Override
+        public void onFailure(String status, String message) {
+            stopSelf();
+        }
+    };
 
     @Nullable
     @Override
@@ -72,37 +96,14 @@ public class UpdateService extends Service {
         notification = builder.build();
     }
 
+
+
     /**
      *下载新的apk
      */
     protected void downLoadNewApk() {
         savePath = AppContext.CACHE_IMAGE_PATH+ File.separator+"hulijia_"+mUpdate.versionName+".apk";
-        ApiClient.downloadFile(mUpdate.downloadUrl, savePath, new ApiClient.DownloadCallBack() {
-            @Override
-            public void onProgress(long total, long current) {
-                int currProgress = (int) (current * 100 / total);
-                if (currProgress > progress) {
-                    progress = currProgress;
-                    sendProgressNotification(progress);
-                }
-            }
-
-            @Override
-            public void onSuccess(ResponseContent content) {
-                //安装
-                stopSelf();
-                if(!TextUtils.isEmpty(savePath)){
-                    installApk(savePath);
-                    LOG.i(TAG,"开始安装。。。。。");
-                }
-            }
-
-            @Override
-            public void onFailure(String status, String message) {
-                //
-                stopSelf();
-            }
-        });
+        Api.downloadNewApk(mUpdate.downloadUrl, savePath, downloadHandler);
 
     }
 

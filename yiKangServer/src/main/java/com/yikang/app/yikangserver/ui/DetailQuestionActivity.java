@@ -11,7 +11,7 @@ import com.yikang.app.yikangserver.bean.CrossWirses;
 import com.yikang.app.yikangserver.data.BusinessState.SenoirState.EvalutionState;
 import com.yikang.app.yikangserver.data.EvaluationLocalData.TableType;
 import com.yikang.app.yikangserver.fragment.CrossWiresFragment;
-import com.yikang.app.yikangserver.fragment.DetialQuestionFragment;
+import com.yikang.app.yikangserver.fragment.DetailQuestionFragment;
 import com.yikang.app.yikangserver.interf.EvaInterActctionListnter;
 import com.yikang.app.yikangserver.utils.LOG;
 
@@ -94,7 +94,7 @@ public class DetailQuestionActivity extends BaseActivity implements
 	 * 初始化一个fragment来显示数据
 	 */
 	private void initFragmentToShow() {
-		DetialQuestionFragment fragment = DetialQuestionFragment.newInstance(
+		DetailQuestionFragment fragment = DetailQuestionFragment.newInstance(
 				crossList.get(currentPosition), tableType);
 
 		getFragmentManager().beginTransaction()

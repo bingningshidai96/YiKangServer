@@ -14,12 +14,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yikang.app.yikangserver.R;
+import com.yikang.app.yikangserver.api.callback.ResponseCallback;
+import com.yikang.app.yikangserver.api.Api;
 import com.yikang.app.yikangserver.application.AppContext;
-import com.yikang.app.yikangserver.api.RequestParam;
-import com.yikang.app.yikangserver.api.ResponseContent;
 import com.yikang.app.yikangserver.dialog.DialogFactory;
-import com.yikang.app.yikangserver.data.UrlConstants;
-import com.yikang.app.yikangserver.api.ApiClient;
 import com.yikang.app.yikangserver.utils.LOG;
 
 import org.json.JSONObject;
@@ -288,14 +286,9 @@ public class ResetPasswFragment extends BaseFragment implements View.OnClickList
         String phoneNumber = edtUserId.getText().toString();
         String passWord = edtPassw.getText().toString();
 
-        final String url = UrlConstants.URL_RESET_PASSW;
-        RequestParam param = new RequestParam();
-        param.add("loginName", phoneNumber);
-        param.add("password", passWord);
-        ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
-
+        Api.resetPassword(phoneNumber, passWord, new ResponseCallback<Void>() {
             @Override
-            public void onSuccess(ResponseContent content) {
+            public void onSuccess(Void data) {
                 hideWaitingUI();
                 AppContext.showToast("重置密码成功");
                 getActivity().finish();
@@ -308,7 +301,6 @@ public class ResetPasswFragment extends BaseFragment implements View.OnClickList
                 dialog.show();
             }
         });
-
     }
 
     private Timer timer;

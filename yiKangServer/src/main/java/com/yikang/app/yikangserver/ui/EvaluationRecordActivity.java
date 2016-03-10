@@ -1,30 +1,23 @@
 package com.yikang.app.yikangserver.ui;
 
-import java.util.ArrayList;
-import java.util.List;
-import org.json.JSONObject;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
-import com.alibaba.fastjson.JSON;
+
 import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.adapter.RecordAdapter;
-import com.yikang.app.yikangserver.application.AppContext;
+import com.yikang.app.yikangserver.api.client.RequestParam;
 import com.yikang.app.yikangserver.bean.EvalutionRecord;
-import com.yikang.app.yikangserver.api.RequestParam;
-import com.yikang.app.yikangserver.api.ResponseContent;
 import com.yikang.app.yikangserver.data.BusinessState.SenoirState;
 import com.yikang.app.yikangserver.data.BusinessState.SenoirState.EvalutionState;
-import com.yikang.app.yikangserver.data.MyData;
 import com.yikang.app.yikangserver.data.UrlConstants;
-
-import com.yikang.app.yikangserver.api.ApiClient;
 import com.yikang.app.yikangserver.utils.LOG;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class EvaluationRecordActivity extends BaseActivity implements
 		OnItemClickListener {
@@ -88,31 +81,32 @@ public class EvaluationRecordActivity extends BaseActivity implements
 		String url = UrlConstants.URL_GET_EVALUATION_RECORD;
 		RequestParam param = new RequestParam();
 		param.add("seniorId", SenoirState.currSeniorId);
-		ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
-			@Override
-			public void onSuccess(ResponseContent content) {
-				hideWaitingUI();
-				String json = content.getData();
-				datas.clear();
-				hasNewRecord = false;
-				if (!TextUtils.isEmpty(json)) {
-					List<EvalutionRecord> list = JSON.parseArray(json, EvalutionRecord.class);
-					datas.addAll(list);
-					int profession = AppContext.getAppContext()
-							.getUser().profession;
-					if (profession != MyData.DOCTOR) {
-						adapter.setAddEnable(true);
-					}
-				}
-			}
-
-			@Override
-			public void onFailure(String status, String message) {
-				hideWaitingUI();
-				AppContext.showToast(EvaluationRecordActivity.this,
-						message);
-			}
-		});
+		//TODO 网络请求更改
+//		ApiClient.execute(url, param, new ApiClient.ResponceCallBack() {
+//			@Override
+//			public void onSuccess(ResponseContent content) {
+//				hideWaitingUI();
+//				String json = content.getData();
+//				datas.clear();
+//				hasNewRecord = false;
+//				if (!TextUtils.isEmpty(json)) {
+//					List<EvalutionRecord> list = JSON.parseArray(json, EvalutionRecord.class);
+//					datas.addAll(list);
+//					int profession = AppContext.getAppContext()
+//							.getUser().profession;
+//					if (profession != MyData.DOCTOR) {
+//						adapter.setAddEnable(true);
+//					}
+//				}
+//			}
+//
+//			@Override
+//			public void onFailure(String status, String message) {
+//				hideWaitingUI();
+//				AppContext.showToast(EvaluationRecordActivity.this,
+//						message);
+//			}
+//		});
 	}
 
 	private void newEvaluationRecord() {
@@ -120,27 +114,28 @@ public class EvaluationRecordActivity extends BaseActivity implements
 		RequestParam param = new RequestParam();
 		param.add("seniorId", SenoirState.currSeniorId);
 		final String url =UrlConstants.URL_ADD_EVALUATION_BAG;
-		ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
-			@Override
-			public void onSuccess(ResponseContent content) {
-				try {
-					hideWaitingUI();
-					AppContext.showToast(R.string.sucess_create_record);
-					int assessmentId = new JSONObject(content.getData()).getInt("assessmentId");
-					LOG.w(TAG, "[newEvaluationRecord]" + assessmentId);
-					toEvaluationPage(assessmentId, false);
-					hasNewRecord = true;
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-
-			@Override
-			public void onFailure(String status, String message) {
-				hideWaitingUI();
-				AppContext.showToast(message);
-			}
-		});
+		//TODO 网络请求更改
+//		ApiClient.execute(url, param, new ApiClient.ResponceCallBack() {
+//			@Override
+//			public void onSuccess(ResponseContent content) {
+//				try {
+//					hideWaitingUI();
+//					AppContext.showToast(R.string.sucess_create_record);
+//					int assessmentId = new JSONObject(content.getData()).getInt("assessmentId");
+//					LOG.w(TAG, "[newEvaluationRecord]" + assessmentId);
+//					toEvaluationPage(assessmentId, false);
+//					hasNewRecord = true;
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//
+//			@Override
+//			public void onFailure(String status, String message) {
+//				hideWaitingUI();
+//				AppContext.showToast(message);
+//			}
+//		});
 	}
 
 	/**

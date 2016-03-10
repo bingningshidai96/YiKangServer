@@ -1,6 +1,5 @@
 package com.yikang.app.yikangserver.fragment;
 
-import java.util.List;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -8,22 +7,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
-import com.alibaba.fastjson.JSON;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.adapter.ViewHolder;
+import com.yikang.app.yikangserver.api.callback.ResponseCallback;
+import com.yikang.app.yikangserver.api.Api;
 import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.bean.InviteCustomer;
-import com.yikang.app.yikangserver.api.RequestParam;
-import com.yikang.app.yikangserver.api.ResponseContent;
-import com.yikang.app.yikangserver.bean.User;
-import com.yikang.app.yikangserver.data.UrlConstants;
-import com.yikang.app.yikangserver.ui.EvaluationRecordActivity;
-import com.yikang.app.yikangserver.api.ApiClient;
 import com.yikang.app.yikangserver.ui.OrdersManageActivity;
-import com.yikang.app.yikangserver.ui.SimpleActivity;
-import com.yikang.app.yikangserver.utils.LOG;
 import com.yikang.app.yikangserver.view.CircleImageView;
+
+import java.util.List;
 
 /**
  * 推荐病患列表的fragment
@@ -35,7 +29,7 @@ public class InviteCustomerFragment extends BaseListFragment<InviteCustomer> {
 	private Type type;
 
 	public enum Type {
-		all(-1), registed(0), consumed(1);
+		all(-1), registered(0), consumed(1);
 		private int code;
 
 		Type(int code) {
@@ -110,18 +104,12 @@ public class InviteCustomerFragment extends BaseListFragment<InviteCustomer> {
 
 	@Override
 	protected void sendRequestData(final RequestType requestType) {
-		final String url = UrlConstants.URL_INVITE_LIST;
-		RequestParam param = new RequestParam();
-		param.add("userStatus", type.getCode());
-		ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
+		Api.getMyPaintList(type.getCode(), new ResponseCallback<List<InviteCustomer>>() {
 			@Override
-			public void onSuccess(ResponseContent content) {
-				String json = content.getData();
-				List<InviteCustomer> list = JSON.parseArray(json, InviteCustomer.class);
+			public void onSuccess(List<InviteCustomer> list) {
 				mData.clear();
 				mData.addAll(list);
 				mAdapter.notifyDataSetChanged();
-				LOG.i(TAG, "[sendRequestData]" + json);
 				onLoadResult(requestType, true);
 			}
 

@@ -9,26 +9,26 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import com.alibaba.fastjson.JSON;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.adapter.FallRiskAdapter;
 import com.yikang.app.yikangserver.adapter.TotalPointChangedListener;
-import com.yikang.app.yikangserver.application.AppContext;
+import com.yikang.app.yikangserver.api.client.RequestParam;
+import com.yikang.app.yikangserver.api.parse.GsonFatory;
 import com.yikang.app.yikangserver.bean.CrossWirses;
-import com.yikang.app.yikangserver.api.RequestParam;
-import com.yikang.app.yikangserver.api.ResponseContent;
+import com.yikang.app.yikangserver.bean.QuestionPortrait;
 import com.yikang.app.yikangserver.bean.TableCoross;
 import com.yikang.app.yikangserver.data.BusinessState.SenoirState.EvalutionState;
 import com.yikang.app.yikangserver.data.EvaluationLocalData;
 import com.yikang.app.yikangserver.data.EvaluationLocalData.TableType;
 import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.interf.EvaInterActctionListnter;
-import com.yikang.app.yikangserver.api.ApiClient;
 import com.yikang.app.yikangserver.utils.LOG;
 import com.yikang.app.yikangserver.view.NoReactListView;
 
-import org.json.JSONObject;
-
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -156,7 +156,9 @@ public class FallRiskFragment extends BaseFragment implements
         String json = EvaluationLocalData.getData(getActivity(), tableType);
 
         // 解析数据
-        TableCoross tableCoross = JSON.parseObject(json, TableCoross.class);
+        Gson gson = GsonFatory.getCommonGsonInstance();
+        Type type = new TypeToken<TableCoross>() {}.getType();
+        TableCoross tableCoross= gson.fromJson(json, type);
         surveyTableId = tableCoross.getSurveyTableId();
         crossWirses.addAll(tableCoross.getQuestionGrooup());
 
@@ -183,30 +185,31 @@ public class FallRiskFragment extends BaseFragment implements
         LOG.i(TAG, "[loadRecordAnswers]" + EvalutionState.currTableId + "==="
                 + EvalutionState.currAssementId);
 
-        ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
-
-            @Override
-            public void onSuccess(ResponseContent content) {
-                hideWaitingUI();
-                String json = content.getData();
-                try {
-                    String data = new JSONObject(json).getJSONArray("questionGroups").toString();
-                    List<CrossWirses> cWireses = JSON.parseArray(data,
-                            CrossWirses.class);
-                    adapter.restoreAnswer(cWireses);
-                    adapter.notifyDataSetChanged();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    LOG.e(TAG, "[loadRecordAnswers]数据解析异常");
-                }
-            }
-
-            @Override
-            public void onFailure(String status, String message) {
-                AppContext.showToast(message);
-                hideWaitingUI();
-            }
-        });
+        //TODO 网络请求变更
+//        ApiClient.execute(url, param, new ApiClient.ResponseCallback() {
+//
+//            @Override
+//            public void onSuccess(ResponseContent content) {
+//                hideWaitingUI();
+//                String json = content.getData();
+//                try {
+//                    String data = new JSONObject(json).getJSONArray("questionGroups").toString();
+//                    List<CrossWirses> cWireses = JSON.parseArray(data,
+//                            CrossWirses.class);
+//                    adapter.restoreAnswer(cWireses);
+//                    adapter.notifyDataSetChanged();
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                    LOG.e(TAG, "[loadRecordAnswers]数据解析异常");
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(String status, String message) {
+//                AppContext.showToast(message);
+//                hideWaitingUI();
+//            }
+//        });
 
     }
 
@@ -224,22 +227,23 @@ public class FallRiskFragment extends BaseFragment implements
 
 
         final String url = UrlConstants.getQustrionSubmitUrl(tableType);
-        ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
-
-            @Override
-            public void onSuccess(ResponseContent content) {
-                hideWaitingUI();
-                AppContext.showToast(R.string.submit_succeed_tip);
-                listener.onInterAction(EvaInterActctionListnter.WHAT_SUBMIT,
-                        surveyTableId);
-            }
-
-            @Override
-            public void onFailure(String status, String message) {
-                hideWaitingUI();
-                AppContext.showToast(message);
-            }
-        });
+        //TODO 网络请求变更
+//        ApiClient.execute(url, param, new ApiClient.ResponseCallback() {
+//
+//            @Override
+//            public void onSuccess(ResponseContent content) {
+//                hideWaitingUI();
+//                AppContext.showToast(R.string.submit_succeed_tip);
+//                listener.onInterAction(EvaInterActctionListnter.WHAT_SUBMIT,
+//                        surveyTableId);
+//            }
+//
+//            @Override
+//            public void onFailure(String status, String message) {
+//                hideWaitingUI();
+//                AppContext.showToast(message);
+//            }
+//        });
     }
 
 }

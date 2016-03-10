@@ -2,65 +2,62 @@ package com.yikang.app.yikangserver.bean;
 
 import java.io.Serializable;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.google.gson.annotations.SerializedName;
 
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	public static final int STATUS_REGISTER = 0;
 	public static final int STATUS_CONSUMED = 1;
-
-	@JSONField(name = "userName")
+	@SerializedName( "userName")
 	public String name;
-	@JSONField(name = "userId")
+	@SerializedName( "userId")
 	public String userId;
-	@JSONField(name = "userPosition")
+	@SerializedName( "userPosition")
 	public int profession = -1; // 职业
 
-	@JSONField(name = "jobCategory")
+	@SerializedName( "jobCategory")
 	public int jobType = -1; // 职业类型 全职和兼职
 
-	@JSONField(name = "nums")
+	@SerializedName( "nums")
 	public int paintsNums = 0;// 病患个数
 
-	@JSONField(name = "hospital")
-	public String hosital;
+	@SerializedName( "hospital")
+	public String hospital;
 
-	@JSONField(name = "offices")
-	public String deparment;
+	@SerializedName( "offices")
+	public String department;
 
-	@JSONField(name = "adept")
+	@SerializedName( "adept")
 	public String special;
 
-	@JSONField(name = "invitationCode")
+	@SerializedName( "invitationCode")
 	public String inviteCode;
 
-	@JSONField(name = "photoUrl")
+	@SerializedName( "photoUrl")
 	public String avatarImg;
 
-	@JSONField(name = "photoUrl")
 	public int status;
 
-	@JSONField(name = "mapPositionAddress")
+	@SerializedName( "mapPositionAddress")
 	public String mapPositionAddress;
 
-	@JSONField(name = "addressDetail")
+	@SerializedName( "addressDetail")
 	public String addressDetail;
 
-	@JSONField(name = "districtCode")
+	@SerializedName( "districtCode")
 	public String districtCode;
 
-	@JSONField(name = "photoUrl")
 	public String consumerTime;
 	
-	@JSONField(name ="invitationUrl")
+	@SerializedName("invitationUrl")
 	public String invitationUrl;
 
 	@Override
 	public String toString() {
 		return "User [name=" + name + ", userId=" + userId + ", profession="
 				+ profession + ", jobType=" + jobType + ", paintsNums="
-				+ paintsNums + ", hosital=" + hosital + ", deparment="
-				+ deparment + ", special=" + special + ", inviteCode="
+				+ paintsNums + ", hospital=" + hospital + ", department="
+				+ department + ", special=" + special + ", inviteCode="
 				+ inviteCode + ", avatarImg=" + avatarImg + ", status="
 				+ status + ", mapPositionAddress=" + mapPositionAddress
 				+ ", addressDetail=" + addressDetail + ", districtCode="

@@ -1,16 +1,20 @@
 package com.yikang.app.yikangserver.service;
 
-import java.io.File;
-import java.util.Map;
 import android.app.IntentService;
 import android.content.Intent;
 import android.text.TextUtils;
-import com.alibaba.fastjson.JSON;
-import com.yikang.app.yikangserver.api.FileRequestParam;
-import com.yikang.app.yikangserver.api.ResponseContent;
-import com.yikang.app.yikangserver.data.UrlConstants;
-import com.yikang.app.yikangserver.api.ApiClient;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.yikang.app.yikangserver.api.callback.ResponseCallback;
+import com.yikang.app.yikangserver.api.Api;
+import com.yikang.app.yikangserver.api.parse.GsonFatory;
+import com.yikang.app.yikangserver.bean.TableCoross;
 import com.yikang.app.yikangserver.utils.LOG;
+
+import java.io.File;
+import java.lang.reflect.Type;
+import java.util.Map;
 
 /**
  * 上传服务
@@ -18,11 +22,28 @@ import com.yikang.app.yikangserver.utils.LOG;
  */
 public class UpLoadService extends IntentService {
 	private static final String TAG = "UpLoadService";
-	public static final String EXTRA_IS_SUCESS = "isSucess";
+	public static final String EXTRA_IS_SUCCESS = "isSuccess";
 	public static final String EXTRA_MESSAGE = "message";
 	public static final String EXTRA_DATA = "data";
 
 	public static final String ACTION_UPLOAD_COMPLETE = "com.yikang.action.upLoadComplete";
+
+	private ResponseCallback<String> uploadFileHandler = new ResponseCallback<String>() {
+		@Override
+		public void onSuccess(String data) {
+			// 解析数据
+			Gson gson = GsonFatory.getCommonGsonInstance();
+			Type type = new TypeToken<Map<String, Object>>() {}.getType();
+			Map<String, Object> map= gson.fromJson(data, type);
+			String fileUrl = (String) map.get("fileUrl");
+			upLoadSuccess(fileUrl);
+		}
+
+		@Override
+		public void onFailure(String status, String message) {
+			upLoadFail(message);
+		}
+	};
 
 	public UpLoadService() {
 		super("UpLoadService");
@@ -31,7 +52,6 @@ public class UpLoadService extends IntentService {
 	@Override
 	protected void onHandleIntent(Intent intent) {
 		String path = intent.getStringExtra("filePath");
-		LOG.i(TAG, "[onHandleIntent]path：" + path);
 		if (TextUtils.isEmpty(path)) {
 			upLoadFail("传入参数不正确");
 			return;
@@ -41,48 +61,24 @@ public class UpLoadService extends IntentService {
 			upLoadFail("传入参数不正确");
 			return;
 		}
-		upLoadSingleFile(file, UrlConstants.URL_UPLOAD_IMAGE);
+		Api.uploadFile(file, uploadFileHandler);
 	}
 
-	/**
-	 * 上传单个文件
-	 */
-	private void upLoadSingleFile(File file, String url) {
-		LOG.i(TAG, "[upLoadSingleFile]上传文件开始...");
-		FileRequestParam param = new FileRequestParam("headImage");
-		param.addFile(file);
-		ApiClient.postFilesAsyn(url, param, new ApiClient.ResponceCallBack() {
-			@Override
-			public void onSuccess(ResponseContent content) {
-				String data = content.getData();
-				@SuppressWarnings("unchecked")
-				Map<String, Object> map = (Map<String, Object>) JSON
-						.parse(data);
-				LOG.i(TAG, "[upLoadSingleFile-->onSuccess]" + map.toString());
-				String fileUrl = (String) map.get("fileUrl");
-				upLoadSuccess(fileUrl);
-			}
 
-			@Override
-			public void onFailure(String status, String message) {
-				LOG.i(TAG, "[upLoadSingleFile-->onFailure]" + message);
-				upLoadFail(message);
-			}
-		});
-	}
+
 
 	private void upLoadFail(String message) {
 		LOG.i(TAG, "[upLoadFail]上传失败" + message);
-		Intent intent = new Intent("com.yikang.action.upLoadComplete");
-		intent.putExtra(EXTRA_IS_SUCESS, false);
+		Intent intent = new Intent(ACTION_UPLOAD_COMPLETE);
+		intent.putExtra(EXTRA_IS_SUCCESS, false);
 		intent.putExtra(EXTRA_MESSAGE, message);
 		sendBroadcast(intent);
 	}
 
 	private void upLoadSuccess(String url) {
 		LOG.i(TAG, "上传成功" + url);
-		Intent intent = new Intent("com.yikang.action.upLoadComplete");
-		intent.putExtra(EXTRA_IS_SUCESS, true);
+		Intent intent = new Intent(ACTION_UPLOAD_COMPLETE);
+		intent.putExtra(EXTRA_IS_SUCCESS, true);
 		intent.putExtra(EXTRA_DATA, url);
 		sendBroadcast(intent);
 	}

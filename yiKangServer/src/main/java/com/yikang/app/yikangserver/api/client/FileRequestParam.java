@@ -1,4 +1,4 @@
-package com.yikang.app.yikangserver.api;
+package com.yikang.app.yikangserver.api.client;
 
 import com.yikang.app.yikangserver.application.AppContext;
 

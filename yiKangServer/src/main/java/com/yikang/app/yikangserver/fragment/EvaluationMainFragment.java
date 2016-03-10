@@ -1,10 +1,5 @@
 package com.yikang.app.yikangserver.fragment;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-
-import org.json.JSONObject;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,7 +9,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import com.alibaba.fastjson.JSON;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.adapter.ChangGuChuangAdapter;
 import com.yikang.app.yikangserver.adapter.CommonChoiseAdapter;
@@ -22,19 +19,23 @@ import com.yikang.app.yikangserver.adapter.SeniorCommonQuestionAdapter;
 import com.yikang.app.yikangserver.adapter.SingleABCDAdapter;
 import com.yikang.app.yikangserver.adapter.SingleDepressionAdapter;
 import com.yikang.app.yikangserver.adapter.SinglePointChoiseAdapter;
-import com.yikang.app.yikangserver.application.AppContext;
+import com.yikang.app.yikangserver.api.client.RequestParam;
+import com.yikang.app.yikangserver.api.parse.GsonFatory;
 import com.yikang.app.yikangserver.bean.Question;
-import com.yikang.app.yikangserver.api.RequestParam;
-import com.yikang.app.yikangserver.api.ResponseContent;
+import com.yikang.app.yikangserver.bean.QuestionPortrait;
 import com.yikang.app.yikangserver.bean.Table;
 import com.yikang.app.yikangserver.data.BusinessState.SenoirState.EvalutionState;
 import com.yikang.app.yikangserver.data.EvaluationLocalData;
 import com.yikang.app.yikangserver.data.EvaluationLocalData.TableType;
 import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.interf.EvaInterActctionListnter;
-import com.yikang.app.yikangserver.api.ApiClient;
 import com.yikang.app.yikangserver.utils.LOG;
 import com.yikang.app.yikangserver.view.NoReactListView;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 public class EvaluationMainFragment extends BaseFragment implements
 		com.yikang.app.yikangserver.adapter.TotalPointChangedListener,
@@ -138,7 +139,10 @@ public class EvaluationMainFragment extends BaseFragment implements
 		// 获取字符串
 		String json = EvaluationLocalData.getData(getActivity(), tableType);
 		// 解析数据
-		Table table = JSON.parseObject(json, Table.class);
+		Gson gson = GsonFatory.getCommonGsonInstance();
+		Table table= gson.fromJson(json, Table.class);
+
+
 		questions.addAll(table.getQuestions());
 		table = null;
 
@@ -215,33 +219,34 @@ public class EvaluationMainFragment extends BaseFragment implements
 		param.add("surveyTableId", surveyId);
 		param.add("assessmentId", EvalutionState.currAssementId);
 
-		ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
-
-			@Override
-			public void onSuccess(ResponseContent content) {
-				// TODO Auto-generated method stub
-				hideWaitingUI();
-				String json = content.getData();
-				LOG.d(TAG, "[loadRecordAnswers]" + json);
-				try {
-					JSONObject jo = new JSONObject(json);
-					String data = jo.getJSONArray("questions")
-							.toString();
-					List<Question> list = JSON.parseArray(data,
-							Question.class);
-					adapter.restoreAnswer(list);
-					adapter.notifyDataSetChanged();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-
-			@Override
-			public void onFailure(String status, String message) {
-				hideWaitingUI();
-				AppContext.showToast(message);
-			}
-		});
+		//TODO 网络请求变更
+//		ApiClient.execute(url, param, new ApiClient.ResponseCallback() {
+//
+//			@Override
+//			public void onSuccess(ResponseContent content) {
+//				// TODO Auto-generated method stub
+//				hideWaitingUI();
+//				String json = content.getData();
+//				LOG.d(TAG, "[loadRecordAnswers]" + json);
+//				try {
+//					JSONObject jo = new JSONObject(json);
+//					String data = jo.getJSONArray("questions")
+//							.toString();
+//					List<Question> list = JSON.parseArray(data,
+//							Question.class);
+//					adapter.restoreAnswer(list);
+//					adapter.notifyDataSetChanged();
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//
+//			@Override
+//			public void onFailure(String status, String message) {
+//				hideWaitingUI();
+//				AppContext.showToast(message);
+//			}
+//		});
 	}
 
 	/**
@@ -256,23 +261,24 @@ public class EvaluationMainFragment extends BaseFragment implements
 
 		final String url = UrlConstants.getQustrionSubmitUrl(tableType);
 
-		ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
-
-			@Override
-			public void onSuccess(ResponseContent content) {
-				hideWaitingUI();
-				AppContext.showToast("提交成功");
-				// 通知主fragment提交成功
-				listener.onInterAction(EvaInterActctionListnter.WHAT_SUBMIT,
-						surveyId);
-			}
-
-			@Override
-			public void onFailure(String status, String message) {
-				hideWaitingUI();
-				AppContext.showToast(message);
-			}
-		});
+		//TODO 网络请求变更
+//		ApiClient.execute(url, param, new ApiClient.ResponseCallback() {
+//
+//			@Override
+//			public void onSuccess(ResponseContent content) {
+//				hideWaitingUI();
+//				AppContext.showToast("提交成功");
+//				// 通知主fragment提交成功
+//				listener.onInterAction(EvaInterActctionListnter.WHAT_SUBMIT,
+//						surveyId);
+//			}
+//
+//			@Override
+//			public void onFailure(String status, String message) {
+//				hideWaitingUI();
+//				AppContext.showToast(message);
+//			}
+//		});
 	}
 
 }

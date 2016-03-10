@@ -13,19 +13,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.alibaba.fastjson.JSON;
 import com.yikang.app.yikangserver.R;
+import com.yikang.app.yikangserver.api.callback.ResponseCallback;
+import com.yikang.app.yikangserver.api.Api;
 import com.yikang.app.yikangserver.application.AppContext;
-import com.yikang.app.yikangserver.api.RequestParam;
-import com.yikang.app.yikangserver.api.ResponseContent;
 import com.yikang.app.yikangserver.bean.ServiceOrder;
 import com.yikang.app.yikangserver.data.MyData;
-import com.yikang.app.yikangserver.data.UrlConstants;
-import com.yikang.app.yikangserver.api.ApiClient;
-import com.yikang.app.yikangserver.utils.LOG;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 /**
@@ -44,6 +39,25 @@ public class ServiceOrderDetailActivity extends BaseActivity implements
 	private EditText edtFeedBack;
 	private Button btConfirm;
 	private ServiceOrder order;
+
+	/**
+	 * 获得订单详情回调
+	 */
+	private ResponseCallback<ServiceOrder> serviceOrderDetailHandler = new ResponseCallback<ServiceOrder>() {
+		@Override
+		public void onSuccess(ServiceOrder data) {
+			hideWaitingUI();
+			order = data;
+			fillData();
+		}
+
+		@Override
+		public void onFailure(String status, String message) {
+			hideWaitingUI();
+			AppContext.showToast(message);
+		}
+	};
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -74,35 +88,17 @@ public class ServiceOrderDetailActivity extends BaseActivity implements
 
 	}
 
+
+
 	@Override
 	protected void getData() {
-		order = (ServiceOrder) getIntent().getSerializableExtra(
-				EXTRA_ITEM_ORDER);
+		order = (ServiceOrder) getIntent().getSerializableExtra(EXTRA_ITEM_ORDER);
 		if (order == null) {
 			throw new IllegalStateException(
 					"must pass an ServiceOrder object which name is EXTRA_ITEM_ORDER");
 		}
 		showWaitingUI();
-		final String url = UrlConstants.URL_SERVICE_ORDER_DETAIL;
-		RequestParam param = new RequestParam();
-		param.add("orderServiceDetailId", order.id);
-		ApiClient.postAsyn(url, param,
-                new ApiClient.ResponceCallBack() {
-                    @Override
-                    public void onSuccess(ResponseContent content) {
-                        hideWaitingUI();
-                        String reuslt = content.getData();
-                        LOG.i(TAG, "[getData]" + reuslt);
-                        order = JSON.parseObject(reuslt, ServiceOrder.class);
-                        fillData();
-                    }
-
-                    @Override
-                    public void onFailure(String status, String message) {
-                        hideWaitingUI();
-                        AppContext.showToast(message);
-                    }
-                });
+		Api.getOrderDetail(order.id, serviceOrderDetailHandler);
 
 	}
 
@@ -161,33 +157,30 @@ public class ServiceOrderDetailActivity extends BaseActivity implements
 		}
 	}
 
+
+	private ResponseCallback<Void> submitFeedbackHandler = new ResponseCallback<Void>() {
+		@Override
+		public void onSuccess(Void data) {
+			hideWaitingUI();
+			btConfirm.setEnabled(false);
+			AppContext.showToast(R.string.service_order_feedback_success);
+		}
+
+		@Override
+		public void onFailure(String status, String message) {
+			hideWaitingUI();
+			AppContext.showToast(message);
+		}
+	};
+
 	/**
 	 * 提交反馈
 	 */
 	private void submitFeedback() {
 		showWaitingUI();
-		final String url = UrlConstants.URL_SERVICE_ORDER_SUBMIT_FEEDBACK;
 		final String feedback = edtFeedBack.getText().toString();
-		RequestParam param = new RequestParam();
-		param.add("orderServiceDetailId", order.id);
-		param.add("feedback", feedback);
-		ApiClient.postAsyn(url, param,
-                new ApiClient.ResponceCallBack() {
-                    @Override
-                    public void onSuccess(ResponseContent content) {
-                        hideWaitingUI();
-                        order.feedBack = feedback;
-                        btConfirm.setEnabled(false);
-                        AppContext
-                                .showToast(R.string.service_order_feedback_success);
-                    }
+		Api.submitFeedBack(order.id,feedback,submitFeedbackHandler);
 
-                    @Override
-                    public void onFailure(String status, String message) {
-                        hideWaitingUI();
-                        AppContext.showToast(message);
-                    }
-                });
 	}
 
 	/**
@@ -203,6 +196,7 @@ public class ServiceOrderDetailActivity extends BaseActivity implements
             @Override
             public void onClick(DialogInterface dialog,
                                 int which) {
+				//TODO :检查权限
                 Intent intent = new Intent(Intent.ACTION_CALL);
                 intent.setData(Uri.parse("tel:" + phone));
                 startActivity(intent);

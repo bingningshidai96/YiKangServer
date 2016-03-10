@@ -8,7 +8,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/shap_themecolor_reactangle_solid"
+        android:background="@drawable/shape_theme_rectangle"
         android:padding="10dp">
 
 

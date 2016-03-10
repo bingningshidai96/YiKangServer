@@ -8,7 +8,6 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.drawable.Drawable;
 import android.net.wifi.WifiInfo;
@@ -88,8 +87,8 @@ public class AppContext extends Application {
 
 				setIntProperty("user.jobType", user.jobType);
 				setIntProperty("user.paintsNums", user.paintsNums);
-				setStringProperty("user.hosital", user.hosital);
-				setStringProperty("user.deparment", user.deparment);
+				setStringProperty("user.hospital", user.hospital);
+				setStringProperty("user.department", user.department);
 				setStringProperty("user.special", user.special);
 				setStringProperty("user.inviteCode", user.inviteCode);
 				setStringProperty("user.avatarImg", user.avatarImg);
@@ -109,7 +108,6 @@ public class AppContext extends Application {
 			private void setStringProperty(String key, String value) {
 				if (value != null) {
 					setProperty(key, value);
-					LOG.i(TAG, "[setStringProperty]" + value);
 				}
 			}
 
@@ -157,8 +155,8 @@ public class AppContext extends Application {
 		user.profession = getIntProperty("user.profession");
 		user.jobType = getIntProperty("user.jobType");
 		user.paintsNums = getIntProperty("user.paintsNums");
-		user.hosital = getProperty("user.hosital");
-		user.deparment = getProperty("user.deparment");
+		user.hospital = getProperty("user.hospital");
+		user.department = getProperty("user.department");
 		user.special = getProperty("user.special");
 		user.inviteCode = getProperty("user.inviteCode");
 		user.avatarImg = getProperty("user.avatarImg");

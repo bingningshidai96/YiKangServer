@@ -381,8 +381,8 @@ public class EditUserInfoFragemt extends BaseFragment implements OnClickListener
 			edtDepartment = (EditText) privateUI.findViewById(R.id.edt_register_doctor_department);
 
 			if (user != null) {
-				edtHospital.setText(user.hosital);
-				edtDepartment.setText(user.deparment);
+				edtHospital.setText(user.hospital);
+				edtDepartment.setText(user.department);
 				user = null;
 			}
 		}
@@ -505,7 +505,7 @@ public class EditUserInfoFragemt extends BaseFragment implements OnClickListener
 				if(user.addressDetail!=null||user.addressDetail!=null){
 					tvAddr.setText(user.mapPositionAddress + user.addressDetail);
 				}
-				edtHospital.setText(user.hosital);
+				edtHospital.setText(user.hospital);
 				edtSpeciality.setText(user.special);
 				user = null;
 			}

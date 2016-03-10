@@ -21,7 +21,7 @@ import com.yikang.app.yikangserver.bean.User;
 import com.yikang.app.yikangserver.dialog.QrCodeDialog;
 import com.yikang.app.yikangserver.data.MyData;
 import com.yikang.app.yikangserver.ui.EditMineInfoActivity;
-import com.yikang.app.yikangserver.ui.FreeDayCalendarActivty;
+import com.yikang.app.yikangserver.ui.FreeDayCalendarActivity;
 import com.yikang.app.yikangserver.utils.LOG;
 import com.yikang.app.yikangserver.utils.QRImageCreateUtils;
 
@@ -86,7 +86,6 @@ public class MineFragment extends BaseFragment implements OnClickListener {
      */
     private void fillToViews() {
         user = AppContext.getAppContext().getUser();
-        LOG.d(TAG, "[fillToViews]:" + user);
 
         tvName.setText(user.name);//名字
         tvInviteCode.setText(user.inviteCode); //邀请码
@@ -119,13 +118,13 @@ public class MineFragment extends BaseFragment implements OnClickListener {
                     View.VISIBLE);
             rootView.findViewById(R.id.mine_container_department)
                     .setVisibility(View.VISIBLE);
-            tvDepartment.setText(user.deparment);
-            tvHospital.setText(user.hosital);
+            tvDepartment.setText(user.department);
+            tvHospital.setText(user.hospital);
         } else if (user.profession == MyData.NURSING) {
             rootView.findViewById(R.id.mine_container_special).setVisibility(View.VISIBLE);
             rootView.findViewById(R.id.mine_container_hospital).setVisibility(View.VISIBLE);
             tvSpecial.setText(user.special);
-            tvHospital.setText(user.hosital);
+            tvHospital.setText(user.hospital);
 
             lyDistinct.setVisibility(View.VISIBLE);
             if (user.jobType == MyData.PAER_TIME) {
@@ -149,7 +148,7 @@ public class MineFragment extends BaseFragment implements OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ly_mine_free_time:
-                Intent intent = new Intent(getActivity(), FreeDayCalendarActivty.class);
+                Intent intent = new Intent(getActivity(), FreeDayCalendarActivity.class);
                 startActivity(intent);
                 break;
             case R.id.ibtn_mine_edit:

@@ -1,5 +1,5 @@
-package com.yikang.app.yikangserver.api;
-import com.alibaba.fastjson.JSON;
+package com.yikang.app.yikangserver.api.client;
+import com.yikang.app.yikangserver.api.parse.GsonFatory;
 import com.yikang.app.yikangserver.application.AppContext;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,13 +25,13 @@ public class RequestParam {
 				AppContext.getAppContext().getAccessTicket());
 	}
 
-	public RequestParam(String appId, String acessTicket) {
-		this(appId, acessTicket, AppContext.getAppContext().getDeviceID());
+	public RequestParam(String appId, String accessTicket) {
+		this(appId, accessTicket, AppContext.getAppContext().getDeviceID());
 	}
 
 
-	public RequestParam(String appId, String acessTicket, String machineCode) {
-		this.accessTicket = acessTicket;
+	public RequestParam(String appId, String accessTicket, String machineCode) {
+		this.accessTicket = accessTicket;
 		this.appId = appId;
 		this.machineCode = machineCode;
 		this.paramData = new HashMap<>();
@@ -87,7 +87,7 @@ public class RequestParam {
 		if(object == null){
 			return null;
 		}
-		return JSON.toJSONString(object);
+		return GsonFatory.getCommonGsonInstance(true).toJson(object);
 	}
 
 }

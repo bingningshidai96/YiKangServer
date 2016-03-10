@@ -1,14 +1,24 @@
 package com.yikang.app.yikangserver.bean;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.google.gson.annotations.SerializedName;
 
 public class TimeDuration {
-	@JSONField(name = "timeQuantumId")
+	@SerializedName("timeQuantumId")
 	public int serviceId;
-	@JSONField(name = "startTime")
+	@SerializedName("startTime")
 	public int startTime;
-	@JSONField(name = "endTime")
+	@SerializedName("endTime")
 	public int endTime;
-	@JSONField(name = "isChecked")
+	//@SerializedName("isChecked")
 	public boolean isChecked;
+
+	@Override
+	public String toString() {
+		return "TimeDuration{" +
+				"serviceId=" + serviceId +
+				", startTime=" + startTime +
+				", endTime=" + endTime +
+				", isChecked=" + isChecked +
+				'}';
+	}
 }

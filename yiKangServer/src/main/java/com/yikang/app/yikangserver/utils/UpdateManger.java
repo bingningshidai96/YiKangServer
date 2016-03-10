@@ -8,15 +8,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.TextUtils;
 
-import com.alibaba.fastjson.JSON;
 import com.yikang.app.yikangserver.R;
-import com.yikang.app.yikangserver.api.ApiClient;
-import com.yikang.app.yikangserver.api.ApiClient.ResponceCallBack;
-import com.yikang.app.yikangserver.api.RequestParam;
-import com.yikang.app.yikangserver.api.ResponseContent;
+import com.yikang.app.yikangserver.api.callback.ResponseCallback;
+import com.yikang.app.yikangserver.api.Api;
 import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.dialog.DialogFactory;
-import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.interf.UINetwork;
 import com.yikang.app.yikangserver.service.UpdateService;
 
@@ -39,13 +35,11 @@ public class UpdateManger {
     /**
      * 请求更新的回调
      */
-    private ResponceCallBack mCallBack = new ResponceCallBack() {
+    private ResponseCallback<AndroidUpdate> checkUpateHandler = new ResponseCallback<AndroidUpdate>() {
         @Override
-        public void onSuccess(ResponseContent content) {
+        public void onSuccess(AndroidUpdate data) {
 
             if (isShow) dismissWaitingDialog();
-            mUpdate = JSON.parseObject(content.getData(),
-                    AndroidUpdate.class);
 //            mUpdate = new AndroidUpdate();
 //            mUpdate.versionCode =5;
 //            mUpdate.downloadUrl ="http://src.pre.im/d/app/03948e7b2b9e6ba6c03b1d04acc3b0a0.apk?attname=护理家-医护端_1.0.2_4.apk";
@@ -91,21 +85,12 @@ public class UpdateManger {
         if (!isShow) {
             showWaitingDialog(mContext.getString(R.string.update_get_version_info));
         }
-        final String url = UrlConstants.URL_UPDATE_INFO;
-        RequestParam param = new RequestParam();
-        ApiClient.postAsyn(url, param, mCallBack);
-//        try {
-//            Thread.sleep(2000);
-//            mCallBack.onSuccess(null);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+        Api.checkUpdate(checkUpateHandler);
     }
 
 
     /**
      * 判断是否有更新的操作
-     *
      * @return true 有更新； false没有更新
      */
     private boolean hasNew() {

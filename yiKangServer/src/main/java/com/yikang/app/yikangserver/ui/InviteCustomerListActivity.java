@@ -97,7 +97,7 @@ public class InviteCustomerListActivity extends BaseActivity implements
 	private void initFragment() {
 		fragmentList = new ArrayList<>();
 		fragmentList.add(InviteCustomerFragment.getInstance(Type.all));
-		fragmentList.add(InviteCustomerFragment.getInstance(Type.registed));
+		fragmentList.add(InviteCustomerFragment.getInstance(Type.registered));
 		fragmentList.add(InviteCustomerFragment.getInstance(Type.consumed));
 	}
 

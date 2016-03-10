@@ -1,10 +1,5 @@
 package com.yikang.app.yikangserver.ui;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -20,27 +15,28 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.RadioGroup.OnCheckedChangeListener;
-import cn.jpush.android.api.JPushInterface;
-import cn.jpush.android.api.TagAliasCallback;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
+import android.widget.TextView;
 import com.yikang.app.yikangserver.R;
+import com.yikang.app.yikangserver.api.callback.ResponseCallback;
+import com.yikang.app.yikangserver.api.Api;
 import com.yikang.app.yikangserver.application.AppConfig;
 import com.yikang.app.yikangserver.application.AppContext;
-import com.yikang.app.yikangserver.api.RequestParam;
-import com.yikang.app.yikangserver.api.ResponseContent;
 import com.yikang.app.yikangserver.bean.User;
-import com.yikang.app.yikangserver.data.UrlConstants;
 import com.yikang.app.yikangserver.fragment.BusinessMainFragment;
 import com.yikang.app.yikangserver.fragment.MineFragment;
 import com.yikang.app.yikangserver.reciever.UserInfoAlteredReceiver;
-import com.yikang.app.yikangserver.api.ApiClient;
-import com.yikang.app.yikangserver.api.ApiClient.ResponceCallBack;
 import com.yikang.app.yikangserver.utils.DeviceUtils;
 import com.yikang.app.yikangserver.utils.DoubleClickExitHelper;
 import com.yikang.app.yikangserver.utils.LOG;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import cn.jpush.android.api.JPushInterface;
+import cn.jpush.android.api.TagAliasCallback;
 
 public class MainActivity extends BaseActivity implements OnCheckedChangeListener{
 	protected static final String TAG = "MainActivity";
@@ -50,7 +46,74 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 
 	private int currentCheck; // 当前选中的tab
 	private ArrayList<Fragment> fragList = new ArrayList<Fragment>();
-	private final boolean DEBUG = true;
+
+	/**
+	 * 注册设备handler
+	 */
+	private ResponseCallback<Void> registerDeviceHandler=  new ResponseCallback<Void>() {
+		@Override
+		public void onSuccess(Void data) {
+			AppConfig appConfig = AppConfig.getAppConfig(getApplicationContext());
+			appConfig.setProperty(AppConfig.CONF_IS_DEVICE_REGISTED, "" + 1); // 将设备设置为注册成功
+			if (AppContext.DEBUG) {
+				String log = appConfig.getProperty(AppConfig.CONF_DEVICE_ID_TYPE) + "******"
+						+ appConfig.getProperty(AppConfig.CONF_DEVICE_ID);
+				LOG.e(TAG, "[registerDeviceHandler]" + log);
+			}
+			LOG.e(TAG, "[registerDeviceHandler]device register success!!");
+		}
+
+		@Override
+		public void onFailure(String status, String message) {
+			LOG.d(TAG, "[registerDeviceHandler]sorry,device register fail.error message:" + message);
+		}
+	};
+
+	/**
+	 * 加载用户信信息回调
+	 */
+	private ResponseCallback<User> loadUserInfoHandler = new ResponseCallback<User>(){
+		@Override
+		public void onSuccess(User user) {
+			findViewById(R.id.main_load_error).setVisibility(View.GONE);
+			hideWaitingUI();
+			if (user == null || user.userId == null) {
+				logout();
+			}
+			AppContext.getAppContext().login(user);
+			hideLoadError();
+			initViewsAfterGetInfo();
+		}
+
+		@Override
+		public void onFailure(String status, String message) {
+			LOG.i(TAG,"[loadUserInfo]加载失败"+message);
+			hideWaitingUI();
+			AppContext.showToast(message);
+			showLoadError();
+		}
+	};
+
+
+	/**
+	 * 获取推送别名的回调
+	 */
+	private ResponseCallback<Map<String,String>> getPushAliasHandler = new ResponseCallback<Map<String,String>>() {
+		@Override
+		public void onSuccess(Map<String,String> map) {
+			LOG.w(TAG, "[requestAndSetJPushAlias]获取别名成功" + map);
+			String alias = map.get("alias");
+			if (!TextUtils.isEmpty(alias)) {
+				setJPushAlias(alias);
+			}
+		}
+
+		@Override
+		public void onFailure(String status, String message) {
+			LOG.w(TAG, "[requestAndSetJPushAlias]sorry! get alias fail.error message:" + message);
+		}
+	};
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -118,33 +181,11 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 	 * 向服务器请求注册设备
 	 */
 	private void registerDevice() {
-		final String url = UrlConstants.URL_REGISTER_DEVICE;
-		RequestParam param = new RequestParam();
-		param.add("deviceType", 0);
-		param.add("codeType", AppContext.getAppContext().getDeviceIdType());
-		param.add("deviceCode", AppContext.getAppContext().getDeviceID());
-		ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
-			@Override
-			public void onSuccess(ResponseContent content) {
-				AppConfig appConfig = AppConfig.getAppConfig(getApplicationContext());
-				appConfig.setProperty(AppConfig.CONF_IS_DEVICE_REGISTED, "" + 1); // 将设备设置为注册成功
-				if (DEBUG) {
-					String log = appConfig.getProperty(AppConfig.CONF_DEVICE_ID_TYPE) + "******"
-							+ appConfig.getProperty(AppConfig.CONF_DEVICE_ID);
-					LOG.e(TAG, "[registDevice]" + log);
-				}
-				LOG.e(TAG, "[registDevice]device register success!!");
-			}
-
-			@Override
-			public void onFailure(String status, String message) {
-				LOG.d(TAG, "[registDevice]sorry,device register fail.error message:" + message);
-			}
-		});
+		int codeType = AppContext.getAppContext().getDeviceIdType();
+		String deviceCode = AppContext.getAppContext().getDeviceID();
+		Api.registerDevice(codeType, deviceCode,registerDeviceHandler);
 	}
-	
-	
-	
+
 
 	
 	/**
@@ -152,33 +193,7 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 	 */
 	private void loadUserInfo() {
 		showWaitingUI();
-		String url = UrlConstants.URL_GET_USER_INFO;
-		RequestParam param = new RequestParam();
-		ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
-			@Override
-			public void onSuccess(ResponseContent content) {
-				findViewById(R.id.main_load_error).setVisibility(View.GONE);
-				hideWaitingUI();
-				LOG.d(TAG, "[loadData-->postAsyn]:" + content.getData());
-				User user = JSON.parseObject(content.getData(), User.class);
-				if (user == null || user.userId == null) {
-					logout();
-				}
-				LOG.d(TAG, "[loadData-->postAsyn]:" + user);
-				AppContext.getAppContext().login(user);
-				hideLoadError();
-				initViewsAfterGetInfo();
-			}
-
-			@Override
-			public void onFailure(String status, String message) {
-				LOG.i(TAG,"[loadUserInfo]加载失败"+message);
-				hideWaitingUI();
-				AppContext.showToast(message);
-				showLoadError();
-
-			}
-		});
+		Api.getUserInfo(loadUserInfoHandler);
 	}
 
 
@@ -205,6 +220,8 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 		addTabsFragment(mineFragment, String.valueOf(R.id.rb_main_mine));
 	}
 
+
+
 	/**
 	 * 将fragment天骄到主页面中，tag设置为id
 	 */
@@ -217,6 +234,8 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 		}
 		ft.commit();
 	}
+
+
 
 	/**
 	 * 点击之后，更改当前显示的fragment
@@ -237,6 +256,8 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 		}
 		ft.commit();
 	}
+
+
 
 	/**
 	 * 在fragment切换时需要改变标题栏
@@ -282,6 +303,8 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 						}).create().show();
 	}
 
+
+
 	/**
 	 * 注销用户
 	 */
@@ -291,6 +314,8 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 		startActivity(intent);
 		finish();
 	}
+
+
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -302,6 +327,8 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 		}
 		return super.onKeyDown(keyCode, event);
 	}
+
+
 
 	@Override
 	protected void onStop() {
@@ -315,6 +342,8 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 
 	}
 
+
+
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
@@ -325,29 +354,17 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 
 
 
+
 	/*******以下是从服务器获取标识，病设置给极光推送别名的代码******/
 
 	/**
 	 * 获取别名,获取成功后设置别名
 	 */
 	private void requestAndSetJPushAlias() {
-		final String url = UrlConstants.URL_GET_JPUSH_ALIAS;
-		ApiClient.postAsyn(url, new RequestParam(), new ResponceCallBack() {
-			@Override
-			public void onSuccess(ResponseContent content) {
-				JSONObject object = JSON.parseObject(content.getData());
-				String alias = object.getString("alias");
-				if (!TextUtils.isEmpty(alias)) {
-					setJPushAlias(alias);
-				}
-			}
-
-			@Override
-			public void onFailure(String status, String message) {
-				LOG.w(TAG, "[requestAndSetJPushAlias]sorry! get alias fail.error message:" + message);
-			}
-		});
+		Api.getPushAlias(getPushAliasHandler);
 	}
+
+
 
 	private void setJPushAlias(String alias) {
 		if (TextUtils.isEmpty(alias)) {
@@ -363,6 +380,8 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 		// 调用JPush API设置Alias
 		mHandler.sendMessage(mHandler.obtainMessage(MSG_SET_ALIAS, alias));
 	}
+
+
 
 	private static final int MSG_SET_ALIAS = 1001;
 	private static final int MSG_SET_TAGS = 1002;

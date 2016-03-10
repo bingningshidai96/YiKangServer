@@ -10,13 +10,12 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import com.yikang.app.yikangserver.R;
+import com.yikang.app.yikangserver.api.callback.ResponseCallback;
+import com.yikang.app.yikangserver.api.Api;
 import com.yikang.app.yikangserver.application.AppConfig;
 import com.yikang.app.yikangserver.application.AppContext;
-import com.yikang.app.yikangserver.api.RequestParam;
-import com.yikang.app.yikangserver.api.ResponseContent;
-import com.yikang.app.yikangserver.data.UrlConstants;
-import com.yikang.app.yikangserver.api.ApiClient;
 import com.yikang.app.yikangserver.utils.LOG;
 import com.yikang.app.yikangserver.utils.UIHelper;
 
@@ -134,7 +133,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 	 * 跳到注册页面
 	 */
 	private void toRegiste() {
-		Intent intent = new Intent(this, RegistActivtiy.class);
+		Intent intent = new Intent(this, RegisterActivity.class);
 		startActivity(intent);
 	}
 
@@ -149,16 +148,11 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 	 */
 	private void login(final String userName, final String passw) {
 		showWaitingUI();
-		String url = UrlConstants.URL_LOGIN_LOGIN;
-		RequestParam param = new RequestParam("appid", "accessticket");
-		param.add("loginName", userName);
-		param.add("passWord", passw);
-		param.add("machineCode", AppContext.getAppContext().getDeviceID());
-		ApiClient.postAsyn(url, param, new ApiClient.ResponceCallBack() {
+		Api.login(userName, passw, new ResponseCallback<String>() {
 			@Override
-			public void onSuccess(ResponseContent content) {
+			public void onSuccess(String data) {
 				hideWaitingUI();
-				accessTicket = content.getData();
+				accessTicket = data;
 				AppContext.getAppContext().updateAccessTicket(accessTicket);
 				AppConfig appConfig = AppConfig.getAppConfig(getApplicationContext());
 				appConfig.setProperty("login.userName", userName);

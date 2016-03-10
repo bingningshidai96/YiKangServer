@@ -9,51 +9,63 @@ public class UrlConstants {
 
 	/** 测试主机 */
 	private static final String SERVER_TEST = "http://54.223.53.20";
-	public static final String SERVER_LOCAL_TEST = "http://192.168.1.10";
+	private static final String SERVER_LOCAL_TEST = "http://192.168.1.10";
 	private static final String IMAGE_SERVER_HOST_TEST = "http://54.223.35.197";
+
 
 	/************* 下面才是基地址 ***********/
 	/** 接口开发的地址 */
-	public static final String URL_BASE_SERVICE_URL = SERVER_HOST
-			+ ":8088" + "/yikangservice/service";
+	public static final String URL_BASE_SERVICE_URL = SERVER_HOST + ":8088" + "/yikangservice/service";
 	/** 文件上传服务器的地址 */
-	private static final String URL_BASE_FILE_SERVER = IMAGE_SERVER_HOST
-			+ ":8088/yikangFileManage";
-	public static final String URL_SENOIR_INFO_SUBMIT = URL_BASE_SERVICE_URL
-			+ "/00-01-01";
-	/** 获取一个用户所有的老人 */
-	//public static final String URL_GET_SENIOR_LIST = URL_BASE_SERVICE_URL
-	//		+ "/00-01-03";
+	private static final String URL_BASE_FILE_SERVER = IMAGE_SERVER_HOST + ":8088/yikangFileManage";
+
+
+	@Deprecated
+	public static final String URL_SENOIR_INFO_SUBMIT = URL_BASE_SERVICE_URL + "/00-01-01";
+
+	@Deprecated
 	public static final String URL_EVALUTION_COMMON_CROSSWIRSES_DATA = URL_BASE_SERVICE_URL
 			+ "/00-03-01";
+	@Deprecated
 	public static final String URL_EVALUTION_COMMON_PORTAITS_DATA = URL_BASE_SERVICE_URL
 			+ "/00-03-02";
+	@Deprecated
 	public static final String URL_EVALUTION_DISEASE_CROSSWIRSES_DATA = URL_BASE_SERVICE_URL
 			+ "/00-06-01";
-	public static final String URL_LOGIN_LOGIN = URL_BASE_SERVICE_URL
-			+ "/login";
-	public static final String URL_REGISTER = URL_BASE_SERVICE_URL
-			+ "/registerUserAndSaveServiceInfo";
-
+	@Deprecated
 	public static final String URL_ADD_EVALUATION_BAG = URL_BASE_SERVICE_URL
 			+ "/00-15-01";
+	/** 获取所有评估记录 */
+	@Deprecated
+	public static final String URL_GET_EVALUATION_RECORD = URL_BASE_SERVICE_URL
+			+ "/00-15-02";
+	@Deprecated
+	public static final String URL_GET_TABLE_LIST = URL_BASE_SERVICE_URL
+			+ "/00-16-01";
+	@Deprecated
+	public static final String URL_GET_TABLE_ANSWER = URL_BASE_SERVICE_URL
+			+ "/00-16-02";
+	@Deprecated
+	public static final String URL_GET_CROSS_ANSWER = URL_BASE_SERVICE_URL
+			+ "/00-16-03";
+	@Deprecated
+	public static final String URL_GET_FALLRISK_ANSWER = URL_BASE_SERVICE_URL
+			+ "/00-16-04";
+
+
+
+	/** 获取一个用户所有的老人 */
+	public static final String URL_GET_SENIOR_LIST = URL_BASE_SERVICE_URL
+			+ "/00-01-03";
 	public static final String URL_REGISTER_DEVICE = URL_BASE_SERVICE_URL
 			+ "/00-18-01";
 	public static final String URL_GET_JPUSH_ALIAS = URL_BASE_SERVICE_URL
 			+ "/00-18-02";
-	/** 获取所有评估记录 */
-	public static final String URL_GET_EVALUATION_RECORD = URL_BASE_SERVICE_URL
-			+ "/00-15-02";
 
-
-	public static final String URL_GET_TABLE_LIST = URL_BASE_SERVICE_URL
-			+ "/00-16-01";
-	public static final String URL_GET_TABLE_ANSWER = URL_BASE_SERVICE_URL
-			+ "/00-16-02";
-	public static final String URL_GET_CROSS_ANSWER = URL_BASE_SERVICE_URL
-			+ "/00-16-03";
-	public static final String URL_GET_FALLRISK_ANSWER = URL_BASE_SERVICE_URL
-			+ "/00-16-04";
+	public static final String URL_LOGIN_LOGIN = URL_BASE_SERVICE_URL
+			+ "/login";
+	public static final String URL_REGISTER = URL_BASE_SERVICE_URL
+			+ "/registerUserAndSaveServiceInfo";
 
 	/** 获取一个服务人员的信息 */
 	public static final String URL_GET_USER_INFO = URL_BASE_SERVICE_URL

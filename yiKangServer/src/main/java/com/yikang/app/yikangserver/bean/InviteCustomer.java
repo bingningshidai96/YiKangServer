@@ -1,26 +1,26 @@
 package com.yikang.app.yikangserver.bean;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.google.gson.annotations.SerializedName;
 
 public class InviteCustomer {
 	public static final int STATUS_REGISTER = 0;
 	public static final int STATUS_CONSUMED = 1;
-	@JSONField(name = "name")
+	@SerializedName("name")
 	public String name;
 
-	@JSONField(name = "userId")
+	@SerializedName("userId")
 	public String userId;
 
-	@JSONField(name = "userStatus")
+	@SerializedName("userStatus")
 	public int status;
 
-	@JSONField(name = "createTimeStr")
+	@SerializedName("createTimeStr")
 	public String consumeDate;
 
-	@JSONField(name = "photoUrl")
+	@SerializedName("photoUrl")
 	public String imgUrl;
 
-	@JSONField(name = "sex")
+	@SerializedName("sex")
 	public int sex;
 
 }
