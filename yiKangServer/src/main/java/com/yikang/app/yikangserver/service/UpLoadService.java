@@ -8,8 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.yikang.app.yikangserver.api.callback.ResponseCallback;
 import com.yikang.app.yikangserver.api.Api;
-import com.yikang.app.yikangserver.api.parse.GsonFatory;
-import com.yikang.app.yikangserver.bean.TableCoross;
+import com.yikang.app.yikangserver.api.parser.GsonFactory;
 import com.yikang.app.yikangserver.utils.LOG;
 
 import java.io.File;
@@ -32,7 +31,7 @@ public class UpLoadService extends IntentService {
 		@Override
 		public void onSuccess(String data) {
 			// 解析数据
-			Gson gson = GsonFatory.getCommonGsonInstance();
+			Gson gson = GsonFactory.newInstance();
 			Type type = new TypeToken<Map<String, Object>>() {}.getType();
 			Map<String, Object> map= gson.fromJson(data, type);
 			String fileUrl = (String) map.get("fileUrl");

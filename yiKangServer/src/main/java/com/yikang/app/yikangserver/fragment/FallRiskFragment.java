@@ -16,9 +16,8 @@ import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.adapter.FallRiskAdapter;
 import com.yikang.app.yikangserver.adapter.TotalPointChangedListener;
 import com.yikang.app.yikangserver.api.client.RequestParam;
-import com.yikang.app.yikangserver.api.parse.GsonFatory;
+import com.yikang.app.yikangserver.api.parser.GsonFactory;
 import com.yikang.app.yikangserver.bean.CrossWirses;
-import com.yikang.app.yikangserver.bean.QuestionPortrait;
 import com.yikang.app.yikangserver.bean.TableCoross;
 import com.yikang.app.yikangserver.data.BusinessState.SenoirState.EvalutionState;
 import com.yikang.app.yikangserver.data.EvaluationLocalData;
@@ -156,7 +155,7 @@ public class FallRiskFragment extends BaseFragment implements
         String json = EvaluationLocalData.getData(getActivity(), tableType);
 
         // 解析数据
-        Gson gson = GsonFatory.getCommonGsonInstance();
+        Gson gson = GsonFactory.newInstance();
         Type type = new TypeToken<TableCoross>() {}.getType();
         TableCoross tableCoross= gson.fromJson(json, type);
         surveyTableId = tableCoross.getSurveyTableId();

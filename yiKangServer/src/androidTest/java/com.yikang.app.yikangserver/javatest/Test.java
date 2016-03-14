@@ -1,9 +1,5 @@
-package com.yikang.app.yikangserver.bean.javatest;
+package com.yikang.app.yikangserver.javatest;
 
-import com.alibaba.fastjson.annotation.JSONField;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.Void;
 
 /**
  * Created by liu on 16/2/1.

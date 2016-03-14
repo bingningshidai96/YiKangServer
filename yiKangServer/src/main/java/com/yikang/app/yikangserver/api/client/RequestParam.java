@@ -1,5 +1,5 @@
 package com.yikang.app.yikangserver.api.client;
-import com.yikang.app.yikangserver.api.parse.GsonFatory;
+import com.yikang.app.yikangserver.api.parser.GsonFactory;
 import com.yikang.app.yikangserver.application.AppContext;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,9 +10,9 @@ import java.util.Map;
 public class RequestParam {
 	private static final String TAG = "RequsetParam";
 
-	public static final String KEY_APPID = "appId";
+	public static final String KEY_APP_ID = "appId";
 	public static final String KEY_ACCESS_TICKET = "accessTicket";
-	public static final String KEY_MACHINECODE = "machineCode";
+	public static final String KEY_MACHINE_CODE = "machineCode";
 	public static final String KEY_PARAM_DATA = "paramData";
 
 	private String appId;
@@ -87,7 +87,7 @@ public class RequestParam {
 		if(object == null){
 			return null;
 		}
-		return GsonFatory.getCommonGsonInstance(true).toJson(object);
+		return GsonFactory.newInstance(new GsonFactory.EncryptedProvider()).toJson(object);
 	}
 
 }

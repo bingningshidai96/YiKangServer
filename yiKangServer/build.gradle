@@ -28,7 +28,6 @@ android {
         }
     }
 
-
     //打包把这些排除出去
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES.txt'
@@ -48,14 +47,16 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':slidingmenu_library')
+    testCompile 'junit:junit:4.12'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:support-v13:23.1.1'
-    compile 'com.android.support:recyclerview-v7:23.1.1'
+    compile 'com.android.support:appcompat-v7:23.2.1'
+    compile 'com.android.support:support-v13:23.2.1'
+    compile 'com.android.support:recyclerview-v7:23.2.1'
     compile 'com.tencent.bugly:crashreport:1.2.9'
     compile 'com.squareup.okhttp:okhttp:2.7.0'
     compile 'com.google.code.gson:gson:2.4'
-    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:support-v4:23.2.1'
+    compile 'com.android.support:design:23.2.1'
 }
 
 

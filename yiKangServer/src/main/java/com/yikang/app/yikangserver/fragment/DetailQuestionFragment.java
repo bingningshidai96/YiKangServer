@@ -22,7 +22,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.adapter.MuiltyChoiseAdapter;
-import com.yikang.app.yikangserver.api.parse.GsonFatory;
+import com.yikang.app.yikangserver.api.parser.GsonFactory;
 import com.yikang.app.yikangserver.bean.CrossWirses;
 import com.yikang.app.yikangserver.bean.QuestionPortrait;
 import com.yikang.app.yikangserver.api.client.RequestParam;
@@ -158,7 +158,7 @@ public class DetailQuestionFragment extends BaseFragment implements OnClickListe
                     break;
                 }
             }
-            Gson gson = GsonFatory.getCommonGsonInstance();
+            Gson gson = GsonFactory.newInstance();
             Type type = new TypeToken<List<QuestionPortrait>>() {}.getType();
             List<QuestionPortrait> portraits= gson.fromJson(data, type);
 

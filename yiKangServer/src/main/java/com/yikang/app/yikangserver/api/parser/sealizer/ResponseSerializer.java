@@ -1,4 +1,4 @@
-package com.yikang.app.yikangserver.api.parse.sealizer;
+package com.yikang.app.yikangserver.api.parser.sealizer;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonDeserializationContext;
@@ -9,7 +9,7 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 import com.yikang.app.yikangserver.api.client.ResponseContent;
-import com.yikang.app.yikangserver.api.parse.GsonFatory;
+import com.yikang.app.yikangserver.api.parser.GsonFactory;
 import com.yikang.app.yikangserver.utils.AES;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -29,7 +29,7 @@ public class ResponseSerializer implements JsonDeserializer<ResponseContent>,Jso
 
     @Override
     public ResponseContent deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-        Gson gson = GsonFatory.getCommonGsonInstance(isAes);
+        Gson gson = GsonFactory.newInstance(isAes);
         if(!isAes)
             return gson.fromJson(json.getAsString(),typeOfT);
 

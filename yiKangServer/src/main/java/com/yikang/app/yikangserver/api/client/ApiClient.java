@@ -3,7 +3,6 @@ package com.yikang.app.yikangserver.api.client;
 import android.os.Handler;
 import android.os.Looper;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.FormEncodingBuilder;
 import com.squareup.okhttp.MediaType;
@@ -14,7 +13,7 @@ import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 import com.yikang.app.yikangserver.api.callback.DownloadCallback;
 import com.yikang.app.yikangserver.api.callback.ResponseCallback;
-import com.yikang.app.yikangserver.api.parse.GsonFatory;
+import com.yikang.app.yikangserver.api.parser.GsonFactory;
 import com.yikang.app.yikangserver.utils.AES;
 import com.yikang.app.yikangserver.utils.DeviceUtils;
 import com.yikang.app.yikangserver.utils.FileUtlis;
@@ -114,13 +113,13 @@ public class ApiClient {
 		FormEncodingBuilder builder = new FormEncodingBuilder();
 
 		if (param.getAppId() != null) {
-			builder.add(RequestParam.KEY_APPID, param.getAppId());
+			builder.add(RequestParam.KEY_APP_ID, param.getAppId());
 		}
 		if (param.getAccessTicket() != null) {
 			builder.add(RequestParam.KEY_ACCESS_TICKET, param.getAccessTicket());
 		}
 		if (param.getMachineCode() != null) {
-			builder.add(RequestParam.KEY_MACHINECODE, param.getMachineCode());
+			builder.add(RequestParam.KEY_MACHINE_CODE, param.getMachineCode());
 		}
 		if (!param.isParamEmpty()) {
 			try {
@@ -181,7 +180,9 @@ public class ApiClient {
 			@Override
 			public void onResponse(Response response) throws IOException {
 				final String result = response.body().string();
-                Gson gson = GsonFatory.getCommonGsonInstance(isEncrypt);
+				GsonFactory.GsonProvider provider = isEncrypt ? new GsonFactory.EncryptedProvider()
+						: new GsonFactory.NonEncryptedProvider();
+                Gson gson = GsonFactory.newInstance(provider);
                 Runnable runnable;
                 try{
                     ResponseContent<T> content= gson.fromJson(result, typeOfT);

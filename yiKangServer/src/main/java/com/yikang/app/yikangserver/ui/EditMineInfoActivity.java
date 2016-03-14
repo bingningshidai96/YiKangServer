@@ -136,7 +136,7 @@ public class EditMineInfoActivity extends BaseActivity implements
 			public void onSuccess(Void data) {
 				hideWaitingUI();
 				AppContext.showToast("修改成功");
-				sendBroadcast(new Intent(UserInfoAlteredReceiver.ACTION_USER_INFO_ALTED));
+				sendBroadcast(new Intent(UserInfoAlteredReceiver.ACTION_USER_INFO_ALTERED));
 				finish();
 			}
 

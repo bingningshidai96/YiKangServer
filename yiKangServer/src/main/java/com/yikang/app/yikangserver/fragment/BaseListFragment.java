@@ -42,7 +42,7 @@ public abstract class BaseListFragment<T> extends BaseFragment implements
      */
     public static final int STATE_NONE = 0x0;
     public static final int STATE_REFRESH = 0x1;
-    public static final int STATE_LOADMORE = 0x2;
+    public static final int STATE_LOAD_MORE = 0x2;
     public static final int STATE_NOMORE = 0x4;
     public static final int STATE_PRESSNONE = 0x8;// 正在下拉但还没有到刷新的状态
 
@@ -189,7 +189,7 @@ public abstract class BaseListFragment<T> extends BaseFragment implements
 
     protected void onRefreshing() {
         if (mRefreshLayout != null) {
-            //因为mRrfreshLayout默认的offset需要获取父控件的高度，
+            //因为mRefreshLayout默认的offset需要获取父控件的高度，
             //如果此时layout没有完成，那么将无法看到刷新状态,故应将它放在UI线程中排队执行
             mRefreshLayout.post(new Runnable() {
                 @Override
@@ -228,7 +228,7 @@ public abstract class BaseListFragment<T> extends BaseFragment implements
 
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
-        if (!mLoadMoreEnable || (mState & STATE_LOADMORE) != 0) {
+        if (!mLoadMoreEnable || (mState & STATE_LOAD_MORE) != 0) {
             return;
         }
         if (scrollState == OnScrollListener.SCROLL_STATE_IDLE) {
@@ -244,7 +244,7 @@ public abstract class BaseListFragment<T> extends BaseFragment implements
     }
 
     protected void onLoading() {
-        mState |= STATE_LOADMORE;
+        mState |= STATE_LOAD_MORE;
         if (mFootView != null) {
             mFootView.setVisibility(View.VISIBLE);
             ProgressBar progressBar = (ProgressBar) mFootView
@@ -257,7 +257,7 @@ public abstract class BaseListFragment<T> extends BaseFragment implements
     }
 
     protected void onLoadFinish() {
-        mState &= ~STATE_LOADMORE;
+        mState &= ~STATE_LOAD_MORE;
         if (mFootView != null) {
             mFootView.setVisibility(View.GONE);
         }
@@ -267,7 +267,7 @@ public abstract class BaseListFragment<T> extends BaseFragment implements
         if ((status & STATE_REFRESH) != 0) {
             onRefreshFinish();
         }
-        if ((status & STATE_LOADMORE) != 0) {
+        if ((status & STATE_LOAD_MORE) != 0) {
             onLoadFinish();
         }
         mState |= status;

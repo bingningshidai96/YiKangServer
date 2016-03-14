@@ -118,7 +118,7 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		IntentFilter filter = new IntentFilter(UserInfoAlteredReceiver.ACTION_USER_INFO_ALTED);
+		IntentFilter filter = new IntentFilter(UserInfoAlteredReceiver.ACTION_USER_INFO_ALTERED);
 		receiver = new UserInfoAlteredReceiver();
 		registerReceiver(receiver, filter);
 		initContent();

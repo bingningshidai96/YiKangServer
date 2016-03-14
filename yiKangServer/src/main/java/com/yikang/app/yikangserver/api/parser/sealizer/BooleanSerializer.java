@@ -1,4 +1,4 @@
-package com.yikang.app.yikangserver.api.parse.sealizer;
+package com.yikang.app.yikangserver.api.parser.sealizer;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;

@@ -8,11 +8,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.adapter.CrossWirsesItemAdapter;
-import com.yikang.app.yikangserver.api.parse.GsonFatory;
+import com.yikang.app.yikangserver.api.parser.GsonFactory;
 import com.yikang.app.yikangserver.bean.CrossWirses;
 import com.yikang.app.yikangserver.data.BusinessState.SenoirState.EvalutionState;
 import com.yikang.app.yikangserver.data.EvaluationLocalData;
@@ -131,7 +130,7 @@ public class CrossWiresFragment extends BaseFragment implements OnItemClickListe
 			String dataJson = object.getJSONArray("questions").toString();
 
 			Type type = new TypeToken<List<CrossWirses>>() {}.getType();
-			List<CrossWirses> list = GsonFatory.getCommonGsonInstance().fromJson(dataJson, type);
+			List<CrossWirses> list = GsonFactory.newInstance().fromJson(dataJson, type);
 			data.addAll(list);
 
 		} catch (JSONException e) {

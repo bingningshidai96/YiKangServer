@@ -5,15 +5,23 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="red">#FF0000</color>
-    <color name="transparent">#00ffffff</color>
-     
+    <color name="transparent">#00000000</color>
+
+
+    <!-- 应用基本颜色-->
+    <color name="common_theme_color">#24B0D8</color>
+
+
+
+
     <!-- 应用级别颜色 -->
     <color name="statue_bar_color">#24B0D8</color>
     <color name="common_text_color">#333333</color>
-    <color name="common_theme_color">#24B0D8</color>
     <color name="common_btn_bg_grey">#E8E8E8</color>
     <color name="common_btn_bg_blue">#47D9BF</color>
     <color name="common_theme_color_hl">#00A1D9</color>
+
+
     
     <!-- 跟主题色一致  <color name="common_blue2">#24B0D8</color>--> 
     <color name="common_blue">#24B0D8</color>
