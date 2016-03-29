@@ -1,9 +1,7 @@
 package com.yikang.app.yikangserver.ui;
 
-import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
@@ -13,17 +11,17 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.RadioButton;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
 import com.yikang.app.yikangserver.R;
-import com.yikang.app.yikangserver.api.callback.ResponseCallback;
 import com.yikang.app.yikangserver.api.Api;
+import com.yikang.app.yikangserver.api.ApiTest;
+import com.yikang.app.yikangserver.api.callback.ResponseCallback;
 import com.yikang.app.yikangserver.application.AppConfig;
 import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.bean.User;
-import com.yikang.app.yikangserver.fragment.BusinessMainFragment;
 import com.yikang.app.yikangserver.fragment.MineFragment;
 import com.yikang.app.yikangserver.reciever.UserInfoAlteredReceiver;
 import com.yikang.app.yikangserver.utils.DeviceUtils;
@@ -35,17 +33,16 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import cn.jpush.android.api.JPushInterface;
 import cn.jpush.android.api.TagAliasCallback;
 
 public class MainActivity extends BaseActivity implements OnCheckedChangeListener{
 	protected static final String TAG = "MainActivity";
 	private DoubleClickExitHelper mExitHelper; // 双击退出
-	private RadioGroup rgTabs;//
 	private UserInfoAlteredReceiver receiver;
 
-	private int currentCheck; // 当前选中的tab
-	private ArrayList<Fragment> fragList = new ArrayList<Fragment>();
+	private ArrayList<Fragment> fragList = new ArrayList<>();
 
 	/**
 	 * 注册设备handler
@@ -77,12 +74,11 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 		public void onSuccess(User user) {
 			findViewById(R.id.main_load_error).setVisibility(View.GONE);
 			hideWaitingUI();
-			if (user == null || user.userId == null) {
-				logout();
-			}
-			AppContext.getAppContext().login(user);
 			hideLoadError();
-			initViewsAfterGetInfo();
+			if(user!=null){
+				AppContext.getAppContext().login(user);
+				initViewsAfterGetInfo();
+			}
 		}
 
 		@Override
@@ -115,6 +111,8 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 	};
 
 
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -122,7 +120,7 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 		receiver = new UserInfoAlteredReceiver();
 		registerReceiver(receiver, filter);
 		initContent();
-		initTitleBar(getString(R.string.buisness_titile));
+        changeTitleBar();
 		mExitHelper = new DoubleClickExitHelper(this);
 		if(!AppContext.getAppContext().isDeviceRegisted()){
 			registerDevice(); // 注册设备
@@ -132,10 +130,7 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 	
 
 	@Override
-	protected void findViews() {
-		rgTabs = (RadioGroup) findViewById(R.id.rg_main_tabs);
-		rgTabs.setOnCheckedChangeListener(this);
-	}
+	protected void findViews() {}
 
 	@Override
 	protected void setContentView() {
@@ -148,9 +143,6 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 	@Override
 	protected void initViewContent() {
 		refreshFragments();
-		// 手动调用选中第一个
-		RadioButton rb = (RadioButton) findViewById(R.id.rb_main_business);
-		rb.setChecked(true);
 	}
 	
 	/**
@@ -175,6 +167,16 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 		}
 	}
 
+
+    /**
+     * 注销用户
+     */
+    private void logout(){
+        AppContext.getAppContext().logout();
+        Intent intent = new Intent(this,LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
 	
 	
 	/**
@@ -183,7 +185,7 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 	private void registerDevice() {
 		int codeType = AppContext.getAppContext().getDeviceIdType();
 		String deviceCode = AppContext.getAppContext().getDeviceID();
-		Api.registerDevice(codeType, deviceCode,registerDeviceHandler);
+		Api.registerDevice(codeType, deviceCode, registerDeviceHandler);
 	}
 
 
@@ -193,7 +195,7 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 	 */
 	private void loadUserInfo() {
 		showWaitingUI();
-		Api.getUserInfo(loadUserInfoHandler);
+		ApiTest.getUserInfo(loadUserInfoHandler);
 	}
 
 
@@ -213,11 +215,11 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 	 */
 	private void initViewsAfterGetInfo() {
 		// 将fragment添加到MainActivity中
-		Fragment busiFragment = new BusinessMainFragment();
+		//Fragment busiFragment = new BusinessMainFragment();
 		Fragment mineFragment = new MineFragment();
 
-		addTabsFragment(busiFragment, String.valueOf(R.id.rb_main_business));
-		addTabsFragment(mineFragment, String.valueOf(R.id.rb_main_mine));
+		//addTabsFragment(busiFragment, String.valueOf(R.id.rb_main_business));
+		addTabsFragment(mineFragment, "");
 	}
 
 
@@ -229,10 +231,11 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 		fragList.add(fragment);
 		FragmentTransaction ft = getFragmentManager().beginTransaction();
 		ft.add(R.id.fl_main_container, fragment, tag);
-		if (!String.valueOf(currentCheck).equals(tag)) {
-			ft.hide(fragment);
-		}
+		//if (!String.valueOf(currentCheck).equals(tag)) {
+		//	ft.hide(fragment);
+		//}
 		ft.commit();
+		initTitleBar(getString(R.string.mine_title));
 	}
 
 
@@ -242,78 +245,51 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 	 */
 	@Override
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
-		final String lastTag = String.valueOf(currentCheck);
-		final String currentTag = String.valueOf(checkedId);
-		currentCheck = checkedId;
-		changeTitleBar();
-		FragmentTransaction ft = getFragmentManager().beginTransaction();
-		for (Fragment fragment : fragList) {
-			if (lastTag.equals(fragment.getTag())) {
-				ft.hide(fragment);
-			} else if (currentTag.equals(fragment.getTag())) {
-				ft.show(fragment);
-			}
-		}
-		ft.commit();
+		//final String lastTag = String.valueOf(currentCheck);
+		//final String currentTag = String.valueOf(checkedId);
+		//currentCheck = checkedId;
+//		changeTitleBar();
+//		FragmentTransaction ft = getFragmentManager().beginTransaction();
+//		for (Fragment fragment : fragList) {
+//			if (lastTag.equals(fragment.getTag())) {
+//				ft.hide(fragment);
+//			} else if (currentTag.equals(fragment.getTag())) {
+//				ft.show(fragment);
+//			}
+//		}
+//		ft.commit();
 	}
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode ==100 && resultCode == SettingActivity.RESULT_LOGOUT){
+            logout();
+        }
+    }
 
-
-	/**
+    /**
 	 * 在fragment切换时需要改变标题栏
 	 */
 	protected void changeTitleBar() {
-		if (currentCheck == R.id.rb_main_business) {
-			findViewById(R.id.ibtn_title_back).setVisibility(View.GONE);
-			TextView tvRight = (TextView) findViewById(R.id.tv_title_right_text);
-			tvRight.setText("");
-			super.initTitleBar(getString(R.string.buisness_titile));
-		} else if (currentCheck == R.id.rb_main_mine) {
-			findViewById(R.id.ibtn_title_back).setVisibility(View.GONE);
-			TextView tvTitle = (TextView) findViewById(R.id.tv_title_text);
-			tvTitle.setText(R.string.mine_title);
-			TextView tvRight = (TextView) findViewById(R.id.tv_title_right_text);
-			tvRight.setText(R.string.mine_right_logout);
-			tvRight.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					logoutDialog();
-				}
-			});
-		}
+		findViewById(R.id.ibtn_title_back).setVisibility(View.GONE);
+
+		TextView tvTitle = (TextView) findViewById(R.id.tv_title_text);
+		tvTitle.setText(R.string.mine_title);
+
+		ImageView ivTitleRight = (ImageView) findViewById(R.id.iv_title_right);
+		ivTitleRight.setImageResource(R.drawable.ic_setting);
+		ivTitleRight.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(MainActivity.this,SettingActivity.class);
+				startActivityForResult(intent, 100);
+			}
+		});
+
 	}
 
 	
-	
-	/**
-	 * 登出
-	 */
-	private void logoutDialog() {
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle(R.string.dialog_title_prompt)
-				.setMessage(R.string.logout_dialog_message)
-				.setNegativeButton(R.string.cancel, null)
-				.setPositiveButton(R.string.confirm,
-						new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								logout();
-							}
-						}).create().show();
-	}
-
-
-
-	/**
-	 * 注销用户
-	 */
-	private void logout(){
-		AppContext.getAppContext().logout();
-		Intent intent = new Intent(MainActivity.this,LoginActivity.class);
-		startActivity(intent);
-		finish();
-	}
 
 
 

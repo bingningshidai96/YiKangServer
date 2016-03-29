@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="10dp"
+    android:background="@color/common_page_background"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/edt_register_entry_phoneNumber"
+        style="@style/style_common_edt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_edit_bg"
+        android:hint="@string/register_entry_phone_hint"
+        android:inputType="phone" />
+
+
+    <Button
+        android:id="@+id/bt_register_entry_complete"
+        style="@style/style_common_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/next_step" />
+
+
+    <TextView
+        android:id="@+id/tv_register_entry_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:text="@string/register_entry_to_login"
+        android:textColor="@color/common_grey"
+        android:textSize="13sp" />
+
+
+    <Button
+        android:id="@+id/bt_register_entry_login"
+        style="@style/style_common_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/shape_them_color_radius_rectangle"
+        android:text="@string/login_login"
+        android:textColor="@color/common_theme_color" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/common_text_color"
+        android:text="@string/register_entry_agree_agreement"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:id="@+id/tv_register_entry_agreement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25sp"
+        android:paddingTop="5dp"
+        android:textColor="@color/common_theme_color"
+        android:text="@string/register_entry_agreement"
+        android:layout_gravity="center_horizontal"/>
+
+</LinearLayout>
+

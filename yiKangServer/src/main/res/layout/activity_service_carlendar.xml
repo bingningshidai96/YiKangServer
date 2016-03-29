@@ -60,7 +60,7 @@
         android:id="@+id/view_service_calendar_indicator"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@color/common_blue" />
+        android:background="@color/common_theme_color" />
 
     <View
         android:layout_width="match_parent"

@@ -2,7 +2,6 @@ package com.yikang.app.yikangserver.fragment;
 
 import java.io.File;
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -61,7 +60,7 @@ public class SystemSelectPhotoFragment extends BaseFragment implements
 		}
 		// 初始化弹出框的控件
 		LayoutInflater inflater = getActivity().getLayoutInflater();
-		View view = inflater.inflate(R.layout.ppw_register_get_pic,
+		View view = inflater.inflate(R.layout.fragment_get_avatar,
 				(ViewGroup) getView(), false);
 		View btCancel = view.findViewById(R.id.bt_register_ppw_cancel);
 		View btCapture = view.findViewById(R.id.bt_register_ppw_capture);

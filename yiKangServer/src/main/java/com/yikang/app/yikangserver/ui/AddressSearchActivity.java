@@ -78,7 +78,7 @@ public class AddressSearchActivity extends BaseActivity implements OnClickListen
 
 	@Override
 	protected void setContentView() {
-		setContentView(R.layout.activity_addrsearch);
+		setContentView(R.layout.activity_addresss_search);
 	}
 
 	@Override
@@ -121,6 +121,8 @@ public class AddressSearchActivity extends BaseActivity implements OnClickListen
 				edtAddr.setText(addrList.get(position).title);
 				edtAddrDetail.setVisibility(View.VISIBLE);
 				simpleAddr = addrList.get(position);
+
+				edtAddrDetail.requestFocus();
 			}
 		});
 
@@ -163,13 +165,13 @@ public class AddressSearchActivity extends BaseActivity implements OnClickListen
 	 * 返回搜索结果的回调方法，OnSearchResultListener接口的方法
 	 */
 	@Override
-	public void onTipsResult(List<SimpleAddr> addrs, boolean isRusultOK) {
+	public void onTipsResult(List<SimpleAddr> addresses, boolean isResultOK) {
 		addrList.clear();
-		if (isRusultOK) {
-			if (!(addrs == null || addrs.isEmpty())) {
-				Log.i(TAG, "接受到" + addrs.size() + "条数据");
+		if (isResultOK) {
+			if (!(addresses == null || addresses.isEmpty())) {
+				Log.i(TAG, "接受到" + addresses.size() + "条数据");
 				tvTips.setVisibility(View.GONE);
-				addrList.addAll(addrs);
+				addrList.addAll(addresses);
 				adapter.notifyDataSetChanged();
 			} else {
 				tvTips.setVisibility(View.VISIBLE);
@@ -193,7 +195,7 @@ public class AddressSearchActivity extends BaseActivity implements OnClickListen
 	 */
 	public class MyAddrAdapter extends CommonAdapter<SimpleAddr> {
 		public MyAddrAdapter(Context context, List<SimpleAddr> mDatas) {
-			super(context, mDatas, R.layout.item_list_addr_info);
+			super(context, mDatas, R.layout.item_addr_info);
 		}
 
 		@Override

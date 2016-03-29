@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_page_background"
+    android:fitsSystemWindows="true"
+    android:divider="@drawable/line_grey_horizontal"
+    android:showDividers="middle"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_title_bar" />
+
+    <EditText
+        android:id="@+id/edt_addrSearch_input"
+        style="@style/style_common_edt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/addrSearch_input_hint" />
+
+    <EditText
+        android:id="@+id/edt_addrSearch_input_detail"
+        style="@style/style_common_edt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/addrSearch_detial_hint"
+        android:visibility="gone" />
+
+
+    <TextView
+        android:id="@+id/tv_no_addr_tips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="没有搜索到相关地址"
+        android:visibility="gone" />
+
+    <ListView
+        android:id="@+id/lv_addrSearch_addrs_prompt"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"></ListView>
+
+</LinearLayout>

@@ -2,11 +2,15 @@ package com.yikang.app.yikangserver.api.client;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.yikang.app.yikangserver.api.parser.sealizer.BooleanSerializer;
-import com.yikang.app.yikangserver.bean.TimeDuration;
+import com.yikang.app.yikangserver.bean.*;
 
 import org.junit.Test;
 
@@ -19,16 +23,31 @@ public class ApiClientTest {
 
     @Test
     public void testExecute() throws Exception {
-//        Gson gson = new GsonBuilder()
-//                .registerTypeAdapter(ResponseContent2.class,new Response2Serializer(true))
-//                .create();
-//
-//        String json ="{\"data\":\"c002651e86472930648fd1e47339e5e04af650d9c1986097643962efa5425dce7c172c368c3af8a7c15ad72b80424184160baeea8179bdb6284a558c3aaa544bd1ed5ae2051f4d8c8d6b108bb7d735fc5b6fa4a91f8ddb2e143fe43f4ffe0d3db2d7a0cda2b8f0752bc4d68f24827ac59adb658d54d8059cace6cc26baa366c3080732ffc40a54f898ebeb57624ea82fece5b231e0918b2a5f2828eb261e26682a47b5fb35a2a14f3c6187e38da04a5b796cd3c07c2da878e56c247e8680b48ba471ebfa87d6c48bd8e4f415a48bf2f97b81db271f231e50827fb7d962886ff4c7c62db3f99089b9515f1fedba73a1676250e025ab87afc5a42d7a59fb3c71da36faf3b75d669e8d987cd6d1bda889fa7afbf396cd8c9e8231411857a5c28f6a429d51498eb1702101b488e53fce5081aa18fe5b2949a8780c9a0f35fb654f3038eb51f7b9d953309510a301cd2daec70a1d5501efd32f800429dbd4e856a25294d1c6555c83278fa046318982c5986564759f3aacb41e9af9352c80e2f7ef73f004305026ce1cc3a0d9288fb23f2a031ffcfab161849b16ec84f864c7fb68abff2b289efa68584fb62f3025eb1262e7b336b63235fbd96e85098401f1ba4e182269d5ea6bb482af010085f7bae74581365f5d18d90b071bfae8cdb077dfd9debcf2cb716a73e39de0a79f6688ae06e059888502414d2f2b0a478fcfbb1f55ce\",\"message\":\"操作成功！\",\"status\":\"000000\"}";
-//
-//        ResponseContent2<User> res = gson.fromJson(json, new TypeToken<ResponseContent2<User>>() {
-//        }.getType());
-//        System.out.println(res.toString());
-        aaa(null);
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(Double.class, new JsonSerializer<Double>() {
+
+            public JsonElement serialize(Double src, Type typeOfSrc,
+                                         JsonSerializationContext context) {
+
+                Integer value = (int) Math.round(src);
+                return new JsonPrimitive(value);
+            }
+        });
+
+        Gson gson = gsonBuilder.create();
+
+
+
+//        String json ="{\"addressDetail\":\"zoom\",\"photoUrl\":\"https://biophoto.s3.cn-north-1.amazonaws.com.cn/6c088be2-c3ac-4ecb-917c-b24e56393a69.jpg\",\"offices\":\"\",\"districtCode\":\"110108\",\"hospital\":\"\",\"invitationUrl\":\"http://hulingjia.com/invite/inviteRegister?invitationCode\\u003dnull\",\"mapPositionAddress\":\"摸错门牛肚火锅(双安店)\",\"userName\":\"默默\",\"adept\":[{\"adeptId\":\"2\",\"adeptName\":\"腿部按摩\",\"isCheck\":0},{\"adeptId\":\"4\",\"adeptName\":\"颈椎矫正\",\"isCheck\":0}],\"userId\":\"32\",\"infoWrite\":0,\"jobCategory\":1,\"nums\":0,\"userPosition\":2,\"positionAuditStatus\":0}";
+
+        String json = "{\"adeptId\":\"2\",\"adeptName\":\"腿部按摩\",\"isCheck\":true,\"number\":1}";
+
+        Type type = new TypeToken<Expert>() {}.getType();
+        Expert expert = gson.fromJson(json, type);
+
+        System.out.println(expert);
+
+        System.out.println(gson.toJson(expert));
     }
 
 

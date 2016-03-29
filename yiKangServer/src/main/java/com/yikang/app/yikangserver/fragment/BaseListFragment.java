@@ -134,16 +134,16 @@ public abstract class BaseListFragment<T> extends BaseFragment implements
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_pull_refresh, container,
+        View view = inflater.inflate(R.layout.fragment_base_list, container,
                 false);
         tips = (ViewGroup) view.findViewById(R.id.fl_tip);
         mListView = (ListView) view.findViewById(R.id.lv_listview);
         if (mLoadMoreEnable) {
-            mFootView = inflater.inflate(R.layout.list_foot_tips, mListView, false);
+            mFootView = inflater.inflate(R.layout.foot_view_baselist_tips, mListView, false);
             mListView.addFooterView(mFootView);
         }
         mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.srl_swiperefreshlayout);
-        mRefreshLayout.setColorSchemeResources(R.color.common_blue, R.color.common_orange, R.color.red);
+        mRefreshLayout.setColorSchemeResources(R.color.common_theme_color, R.color.common_orange, R.color.red);
         mRefreshLayout.setOnRefreshListener(this);
 
         mListView.setAdapter(mAdapter);
@@ -330,7 +330,7 @@ public abstract class BaseListFragment<T> extends BaseFragment implements
         if (mContentTip == null) {
             LayoutInflater inflater = LayoutInflater.from(getActivity());
             mContentTip = inflater
-                    .inflate(R.layout.data_fail_tips, tips, false);
+                    .inflate(R.layout.error_data_fail_tips, tips, false);
             ((TextView) mContentTip.findViewById(R.id.tv_data_fail_describe))
                     .setText(R.string.default_content_data_fail_describe);
             ((ImageView) mContentTip.findViewById(R.id.iv_data_fail))
@@ -349,7 +349,7 @@ public abstract class BaseListFragment<T> extends BaseFragment implements
         }
         if (mNetWorkTip == null) {
             LayoutInflater inflater = LayoutInflater.from(getActivity());
-            mNetWorkTip = inflater.inflate(R.layout.data_fail_tips, tips, false);
+            mNetWorkTip = inflater.inflate(R.layout.error_data_fail_tips, tips, false);
             ((TextView) mNetWorkTip.findViewById(R.id.tv_data_fail_describe))
                     .setText(R.string.default_network_data_fail_describe);
             ((ImageView) mNetWorkTip.findViewById(R.id.iv_data_fail))

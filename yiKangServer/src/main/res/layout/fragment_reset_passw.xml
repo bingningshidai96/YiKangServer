@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/register_bg_color" >
+    android:background="@color/common_page_background" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
             android:id="@+id/edt_register_phoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/shap_edit_bg"
+            android:background="@drawable/shape_edit_bg"
             android:hint="@string/reset_passw_phone_tip"
             android:inputType="phone"
             android:padding="12dp" />
@@ -29,17 +29,17 @@
             android:orientation="horizontal" >
 
             <EditText
-                android:id="@+id/edt_register_verlifi_code"
+                android:id="@+id/edt_register_verify_code"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/shap_edit_bg"
-                android:hint="@string/regist_verlify_code_hint"
+                android:background="@drawable/shape_edit_bg"
+                android:hint="@string/register_verify_code_hint"
                 android:inputType="phone"
                 android:padding="12dp" />
 
             <TextView
-                android:id="@+id/tv_register_get_verlifiCode"
+                android:id="@+id/tv_register_get_verifyCode"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -49,7 +49,7 @@
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:paddingTop="13sp"
-                android:text="@string/regist_get_verlify_code"
+                android:text="@string/register_get_verify_code"
                 android:textColor="@color/white" />
         </LinearLayout>
 
@@ -58,7 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:background="@drawable/shap_edit_bg"
+            android:background="@drawable/shape_edit_bg"
             android:hint="@string/reset_passw_passw"
             android:inputType="textPassword"
             android:padding="12dp" />
@@ -68,8 +68,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:background="@drawable/shap_edit_bg"
-            android:hint="@string/regist_pass_again_hint"
+            android:background="@drawable/shape_edit_bg"
+            android:hint="@string/set_password_again_hint"
             android:inputType="textPassword"
             android:padding="12dp" />
 

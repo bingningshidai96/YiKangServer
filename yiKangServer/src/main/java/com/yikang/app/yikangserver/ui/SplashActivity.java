@@ -1,6 +1,7 @@
 package com.yikang.app.yikangserver.ui;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
@@ -13,6 +14,8 @@ import com.tencent.bugly.crashreport.CrashReport;
 import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.application.AppConfig;
 import com.yikang.app.yikangserver.application.AppContext;
+
+import java.io.File;
 
 public class SplashActivity extends BaseActivity {
 	private Handler mhHandler;
@@ -57,6 +60,16 @@ public class SplashActivity extends BaseActivity {
 		if(currentVersion>cacheVersionCode){
 			AppContext.set(AppConfig.PRE_VERSION_CODE,currentVersion);
 			AppContext.set(AppConfig.PRE_APP_FIRST_RUN,true);
+
+			/**因为升级之后，和之前的数据已经不一致*/
+			if(cacheVersionCode<=6){
+				AppContext.getAppContext().logout();
+				File configDir = getDir("config", Context.MODE_PRIVATE);
+				File configFile = new File(configDir, "config");
+				if (!configFile.exists()) {
+					configFile.delete();
+				}
+			}
 		}
 	}
 

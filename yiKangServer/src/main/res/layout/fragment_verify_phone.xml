@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="10dp"
+    android:background="@color/common_page_background"
+    android:orientation="vertical">
+
+
+    <EditText
+        android:id="@+id/edt_verify_verify_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_edit_bg"
+        android:hint="@string/register_verify_code_hint"
+        android:inputType="phone"
+        android:padding="12dp" />
+
+    <Button
+        android:id="@+id/bt_verify_complete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        style="@style/style_common_btn"
+        android:gravity="center"
+        android:text="@string/next_step"
+        android:textColor="@color/white" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+    <TextView
+        android:id="@+id/tv_verify_interval_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text=""/>
+
+    <Button
+        android:id="@+id/bt_verify_get_again"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/request_again"
+        android:textColor="@color/common_theme_color"
+        android:layout_gravity="center_horizontal"
+        android:background="@null"/>
+
+    </FrameLayout>
+
+</LinearLayout>

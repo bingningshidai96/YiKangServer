@@ -53,8 +53,9 @@ public class SimpleActivity extends  BaseActivity{
     }
 
 
-    public static enum SimplePage{
+    public enum SimplePage{
         findPassw(1,R.string.reset_passw_title, ResetPasswFragment.class,null);
+
 
         //freeTime(2,"空闲时间",)
 
@@ -63,7 +64,7 @@ public class SimpleActivity extends  BaseActivity{
         private final int titleId;
         private final Class<? extends  Fragment> clz;
         private final Bundle args;
-        private SimplePage(int id,int titleId,Class<? extends Fragment> clz,Bundle args){
+        SimplePage(int id,int titleId,Class<? extends Fragment> clz,Bundle args){
             this.id = id;
             this.clz= clz;
             this.titleId = titleId;

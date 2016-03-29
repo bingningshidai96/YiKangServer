@@ -10,10 +10,13 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.adapter.ViewHolder;
+import com.yikang.app.yikangserver.api.ApiTest;
 import com.yikang.app.yikangserver.api.callback.ResponseCallback;
 import com.yikang.app.yikangserver.api.Api;
 import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.bean.InviteCustomer;
+import com.yikang.app.yikangserver.bean.PaintsData;
+import com.yikang.app.yikangserver.ui.InviteCustomerListActivity;
 import com.yikang.app.yikangserver.ui.OrdersManageActivity;
 import com.yikang.app.yikangserver.view.CircleImageView;
 
@@ -22,7 +25,7 @@ import java.util.List;
 /**
  * 推荐病患列表的fragment
  */
-public class InviteCustomerFragment extends BaseListFragment<InviteCustomer> {
+public class InviteCustomerFragment extends BaseListFragment<InviteCustomer>{
 	public static final String TAG = "InviteCustomerFragment";
 	public static final String ARG_TYPE = "type";
 
@@ -75,41 +78,43 @@ public class InviteCustomerFragment extends BaseListFragment<InviteCustomer> {
 		return R.layout.item_customer;
 	}
 
+
+
 	@Override
 	protected void convert(ViewHolder holder, InviteCustomer item) {
 		CircleImageView img = holder.getView(R.id.iv_customer_item_img);
 		TextView tvName = holder.getView(R.id.tv_customer_item_name);
-		TextView tvStatus = holder.getView(R.id.tv_customer_item_status);
 		if (!TextUtils.isEmpty(item.imgUrl)) {
 			ImageLoader.getInstance().displayImage(item.imgUrl, img);
 		}
 		tvName.setText(item.name);
+		TextView tvTimeHint = holder.getView(R.id.tv_customer_item_time_hint);
+		TextView tvTime = holder.getView(R.id.tv_customer_item_time);
 		if (item.status == InviteCustomer.STATUS_REGISTER) {
-			tvStatus.setTextColor(getResources().getColor(
-					R.color.patientList_stauts_registed));
-			tvStatus.setText(getString(R.string.customerList_status_registed));
-			holder.getView(R.id.ly_customer_item_time_container).setVisibility(
-					View.GONE);
+			tvTimeHint.setText(R.string.customerList_item_register_time);
+			tvTime.setText(item.registerDate);
+
 		} else if (item.status == InviteCustomer.STATUS_CONSUMED) {
-			tvStatus.setTextColor(getResources().getColor(
-					R.color.patientList_stauts_consumed));
-			tvStatus.setText(getString(R.string.customerList_status_consumed));
-			TextView tvTime = holder
-					.getView(R.id.tv_customer_item_service_time);
-			holder.getView(R.id.ly_customer_item_time_container).setVisibility(
-					View.VISIBLE);
+			tvTimeHint.setText(R.string.customerList_item_service_time);
 			tvTime.setText(item.consumeDate);
+
 		}
 	}
 
 	@Override
 	protected void sendRequestData(final RequestType requestType) {
-		Api.getMyPaintList(type.getCode(), new ResponseCallback<List<InviteCustomer>>() {
+		ApiTest.getMyPaintList(type.getCode(), new ResponseCallback<PaintsData>() {
 			@Override
-			public void onSuccess(List<InviteCustomer> list) {
+			public void onSuccess(PaintsData paintsData) {
 				mData.clear();
-				mData.addAll(list);
-				mAdapter.notifyDataSetChanged();
+				if(paintsData.list!=null){
+					mData.addAll(paintsData.list);
+                    mAdapter.notifyDataSetChanged();
+                }
+
+                if(getActivity() instanceof InviteCustomerListActivity){
+                    ((InviteCustomerListActivity) getActivity()).initCustomerNums(paintsData);
+                }
 				onLoadResult(requestType, true);
 			}
 

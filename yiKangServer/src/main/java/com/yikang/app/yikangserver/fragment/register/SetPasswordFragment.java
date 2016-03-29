@@ -1,62 +1,94 @@
 package com.yikang.app.yikangserver.fragment.register;
 
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+
 import com.yikang.app.yikangserver.R;
+import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.fragment.BaseFragment;
 
 /**
+ * 设置密码fragment
  */
-public class SetPasswordFragment extends BaseFragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+public class SetPasswordFragment extends BaseFragment implements View.OnClickListener{
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private EditText edtPassword;
+    private EditText edtPasswordAgain;
 
 
-    public SetPasswordFragment() {
-        // Required empty public constructor
-    }
+    private OnDone callback;
+    private Button btComplete;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SetPasswordFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SetPasswordFragment newInstance(String param1, String param2) {
-        SetPasswordFragment fragment = new SetPasswordFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if(activity instanceof OnDone){
+            this.callback = (OnDone) activity;
+        }else{
+            throw new IllegalArgumentException("wrong argument,context should be instance of SetPasswordFragment.OnDone");
         }
     }
+
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_set_password, container, false);
+        View view = inflater.inflate(R.layout.fragment_set_password, container, false);
+        edtPassword = ((EditText) view.findViewById(R.id.edt_set_password_password));
+        edtPasswordAgain = ((EditText) view.findViewById(R.id.edt_set_password_password_again));
+        btComplete = ((Button) view.findViewById(R.id.bt_set_password_next));
+        btComplete.setOnClickListener(this);
+        return view;
     }
 
+
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.bt_set_password_next:
+                next();
+                break;
+        }
+    }
+
+    /**
+     * 设置完成
+     */
+    private void next(){
+        String password = edtPassword.getText().toString();
+        String passwordAgain = edtPasswordAgain.getText().toString();
+
+        if (TextUtils.isEmpty(password) || password.length() < 6
+                || password.length() > 16) {
+            AppContext.showToast(R.string.set_password_hint);
+            return;
+        }
+
+        if (!password.equals(passwordAgain)) {
+            AppContext.showToast(R.string.regist_passw_error_hint);
+            return;
+        }
+
+        callback.afterSetPassword(password);
+
+    }
+
+
+    public interface OnDone{
+       void  afterSetPassword(String password);
+    }
 }

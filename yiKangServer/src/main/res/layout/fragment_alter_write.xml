@@ -4,10 +4,13 @@
     android:layout_height="match_parent"
     tools:context="com.yikang.app.yikangserver.fragment.alter.AlterWriteFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <EditText
+        style="@style/style_common_edt"
+        android:id="@+id/edt_alter_item"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        />
+
 
 </FrameLayout>

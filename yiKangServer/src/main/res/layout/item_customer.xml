@@ -1,95 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 服务项目 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:padding="10dp" 
-    android:baselineAligned="false">
+    android:layout_height="wrap_content"
+    android:divider="@drawable/line_grey_horizontal"
+    android:showDividers="middle"
+    android:orientation="vertical">
 
-    <FrameLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1.1" >
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:paddingLeft="10dp"
+       android:orientation="horizontal">
+       <TextView
+           android:id="@+id/tv_customer_item_time_hint"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="@string/customerList_item_service_time"/>
 
-        <com.yikang.app.yikangserver.view.CircleImageView
-            android:id="@+id/iv_customer_item_img"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
-            android:src="@drawable/service_item_defualt_img" />
-    </FrameLayout>
+       <TextView
+           android:id="@+id/tv_customer_item_time"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text=""/>
+   </LinearLayout>
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="2.5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:baselineAligned="false"
         android:gravity="center_vertical"
-        android:orientation="vertical" >
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.1">
+
+            <com.yikang.app.yikangserver.view.CircleImageView
+                android:id="@+id/iv_customer_item_img"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:layout_gravity="center"
+                android:src="@drawable/service_item_defualt_img" />
+        </FrameLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:layout_weight="2.5"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:text="@string/customerList_item_name"
-                android:textColor="@color/common_text_black"
-                android:textSize="16sp" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tv_customer_item_name"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="@string/customerList_item_name"
+                    android:textColor="@color/common_text_color"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_customer_item_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="@color/common_text_black"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ly_customer_item_time_container"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:text=""
-                android:textColor="@color/common_text_black"
-                android:textSize="16sp" />
-            
-			<View 
-			    android:layout_width="0dp"
-			    android:layout_height="1px"
-			    android:layout_weight="1"/>
-            
-            <TextView
-                android:id="@+id/tv_customer_item_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:layout_marginRight="20dp"
-                android:text="@string/customerList_status_registed"
-                android:textColor="@color/patientList_stauts_registed"
-                android:textSize="16sp" />
-        </LinearLayout>
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:id="@+id/ly_customer_item_time_container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="注册手机:"
+                    android:textColor="@color/common_text_color"
+                    android:textSize="16sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:text="@string/customerList_item_service_time"
-                android:textColor="@color/common_text_black"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/tv_customer_item_service_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:text=""
-                android:textColor="@color/common_text_black"
-                android:textSize="16sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="@color/common_text_black"
+                    android:textSize="16sp" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+
 </LinearLayout>

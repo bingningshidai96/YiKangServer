@@ -23,4 +23,7 @@ public class InviteCustomer {
 	@SerializedName("sex")
 	public int sex;
 
+
+	public String registerDate;
+
 }

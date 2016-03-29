@@ -43,6 +43,8 @@ public class ApiClient {
 	}
 
 
+
+
 	/**
 	 * @see #execute(String,RequestParam, ResponseCallback,Type,boolean)
 	 */
@@ -64,9 +66,13 @@ public class ApiClient {
 							   final ResponseCallback callBack,
 							   final Type resultType,
 							   final boolean isResultEncrypt) {
-
-		Request request = new Request.Builder().url(url)
-				.post(buildBody(param)).build();
+		Request.Builder builder = new Request.Builder().url(url);
+		if(param !=null){
+			builder.post(buildBody(param));
+		}else {
+			builder.get();
+		}
+		Request request = builder.build();
 		executeAsyn(request, callBack,isResultEncrypt,resultType);
 	}
 
@@ -173,8 +179,9 @@ public class ApiClient {
 		client.newCall(request).enqueue(new Callback() {
 			@Override
 			public void onFailure(Request request, IOException e) {
-				mDelivery.post(new OnFailureRunnable(callBack,
-						ResponseCallback.STATUS_NET_ERROR, "加载失败,请检查网络"));
+				mDelivery.post(new OnFailureRunnable(callBack,"加载失败,请检查网络",
+						ResponseCallback.STATUS_NET_ERROR));
+                e.printStackTrace();
 			}
 
 			@Override
@@ -185,18 +192,20 @@ public class ApiClient {
                 Gson gson = GsonFactory.newInstance(provider);
                 Runnable runnable;
                 try{
+
+                    LOG.i(TAG,result);
                     ResponseContent<T> content= gson.fromJson(result, typeOfT);
                     if(content.isStautsOk()){
                         runnable = new OnSuccessRunnable<>(callBack, content.getData());
 
                     }else {
-                        runnable = new OnFailureRunnable(callBack,content.getStatus(),
-                                content.getMessage());
+                        runnable = new OnFailureRunnable(callBack,content.getMessage(),
+                                content.getStatus());
                     }
                 }catch(Exception e){
                     e.printStackTrace();
-                    runnable =new OnFailureRunnable(callBack,
-                            ResponseCallback.STATUS_DATA_ERROR, "本地数据解析错误");
+                    runnable =new OnFailureRunnable(callBack,"本地数据解析错误",
+                            ResponseCallback.STATUS_DATA_ERROR);
                 }
 				mDelivery.post(runnable);
 

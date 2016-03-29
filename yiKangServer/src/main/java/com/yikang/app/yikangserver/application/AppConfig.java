@@ -21,14 +21,16 @@ public class AppConfig {
 	public static final String CONF_DEVICE_ID = "DEVICE_ID";
 	public static final String CONF_DEVICE_ID_TYPE = "DEVICE_ID_TYPE";
 	public static final String CONF_IS_DEVICE_REGISTED = "IS_DEVICE_REGISTED";
-	
+
+	/**
+	 * 现在这个版本是不是第一次运行
+	 */
 	public static final String PRE_APP_FIRST_RUN = "app.isFirstRun";
+	/**
+	 * 第一次使用这个app
+	 */
 	public static final String PRE_APP_FIRST_USE = "app.isFirstUse";
 	public static final String PRE_VERSION_CODE = "app.versionCode";
-
-	static final String CONF_APPID = "APPID";
-	static final String CONF_APP_USER_ID = "APP_USER_ID";
-
 
 
 	static final String CON_APP_ACCESS_TICKET = "ACCESS_TICKET";
@@ -55,9 +57,6 @@ public class AppConfig {
 
 	/**
 	 * 根据键找到配置的值，如果配置文件不存在或者键不存在则返回null
-	 * 
-	 * @param key
-	 * @return
 	 */
 	public String getProperty(String key) {
 		if (key == null) {
@@ -69,8 +68,6 @@ public class AppConfig {
 
 	/**
 	 * 获取所有的配置属性
-	 * 
-	 * @return
 	 */
 	public Properties getProperties() {
 		FileInputStream fileInput = null;

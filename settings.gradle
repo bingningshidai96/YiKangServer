@@ -1,2 +1,1 @@
-include ':slidingmenu_library'
 include ':yiKangServer'

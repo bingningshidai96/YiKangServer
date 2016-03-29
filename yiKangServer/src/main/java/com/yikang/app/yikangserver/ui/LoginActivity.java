@@ -24,7 +24,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 	private EditText edtUserId, edtPassw;
 	private Button btnLogin;
 
-	private TextView tvRegist,tvFindPassw;
+	private TextView tvRegister,tvFindPassw;
 	private String accessTicket;
 
 	@Override
@@ -33,17 +33,18 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 		initContent();
 		initTitleBar(getString(R.string.login_title));
 		if(AppContext.get(AppConfig.PRE_APP_FIRST_USE, true)){
-			toRegiste();
+			toRegister();
 			AppContext.set(AppConfig.PRE_APP_FIRST_USE,false);
 		}
 	}
+
 
 	@Override
 	protected void findViews() {
 		edtUserId = (EditText) findViewById(R.id.edt_login_userId);
 		edtPassw = (EditText) findViewById(R.id.edt_login_passw);
 		btnLogin = (Button) findViewById(R.id.bt_login_login);
-		tvRegist = (TextView) findViewById(R.id.tv_login_regist);
+		tvRegister = (TextView) findViewById(R.id.tv_login_regist);
 		tvFindPassw = (TextView) findViewById(R.id.tv_login_forget);
 		
 		edtUserId.addTextChangedListener(new TextWatcher() {
@@ -76,7 +77,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 	@Override
 	protected void initViewContent() {
 		btnLogin.setOnClickListener(this);
-		tvRegist.setOnClickListener(this);
+		tvRegister.setOnClickListener(this);
 		tvFindPassw.setOnClickListener(this);
 	}
 
@@ -113,7 +114,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 			login(userId, passw);
 			break;
 		case R.id.tv_login_regist:
-			toRegiste();// 注册完直接登录，不会回到这个页面
+			toRegister();// 注册完直接登录，不会回到这个页面
 			break;
 		case R.id.tv_login_forget:
 			findPassw();
@@ -132,7 +133,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 	/**
 	 * 跳到注册页面
 	 */
-	private void toRegiste() {
+	private void toRegister() {
 		Intent intent = new Intent(this, RegisterActivity.class);
 		startActivity(intent);
 	}

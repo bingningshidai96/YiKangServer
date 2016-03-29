@@ -22,4 +22,10 @@
 		android:text="检查更新"
 		android:onClick="checkUpdate"/>
 
+	<CheckBox
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="fdsfsdgfsdfgsdfg"
+		android:background="@drawable/shape_tag_bg"/>
+
 </LinearLayout>

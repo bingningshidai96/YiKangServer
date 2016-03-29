@@ -2,6 +2,11 @@
 
     <string name="app_name">护理家</string>
 
+
+    <string name="default_content_data_fail_describe">暂无此信息</string>
+    <string name="default_network_data_fail_describe">网络错误，请检查网络</string>
+
+    <!-- 常用字符串 -->
     <string name="waiting_loading">正在加载...</string>
     <string name="confirm">确定</string>
     <string name="cancel">取消</string>
@@ -10,13 +15,31 @@
     <string name="complete">完成</string>
     <string name="alert">提示</string>
 
-    <string name="default_content_data_fail_describe">暂无此信息</string>
-    <string name="default_network_data_fail_describe">网络错误，请检查网络</string>
-
-    <!-- 常用字符串 -->
+    <string name="logout">退出登录</string>
+    <string name="version">版本</string>
+    <string name="mark_app">给佳佳康复打分</string>
     <string name="name">名字</string>
+
+
+
+    <string name="user_address">常驻地址</string>
+    <string name="user_hospital">所在医院</string>
+    <string name="user_special">擅长方向</string>
+    <string name="user_office">所在科室</string>
+    <string name="user_work_type">工作方式</string>
+
+    <string name="title_alter_info">填写信息</string>
+    <string name="title_alter_info_name">填写名字</string>
+    <string name="title_alter_info_profession">更改职位</string>
+    <string name="title_alter_info_experts">擅长方向</string>
+    <string name="title_alter_info_address">常驻地址</string>
+    <string name="title_alter_info_hospital">所在医院</string>
+    <string name="simple_alter_save">保存</string>
+
+
     <string name="dialog_title_prompt">提示</string>
 
+    <string name="next_step">下一步</string>
     <string name="submit_succeed_tip">提交成功</string>
     <string name="submit_fail_tip">抱歉，提交失败</string>
 
@@ -24,7 +47,7 @@
     <string name="login_login">登录</string>
     <string name="login_passw_hint">请输入密码</string>
     <string name="login_username_hint">请输入手机号码</string>
-    <string name="login_regist_entry">新用户点击注册</string>
+    <string name="login_register_entry">新用户点击注册</string>
     <string name="login_forget_entry">忘记密码?</string>
     <string name="login_passw_error_tip">用户名或密码不正确</string>
     <string name="login_find_passw_input_tips">请输入正确的手机号码</string>
@@ -33,56 +56,37 @@
 
 
     <string name="title_bar_add">新增</string>
-    <string name="senior_list_title_text">被护理人员</string>
     <string name="tip_double_click_exit">再次点击退出</string>
-    <string name="sucess_create_record">新建评估记录</string>
-    <string name="senior_list_no_content_tip">暂无病人，可通过点击"新建"添加</string>
-    <string name="senior_info_title_text">病人信息</string>
-    <string name="senior_info_location_fail">抱歉，定位失败。请开启wifi或GPS</string>
-
-    <string name="evaluation_dialog_continu">继续评估</string>
-    <string name="evaluation_dialog_title">提示</string>
-    <string name="evalation_sum_points">总分\n</string>
-    <string name="evaluation_record_title">评估记录</string>
 
 
-    <string name="regist_tel_hint">请输入手机号码</string>
-    <string name="regist_pass_hint">请输入6-16位密码</string>
-    <string name="regist_pass_again_hint">请再次输入密码</string>
-    <string name="regist_verlify_code_hint">请输入验证码</string>
-    <string name="regist_get_verlify_code">获取验证码</string>
-    <string name="regist_to_login">&lt;&lt; 已有账户登录</string>
+    <string name="web_agreement_title">用户使用协议</string>
+
+    <string name="register_entry_phone_hint">请输入手机号码</string>
+    <string name="set_password_hint">请输入6-16位密码</string>
+    <string name="set_password_again_hint">请再次确认密码</string>
+    <string name="register_verify_code_hint">请输入验证码</string>
+    <string name="register_get_verify_code">获取验证码</string>
+    <string name="register_entry_to_login">你也可以通过账户登录</string>
+
+    <string name="verify_fail">验证码校验失败</string>
+    <string name="verify_success">验证成功</string>
+
     <string name="regist_get_void_code_hint">收不到验证码？\n点此电话收听语音验证码，请注意接听来电~</string>
     <string name="regist_next_step">下一步</string>
     <string name="regist_operation_hint">这项操作需要验证手机号，请接收并输入验证码</string>
     <string name="regist_phoneNumber_error_hint">请输入正确的手机号</string>
     <string name="regist_passw_error_hint">两次输入的密码不一致</string>
     <string name="regist_verlify_succeed">验证码校验成功</string>
-    <string name="regist_verlify_fail">验证码校验失败</string>
     <string name="regist_send_sms_succees">短信已发送，请稍候</string>
     <string name="regist_send_voice_succees">请注意接听来电</string>
     <string name="regist_obtiain_sms_fail">获取验证码失败</string>
     <string name="regist_obtiain_voice_fail">获取语音验证码失败</string>
-    <string name="regist_verlify_success">验证成功</string>
     <string name="regist_verlifu_fail">验证失败</string>
     <string name="regist_sms_sdk_exception">抱歉，系统异常，请稍候再试</string>
 
     <string name="regist_title">注册</string>
-    <string name="regist_avatar">头像</string>
-    <string name="regist_name_hint">姓名</string>
-    <string name="regist_profrssion_hint">职位</string>
-    <string name="regist_work_type">工作方式</string>
-    <string name="regist_area">区域</string>
-    <string name="regist_hospital">医院</string>
-    <string name="regist_department">科室</string>
-    <string name="regist_speciality">擅长</string>
 
-    <string name="regist_addr">地址</string>
-    <string name="regist_login_and_regist">注册并登录</string>
-    <string name="regist_null_tip">请填写全部的必要资料(除头像外都是必要的)</string>
 
-    <string name="new_recoed">新建评估</string>
-    <string name="evaluaton_back_hint">确定退出评估页面？如果评估没有完成，请选择继续评估</string>
     <string name="submit_fail_redo">提交失败，请重新提交</string>
 
     <string name="main_business">我的患者</string>
@@ -94,21 +98,14 @@
     <string name="buiness_customerList">我的患者</string>
 
     <string name="mine_title">我的</string>
-    <string name="mine_right_logout">注销</string>
     <string name="mine_name">姓名:</string>
-    <string name="mine_employee_number">工号:</string>
-    <string name="mine_hospital">医院:</string>
-    <string name="mine_department">科室:</string>
-    <string name="mine_special">擅长:</string>
-    <string name="mine_profession">职位:</string>
-    <string name="mine_invite_code">邀请码</string>
-    <string name="mine_profession_lever">职级</string>
-    <string name="mine_distinct_area">居住区域</string>
-    <string name="mine_customer_number">患者数</string>
+    <string name="mine_invite_code">我的邀请码</string>
+    <string name="mine_customer_number">我的患者</string>
     <string name="mine_enter_tips">请填写相关资料信息</string>
     <string name="mine_free_time">选择时间</string>
     <string name="mine_format_customer_nums">%d人</string>
     <string name="logout_dialog_message">确定注销此账户？</string>
+    <string name="mine_profession">职位:</string>
 
     <string name="addrSearch_myAddr">我的地址</string>
     <string name="currentLoacation">当前位置</string>
@@ -142,13 +139,19 @@
     <!-- 我的患者列表中 -->
     <string name="customerList_title">我的患者</string>
     <string name="customerList_all">&#160;&#160;全部 &#160;</string>
-    <string name="customerList_status_registed">已注册</string>
-    <string name="customerList_status_consumed">已消费</string>
+    <string name="customerList_status_registed">仅注册用户</string>
+    <string name="customerList_status_consumed">服务中患者</string>
     <string name="customerList_item_service_time">服务时间：</string>
     <string name="customerList_item_name">姓名：</string>
     <string name="customerList_no_customer_register_tip">暂时没有推荐的人注册</string>
     <string name="customerList_no_customer_consume_tip">暂时没有推荐的人消费</string>
+    <string name="customerList_item_register_time">注册时间：</string>
+
+
+
     <string name="edit_mine_info">填写资料</string>
+
+
 
     <string name="reset_passw_title">重置密码</string>
     <string name="reset_passw_input_tel">请输入要找回的手机号</string>
@@ -171,9 +174,23 @@
     <string name="order_manager_title">订单列表</string>
     <string name="order_manger_title">订单管理</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_init_user_info">InitUserInfoActivity</string>
-    <string name="action_settings">Settings</string>
     <string name="title_activity_setting">SettingActivity</string>
+    <string name="verify_interval_note">重新发送剩余时间%ds</string>
+    <string name="request_again">重新发送</string>
+    <string name="register_success">恭喜，注册成功</string>
+    <string name="register_entry_agree_agreement">注册表示您已阅读并同意</string>
+    <string name="register_entry_agreement">佳佳康复使用协议</string>
+    <string name="profession_choose_tip">请选择身份</string>
+    <string name="mine_qrcode">我的二维码</string>
+
+
+    <string name="mine_info_title">我的基本信息</string>
+    <string name="init_profession_title">选择职位</string>
+    <string name="init_user_info_title">完善基本信息</string>
+    <string name="alter_user_info_title">基本信息</string>
+    <string name="setting_title">设置</string>
+    <string name="customers_sums">患者总数</string>
+    <string name="alter_suceess">修改成功</string>
+    <string name="profession">职业</string>
+
 </resources>

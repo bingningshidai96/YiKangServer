@@ -18,18 +18,22 @@ import android.text.TextUtils;
 import android.widget.Toast;
 import cn.jpush.android.api.JPushInterface;
 
+import com.google.gson.Gson;
+import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.tencent.bugly.crashreport.CrashReport;
+import com.yikang.app.yikangserver.api.parser.GsonFactory;
 import com.yikang.app.yikangserver.bean.User;
+import com.yikang.app.yikangserver.utils.AES;
 import com.yikang.app.yikangserver.utils.LOG;
 
 public class AppContext extends Application {
 	private static final String TAG = "AppContext";
 	//缓存路径
 	private static final String CACHE_PATH =
-			Environment.getExternalStorageDirectory().getAbsolutePath()+File.separator+"hulijia";
+			Environment.getExternalStorageDirectory().getAbsolutePath()+File.separator+"jiajia";
 	//图片缓存路径
 	public static final String CACHE_IMAGE_PATH = CACHE_PATH + File.separator+ "images";
 	public static final int CACHE_DISK_SIZE = 100*1<<20;
@@ -52,20 +56,16 @@ public class AppContext extends Application {
 		JPushInterface.setDebugMode(DEBUG); // 设置开启日志,发布时请关闭日志
 		JPushInterface.init(this); // 初始化 JPush
 		initCachePath();
-		ImageLoaderConfiguration.Builder configBuilder = new ImageLoaderConfiguration.Builder(
-				this);
+		ImageLoaderConfiguration.Builder configBuilder = new ImageLoaderConfiguration.Builder(this);
+		File cacheDir = new File(CACHE_IMAGE_PATH);
 		configBuilder.tasksProcessingOrder(QueueProcessingType.LIFO)
-		.diskCacheSize(CACHE_DISK_SIZE);
-
-		// DisplayImageOptions.Builder displayOptionBuidler =
-		// new DisplayImageOptions.Builder();
-		//
-		// displayOptionBuidler.showImageOnLoading(R.drawable.img_service_defualt)
-		// .showImageForEmptyUri(R.drawable.img_service_defualt)
-		// .showImageOnFail(R.drawable.image_default);
-		// configBuilder.defaultDisplayImageOptions(displayOptionBuidler.build());
+		.diskCacheSize(CACHE_DISK_SIZE)
+				.diskCacheFileCount(200)
+				.diskCache(new UnlimitedDiskCache(cacheDir))
+				.tasksProcessingOrder(QueueProcessingType.LIFO);
 		ImageLoader.getInstance().init(configBuilder.build());
 	}
+
 
 	private void initCachePath() {
 		File file = new File(CACHE_IMAGE_PATH);
@@ -79,42 +79,29 @@ public class AppContext extends Application {
 	}
 
 	public void login(final User user) {
-		Properties properties = new Properties() {
-			{
-				setStringProperty("user.name", user.name);
-				setStringProperty("user.userId", user.userId);
-				setIntProperty("user.profession", user.profession);
-
-				setIntProperty("user.jobType", user.jobType);
-				setIntProperty("user.paintsNums", user.paintsNums);
-				setStringProperty("user.hospital", user.hospital);
-				setStringProperty("user.department", user.department);
-				setStringProperty("user.special", user.special);
-				setStringProperty("user.inviteCode", user.inviteCode);
-				setStringProperty("user.avatarImg", user.avatarImg);
-				setIntProperty("user.status", user.status);
-				setStringProperty("user.mapPositionAddress",user.mapPositionAddress);
-				setStringProperty("user.addressDetail", user.addressDetail);
-				setStringProperty("user.districtCode", user.districtCode);
-				setStringProperty("user.consumerTime", user.consumerTime);
-				setStringProperty("user.invitationUrl", user.invitationUrl);
-			}
-
-			private void setIntProperty(String key, int value) {
-				setProperty(key, String.valueOf(value));
-
-			}
-
-			private void setStringProperty(String key, String value) {
-				if (value != null) {
-					setProperty(key, value);
+		Gson gson = GsonFactory.newInstance(new GsonFactory.NonEncryptedProvider());
+		try {
+			String encrypt = AES.encrypt(gson.toJson(user), AES.getKey());
+			Properties propertiesAll = AppConfig.getAppConfig(appContext).getProperties();
+			Enumeration<Object> keys = propertiesAll.keys();
+			while (keys.hasMoreElements()) {
+				String key = (String) keys.nextElement();
+				if (key.startsWith("user")) {
+					propertiesAll.remove(key);
 				}
 			}
-
-		};
-
-		Properties propertiesAll = AppConfig.getAppConfig(appContext)
-				.getProperties();
+			propertiesAll.setProperty("user.info",encrypt);
+			setProperties(propertiesAll);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 登出
+	 */
+	public void logout() {
+		Properties propertiesAll = AppConfig.getAppConfig(appContext).getProperties();
 		Enumeration<Object> keys = propertiesAll.keys();
 		while (keys.hasMoreElements()) {
 			String key = (String) keys.nextElement();
@@ -122,24 +109,6 @@ public class AppContext extends Application {
 				propertiesAll.remove(key);
 			}
 		}
-
-		Enumeration<Object> keys2 = properties.keys();
-		while (keys2.hasMoreElements()) {
-			String key = (String) keys2.nextElement();
-			propertiesAll.setProperty(key, properties.getProperty(key));
-		}
-
-		setProperties(propertiesAll);
-
-	}
-	
-	/**
-	 * 登出
-	 */
-	public void logout() {
-		AppConfig appConfig = AppConfig.getAppConfig(appContext);
-		appConfig.remove("user.name", "user.jobType", "user.profession",
-				"user.userId", "user.paintsNums");
 		accessTicket = null;
 		removeProperty(AppConfig.CON_APP_ACCESS_TICKET);
 		removeProperty(AppConfig.CONF_IS_DEVICE_REGISTED);//取消用户注册
@@ -149,32 +118,21 @@ public class AppContext extends Application {
 	 * 获取用户的信息
 	 */
 	public User getUser() {
-		User user = new User();
-		user.name = getProperty("user.name");
-		user.userId = getProperty("user.userId");
-		user.profession = getIntProperty("user.profession");
-		user.jobType = getIntProperty("user.jobType");
-		user.paintsNums = getIntProperty("user.paintsNums");
-		user.hospital = getProperty("user.hospital");
-		user.department = getProperty("user.department");
-		user.special = getProperty("user.special");
-		user.inviteCode = getProperty("user.inviteCode");
-		user.avatarImg = getProperty("user.avatarImg");
-		user.inviteCode = getProperty("user.inviteCode");
-		user.status = getIntProperty("user.status");
-		user.mapPositionAddress = getProperty("user.mapPositionAddress");
-		user.addressDetail = getProperty("user.addressDetail");
-		user.districtCode = getProperty("user.districtCode");
-		user.consumerTime = getProperty("user.consumerTime");
-		user.invitationUrl = getProperty("user.invitationUrl");
+		User user = null;
+		try {
+			String encryptedJson = getProperty("user.info");
+			if(encryptedJson!=null){
+				String json = AES.decrypt(encryptedJson, AES.getKey());
+				Gson gson = GsonFactory.newInstance(new GsonFactory.NonEncryptedProvider());
+				user = gson.fromJson(json, User.class);
+			}
+		}catch (Exception e){ //因为可能出现产品更新，数据不一致问题
+			e.printStackTrace();
+			logout(); //如果解析错误，则将用户数据清空
+		}
 		return user;
 	}
 
-	private final int getIntProperty(String key) {
-		String number = getProperty(key);
-		return TextUtils.isEmpty(number) ? 0 : Integer.parseInt(number);
-
-	}
 
 	/**
 	 * 获取DeviceID
@@ -290,6 +248,20 @@ public class AppContext extends Application {
 		}
 		return versionCode;
 	}
+
+
+	public String getVersionName(){
+		String versionName = null;
+		try {
+			versionName = appContext.getPackageManager()
+					.getPackageInfo(appContext.getPackageName(),
+							0).versionName;
+		} catch (NameNotFoundException e) {
+			e.printStackTrace();
+		}
+		return versionName;
+	}
+
 	
 	
 	/**

@@ -64,26 +64,18 @@
         <activity
             android:name=".ui.MainActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.EvaluationActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.DetailQuestionActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.EvaluationRecordActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar.Anim"/>
         <activity
             android:name=".ui.AddressSearchActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.RegisterActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
             android:name=".ui.LoginActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+
+
+        </activity>
+
         <activity
             android:name=".ui.FreeDayCalendarActivity"
             android:screenOrientation="portrait" />
@@ -101,11 +93,31 @@
             android:name=".ui.ServiceCalendarActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.EditMineInfoActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.OrdersManageActivity"
             android:screenOrientation="portrait" />
+
+        <activity android:name=".ui.AlterActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".ui.MineInfoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar.Anim">
+        </activity>
+
+        <activity android:name=".ui.WebActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".ui.SettingActivity"
+            android:theme="@style/AppTheme.NoActionBar.Anim">
+        </activity>
+
+        <activity android:name=".ui.RegisterActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+
+        <activity android:name=".ui.TestActivity"/>
 
         <service
             android:name=".service.UpLoadService"
@@ -113,6 +125,8 @@
         <service
             android:name=".service.UpdateService"
             android:exported="false" />
+
+
 
         <!-- **********************************极光推送************************************** -->
 
@@ -214,24 +228,7 @@
             android:name="UMENG_CHANNEL"
             android:value="Umeng" />
 
-        <activity
-            android:name=".ui.InitUserInfoActivity"
-            android:label="@string/title_activity_init_user_info"
-            android:parentActivityName=".BaseActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="BaseActivity" />
-        </activity>
-        <activity
-            android:name=".ui.SettingActivity"
-            android:label="@string/title_activity_setting"
-            android:parentActivityName=".BaseActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="BaseActivity" />
-        </activity>
+
     </application>
 
 </manifest>

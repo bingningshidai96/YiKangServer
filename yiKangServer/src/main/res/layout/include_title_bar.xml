@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="50dp"
     android:id="@+id/rl_title_bar"
-    android:background="@drawable/title_bg">
+    android:background="@color/white">
   
    <ImageButton 
        android:id="@+id/ibtn_title_back"
@@ -22,17 +22,22 @@
        android:layout_height="wrap_content"
        android:layout_centerInParent="true"
        android:text="标题栏"
-       android:textColor="@color/white"
-       android:textSize="19sp"/>
+       style="@style/style_title_text" />
    
     <TextView
-       android:id="@+id/tv_title_right_text" 
+       android:id="@+id/tv_title_right_text"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_alignParentRight="true"
        android:layout_marginRight="15dp"
        android:textSize="18sp"
        android:layout_centerVertical="true"
-       android:textColor="@color/white"/>
-   
+       android:textColor="@color/common_theme_color"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_alignParentBottom="true"
+        android:background="@color/common_page_background"/>
+
 </RelativeLayout>

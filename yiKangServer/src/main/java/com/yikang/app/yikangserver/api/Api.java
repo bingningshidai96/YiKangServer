@@ -9,6 +9,7 @@ import com.yikang.app.yikangserver.api.client.FileRequestParam;
 import com.yikang.app.yikangserver.api.client.RequestParam;
 import com.yikang.app.yikangserver.api.client.ResponseContent;
 import com.yikang.app.yikangserver.application.AppContext;
+import com.yikang.app.yikangserver.bean.FileResponse;
 import com.yikang.app.yikangserver.bean.InviteCustomer;
 import com.yikang.app.yikangserver.bean.Order;
 import com.yikang.app.yikangserver.bean.ServiceOrder;
@@ -32,13 +33,13 @@ public class Api {
 
 //    /** 测试主机 */
 //    private static final String SERVER_TEST = "http://54.223.53.20";
-//    private static final String SERVER_LOCAL_TEST = "http://192.168.1.10";
+    private static final String SERVER_LOCAL_TEST = "http://192.168.1.28:8088";
 
 
 
     /************* 下面才是基地址 ***********/
     /**接口开发的地址*/
-    public static final String BASE_URL = SERVER_HOST +"/yikangservice/service";
+    public static final String BASE_URL = SERVER_LOCAL_TEST +"/yikangservice/service";
     private static final String IMAGE_SERVER_HOST = "http://54.223.35.197";
     /*** 文件上传服务器的地址*/
     private static final String BASE_FILE_URL = "http://54.223.35.197:8088/yikangFileManage";
@@ -205,6 +206,9 @@ public class Api {
         ApiClient.execute(url, param, callback,type);
     }
 
+
+
+
     /**
      * 获取订单详情
      * @param orderId
@@ -246,6 +250,7 @@ public class Api {
     /**
      * 检查更新
      * @param callback
+     * TODO url
      */
     public static void checkUpdate(ResponseCallback<AndroidUpdate> callback){
         String url ="";
@@ -261,11 +266,11 @@ public class Api {
      * @param file
      * @param callback
      */
-    public static void uploadFile(File file,ResponseCallback<String> callback){
+    public static void uploadFile(File file,ResponseCallback<FileResponse> callback){
         String url = BASE_FILE_URL + "/fileUpload/imageFileUpload";
         FileRequestParam param = new FileRequestParam("headImage");
         param.addFile(file);
-        Type type = new TypeToken<ResponseContent<String>>(){}.getType();
+        Type type = new TypeToken<ResponseContent<FileResponse>>(){}.getType();
         ApiClient.postFilesAsyn(url, param, callback, type);
 
     }
@@ -298,6 +303,8 @@ public class Api {
         Type type = new TypeToken<ResponseContent<Void>>(){}.getType();
         ApiClient.execute(url, param, callback, type);
 
-
     }
+
+
+
 }

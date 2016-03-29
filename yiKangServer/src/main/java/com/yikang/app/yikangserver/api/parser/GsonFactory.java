@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.yikang.app.yikangserver.api.client.ResponseContent;
 import com.yikang.app.yikangserver.api.parser.sealizer.BooleanSerializer;
+import com.yikang.app.yikangserver.api.parser.sealizer.DoubleSealizer;
 import com.yikang.app.yikangserver.api.parser.sealizer.ResponseSerializer;
 
 import java.util.HashMap;
@@ -17,9 +18,13 @@ public class GsonFactory {
     private static Gson aesGson;
     private static Gson notAesGson;
 
-    private static HashMap<Class<? extends GsonProvider>,Gson> registry;
+    private static HashMap<Class<? extends GsonProvider>,Gson> registry = new HashMap<>();
 
     public static Gson newInstance(GsonProvider provider){
+        if(provider == null){
+            return new Gson();
+        }
+
         Class<? extends GsonProvider> clazz = provider.getClass();
         Gson cacheGson = registry.get(clazz);
 
@@ -29,6 +34,7 @@ public class GsonFactory {
         }
         return cacheGson;
     }
+
 
 
     public interface GsonProvider{
@@ -45,6 +51,7 @@ public class GsonFactory {
                     .registerTypeAdapter(Boolean.class, booleanSerializer)
                     .registerTypeAdapter(boolean.class, booleanSerializer)
                     .registerTypeAdapter(ResponseContent.class, responseSerializer)
+                    .registerTypeAdapter(Double.class, new DoubleSealizer())
                     .create();
 
             return gson;
@@ -61,7 +68,9 @@ public class GsonFactory {
                     .registerTypeAdapter(Boolean.class, booleanSerializer)
                     .registerTypeAdapter(boolean.class, booleanSerializer)
                     .registerTypeAdapter(ResponseContent.class, responseSerializer)
+                    .registerTypeAdapter(Double.class,new DoubleSealizer())
                     .create();
+
             return gson;
         }
     }

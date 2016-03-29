@@ -36,7 +36,8 @@ public class AES {
 	public static String getKey(){
 		return "1234567890abcDEF";
 	}
-	
+
+
 	/**
 	 * 解密
 	 * 
