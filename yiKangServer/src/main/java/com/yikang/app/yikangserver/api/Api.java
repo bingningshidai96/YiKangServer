@@ -152,7 +152,6 @@ public class Api {
     /**
      * 检查更新
      * @param callback
-     * TODO url
      */
     public static void checkUpdate(ResponseCallback<AndroidUpdate> callback){
         String url ="";
