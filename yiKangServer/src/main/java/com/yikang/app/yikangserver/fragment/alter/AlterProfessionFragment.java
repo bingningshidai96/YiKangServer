@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.yikang.app.yikangserver.R;
-import com.yikang.app.yikangserver.api.ApiTest;
+import com.yikang.app.yikangserver.api.Api;
 import com.yikang.app.yikangserver.api.callback.ResponseCallback;
 import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.data.MyData;
@@ -51,7 +51,7 @@ public class AlterProfessionFragment extends BaseAlterFragment implements View.O
         PopListAdapter proLeverAdapter = new PopListAdapter(getActivity(),
                 MyData.getItems(MyData.professionMap));
 
-        proLeverAdapter.setCurrentSelected(oldValue);
+        tspProfession.setCurrentSelection(oldValue);
         tspProfession.setAdapter(proLeverAdapter);
         return view;
     }
@@ -64,7 +64,7 @@ public class AlterProfessionFragment extends BaseAlterFragment implements View.O
         }
         showWaitingUI();
         int newValue = tspProfession.getCurrentSelection();
-        ApiTest.applyChangeProfession(newValue, alterHandler); //网络提交，数据返回
+        Api.applyChangeProfession(newValue, alterHandler); //网络提交，数据返回
     }
 
 

@@ -2,6 +2,7 @@ package com.yikang.app.yikangserver.ui;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 import com.yikang.app.yikangserver.R;
@@ -33,6 +34,11 @@ public class WebActivity extends BaseActivity {
     @Override
     protected void findViews() {
         webContent = ((WebView) findViewById(R.id.web_content));
+        WebSettings settings = webContent.getSettings();
+        settings.setUseWideViewPort(true);
+        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
+        settings.setLoadWithOverviewMode(true);
+        settings.setJavaScriptEnabled(true);
     }
 
     @Override

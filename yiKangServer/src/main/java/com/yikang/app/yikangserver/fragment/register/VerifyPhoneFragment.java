@@ -10,12 +10,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import com.yikang.app.yikangserver.R;
-import com.yikang.app.yikangserver.api.ApiTest;
+import com.yikang.app.yikangserver.api.Api;
 import com.yikang.app.yikangserver.api.callback.ResponseCallback;
 import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.fragment.BaseFragment;
-import com.yikang.app.yikangserver.utils.LOG;
 
 import java.lang.ref.WeakReference;
 
@@ -124,7 +124,7 @@ public class VerifyPhoneFragment extends BaseFragment implements View.OnClickLis
         if (getArguments() != null) {
             mPhone = getArguments().getString(ARG_PHONE);
         }
-         getVerify(mPhone);
+        getVerify(mPhone);
     }
 
 
@@ -154,7 +154,7 @@ public class VerifyPhoneFragment extends BaseFragment implements View.OnClickLis
     private void getVerify(String phone) {
         if(System.currentTimeMillis()-lastTimeMillis > VERIFY_INTERVAL){
             showWaitingUI();
-            ApiTest.getVerifyCode(phone, getVerifyHandler);
+            Api.getVerifyCode(phone, getVerifyHandler);
         }
     }
 
@@ -168,7 +168,7 @@ public class VerifyPhoneFragment extends BaseFragment implements View.OnClickLis
      */
     private void verifyPhone(String phone,String verifyCode) {
         showWaitingUI();
-        ApiTest.verifyPhone(phone, verifyCode, verifyHandler);
+        Api.verifyPhone(phone, verifyCode, verifyHandler);
     }
 
 
@@ -224,7 +224,7 @@ public class VerifyPhoneFragment extends BaseFragment implements View.OnClickLis
             case R.id.bt_verify_complete:
                 String verifyCode = edtVerifyCode.getText().toString();
                 if(verifyCode.isEmpty()){
-                    AppContext.showToast("清输入验证码");
+                    AppContext.showToast("请输入验证码");
                 }else{
                     verifyPhone(mPhone, verifyCode);
                 }
@@ -252,11 +252,13 @@ public class VerifyPhoneFragment extends BaseFragment implements View.OnClickLis
             super.handleMessage(msg);
             if(isStart && msg.what == 0){
                 VerifyPhoneFragment fragment = refVerifyFragment.get();
-                long count = (fragment.VERIFY_INTERVAL-
-                        (System.currentTimeMillis() - fragment.lastTimeMillis))/ 1000;
-                fragment.updateCountDown((int) count); //更新时间
-                if(count>0){
-                    sendEmptyMessageDelayed(0,1000);
+                if(fragment!=null){
+                    long count = (fragment.VERIFY_INTERVAL-
+                            (System.currentTimeMillis() - fragment.lastTimeMillis))/ 1000;
+                    fragment.updateCountDown((int) count); //更新时间
+                    if(count>0){
+                        sendEmptyMessageDelayed(0,1000);
+                    }
                 }
             }
         }

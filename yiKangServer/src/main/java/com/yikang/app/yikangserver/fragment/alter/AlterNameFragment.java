@@ -3,7 +3,6 @@ package com.yikang.app.yikangserver.fragment.alter;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,15 +10,11 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.yikang.app.yikangserver.R;
-import com.yikang.app.yikangserver.api.ApiTest;
+import com.yikang.app.yikangserver.api.Api;
 import com.yikang.app.yikangserver.api.callback.ResponseCallback;
 import com.yikang.app.yikangserver.application.AppContext;
-import com.yikang.app.yikangserver.fragment.BaseFragment;
 import com.yikang.app.yikangserver.interf.CanSubmit;
-import com.yikang.app.yikangserver.reciever.UserInfoAlteredReceiver;
 import com.yikang.app.yikangserver.utils.LOG;
-
-import java.io.Serializable;
 
 /**
  */
@@ -71,7 +66,7 @@ public class AlterNameFragment extends BaseAlterFragment implements CanSubmit{
         if(mCanSubmit){
             showWaitingUI();
             String newValue = edtAlter.getText().toString();
-            ApiTest.alterName(newValue,alterHandler); //网络提交，数据返回
+            Api.alterName(newValue, alterHandler); //网络提交，数据返回
         }else {
             finishWithResult(); //数据返回
         }

@@ -21,7 +21,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/profession" />
+            android:text="@string/profession_change"
+            android:textColor="@color/common_text_grey"
+            android:textSize="@dimen/common_text_size"/>
 
         <View
             android:layout_width="0dp"
@@ -59,6 +61,8 @@
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:textSize="12sp"
+        android:textColor="@color/common_text_grey_light"
         android:gravity="center"
         android:text="佳佳康复将在您提交申请后的1-2个工作日内与您联系"/>
 </LinearLayout>

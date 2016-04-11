@@ -1,60 +1,60 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- 服务项目 -->
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?><!-- 服务项目 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:divider="@drawable/line_grey_horizontal"
-    android:showDividers="middle"
-    android:orientation="vertical">
-
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:paddingLeft="10dp"
-       android:orientation="horizontal">
-       <TextView
-           android:id="@+id/tv_customer_item_time_hint"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="@string/customerList_item_service_time"/>
-
-       <TextView
-           android:id="@+id/tv_customer_item_time"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text=""/>
-   </LinearLayout>
+    android:orientation="vertical"
+    android:showDividers="middle">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="12dp">
+
+        <TextView
+            android:id="@+id/tv_customer_item_time_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:text="@string/customerList_item_service_time"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_customer_item_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/white"
         android:baselineAligned="false"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:paddingBottom="8dp"
+        android:paddingLeft="12dp"
+        android:paddingTop="8dp">
 
 
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.1">
-
-            <com.yikang.app.yikangserver.view.CircleImageView
-                android:id="@+id/iv_customer_item_img"
-                android:layout_width="85dp"
-                android:layout_height="85dp"
-                android:layout_gravity="center"
-                android:src="@drawable/service_item_defualt_img" />
-        </FrameLayout>
+        <com.yikang.app.yikangserver.view.CircleImageView
+            android:id="@+id/iv_customer_item_img"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:src="@drawable/user_default_avatar" />
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="2.5"
             android:gravity="center_vertical"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingLeft="10dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -66,17 +66,16 @@
                     android:layout_height="wrap_content"
                     android:singleLine="true"
                     android:text="@string/customerList_item_name"
-                    android:textColor="@color/common_text_color"
-                    android:textSize="16sp" />
+                    android:textColor="@color/item_customer_text_color"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tv_customer_item_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
-                    android:text=""
-                    android:textColor="@color/common_text_black"
-                    android:textSize="16sp" />
+                    android:textColor="@color/item_customer_text_color"
+                    android:textSize="14sp" />
 
 
             </LinearLayout>
@@ -85,7 +84,7 @@
                 android:id="@+id/ly_customer_item_time_container"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="3dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -93,18 +92,23 @@
                     android:layout_height="wrap_content"
                     android:singleLine="true"
                     android:text="注册手机:"
-                    android:textColor="@color/common_text_color"
-                    android:textSize="16sp" />
+                    android:textColor="@color/item_customer_text_color"
+                    android:textSize="14sp" />
 
                 <TextView
+                    android:id="@+id/tv_customer_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
-                    android:text=""
-                    android:textColor="@color/common_text_black"
-                    android:textSize="16sp" />
+                    android:textColor="@color/item_customer_text_color"
+                    android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
+
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="10dp"-->
+        <!--android:background="@color/common_page_background"/>-->
 </LinearLayout>

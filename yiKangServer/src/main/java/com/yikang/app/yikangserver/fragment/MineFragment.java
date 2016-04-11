@@ -37,6 +37,7 @@ public class MineFragment extends BaseFragment implements OnClickListener {
     private ImageView ivAvatar;
 
     private User user;
+    private View tvCheckTip;
 
 
     @Override
@@ -63,6 +64,7 @@ public class MineFragment extends BaseFragment implements OnClickListener {
         tvProfession = (TextView) view.findViewById(R.id.tv_mine_profession);
         tvInviteCode = (TextView) view.findViewById(R.id.tv_mine_invite_code);
         tvCustomerNum = (TextView) view.findViewById(R.id.tv_mine_customer_number);
+        tvCheckTip = view.findViewById(R.id.tv_mine_profession_in_check);
 
         LinearLayout lyBasicInfo = ((LinearLayout) view.findViewById(R.id.ly_mine_basic_info));
         LinearLayout lyQrCode = (LinearLayout) view.findViewById(R.id.ly_mine_qr_code);
@@ -71,6 +73,7 @@ public class MineFragment extends BaseFragment implements OnClickListener {
         lyQrCode.setOnClickListener(this);
         lyBasicInfo.setOnClickListener(this);
         lyCustomNumber.setOnClickListener(this);
+
 
 
         fillToViews();
@@ -85,6 +88,8 @@ public class MineFragment extends BaseFragment implements OnClickListener {
     private void fillToViews() {
         tvName.setText(user.name);//名字
         tvInviteCode.setText(user.inviteCode); //邀请码
+        int visible = user.professionCheckStatus == User.CHECK_STATUS_CHECKING? View.VISIBLE:View.GONE;
+        tvCheckTip.setVisibility(visible);
 
         if (user.profession >= 0) { //职业
             String profession = MyData.professionMap.valueAt(user.profession);
@@ -148,9 +153,6 @@ public class MineFragment extends BaseFragment implements OnClickListener {
      * 显示编辑page
      */
     private void showEditPage() {
-       // user.professionCheckStatus = User.CHECK_STATUS_UNCHECKED;
-        //user.infoStatus = User.INFO_STATUS_INCOMPLETE;
-
         Intent intent = new Intent(getActivity(), MineInfoActivity.class);
         intent.putExtra(MineInfoActivity.EXTRA_USER,user);
 

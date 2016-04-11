@@ -3,9 +3,14 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:padding="5dp"
+
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+
     android:background="@drawable/shape_tag_bg"
     android:text="Helloworld"
-    android:textColor="@drawable/text_color">
+    android:textColor="@drawable/tag_text_color">
 
 </TextView>

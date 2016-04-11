@@ -129,6 +129,7 @@ public class ApiClient {
 		}
 		if (!param.isParamEmpty()) {
 			try {
+				LOG.i(TAG,param.getParamJson());
 				String encryptJson = AES.encrypt(param.getParamJson(), AES.getKey());
 				builder.add(RequestParam.KEY_PARAM_DATA, encryptJson);
 			} catch (Exception e) {

@@ -51,7 +51,7 @@ public class GsonFactory {
                     .registerTypeAdapter(Boolean.class, booleanSerializer)
                     .registerTypeAdapter(boolean.class, booleanSerializer)
                     .registerTypeAdapter(ResponseContent.class, responseSerializer)
-                    .registerTypeAdapter(Double.class, new DoubleSealizer())
+               //     .registerTypeAdapter(Double.class, new DoubleSealizer())
                     .create();
 
             return gson;
@@ -68,7 +68,7 @@ public class GsonFactory {
                     .registerTypeAdapter(Boolean.class, booleanSerializer)
                     .registerTypeAdapter(boolean.class, booleanSerializer)
                     .registerTypeAdapter(ResponseContent.class, responseSerializer)
-                    .registerTypeAdapter(Double.class,new DoubleSealizer())
+              //      .registerTypeAdapter(Double.class,new DoubleSealizer())
                     .create();
 
             return gson;

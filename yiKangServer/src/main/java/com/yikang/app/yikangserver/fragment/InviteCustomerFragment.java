@@ -1,26 +1,22 @@
 package com.yikang.app.yikangserver.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.adapter.ViewHolder;
-import com.yikang.app.yikangserver.api.ApiTest;
 import com.yikang.app.yikangserver.api.callback.ResponseCallback;
 import com.yikang.app.yikangserver.api.Api;
 import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.bean.InviteCustomer;
 import com.yikang.app.yikangserver.bean.PaintsData;
 import com.yikang.app.yikangserver.ui.InviteCustomerListActivity;
-import com.yikang.app.yikangserver.ui.OrdersManageActivity;
 import com.yikang.app.yikangserver.view.CircleImageView;
 
-import java.util.List;
 
 /**
  * 推荐病患列表的fragment
@@ -74,6 +70,14 @@ public class InviteCustomerFragment extends BaseListFragment<InviteCustomer>{
 	}
 
 	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View view = super.onCreateView(inflater, container, savedInstanceState);
+		mListView.setDivider(getResources().getDrawable(R.drawable.line_grey_horizontal));
+		mListView.setDividerHeight(20);
+		return view;
+	}
+
+	@Override
 	protected int getItemLayoutId() {
 		return R.layout.item_customer;
 	}
@@ -83,16 +87,22 @@ public class InviteCustomerFragment extends BaseListFragment<InviteCustomer>{
 	@Override
 	protected void convert(ViewHolder holder, InviteCustomer item) {
 		CircleImageView img = holder.getView(R.id.iv_customer_item_img);
-		TextView tvName = holder.getView(R.id.tv_customer_item_name);
 		if (!TextUtils.isEmpty(item.imgUrl)) {
 			ImageLoader.getInstance().displayImage(item.imgUrl, img);
 		}
+
+		TextView tvName = holder.getView(R.id.tv_customer_item_name);
 		tvName.setText(item.name);
+
+		TextView tvPhone = holder.getView(R.id.tv_customer_phone);
+		tvPhone.setText(item.phone);
+
+
 		TextView tvTimeHint = holder.getView(R.id.tv_customer_item_time_hint);
 		TextView tvTime = holder.getView(R.id.tv_customer_item_time);
 		if (item.status == InviteCustomer.STATUS_REGISTER) {
 			tvTimeHint.setText(R.string.customerList_item_register_time);
-			tvTime.setText(item.registerDate);
+			tvTime.setText(item.registerTime);
 
 		} else if (item.status == InviteCustomer.STATUS_CONSUMED) {
 			tvTimeHint.setText(R.string.customerList_item_service_time);
@@ -103,7 +113,7 @@ public class InviteCustomerFragment extends BaseListFragment<InviteCustomer>{
 
 	@Override
 	protected void sendRequestData(final RequestType requestType) {
-		ApiTest.getMyPaintList(type.getCode(), new ResponseCallback<PaintsData>() {
+		Api.getMyPaintList(type.getCode(), new ResponseCallback<PaintsData>() {
 			@Override
 			public void onSuccess(PaintsData paintsData) {
 				mData.clear();
@@ -151,21 +161,6 @@ public class InviteCustomerFragment extends BaseListFragment<InviteCustomer>{
 			setTipsVisible(false);
 		}
 		
-	}
-
-
-	@Override
-	public void onItemClick(AdapterView<?> parent, View view, int position,
-			long id) {
-		if(mData.get(position).status == InviteCustomer.STATUS_CONSUMED){
-			//显示订单列表
-			Intent intent = new Intent(getActivity(),
-					OrdersManageActivity.class);
-			Log.d(TAG, "[onItemClick]" + mData.get(position).userId);
-			intent.putExtra(OrdersManageActivity.EXTRA_USER_ID,mData.get(position).userId);
-			startActivity(intent);
-		}
-
 	}
 
 }

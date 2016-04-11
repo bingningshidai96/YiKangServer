@@ -3,7 +3,7 @@
     android:id="@+id/srl_swiperefreshlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/common_page_background"
     android:orientation="vertical" >
 
     <RelativeLayout
@@ -13,7 +13,7 @@
         <ListView
             android:id="@+id/lv_listview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" 
+            android:layout_height="match_parent"
             android:scrollbars="none"
             android:scrollingCache="true">
         </ListView>

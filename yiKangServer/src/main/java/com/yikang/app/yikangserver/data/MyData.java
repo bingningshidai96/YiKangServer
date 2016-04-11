@@ -44,18 +44,13 @@ public class MyData {
 	// 是否有外窗
 	public static final SparseArray<String> outWindowMap = new SparseArray<String>(
 			2);
-	// 城市
-	public static final SparseArray<City> cityMap = new SparseArray<City>(2);
 
-	
 	public static final SparseArray<String> profeLeversMap = new SparseArray<String>(
 			2);
 
 	public static final SparseArray<String> professionMap = new SparseArray<String>(
 			6);
 
-	public static final SparseArray<String> departmentMap = new SparseArray<String>(
-			100);
 	static {
 		professionMap.put(DOCTOR, "医生");
 		professionMap.put(NURSING, "护士");
@@ -64,16 +59,6 @@ public class MyData {
 
 		profeLeversMap.put(PAER_TIME, "兼职");
 		profeLeversMap.put(FULL_TIME, "全职");
-
-		/**
-		 * 呼吸内科、消化内科、神经内科、心血管内科、肾内科、血液内科、 普外科、神经外科、心胸外科、泌尿外科、心血管外科、肝胆外科、肛肠外科、骨外科
-		 * 肿瘤内科、肿瘤外科、骨肿瘤科、肿瘤康复科、肿瘤综合科 中医全科、中医内科、中医外科、中医保健科、针灸按摩科、中医骨伤科、中医肿瘤科
-		 * 、肝病科、结核病、 精神科、心理咨询科 、营养科
-		 */
-
-		departmentMap.put(0, "呼吸内科");
-		departmentMap.put(1, "消化内科");
-		departmentMap.put(2, "神经内科");
 
 	}
 
@@ -128,48 +113,6 @@ public class MyData {
 
 		outWindowMap.put(0, "否");
 		outWindowMap.put(1, "是");
-
-		// 北京市区
-		final SparseArray<String> beijingArea = new SparseArray<String>(6);
-		// 北京市区
-		final SparseArray<String> beijingCode = new SparseArray<String>(6);
-		
-		beijingArea.put(0, "东城区");
-		beijingArea.put(1, "西城区");
-		beijingArea.put(2, "朝阳区");
-		beijingArea.put(3, "海淀区");
-		beijingArea.put(4, "丰台区");
-		beijingArea.put(5, "石景山区");
-		beijingArea.put(6, "门头沟区");
-		beijingArea.put(7, "房山区");
-		beijingArea.put(8, "通州区");
-		beijingArea.put(9, "顺义区");
-		beijingArea.put(10, "昌平区");
-		beijingArea.put(11, "大兴区");
-		beijingArea.put(12, "怀柔区");
-		beijingArea.put(13, "平谷区");
-		beijingArea.put(14, "密云县");
-		beijingArea.put(15, "延庆县");
-		
-		beijingCode.put(0, "110101");
-		beijingCode.put(1, "110102");
-		beijingCode.put(2, "110105");
-		beijingCode.put(3, "110108");
-		beijingCode.put(4, "110106");
-		beijingCode.put(5, "110107");
-		beijingCode.put(6, "110109");
-		beijingCode.put(7, "110111");
-		beijingCode.put(8, "110112");
-		beijingCode.put(9, "110113");
-		beijingCode.put(10, "110114");
-		beijingCode.put(11, "110115");
-		beijingCode.put(12, "110116");
-		beijingCode.put(13, "110117");
-		beijingCode.put(14, "110228");
-		beijingCode.put(15, "110229");
-
-		City beijing = new City("北京", "110000",beijingArea,beijingCode);
-		cityMap.put(0, beijing);
 
 	}
 
@@ -251,50 +194,5 @@ public class MyData {
 		return array.get(key);
 	}
 
-	/**
-	 * 城市
-	 * 
-	 */
-	public static class City {
-		private final String name;
-		private final String cityCode;
-		private final SparseArray<String> areas; // 区列表
-		private final SparseArray<String> areaCodes;
-		
-		public City(String name, String cityCode,SparseArray<String> areas,SparseArray<String> areaCodes) {
-			this.areas = areas;
-			this.name = name;
-			this.areaCodes =areaCodes;
-			this.cityCode = cityCode;
-		}
-		
-		public String getCityCode(){
-			return cityCode;
-		}
-		
-		public String getName() {
-			return name;
-		}
 
-		public List<String> getListArea() {
-			return getItems(areas);
-		}
-
-		public SparseArray<String> getSparseArea() {
-			return areas;
-		}
-
-		public int getAreaIntkey(String value) {
-			return getIntKey(value, areas);
-		}
-		
-		public String getAreaValue(int key) {
-			return areas.get(key);
-		}
-		
-		
-		public String getAreaCodeValue(int key){
-			return areaCodes.get(key);
-		}
-	}
 }

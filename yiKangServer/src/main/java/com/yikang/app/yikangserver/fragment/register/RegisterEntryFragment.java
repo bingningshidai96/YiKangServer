@@ -73,7 +73,7 @@ public class RegisterEntryFragment extends BaseFragment implements View.OnClickL
                 break;
             case R.id.tv_register_entry_agreement:
                 String title = getString(R.string.web_agreement_title);
-                String url ="www.baidu.com";
+                String url ="http://www.jjkangfu.com/appPage/operation";
                 startAgreementPage(title,url);
                 break;
         }

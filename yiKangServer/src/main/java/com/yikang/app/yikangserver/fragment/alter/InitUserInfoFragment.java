@@ -17,7 +17,6 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.api.Api;
-import com.yikang.app.yikangserver.api.ApiTest;
 import com.yikang.app.yikangserver.api.callback.ResponseCallback;
 import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.bean.Department;
@@ -28,7 +27,6 @@ import com.yikang.app.yikangserver.data.MyData;
 import com.yikang.app.yikangserver.dialog.DialogFactory;
 import com.yikang.app.yikangserver.fragment.BaseFragment;
 import com.yikang.app.yikangserver.fragment.SystemSelectPhotoFragment;
-import com.yikang.app.yikangserver.interf.CanSubmit;
 import com.yikang.app.yikangserver.reciever.UserInfoAlteredReceiver;
 import com.yikang.app.yikangserver.ui.AddressSearchActivity;
 import com.yikang.app.yikangserver.ui.AlterActivity;
@@ -73,8 +71,8 @@ public class InitUserInfoFragment extends BaseFragment implements
 
     /** 不同的UI显示不同的item */
     private static int[] doctorUI = new int[]{R.id.ly_info_hospital, R.id.ly_info_office};
-    private static int[] therapistUI = new int[]{R.id.ly_info_work_type, R.id.ly_info_spacial};
-    private static int[] nursingUI = new int[]{R.id.ly_info_hospital, R.id.ly_info_work_type, R.id.ly_info_spacial};
+    private static int[] therapistUI = new int[]{R.id.ly_info_work_type, R.id.ly_info_spacial,R.id.ly_info_address};
+    private static int[] nursingUI = new int[]{R.id.ly_info_hospital, R.id.ly_info_work_type, R.id.ly_info_spacial,R.id.ly_info_address};
 
 
     /** 默认头像 */
@@ -126,13 +124,6 @@ public class InitUserInfoFragment extends BaseFragment implements
             getActivity().sendBroadcast(intent);
 
             getActivity().finish();
-
-
-            //TODO 返回
-            /**
-             * 1.没有修改就返回 没有修改，应该退出应用。
-             * 2.修改后返回，返回我的页面
-             */
         }
 
         @Override
@@ -163,7 +154,7 @@ public class InitUserInfoFragment extends BaseFragment implements
      * @param url
      */
     private void alterAvatarInfo(String url) {
-        ApiTest.alterAvatar(url, new ResponseCallback<Void>() {
+        Api.alterAvatar(url, new ResponseCallback<Void>() {
             @Override
             public void onSuccess(Void data) {
                 LOG.i(TAG, "[alterAvatarInfo]修改头像成功");
@@ -247,6 +238,7 @@ public class InitUserInfoFragment extends BaseFragment implements
             initStatus |= CODE_SPECIAL;
 
 
+
         return initStatus;
 
     }
@@ -256,7 +248,7 @@ public class InitUserInfoFragment extends BaseFragment implements
      * 获取科室列表
      */
     private void loadDepartment(){
-        ApiTest.getDepartment(new ResponseCallback<List<Department>>() {
+        Api.getDepartment(new ResponseCallback<List<Department>>() {
             @Override
             public void onSuccess(List<Department> data) {
                 departmentData.clear();
@@ -306,8 +298,6 @@ public class InitUserInfoFragment extends BaseFragment implements
 
         btComplete.setOnClickListener(this);
         tvProfession.setText(MyData.professionMap.get(user.profession));
-        LOG.i(TAG, MyData.professionMap.get(user.profession));
-
 
         PopListAdapter proLeverAdapter = new PopListAdapter(getActivity(),MyData.getItems(MyData.profeLeversMap));
         proLeverAdapter.setCurrentSelected(-1);
@@ -319,13 +309,11 @@ public class InitUserInfoFragment extends BaseFragment implements
                 alterStatus |= CODE_WORK_TYPE;
             }
         });
-
-
-
         tspOffice.setOnDropDownItemClickListener(new TextSpinner.OnItemSelectedListener() {
             @Override
             public void onItemClickListener(TextSpinner spinner, int position) {
                 alterStatus |= CODE_OFFICE;
+                user.department = departmentData.get(position);
             }
         });
 
@@ -348,6 +336,8 @@ public class InitUserInfoFragment extends BaseFragment implements
 
         if(!TextUtils.isEmpty(user.avatarImg)){
             ImageLoader.getInstance().displayImage(user.avatarImg,ivAvatar);
+        }else{
+            ivAvatar.setImageResource(defaultAvatar.get(user.profession));
         }
 
         if(user.profession >= 0){
@@ -394,13 +384,15 @@ public class InitUserInfoFragment extends BaseFragment implements
             DialogFactory.getCommonAlertDialog(getActivity(),"请完善全部信息").show();
             return;
         }
-        LOG.i(TAG,"[submit]开始长传头像");
-        Api.uploadFile(new File(avatarLocalPath), uploadAvatarHandler);
+        LOG.i(TAG, "[submit]开始长传头像");
+        if(!TextUtils.isEmpty(avatarLocalPath)){
+            Api.uploadFile(new File(avatarLocalPath), uploadAvatarHandler);
+        }
 
         showWaitingUI();
         LOG.i(TAG, "[submit]开始上传用户信息");
         user.infoStatus = User.INFO_STATUS_COMPLETE;
-        ApiTest.initUserInfo(user, initUserInfoHandler);
+        Api.initUserInfo(user, initUserInfoHandler);
 
     }
 
@@ -504,6 +496,9 @@ public class InitUserInfoFragment extends BaseFragment implements
                 StringBuilder builder = new StringBuilder();
                 for(Expert e :user.special){
                     builder.append(e.name+" ");
+                }
+                if(builder.length()>0){
+                    builder.deleteCharAt(builder.length()-1);
                 }
                 tvSpecial.setText(builder.toString());
                 break;

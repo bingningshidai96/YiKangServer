@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import com.yikang.app.yikangserver.R;
+import com.yikang.app.yikangserver.utils.DeviceUtils;
 import com.yikang.app.yikangserver.utils.QRImageCreateUtils;
 
 
@@ -18,7 +19,7 @@ import com.yikang.app.yikangserver.utils.QRImageCreateUtils;
 public class QrCodeDialog extends Dialog{
     private Bitmap bitmap;
     private OnCancelListener listener;
-    private static final int QR_SIZE = 400;
+    private int default_qr_size = 400;
 
 
     public QrCodeDialog(Context context,Bitmap bitmap){
@@ -31,7 +32,8 @@ public class QrCodeDialog extends Dialog{
 
     public QrCodeDialog(Context context,String url){
         super(context, R.style.custom_dialog);
-        QRImageCreateUtils utils = new QRImageCreateUtils(QR_SIZE,QR_SIZE);
+        default_qr_size = (int) (DeviceUtils.getSceenRect()[0]*0.6);
+        QRImageCreateUtils utils = new QRImageCreateUtils(default_qr_size,default_qr_size);
         this.bitmap = utils.createQRImage(url);
         init();
 

@@ -15,9 +15,9 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
+
 import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.api.Api;
-import com.yikang.app.yikangserver.api.ApiTest;
 import com.yikang.app.yikangserver.api.callback.ResponseCallback;
 import com.yikang.app.yikangserver.application.AppConfig;
 import com.yikang.app.yikangserver.application.AppContext;
@@ -27,6 +27,7 @@ import com.yikang.app.yikangserver.reciever.UserInfoAlteredReceiver;
 import com.yikang.app.yikangserver.utils.DeviceUtils;
 import com.yikang.app.yikangserver.utils.DoubleClickExitHelper;
 import com.yikang.app.yikangserver.utils.LOG;
+
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Map;
@@ -195,7 +196,7 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 	 */
 	private void loadUserInfo() {
 		showWaitingUI();
-		ApiTest.getUserInfo(loadUserInfoHandler);
+		Api.getUserInfo(loadUserInfoHandler);
 	}
 
 
@@ -204,9 +205,17 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 	}
 
 	private void showLoadError(){
-		findViewById(R.id.main_load_error).setVisibility(View.VISIBLE);
+		View view = findViewById(R.id.main_load_error);
+		view.setVisibility(View.VISIBLE);
+		view.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				hideLoadError();
+				loadUserInfo();
+			}
+		});
 		TextView tvTips = ((TextView) findViewById(R.id.tv_error_tips));
-		tvTips.setText(R.string.default_network_data_fail_describe);
+		tvTips.setText(R.string.default_network_reload_describe);
 	}
 
 

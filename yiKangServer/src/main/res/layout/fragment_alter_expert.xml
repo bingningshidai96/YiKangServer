@@ -6,13 +6,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.yikang.app.yikangserver.fragment.alter.AlterExpertFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
-        android:textSize="14sp"
+        android:textSize="@dimen/common_text_size"
         android:text="请选择自己擅长的方向，最多只能选择四项" />
 
     <com.yikang.app.yikangserver.view.tag.TagFlowLayout

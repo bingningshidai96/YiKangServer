@@ -9,16 +9,19 @@ import com.yikang.app.yikangserver.api.client.FileRequestParam;
 import com.yikang.app.yikangserver.api.client.RequestParam;
 import com.yikang.app.yikangserver.api.client.ResponseContent;
 import com.yikang.app.yikangserver.application.AppContext;
+import com.yikang.app.yikangserver.bean.Department;
+import com.yikang.app.yikangserver.bean.Expert;
 import com.yikang.app.yikangserver.bean.FileResponse;
-import com.yikang.app.yikangserver.bean.InviteCustomer;
 import com.yikang.app.yikangserver.bean.Order;
+import com.yikang.app.yikangserver.bean.PaintsData;
 import com.yikang.app.yikangserver.bean.ServiceOrder;
 import com.yikang.app.yikangserver.bean.ServiceScheduleData;
 import com.yikang.app.yikangserver.bean.User;
-import com.yikang.app.yikangserver.ui.FreeTimeActivity;
+import com.yikang.app.yikangserver.data.MyData;
 import com.yikang.app.yikangserver.utils.UpdateManger.AndroidUpdate;
 import java.io.File;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
@@ -39,25 +42,10 @@ public class Api {
 
     /************* 下面才是基地址 ***********/
     /**接口开发的地址*/
-    public static final String BASE_URL = SERVER_LOCAL_TEST +"/yikangservice/service";
-    private static final String IMAGE_SERVER_HOST = "http://54.223.35.197";
+    public static final String BASE_URL = SERVER_HOST +"/yikangservice/service";
     /*** 文件上传服务器的地址*/
     private static final String BASE_FILE_URL = "http://54.223.35.197:8088/yikangFileManage";
 
-
-    /**
-     * 获取我的患者
-     *
-     * @param userStatus
-     * @param callback
-     */
-    public static void getMyPaintList(int userStatus, ResponseCallback<List<InviteCustomer>> callback) {
-        String url = BASE_URL + "/00-17-09";
-        RequestParam param = new RequestParam();
-        param.add("userStatus", userStatus);
-        Type type = new TypeToken<ResponseContent<List<InviteCustomer>>>(){}.getType();
-        ApiClient.execute(url, param, callback, type);
-    }
 
 
     /**
@@ -92,50 +80,6 @@ public class Api {
         ApiClient.execute(url, param, callback,type);
     }
 
-    /**
-     * 获取服务日程列表
-     *
-     * @param orderStatus
-     * @param callback
-     */
-    public static void getServiceTaskList(int orderStatus, ResponseCallback<List<ServiceOrder>> callback) {
-        String url = BASE_URL + "/00-21-04";
-        RequestParam param = new RequestParam();
-        param.add("serviceDetailStatus", orderStatus);
-        Type type = new TypeToken<ResponseContent<List<ServiceOrder>>>(){}.getType();
-        ApiClient.execute(url, param, callback,type);
-    }
-
-
-    /**
-     * 修改用户信息
-     *
-     * @param paramMap
-     * @param callback
-     */
-    public static void alterUserInfo(Map<String, Object> paramMap, ResponseCallback<Void> callback) {
-        String url = BASE_URL
-                + "/00-17-05";
-        RequestParam param = new RequestParam();
-        param.addAll(paramMap);
-        Type type = new TypeToken<ResponseContent<Void>>(){}.getType();
-        ApiClient.execute(url, param, callback,type);
-    }
-
-
-    /**
-     * 获取空闲服务时间
-     * @param callback
-     */
-    public static void getFreeDays(ResponseCallback<List<ServiceScheduleData>> callback) {
-        String url = BASE_URL + "/00-19-01";
-        RequestParam param = new RequestParam();
-        Calendar calendar = Calendar.getInstance();
-        param.add("year", calendar.get(Calendar.YEAR));
-        param.add("month", calendar.get(Calendar.MONTH) + 1);
-        Type type = new TypeToken<ResponseContent<List<ServiceScheduleData>>>(){}.getType();
-        ApiClient.execute(url, param, callback,type);
-    }
 
 
     /**
@@ -170,17 +114,6 @@ public class Api {
         ApiClient.execute(url, param, callback,type);
     }
 
-    /**
-     * 获取用户信息
-     * @param callback
-     */
-    public static void getUserInfo(ResponseCallback<User> callback){
-        String url =  BASE_URL + "/00-17-04";
-        RequestParam param = new RequestParam();
-        Type type = new TypeToken<ResponseContent<User>>(){}.getType();
-        ApiClient.execute(url, param, callback,type);
-    }
-
 
     /**
      * 获取极光推送的别名
@@ -206,37 +139,6 @@ public class Api {
         ApiClient.execute(url, param, callback,type);
     }
 
-
-
-
-    /**
-     * 获取订单详情
-     * @param orderId
-     * @param callback
-     */
-    public static void getOrderDetail(String orderId,ResponseCallback<ServiceOrder> callback){
-        String url = BASE_URL + "/00-21-05";
-        RequestParam param = new RequestParam();
-        param.add("orderServiceDetailId", orderId);
-        Type type = new TypeToken<ResponseContent<ServiceOrder>>(){}.getType();
-        ApiClient.execute(url, param, callback,type);
-    }
-
-    /**
-     * 提交反馈
-     * @param orderId
-     * @param feedback
-     * @param callback
-     */
-    public static void submitFeedBack(String orderId,String feedback,ResponseCallback<Void> callback){
-        String url = BASE_URL + "/00-21-06";
-        RequestParam param = new RequestParam();
-        param.add("orderServiceDetailId", orderId);
-        param.add("feedback", feedback);
-
-        Type type = new TypeToken<ResponseContent<Void>>(){}.getType();
-        ApiClient.execute(url, param, callback,type);
-    }
 
 
     /**
@@ -275,35 +177,290 @@ public class Api {
 
     }
 
+
+
+
+
+    /***********************V1.1************************/
+
     /**
-     * 获取一天的空闲时间段
-     * @param serviceDate
+     * 获取短信验证码
+     *
+     * @param phone
+     */
+    public static void getVerifyCode(String phone, final ResponseCallback<Void> callback) {
+        String url = BASE_URL + "/00-25-01";
+        RequestParam param = new RequestParam("", "");
+        param.add("mobileNumber", phone);
+        Type type = new TypeToken<ResponseContent<Void>>() {
+        }.getType();
+        ApiClient.execute(url, param, callback, type, false);
+    }
+
+
+    /**
+     * 获取短信验证码
+     *
+     * @param phone
+     */
+    public static void verifyPhone(String phone, String verlifyCode, ResponseCallback<Void> callback) {
+        String url = BASE_URL + "/00-25-02";
+        RequestParam param = new RequestParam("", "");
+        param.add("mobileNumber", phone);
+        param.add("captchar", verlifyCode);
+        Type type = new TypeToken<ResponseContent<Void>>() {
+        }.getType();
+        ApiClient.execute(url, param, callback, type);
+    }
+
+
+    /**
+     * 新版注册接口
+     *
+     * @param phoneNumber 手机号
+     * @param password    密码
+     * @param callback    回调接口
+     */
+    public static void registerNew(String phoneNumber, String password, ResponseCallback<Void> callback) {
+        String url = BASE_URL + "/registerUser";
+        RequestParam param = new RequestParam("", "");
+        param.add("loginName", phoneNumber);
+        param.add("password", password);
+        Type type = new TypeToken<ResponseContent<Void>>() {
+        }.getType();
+        ApiClient.execute(url, param, callback, type);
+    }
+
+
+    /**
+     * 获取用户信息
+     *
      * @param callback
      */
-    public static void getEditTime(String serviceDate,ResponseCallback<FreeTimeActivity.FreeTimeData> callback){
-        String url = BASE_URL + "/00-19-02";
+    public static void getUserInfo(ResponseCallback<User> callback) {
+        String url = BASE_URL + "/00-17-10";
         RequestParam param = new RequestParam();
-        param.add("serviceDate", serviceDate);
-        Type type = new TypeToken<ResponseContent<FreeTimeActivity.FreeTimeData>>(){}.getType();
+        Type type = new TypeToken<ResponseContent<User>>() {}.getType();
         ApiClient.execute(url, param, callback, type);
-
     }
+
 
     /**
-     * 提交选择的时间
-     * @param serviceDate
-     * @param list
+     * 获取我的患者
+     *
+     * @param userStatus
+     * @param callback
      */
-    public static void submitTimes(String serviceDate,List<Integer> list,ResponseCallback<Void> callback){
-        String url = BASE_URL + "/00-19-03";
+    public static void getMyPaintList(int userStatus, ResponseCallback<PaintsData> callback) {
+        String url = BASE_URL + "/00-17-11";
         RequestParam param = new RequestParam();
-        param.add("serviceDate", serviceDate);
-        param.add("timeQuantumIds", list);
+        param.add("userStatus", userStatus);
+        Type type = new TypeToken<ResponseContent<PaintsData>>() {}.getType();
+        ApiClient.execute(url, param, callback, type);
+    }
 
-        Type type = new TypeToken<ResponseContent<Void>>(){}.getType();
+
+    /**
+     * 获取擅长列表
+     */
+    public static void getExperts(int profession,ResponseCallback<List<Expert>> callback) {
+        String url = BASE_URL + "/00-23-01";
+        RequestParam param = new RequestParam();
+        param.add("userPosition",profession);
+        Type type = new TypeToken<ResponseContent<List<Expert>>>() {
+        }.getType();
+        ApiClient.execute(url, param, callback, type);
+    }
+
+
+    /**
+     * 获取科室列表
+     */
+    public static void getDepartment(ResponseCallback<List<Department>> callback) {
+        String url = BASE_URL + "/00-24-01";
+        RequestParam param = new RequestParam();
+        Type type = new TypeToken<ResponseContent<List<Department>>>() {
+        }.getType();
+        ApiClient.execute(url, param, callback, type);
+    }
+
+
+    /**
+     * 修改名字
+     */
+    public static void alterName(String name,ResponseCallback<Void> callback) {
+        String url = BASE_URL + "/00-17-12";
+        RequestParam param = new RequestParam();
+        param.add("userName",name);
+        Type type = new TypeToken<ResponseContent<Void>>() {}.getType();
+        ApiClient.execute(url, param, callback, type);
+    }
+
+
+    /**
+     * 修改医院
+     */
+    public static void alterHospital(String hospital,ResponseCallback<Void> callback) {
+        String url = BASE_URL + "/00-17-12";
+        RequestParam param = new RequestParam();
+        param.add("hospital",hospital);
+        Type type = new TypeToken<ResponseContent<Void>>() {
+        }.getType();
+        ApiClient.execute(url, param, callback, type);
+    }
+
+
+
+    /**
+     * 申请修改职位
+     */
+    public static void applyChangeProfession(int profession, ResponseCallback<Void> callback) {
+        String url = BASE_URL + "/00-17-13";
+        RequestParam param = new RequestParam();
+        param.add("userPosition",profession);
+        Type type = new TypeToken<ResponseContent<Void>>() {}.getType();
+        ApiClient.execute(url, param, callback, type);
+    }
+
+
+
+    /**
+     * 修改地址
+     */
+    public static void alterAddr(String addressTitle,String cdCode,String detailAddress,ResponseCallback<Void> callback) {
+        String url = BASE_URL + "/00-17-12";
+        RequestParam param = new RequestParam();
+        param.add("mapPositionAddress",addressTitle);
+        param.add("districtCode",cdCode);
+        param.add("addressDetail",detailAddress);
+        Type type = new TypeToken<ResponseContent<Void>>() {
+        }.getType();
+        ApiClient.execute(url, param, callback, type);
+    }
+
+
+
+    /**
+     * 修改科室
+     * TODO
+     */
+    public static void alterOffices(String offices,ResponseCallback<Void> callback) {
+        String url = BASE_URL + "/00-17-12";
+        RequestParam param = new RequestParam();
+        param.add("offices",offices);
+        Type type = new TypeToken<ResponseContent<Void>>() {
+        }.getType();
+        ApiClient.execute(url, param, callback, type);
+    }
+
+
+    /**
+     * 修改擅长
+     */
+    public static void alterExpert(List<Expert> experts,ResponseCallback<Void> callback) {
+        String url = BASE_URL + "/00-17-12";
+        RequestParam param = new RequestParam();
+        ArrayList<String> special = new ArrayList<>();
+        for(Expert e : experts){
+            special.add(e.id);
+        }
+        param.add("adepts",special);
+        Type type = new TypeToken<ResponseContent<Void>>() {
+        }.getType();
+        ApiClient.execute(url, param, callback, type);
+    }
+
+
+
+    /**
+     * 修改用户头像
+     */
+    public static void alterAvatar(String avatarUrl,ResponseCallback<Void> callback) {
+        String url = BASE_URL + "/00-17-12";
+        RequestParam param = new RequestParam();
+        param.add("photoUrl",avatarUrl);
+        Type type = new TypeToken<ResponseContent<Void>>() {}.getType();
+        ApiClient.execute(url, param, callback, type);
+    }
+
+
+    /**
+     * 修改用户头像
+     */
+    public static void alterWorkType(int workType,ResponseCallback<Void> callback) {
+        String url = BASE_URL + "/00-17-12";
+        RequestParam param = new RequestParam();
+        param.add("jobCategory",workType);
+        Type type = new TypeToken<ResponseContent<Void>>() {}.getType();
+        ApiClient.execute(url, param, callback, type);
+    }
+
+
+    /**
+     * 初始化用户信息
+     * @param user
+     * @param callback
+     */
+    public static void initUserInfo(User user,ResponseCallback<Void> callback){
+        String url = BASE_URL + "/00-17-12";
+
+        /**
+         *  private static final int CODE_NAME = 1<<0;
+         private static final int CODE_PROFESSION = 1<<1;
+         private static final int CODE_ADDRESS= 1<<2;
+         private static final int CODE_HOSPITAL = 1<<3;
+         private static final int CODE_AVATAR = 1<<4;
+         private static final int CODE_SPECIAL = 1<<5;
+         private static final int CODE_OFFICE = 1<<6;
+         private static final int CODE_WORK_TYPE = 1<<7;
+         */
+
+
+        RequestParam param = new RequestParam();
+
+        param.add("userName",user.name);
+        param.add("userPosition",user.profession);
+        param.add("infoWrite",user.infoStatus);
+
+        if(!TextUtils.isEmpty(user.avatarImg))
+            param.add("photoUrl",user.avatarImg);
+
+
+        if(user.profession == MyData.DOCTOR){
+            param.add("hospital",user.hospital);
+            param.add("offices",user.department.departmentId);
+        }else if(user.profession == MyData.NURSING){
+            param.add("addressDetail",user.addressDetail);
+            param.add("mapPositionAddress",user.mapPositionAddress);
+            param.add("districtCode",user.districtCode);
+
+            ArrayList<String> special = new ArrayList<>();
+            for(Expert e : user.special){
+                special.add(e.id);
+            }
+            param.add("adepts",special);
+            param.add("jobCategory",user.jobType);
+            param.add("hospital", user.hospital);
+
+        }else if(user.profession == MyData.THERAPIST){
+
+            param.add("addressDetail",user.addressDetail);
+            param.add("mapPositionAddress",user.mapPositionAddress);
+            param.add("districtCode",user.districtCode);
+
+            ArrayList<String> special = new ArrayList<>();
+            for(Expert e : user.special){
+                special.add(e.id);
+            }
+            param.add("adepts",special);
+            param.add("jobCategory",user.jobType);
+        }
+
+        Type type = new TypeToken<ResponseContent<Void>>() {}.getType();
         ApiClient.execute(url, param, callback, type);
 
     }
+
 
 
 

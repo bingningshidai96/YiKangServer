@@ -19,26 +19,24 @@
 
         <EditText
             android:id="@+id/edt_login_userId"
+            style="@style/style_common_edt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/login_username_hint"
-            android:background="@drawable/shape_edit_bg"
-            android:inputType="phone"
-            android:paddingLeft="20dp"
-            android:textSize="17sp" />
+            android:inputType="phone" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:background="@color/line_grey2" />
+            android:background="@color/common_page_background" />
 
         <EditText
             android:id="@+id/edt_login_passw"
+            style="@style/style_common_edt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/login_passw_hint"
-            android:inputType="textPassword"
-            android:background="@drawable/shape_edit_bg" />
+            android:inputType="textPassword"/>
     </LinearLayout>
 
     <Button
@@ -49,7 +47,6 @@
         android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:background="@drawable/selector_btn_bg_theme"
         android:text="@string/login_title" />
     
     <LinearLayout
@@ -61,7 +58,7 @@
         android:orientation="horizontal" >
 
         <TextView
-            android:id="@+id/tv_login_regist"
+            android:id="@+id/tv_login_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"

@@ -6,9 +6,9 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
 import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.api.Api;
-import com.yikang.app.yikangserver.api.ApiTest;
 import com.yikang.app.yikangserver.api.callback.ResponseCallback;
 import com.yikang.app.yikangserver.application.AppConfig;
 import com.yikang.app.yikangserver.application.AppContext;
@@ -186,7 +186,7 @@ public class RegisterActivity extends BaseActivity implements
     private void register(String phone,String passWord) {
         showWaitingUI();
         LOG.i(TAG,"[register]phone:"+phone+"-----password:"+passWord);
-        ApiTest.registerNew(phone, passWord, registerHandler);
+        Api.registerNew(phone, passWord, registerHandler);
     }
 
 

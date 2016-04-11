@@ -1,8 +1,10 @@
 package com.yikang.app.yikangserver.utils;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.DisplayMetrics;
 
 import com.yikang.app.yikangserver.application.AppContext;
 
@@ -68,6 +70,13 @@ public class DeviceUtils {
     public static float getDensity() {
         return AppContext.getAppContext().getResources().getDisplayMetrics().density;
 
+    }
+
+
+    public static int[]  getSceenRect(){
+        DisplayMetrics displayMetrics = AppContext.getAppContext().getResources().getDisplayMetrics();
+        int[]  rect = {displayMetrics.widthPixels,displayMetrics.heightPixels};
+        return rect;
     }
 
 

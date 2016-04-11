@@ -36,7 +36,7 @@ public class AddressSearchActivity extends BaseActivity implements OnClickListen
 	public static final String EXTRA_ADDR_TITLE = "EXTRA_ADDR_TITLE";
 	public static final String EXTRA_ADDR_DISTRICT = "EXTRA_ADDR_MAP";
 
-	private String cityCode = "010";
+	private String cityCode = "110000";
 
 	private AddressInputTipsModel inputTipsModel; // 提供搜索的提示处理
 
@@ -54,14 +54,13 @@ public class AddressSearchActivity extends BaseActivity implements OnClickListen
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		initContent();
-		initTitleBar(getResources().getString(R.string.appointment_title));
+		initTitleBar(getResources().getString(R.string.address_search_title));
 		inputTipsModel = new AddressInputTipsModel(this, cityCode);
 		inputTipsModel.setOnSearchResultListener(this);
 	}
 
 	@Override
 	protected void initTitleBar(String title) {
-		// TODO Auto-generated method stub
 		super.initTitleBar(title);
 		TextView tvConfirm = (TextView) findViewById(R.id.tv_title_right_text);
 		tvConfirm.setText(getString(R.string.confirm));
@@ -147,7 +146,11 @@ public class AddressSearchActivity extends BaseActivity implements OnClickListen
 			if (edtAddrDetail.getVisibility() == View.VISIBLE) {
 				AppContext.showToast(R.string.addrSearch_detial_toast);
 			} else {
-				AppContext.showToast(R.string.addrSearch_addr_input_toast);
+				if(TextUtils.isEmpty(edtAddr.getText())){
+					AppContext.showToast(R.string.addrSearch_addr_input_toast);
+				}else{
+					AppContext.showToast(R.string.addrSearch_addr_chose_tip);
+				}
 				resetDetailAddr();
 			}
 			return;

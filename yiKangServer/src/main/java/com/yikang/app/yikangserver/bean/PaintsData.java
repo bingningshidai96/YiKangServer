@@ -18,6 +18,6 @@ public class PaintsData {
     @SerializedName("servicedUserNums")
     public int completeNum;
 
-    @SerializedName("invationUsers")
+    @SerializedName("invitionUsers")
     public List<InviteCustomer> list;
 }

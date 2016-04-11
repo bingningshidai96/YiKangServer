@@ -20,10 +20,13 @@ import cn.jpush.android.api.JPushInterface;
 
 import com.google.gson.Gson;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.tencent.bugly.crashreport.CrashReport;
+import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.api.parser.GsonFactory;
 import com.yikang.app.yikangserver.bean.User;
 import com.yikang.app.yikangserver.utils.AES;
@@ -56,15 +59,50 @@ public class AppContext extends Application {
 		JPushInterface.setDebugMode(DEBUG); // 设置开启日志,发布时请关闭日志
 		JPushInterface.init(this); // 初始化 JPush
 		initCachePath();
+
 		ImageLoaderConfiguration.Builder configBuilder = new ImageLoaderConfiguration.Builder(this);
 		File cacheDir = new File(CACHE_IMAGE_PATH);
+        DisplayImageOptions.Builder builder =new DisplayImageOptions.Builder();
+        builder.cacheInMemory(true)
+                .cacheOnDisk(true);
 		configBuilder.tasksProcessingOrder(QueueProcessingType.LIFO)
-		.diskCacheSize(CACHE_DISK_SIZE)
+                .diskCacheFileNameGenerator(new Md5FileNameGenerator())
+                .diskCacheSize(CACHE_DISK_SIZE)
 				.diskCacheFileCount(200)
 				.diskCache(new UnlimitedDiskCache(cacheDir))
-				.tasksProcessingOrder(QueueProcessingType.LIFO);
+				.tasksProcessingOrder(QueueProcessingType.LIFO)
+                .defaultDisplayImageOptions(builder.build())
+                .writeDebugLogs();
+
 		ImageLoader.getInstance().init(configBuilder.build());
+        correctPreference();
 	}
+
+
+
+    /**
+     *如果版本更新，修正数据
+     */
+    private void correctPreference(){
+        int currentVersion = AppContext.getAppContext().getVersionCode();
+        int cacheVersionCode = AppContext.get(AppConfig.PRE_VERSION_CODE, 0);
+
+        LOG.i(TAG,"currentVersion"+currentVersion+"cacheVersion"+cacheVersionCode);
+        if(currentVersion>cacheVersionCode){
+            AppContext.set(AppConfig.PRE_VERSION_CODE,currentVersion);
+            AppContext.set(AppConfig.PRE_APP_FIRST_RUN,true);
+
+            /**因为升级之后，和之前的数据已经不一致*/
+            if(cacheVersionCode<=6){
+                AppContext.getAppContext().logout();
+//				File configDir = getDir("config", Context.MODE_PRIVATE);
+//				File configFile = new File(configDir, "config");
+//				if (!configFile.exists()) {
+//					configFile.delete();
+//				}
+            }
+        }
+    }
 
 
 	private void initCachePath() {
@@ -195,7 +233,7 @@ public class AppContext extends Application {
 			LOG.e(TAG,
 					"error! 'deviceID' is in property file while 'diviceIdType' not");
 			diviceId = null;
-			removeProperty(AppConfig.CONF_DEVICE_ID);
+            removeProperty(AppConfig.CONF_DEVICE_ID);
 			getDeviceID();
 		}
 		return diviceIdType;
@@ -254,7 +292,7 @@ public class AppContext extends Application {
 		String versionName = null;
 		try {
 			versionName = appContext.getPackageManager()
-					.getPackageInfo(appContext.getPackageName(),
+                    .getPackageInfo(appContext.getPackageName(),
 							0).versionName;
 		} catch (NameNotFoundException e) {
 			e.printStackTrace();

@@ -9,12 +9,11 @@
 
     <EditText
         android:id="@+id/edt_verify_verify_code"
+        style="@style/style_common_edt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_edit_bg"
         android:hint="@string/register_verify_code_hint"
-        android:inputType="phone"
-        android:padding="12dp" />
+        android:inputType="phone" />
 
     <Button
         android:id="@+id/bt_verify_complete"
@@ -39,6 +38,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
+        android:textColor="@color/common_text_grey_light"
+        android:textSize="@dimen/common_text_size_small"
         android:text=""/>
 
     <Button
@@ -46,6 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/request_again"
+        android:textSize="12dp"
         android:textColor="@color/common_theme_color"
         android:layout_gravity="center_horizontal"
         android:background="@null"/>

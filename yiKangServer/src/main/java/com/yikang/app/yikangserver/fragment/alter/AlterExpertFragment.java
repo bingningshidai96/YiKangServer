@@ -6,15 +6,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.TextView;
+
 import com.yikang.app.yikangserver.R;
-import com.yikang.app.yikangserver.api.ApiTest;
+import com.yikang.app.yikangserver.api.Api;
 import com.yikang.app.yikangserver.api.callback.ResponseCallback;
 import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.bean.Expert;
-import com.yikang.app.yikangserver.reciever.UserInfoAlteredReceiver;
-import com.yikang.app.yikangserver.utils.LOG;
 import com.yikang.app.yikangserver.view.tag.FlowLayout;
 import com.yikang.app.yikangserver.view.tag.TagAdapter;
 import com.yikang.app.yikangserver.view.tag.TagFlowLayout;
@@ -54,18 +52,13 @@ public class AlterExpertFragment extends BaseAlterFragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mCanSubmit = getArguments().getBoolean(ARG_NEED_SUBMIT);
-            profession = getArguments().getInt(ARG_PROFESSION);
-
             if(!getArguments().containsKey(ARG_NEED_SUBMIT)||
                     !getArguments().containsKey(ARG_PROFESSION)){
                 throw new IllegalArgumentException("必须传入两个参数"+ARG_NEED_SUBMIT+" 和" +ARG_PROFESSION);
             }
+            mCanSubmit = getArguments().getBoolean(ARG_NEED_SUBMIT);
+            profession = getArguments().getInt(ARG_PROFESSION);
 
-//            List<Expert> oldValue = (List<Expert>) getArguments().getSerializable(ARG_OLD_VALUE);
-//            if(oldValue!=null){
-//                checkedList.addAll(oldValue);
-//            }
         }
         loadTags();
     }
@@ -73,7 +66,7 @@ public class AlterExpertFragment extends BaseAlterFragment{
 
     private void loadTags(){
         showWaitingUI();
-        ApiTest.getExperts(profession,new ResponseCallback<List<Expert>>() {
+        Api.getExperts(profession, new ResponseCallback<List<Expert>>() {
             @Override
             public void onSuccess(List<Expert> data) {
                 hideWaitingUI();
@@ -120,7 +113,7 @@ public class AlterExpertFragment extends BaseAlterFragment{
             for (int index:  mTflTags.getSelectedList()) {
                 checkList.add(mData.get(index));
             }
-            ApiTest.alterExpert(checkList, alterHandler); //网络提交，数据返回
+            Api.alterExpert(checkList, alterHandler); //网络提交，数据返回
         }else {
             finishWithResult();
         }

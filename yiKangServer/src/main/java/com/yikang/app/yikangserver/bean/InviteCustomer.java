@@ -14,7 +14,6 @@ public class InviteCustomer {
 	@SerializedName("userStatus")
 	public int status;
 
-	@SerializedName("createTimeStr")
 	public String consumeDate;
 
 	@SerializedName("photoUrl")
@@ -24,6 +23,13 @@ public class InviteCustomer {
 	public int sex;
 
 
-	public String registerDate;
+	@SerializedName("loginName")
+	public String phone;
 
+
+	@SerializedName("createTimeStr")
+	public String registerTime;
+
+
+	public String serviceTime;
 }

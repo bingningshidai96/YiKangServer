@@ -27,15 +27,15 @@ public class AES {
 
 	}
 	
-//	public static native String getKey();
+	public static native String getKey();
 
-//	static{
-//		System.loadLibrary("mykey");
-//	}
-
-	public static String getKey(){
-		return "1234567890abcDEF";
+	static{
+		System.loadLibrary("mykey");
 	}
+
+//	public static String getKey(){
+//		return "1234567890abcDEF";
+//	}
 
 
 	/**

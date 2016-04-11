@@ -17,8 +17,8 @@
 
         <com.yikang.app.yikangserver.view.CircleImageView
             android:id="@+id/iv_mine_avatar"
-            android:layout_width="95dp"
-            android:layout_height="95dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:contentDescription="@null"
             android:src="@drawable/doctor_default_avatar" />
 
@@ -35,7 +35,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="李四"
                 android:textColor="@color/common_text_color"
-                android:textSize="14sp" />
+                android:textSize="15sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -48,8 +48,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="@string/mine_profession"
-                    android:textColor="@color/common_btn_bg_grey"
-                    android:textSize="14sp" />
+                    android:textColor="@color/common_text_grey"
+                    android:textSize="@dimen/common_text_size_small" />
 
                 <TextView
                     android:id="@+id/tv_mine_profession"
@@ -57,8 +57,22 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="康复师"
-                    android:textColor="@color/common_btn_bg_grey"
-                    android:textSize="14sp" />
+                    android:textColor="@color/common_text_grey"
+                    android:textSize="@dimen/common_text_size_small" />
+
+                <TextView
+                    android:id="@+id/tv_mine_profession_in_check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="审核中"
+                    android:textColor="@color/common_theme_color"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:background="@drawable/shape_them_color_radius_rectangle"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -87,6 +101,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/common_text_color"
+            android:textSize="@dimen/common_text_size"
             android:text="@string/mine_invite_code" />
 
         <View
@@ -96,6 +112,8 @@
 
         <TextView
             android:id="@+id/tv_mine_invite_code"
+            android:textColor="@color/common_text_grey"
+            android:textSize="@dimen/common_text_size_small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
@@ -111,6 +129,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/common_text_color"
+            android:textSize="@dimen/common_text_size"
             android:text="@string/mine_qrcode" />
 
         <View
@@ -144,6 +164,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/common_text_size"
+            android:textColor="@color/common_text_color"
             android:text="@string/mine_customer_number" />
 
         <View
@@ -156,6 +178,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawablePadding="10dp"
+            android:textColor="@color/common_text_grey"
+            android:textSize="@dimen/common_text_size_small"
             android:drawableRight="@drawable/ic_arrow_right_grey"/>
     </LinearLayout>
 

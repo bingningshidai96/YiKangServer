@@ -74,7 +74,6 @@ public class MineInfoActivity extends BaseActivity implements InitProfessionFrag
     }
 
 
-
     @Override
     protected void initViewContent() {
         FragmentTransaction ft = getFragmentManager().beginTransaction();

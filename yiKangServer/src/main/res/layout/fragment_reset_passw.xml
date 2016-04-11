@@ -43,7 +43,6 @@
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:background="@drawable/selector_btn_bg_theme"
                 android:gravity="center"
                 android:paddingBottom="13sp"
                 android:paddingLeft="5dp"
@@ -72,23 +71,6 @@
             android:hint="@string/set_password_again_hint"
             android:inputType="textPassword"
             android:padding="12dp" />
-
-        <LinearLayout
-            android:id="@+id/ly_register_voice_code_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical"
-            android:visibility="gone" >
-
-            <TextView
-                android:id="@+id/tv_regist_get_voice_code"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:text="@string/regist_get_void_code_hint"
-                android:textColor="#ffa919" />
-        </LinearLayout>
 
         <Button
             android:id="@+id/bt_register_next"

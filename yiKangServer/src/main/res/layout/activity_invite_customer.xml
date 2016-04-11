@@ -19,7 +19,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="140dp"
         android:gravity="center"
         android:orientation="vertical"
         android:background="#3389e4">
@@ -37,6 +37,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:textSize="13sp"
+            android:layout_marginTop="-10dp"
             android:text="@string/customers_sums"/>
 
     </LinearLayout>
@@ -70,6 +71,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/customerList_status_registed"
+                    android:textSize="10sp"
                     android:textColor="@color/white" />
 
             </LinearLayout>
@@ -95,7 +97,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/customerList_status_consumed"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="10dp"/>
 
             </LinearLayout>
 
@@ -115,7 +118,7 @@
                 android:layout_weight="1"
                 android:button="@null"
                 android:gravity="center"
-                android:paddingLeft="0dp"
+                android:textColor="@drawable/selector_text_customer"
                 android:textSize="16sp" />
 
 
@@ -125,8 +128,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:button="@null"
+                android:textColor="@drawable/selector_text_customer"
                 android:gravity="center"
-                android:paddingLeft="0dp"
                 android:textSize="16sp" />
         </RadioGroup>
 

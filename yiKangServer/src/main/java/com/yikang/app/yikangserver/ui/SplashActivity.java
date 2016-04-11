@@ -23,7 +23,6 @@ public class SplashActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		correctPreference();
 		initContent();
 		mhHandler = new Handler();
 		mhHandler.postDelayed(new Runnable() {
@@ -51,27 +50,7 @@ public class SplashActivity extends BaseActivity {
 	}
 
 
-	/**
-	 *如果版本更新，修正数据
-	 */
-	private void correctPreference(){
-		int currentVersion = AppContext.getAppContext().getVersionCode();
-		int cacheVersionCode = AppContext.get(AppConfig.PRE_VERSION_CODE, 0);
-		if(currentVersion>cacheVersionCode){
-			AppContext.set(AppConfig.PRE_VERSION_CODE,currentVersion);
-			AppContext.set(AppConfig.PRE_APP_FIRST_RUN,true);
 
-			/**因为升级之后，和之前的数据已经不一致*/
-			if(cacheVersionCode<=6){
-				AppContext.getAppContext().logout();
-				File configDir = getDir("config", Context.MODE_PRIVATE);
-				File configFile = new File(configDir, "config");
-				if (!configFile.exists()) {
-					configFile.delete();
-				}
-			}
-		}
-	}
 
 	private void startNextPage() {
 		if (AppContext.getAppContext().getAccessTicket() == null) {

@@ -44,7 +44,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 		edtUserId = (EditText) findViewById(R.id.edt_login_userId);
 		edtPassw = (EditText) findViewById(R.id.edt_login_passw);
 		btnLogin = (Button) findViewById(R.id.bt_login_login);
-		tvRegister = (TextView) findViewById(R.id.tv_login_regist);
+		tvRegister = (TextView) findViewById(R.id.tv_login_register);
 		tvFindPassw = (TextView) findViewById(R.id.tv_login_forget);
 		
 		edtUserId.addTextChangedListener(new TextWatcher() {
@@ -113,7 +113,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 			}
 			login(userId, passw);
 			break;
-		case R.id.tv_login_regist:
+		case R.id.tv_login_register:
 			toRegister();// 注册完直接登录，不会回到这个页面
 			break;
 		case R.id.tv_login_forget:

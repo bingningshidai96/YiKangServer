@@ -5,7 +5,7 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.yikang.app.yikangserver.R;
-import com.yikang.app.yikangserver.fragment.ResetPasswFragment;
+import com.yikang.app.yikangserver.fragment.ResetPasswordFragment;
 
 /**
  * Created by liu on 15/12/20.
@@ -54,7 +54,7 @@ public class SimpleActivity extends  BaseActivity{
 
 
     public enum SimplePage{
-        findPassw(1,R.string.reset_passw_title, ResetPasswFragment.class,null);
+        findPassw(1,R.string.reset_passw_title, ResetPasswordFragment.class,null);
 
 
         //freeTime(2,"空闲时间",)

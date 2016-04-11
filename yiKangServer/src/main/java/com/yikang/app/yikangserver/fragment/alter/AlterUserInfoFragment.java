@@ -13,10 +13,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yikang.app.yikangserver.R;
 import com.yikang.app.yikangserver.api.Api;
-import com.yikang.app.yikangserver.api.ApiTest;
 import com.yikang.app.yikangserver.api.callback.ResponseCallback;
 import com.yikang.app.yikangserver.application.AppContext;
 import com.yikang.app.yikangserver.bean.Department;
@@ -67,7 +67,6 @@ public class AlterUserInfoFragment extends BaseFragment
     private static int[] doctorUI = new int[]{R.id.ly_info_hospital, R.id.ly_info_office};
     private static int[] therapistUI = new int[]{R.id.ly_info_work_type, R.id.ly_info_spacial,R.id.ly_info_address};
     private static int[] nursingUI = new int[]{R.id.ly_info_hospital, R.id.ly_info_work_type, R.id.ly_info_spacial,R.id.ly_info_address};
-
 
     /** 默认头像 */
     private static SparseIntArray defaultAvatar = new SparseIntArray();
@@ -165,7 +164,7 @@ public class AlterUserInfoFragment extends BaseFragment
      */
     private void alterAvatarInfo(String url) {
         showWaitingUI();
-        ApiTest.alterAvatar(url, new ResponseCallback<Void>() {
+        Api.alterAvatar(url, new ResponseCallback<Void>() {
             @Override
             public void onSuccess(Void data) {
                 hideWaitingUI();
@@ -217,7 +216,7 @@ public class AlterUserInfoFragment extends BaseFragment
      * 获取科室列表
      */
     private void loadDepartment(){
-        ApiTest.getDepartment(new ResponseCallback<List<Department>>() {
+        Api.getDepartment(new ResponseCallback<List<Department>>() {
             @Override
             public void onSuccess(List<Department> data) {
                 departmentData.clear();
@@ -273,7 +272,7 @@ public class AlterUserInfoFragment extends BaseFragment
             @Override
             public void onItemClickListener(TextSpinner spinner, int position) {
                 showWaitingUI();
-                ApiTest.alterWorkType(position, alterWorkTypeHandler);
+                Api.alterWorkType(position, alterWorkTypeHandler);
             }
         });
 
@@ -282,7 +281,7 @@ public class AlterUserInfoFragment extends BaseFragment
             @Override
             public void onItemClickListener(TextSpinner spinner, int position) {
                 showWaitingUI();
-                ApiTest.alterOffices(departmentData.get(position).departmentId, alterOfficeHandler);
+                Api.alterOffices(departmentData.get(position).departmentId, alterOfficeHandler);
             }
         });
 
@@ -315,6 +314,8 @@ public class AlterUserInfoFragment extends BaseFragment
 
         if(!TextUtils.isEmpty(user.avatarImg)){
             ImageLoader.getInstance().displayImage(user.avatarImg,ivAvatar);
+        }else {
+            ivAvatar.setImageResource(defaultAvatar.get(user.profession));
         }
 
         if(user.profession >= 0){
@@ -401,7 +402,7 @@ public class AlterUserInfoFragment extends BaseFragment
                 user.addressDetail = data.getStringExtra(AddressSearchActivity.EXTRA_ADDR_DETIAL);
                 user.mapPositionAddress = data.getStringExtra(AddressSearchActivity.EXTRA_ADDR_TITLE);
                 String district = data.getStringExtra(AddressSearchActivity.EXTRA_ADDR_DISTRICT);
-                ApiTest.alterAddr(user.mapPositionAddress,user.districtCode,user.addressDetail,alterWorkTypeHandler);
+                Api.alterAddr(user.mapPositionAddress,user.districtCode,user.addressDetail,alterWorkTypeHandler);
                 break;
             case CODE_NAME:
                 user.name = data.getStringExtra(BaseAlterFragment.RESULT_EXTRA_RESULT);
