@@ -56,6 +56,7 @@ public abstract class BaseActivity extends Activity implements UINetwork {
 	 */
 	protected abstract void getData();
 
+
 	/**
 	 * 展示内容
 	 */

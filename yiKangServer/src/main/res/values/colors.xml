@@ -20,6 +20,7 @@
     <color name="common_page_background">#f4f5f6</color>
     <color name="divider_gray">@color/common_page_background</color>
     <color name="common_btn_bg_grey">#999999</color>
+
     <!-- item的背景色-->
     <color name="common_item_bg">@color/white</color>
     <color name="item_customer_text_color">#505050</color>

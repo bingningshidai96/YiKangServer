@@ -131,6 +131,8 @@ public abstract class BaseListFragment<T> extends BaseFragment implements
      */
     abstract protected void convert(ViewHolder holder, T item);
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

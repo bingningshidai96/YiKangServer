@@ -80,8 +80,8 @@ public class AES {
 	/**
 	 * 加密
 	 * 
-	 * @param sSrc
-	 * @param sKey
+	 * @param sSrc 明文
+	 * @param sKey 密钥
 	 * @return
 	 * @throws Exception
 	 */
@@ -109,7 +109,7 @@ public class AES {
 	 * @param strhex
 	 * @return
 	 */
-	public static byte[] hex2byte(String strhex) {
+	private static byte[] hex2byte(String strhex) {
 		if (strhex == null) {
 			return null;
 		}
@@ -132,7 +132,7 @@ public class AES {
 	 * @param b
 	 * @return
 	 */
-	public static String byte2hex(byte[] b) {
+	private static String byte2hex(byte[] b) {
 		StringBuffer hs = new StringBuffer();
 		String stmp = "";
 		for (int n = 0; n < b.length; n++) {

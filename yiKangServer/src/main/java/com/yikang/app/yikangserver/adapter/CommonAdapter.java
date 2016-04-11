@@ -50,6 +50,11 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
 
 	}
 
+	/**
+	 * 填充数据
+	 * @param holder
+	 * @param item
+	 */
 	protected abstract void convert(ViewHolder holder, T item);
 
 	private ViewHolder getViewHolder(int position, View convertView,

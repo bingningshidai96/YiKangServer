@@ -104,7 +104,9 @@ public class AppContext extends Application {
         }
     }
 
-
+	/**
+	 * 初始化缓存路径
+	 */
 	private void initCachePath() {
 		File file = new File(CACHE_IMAGE_PATH);
 		if (!file.exists()) {
@@ -112,10 +114,17 @@ public class AppContext extends Application {
 		}
 	}
 
+
+
 	public static AppContext getAppContext() {
 		return appContext;
 	}
 
+
+	/**
+	 * 登录
+	 * @param user
+	 */
 	public void login(final User user) {
 		Gson gson = GsonFactory.newInstance(new GsonFactory.NonEncryptedProvider());
 		try {
@@ -174,7 +183,7 @@ public class AppContext extends Application {
 
 	/**
 	 * 获取DeviceID
-	 * 
+	 *  IMEI
 	 * @return
 	 */
 	public String getDeviceID() {
@@ -215,8 +224,13 @@ public class AppContext extends Application {
 		return diviceId;
 	}
 
+
+
 	/**
 	 * 获取deviceId的类型
+	 * IMEI 1
+	 * mac 2
+	 * UUID 4
 	 */
 	public int getDeviceIdType() {
 		if (diviceIdType == -1) { // 充文件中获取
@@ -239,6 +253,8 @@ public class AppContext extends Application {
 		return diviceIdType;
 	}
 
+
+
 	/**
 	 * 判断设备是否已经注册
 	 */
@@ -249,6 +265,8 @@ public class AppContext extends Application {
 		}
 		return false;
 	}
+
+
 
 	/**
 	 * 获得一个accessTicket

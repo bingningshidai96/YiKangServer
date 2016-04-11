@@ -43,10 +43,12 @@ public class ApiClient {
 	}
 
 
-
-
 	/**
-	 * @see #execute(String,RequestParam, ResponseCallback,Type,boolean)
+	 * 异步post请求
+	 * @param url 请求地址
+	 * @param param 参数
+	 * @param callBack 回调接口
+	 * @param resultType Type
 	 */
 	public static void execute(String url, RequestParam param,
 							   final ResponseCallback callBack,
