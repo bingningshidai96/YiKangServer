@@ -12,6 +12,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
@@ -44,6 +45,20 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 	private UserInfoAlteredReceiver receiver;
 
 	private ArrayList<Fragment> fragList = new ArrayList<>();
+
+	private RadioGroup main_tab_group;
+	private RadioButton main_tab_featured;
+	private RadioButton main_tab_wallpaper;
+	private RadioButton main_tab_mine;
+	private RadioButton main_tab_more;
+
+	private final int MAIN_TAB_FEATURED=R.id.main_tab_featured;
+	private final int MAIN_TAB_WALLPAPER=R.id.main_tab_wallpaper;
+	private final int MAIN_TAB_MINE=R.id.main_tab_mine;
+	private final int MAIN_TAB_MORE=R.id.main_tab_more;
+
+	private Fragment mineFragment,mineFragment2;
+	private Fragment mineFragment3,mineFragment4;
 
 	/**
 	 * 注册设备handler
@@ -131,7 +146,15 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 	
 
 	@Override
-	protected void findViews() {}
+	protected void findViews() {
+		main_tab_group=(RadioGroup)findViewById(R.id.main_tab_group);
+		main_tab_wallpaper=(RadioButton)findViewById(R.id.main_tab_wallpaper);
+		main_tab_featured=(RadioButton)findViewById(R.id.main_tab_featured);
+		main_tab_mine=(RadioButton)findViewById(R.id.main_tab_mine);
+		main_tab_more=(RadioButton)findViewById(R.id.main_tab_more);
+		main_tab_group.setOnCheckedChangeListener(this);
+
+	}
 
 	@Override
 	protected void setContentView() {
@@ -225,10 +248,13 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 	private void initViewsAfterGetInfo() {
 		// 将fragment添加到MainActivity中
 		//Fragment busiFragment = new BusinessMainFragment();
-		Fragment mineFragment = new MineFragment();
+		mineFragment = new MineFragment();
+		mineFragment2 = new MineFragment();
+		mineFragment3 = new MineFragment();
+		mineFragment4 = new MineFragment();
 
 		//addTabsFragment(busiFragment, String.valueOf(R.id.rb_main_business));
-		addTabsFragment(mineFragment, "");
+		addTabsFragment(mineFragment, MAIN_TAB_FEATURED + "");
 	}
 
 
@@ -240,11 +266,11 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 		fragList.add(fragment);
 		FragmentTransaction ft = getFragmentManager().beginTransaction();
 		ft.add(R.id.fl_main_container, fragment, tag);
-		//if (!String.valueOf(currentCheck).equals(tag)) {
-		//	ft.hide(fragment);
-		//}
+//		//if (!String.valueOf(currentCheck).equals(tag)) {
+//		//	ft.hide(fragment);
+//		//}
 		ft.commit();
-		initTitleBar(getString(R.string.mine_title));
+		initTitleBar("首页");
 	}
 
 
@@ -254,19 +280,55 @@ public class MainActivity extends BaseActivity implements OnCheckedChangeListene
 	 */
 	@Override
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
-		//final String lastTag = String.valueOf(currentCheck);
-		//final String currentTag = String.valueOf(checkedId);
-		//currentCheck = checkedId;
+//		final String lastTag = String.valueOf(currentCheck);
+//		final String currentTag = String.valueOf(checkedId);
+//		currentCheck = checkedId;
 //		changeTitleBar();
 //		FragmentTransaction ft = getFragmentManager().beginTransaction();
 //		for (Fragment fragment : fragList) {
 //			if (lastTag.equals(fragment.getTag())) {
 //				ft.hide(fragment);
-//			} else if (currentTag.equals(fragment.getTag())) {
-//				ft.show(fragment);
+//			}else if (currentTag.equals(fragment.getTag())) {
+////		    ft.show(fragment);
 //			}
 //		}
 //		ft.commit();
+		FragmentTransaction ft = getFragmentManager().beginTransaction();
+		switch (checkedId){
+			case R.id.main_tab_featured:
+				if(mineFragment.isAdded()){
+					ft.show(mineFragment);
+				}else{
+					ft.add(R.id.fl_main_container, mineFragment);
+				}
+				initTitleBar("首页");
+				break;
+			case R.id.main_tab_wallpaper:
+				if(mineFragment2.isAdded()){
+					ft.show(mineFragment2);
+				}else{
+					ft.add(R.id.fl_main_container, mineFragment2);
+				}
+				initTitleBar("社区");
+				break;
+			case R.id.main_tab_mine:
+				if(mineFragment3.isAdded()){
+					ft.show(mineFragment3);
+				}else{
+					ft.add(R.id.fl_main_container, mineFragment3);
+				}
+				initTitleBar("消息");
+				break;
+			case R.id.main_tab_more:
+				if(mineFragment4.isAdded()){
+					ft.show(mineFragment4);
+				}else{
+					ft.add(R.id.fl_main_container, mineFragment4);
+				}
+				initTitleBar("我的");
+				break;
+		}
+				ft.commit();
 	}
 
     @Override

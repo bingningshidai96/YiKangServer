@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+
+    <RelativeLayout
+        android:id="@+id/main_tab_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/main_tab_background_color"
+        android:gravity="center"
+        android:minHeight="@dimen/tab_min_height" >
+
+        <RadioGroup
+            android:id="@+id/main_tab_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="bottom"
+            android:minHeight="@dimen/tab_min_height"
+            android:orientation="horizontal"
+            android:paddingBottom="1.0dp"
+            android:paddingTop="2.0dip" >
+
+            <RadioButton
+                android:id="@+id/main_tab_featured"
+                style="@style/main_tab_button"
+                android:checked="true"
+                android:drawableTop="@drawable/main_tab_featured_selector"
+                android:text="首页"
+                android:textColor="@drawable/text_main_color_selector" />
+
+            <RadioButton
+                android:id="@+id/main_tab_wallpaper"
+                style="@style/main_tab_button"
+                android:drawableTop="@drawable/main_tab_wallpaper_selector"
+                android:text="社区"
+                android:textColor="@drawable/text_main_color_selector" />
+
+
+            <RadioButton
+                android:id="@+id/main_tab_mine"
+                style="@style/main_tab_button"
+                android:drawableTop="@drawable/main_tab_diy_selector"
+                android:text="消息"
+                android:textColor="@drawable/text_main_color_selector" />
+
+            <RadioButton
+                android:id="@+id/main_tab_more"
+                style="@style/main_tab_button"
+                android:drawableTop="@drawable/main_tab_more_selector"
+                android:text="我的"
+                android:textColor="@drawable/text_main_color_selector" />
+        </RadioGroup>
+    </RelativeLayout>
+
+</LinearLayout>

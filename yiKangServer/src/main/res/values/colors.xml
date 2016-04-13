@@ -45,5 +45,9 @@
     <color name="customers_tab_color">#db3389e4</color>
     <color name="customers_top_bg">#3389e4</color>
 
+    <color name="main_tab_background_color">#ffffff</color>
+    <color name="main_tab_text_color">#464646</color>
+    <color name="main_tab_text_color_press">#e60012</color>
+    <color name="main_background_color">#ffffff</color>
 
 </resources>

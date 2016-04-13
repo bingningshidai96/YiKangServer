@@ -5,10 +5,10 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context=".MainActivity" >
-	
+
     <include 
-        layout="@layout/include_title_bar1"/>
-    
+        layout="@layout/include_title_bar"/>
+
     <FrameLayout
         android:id="@+id/fl_main_container"
         android:layout_width="match_parent"
@@ -25,5 +25,9 @@
         </FrameLayout>
 
     </FrameLayout>
+
+    <include
+        layout="@layout/activity_main_bottom" />
+
 
 </LinearLayout>

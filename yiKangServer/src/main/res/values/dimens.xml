@@ -10,4 +10,10 @@
     <dimen name="common_text_size_small">13sp</dimen>
 
     <dimen name="common_bt_text_size">18sp</dimen>
+
+    <dimen name="tab_button_font_size">10sp</dimen>
+    <dimen name="tab_button_padding_drawable">2.0dip</dimen>
+
+    <dimen name="tab_min_height">44dp</dimen>
+    <dimen name="homepage_img_tab_min_height">160dp</dimen>
 </resources>
